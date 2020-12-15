@@ -1,0 +1,7 @@
+{
+  "name": "JamCook",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
