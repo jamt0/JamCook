@@ -15,8 +15,8 @@ const Welcome: React.FC = () => {
   };
   return (
     <IonPage>
-      <IonContent>
-        <div className="flex flex-col justify-between content-between max-w-screen-md mx-auto py-4 h-full">
+      <IonContent> {/* si bloqueo el scrollY se quita el error de algunos navegadores, pero aveces necesito scroll, buscar solucion en el futuro*/}
+        <div className="flex flex-col justify-between max-w-screen-md mx-auto py-4 h-full">
           <div>
             <h1 className="text-center text-5xl md:text-7xl font-black mb-4">
               <IonText className="text-red-600">Jam</IonText>
