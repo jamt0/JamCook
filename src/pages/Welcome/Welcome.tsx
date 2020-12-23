@@ -1,10 +1,11 @@
 import { IonContent, IonPage, IonText } from '@ionic/react';
 import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import './Welcome.css';
 import Lottie from 'react-lottie';
 import animationData from '../../assets/26901-cooking.json';
 
-const Welcome: React.FC = () => {
+const Welcome: React.FC<RouteComponentProps> = ({history}) => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -26,8 +27,17 @@ const Welcome: React.FC = () => {
           </div>
           <Lottie options={defaultOptions} height={350} width={350} />
           <div className="px-4 md:grid md:grid-cols-2 md:gap-4">
-            <button className="border border-purple-500 py-4 mb-4 md:mb-0 bg-purple-500 text-white text-xl rounded-md transition duration-500 ease select-none hover:bg-purple-600 focus:outline-none focus:shadow-outline w-full">Ingresar</button>
-            <button className="border border-red-500 py-4 bg-red-500 text-white text-xl rounded-md transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline w-full">Registrarse</button>
+            <button 
+            className="border border-purple-500 py-4 mb-4 md:mb-0 bg-purple-500 text-white text-xl rounded-md transition duration-500 ease select-none hover:bg-purple-600 focus:outline-none focus:shadow-outline w-full"
+            onClick={e => {
+              e.preventDefault();
+              history.push('/signIn')
+            }}>Ingresar</button>
+            <button className="border border-red-500 py-4 bg-red-500 text-white text-xl rounded-md transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline w-full"
+            onClick={e => {
+              e.preventDefault();
+              history.push('/signUp')
+            }}>Registrarse</button>
           </div>
         </div>
       </IonContent>

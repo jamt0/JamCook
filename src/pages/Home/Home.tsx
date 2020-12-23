@@ -1,8 +1,9 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import './Home.css';
 
-const SignUp: React.FC = () => {
+const SignUp: React.FC<RouteComponentProps> = ({history}) => {
   return (
     <IonPage>
       <IonHeader>
