@@ -1,16 +1,47 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonInput, IonFooter } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonInput, IonFooter, IonIcon, IonButtons, IonButton } from '@ionic/react';
+import { chevronBackOutline } from 'ionicons/icons';
 import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import './SignUp.css';
+import Button from '../../components/Button/Button';
 
 const SignUp: React.FC<RouteComponentProps> = ({ history }) => {
   const [mail, setMail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+
+  const handlerSignInButton = (e: any) => {
+    e.preventDefault();
+    history.push('/signIn');
+  }
+
+  const handlerSignUpButton = (e: any) => {
+    e.preventDefault();
+    history.push('/home');
+  }
+
+  const handlerTerminosYCondicionesButton = (e: any) => {
+    e.preventDefault();
+    history.push('/terminosYCondiciones');
+  }
+
+  const handlerPoliticaDePrivacidadButton = (e: any) => {
+    e.preventDefault();
+    history.push('/politicaDePrivacidad');
+  }
+
+  const handlerGoBackButton = (e: any) => {
+    e.preventDefault();
+    history.goBack();
+  }
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonButton onClick={handlerGoBackButton}>
+              <IonIcon slot="icon-only" icon={chevronBackOutline} />
+            </IonButton>
+          </IonButtons>
           <IonTitle><div className="md:flex md:justify-center">Crear Cuenta </div></IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -28,42 +59,23 @@ const SignUp: React.FC<RouteComponentProps> = ({ history }) => {
             <IonLabel position="floating" color="primary">Contraseña</IonLabel>
             <IonInput value={password} type="password" required></IonInput>
           </IonItem>
-          <div className="flex justify-center mt-8 mb-4">
-            <p className="mr-1 text-base inline">Al registrarte, aceptas nuestros</p>
-            <button className="text-purple-600 text-base select-none inline"
-              onClick={e => {
-                e.preventDefault();
-                history.push('/terminosYCondiciones')
-              }}>Terminos y condiciones
-            </button>
-            <p className="mx-1 text-base inline">y</p>
-            <button className="text-purple-600 text-base select-none inline"
-              onClick={e => {
-                e.preventDefault();
-                history.push('/politicaDePrivacidad')
-              }}>Política de Privacidad
-            </button>
+          <div className="flex justify-center">
+            <div className="mt-8 mb-4 text-center">
+              <p className="mr-1 text-base inline">Al registrarte, aceptas nuestros</p>
+              <Button handler={handlerTerminosYCondicionesButton} label={"Terminos y condiciones"} type={"Link"} />
+              <p className="mx-1 text-base inline">y</p>
+              <Button handler={handlerPoliticaDePrivacidadButton} label={"Política de Privacidad."} type={"Link"} />
+            </div>
           </div>
-
         </div>
       </IonContent>
       <IonFooter className="ion-no-border">
         <IonToolbar className="ion-no-border">
           <div className="p-2 max-w-screen-md mx-auto">
-            <button className="border border-red-500 py-4 mt-2 bg-red-500 text-white text-xl rounded-md transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline w-full"
-              onClick={e => {
-                e.preventDefault();
-                history.push('/home')
-              }}>Crear cuenta
-            </button>
+            <Button handler={handlerSignUpButton} label={"Crear cuenta"} />
             <div className="flex justify-center py-2">
               <p className="mr-1 text-base inline">¿Ya tienes una cuenta? </p>
-              <button className="text-purple-600 text-base select-none inline"
-                onClick={e => {
-                  e.preventDefault();
-                  history.push('/signIn')
-                }}>Inicia sesión.
-              </button>
+              <Button handler={handlerSignInButton} label={"Inicia sesión."} type={"Link"} />
             </div>
           </div>
         </IonToolbar>

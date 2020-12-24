@@ -7,6 +7,8 @@ import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
 import Welcome from './pages/Welcome/Welcome';
 import ForgetPassword from './pages/ForgetPassword/ForgetPassword';
+import ForgetPasswordValidate from './pages/ForgetPassword/ForgetPasswordValidate';
+import NewPassword from './pages/ForgetPassword/NewPassword';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -31,11 +33,13 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route path="/home" render={ (props) => <Home {...props}/>} exact={true} />
-        <Route path="/welcome" render={ (props) => <Welcome {...props} />} exact={true} />
-        <Route path="/signUp" render={ (props) => <SignUp {...props}/>} exact={true} />
-        <Route path="/signIn" render={ (props) => <SignIn {...props}/>} exact={true} />
-        <Route path="/forgetPassword" render={ (props) => <ForgetPassword {...props}/>} exact={true} />
+        <Route path="/home" render={ (props) => <Home {...props}/>} />
+        <Route path="/welcome" render={ (props) => <Welcome {...props} />} />
+        <Route path="/signUp" render={ (props) => <SignUp {...props}/>} />
+        <Route path="/signIn" render={ (props) => <SignIn {...props}/>} />
+        <Route path="/forgetPassword" render={ (props) => <ForgetPassword {...props}/>} />
+        <Route path="/forgetPasswordValidate" render={ (props) => <ForgetPasswordValidate {...props}/>} />
+        <Route path="/newPassword" render={ (props) => <NewPassword {...props}/>} />
         <Route exact path="/" render={() => <Redirect to="/welcome" />} />
       </IonRouterOutlet>
     </IonReactRouter>

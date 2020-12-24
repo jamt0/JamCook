@@ -1,24 +1,42 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React from 'react';
+import { Redirect, Route } from 'react-router-dom';
+import { IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
+import { searchOutline, navigateOutline, basketOutline, personOutline } from 'ionicons/icons';
 import { RouteComponentProps } from 'react-router-dom';
-import './Home.css';
+import Perfil from '../Perfil/Perfil';
+import FoodBasket from '../FoodBasket/FoodBasket';
+import Explore from '../Explore/Explore';
+import Search from '../Search/Search';
 
-const SignUp: React.FC<RouteComponentProps> = ({history}) => {
+const SignUp: React.FC<RouteComponentProps> = ({ match }) => {
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Home</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Home</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-      </IonContent>
-    </IonPage>
+      <IonTabs>
+        <IonRouterOutlet>
+          <Route path={`${match.url}/search`} component={Search} exact/>
+          <Route path={`${match.url}/explore`} component={Explore} exact />
+          <Route path={`${match.url}/foodBasket`} component={FoodBasket} exact />
+          <Route path={`${match.url}/perfil`} component={Perfil} exact />
+          <Route path={match.url} render={() => <Redirect to={`${match.url}/search`} />} exact />
+        </IonRouterOutlet>
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="search" href="/home/search">
+            <IonIcon icon={searchOutline} />
+            <IonLabel>Buscar</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="explore" href="/home/explore">
+            <IonIcon icon={navigateOutline} />
+            <IonLabel>Explorar</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="foodBasket" href="/home/foodBasket">
+            <IonIcon icon={basketOutline} />
+            <IonLabel>Almacen</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="perfil" href="/home/perfil">
+            <IonIcon icon={personOutline} />
+            <IonLabel>Perfil</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      </IonTabs>
   );
 };
 

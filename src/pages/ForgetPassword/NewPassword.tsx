@@ -4,12 +4,13 @@ import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 
-const ForgetPassword: React.FC<RouteComponentProps> = ({ history }) => {
-  const [mail, setMail] = useState("");
+const NewPassword: React.FC<RouteComponentProps> = ({ history }) => {
+  const [newPassword, setNewPassword] = useState("");
+  const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
 
-  const handlerForgetPasswordButton = (e: any) => {
+  const handlerNewPasswordButton = (e: any) => {
     e.preventDefault();
-    history.push('/forgetPasswordValidate');
+    history.push('/home');
   }
 
   const handlerGoBackButton = (e: any) => {
@@ -21,7 +22,7 @@ const ForgetPassword: React.FC<RouteComponentProps> = ({ history }) => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonButtons slot="start">
+        <IonButtons slot="start">
             <IonButton onClick={handlerGoBackButton}>
               <IonIcon slot="icon-only" icon={chevronBackOutline} />
             </IonButton>
@@ -31,18 +32,20 @@ const ForgetPassword: React.FC<RouteComponentProps> = ({ history }) => {
       </IonHeader>
       <IonContent>
         <div className="max-w-screen-md mx-auto p-4 h-full">
-          <p className="text-base text-center font-bold mt-6">¿Has olvidado tu contraseña? </p>
-          <p className="mx-auto mb-4 text-base text-center">Introduce tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</p>
           <IonItem className="mb-4 ">
-            <IonLabel position="floating" color="primary">Correo Electrónico</IonLabel>
-            <IonInput value={mail} type="email" autocomplete="email" required></IonInput>
+          <IonLabel position="floating" color="primary">Nueva Contraseña</IonLabel>
+            <IonInput value={newPassword} type="password" required></IonInput>
+          </IonItem>
+          <IonItem >
+            <IonLabel position="floating" color="primary">Confirme Contraseña</IonLabel>
+            <IonInput value={newPasswordConfirm} type="password" required></IonInput>
           </IonItem>
         </div>
       </IonContent>
       <IonFooter className="ion-no-border">
         <IonToolbar>
           <div className="p-2 mb-2 max-w-screen-md mx-auto">
-            <Button handler={handlerForgetPasswordButton} label={"Restablecer Contraseña"} />
+            <Button handler={handlerNewPasswordButton} label={"Restablecer Contraseña"} />
           </div>
         </IonToolbar>
       </IonFooter>
@@ -50,4 +53,4 @@ const ForgetPassword: React.FC<RouteComponentProps> = ({ history }) => {
   );
 };
 
-export default ForgetPassword;
+export default NewPassword;
