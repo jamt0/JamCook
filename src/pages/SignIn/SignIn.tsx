@@ -44,11 +44,11 @@ const SignIn: React.FC<RouteComponentProps> = ({ history }) => {
         <div className="max-w-screen-md mx-auto p-4 h-full">
           <IonItem className="mb-4 ">
             <IonLabel position="floating" color="primary">Correo Electrónico</IonLabel>
-            <IonInput value={mail} type="email" autocomplete="email" required></IonInput>
+            <IonInput value={mail} type="email" autocomplete="email" className="mt-2" required></IonInput>
           </IonItem>
           <IonItem >
             <IonLabel position="floating" color="primary">Contraseña</IonLabel>
-            <IonInput value={password} type="password" required></IonInput>
+            <IonInput value={password} type="password" className="mt-2" required></IonInput>
           </IonItem>
           <div className="flex justify-end pt-6 pb-2">
             <Button handler={handlerForgetPasswordButton} label={"¿Has olvidado tu contraseña?"} type={"Link"} />

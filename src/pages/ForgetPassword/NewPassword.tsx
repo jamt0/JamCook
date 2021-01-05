@@ -34,11 +34,11 @@ const NewPassword: React.FC<RouteComponentProps> = ({ history }) => {
         <div className="max-w-screen-md mx-auto p-4 h-full">
           <IonItem className="mb-4 ">
           <IonLabel position="floating" color="primary">Nueva Contraseña</IonLabel>
-            <IonInput value={newPassword} type="password" required></IonInput>
+            <IonInput value={newPassword} type="password" className="mt-2" required></IonInput>
           </IonItem>
           <IonItem >
             <IonLabel position="floating" color="primary">Confirme Contraseña</IonLabel>
-            <IonInput value={newPasswordConfirm} type="password" required></IonInput>
+            <IonInput value={newPasswordConfirm} type="password" className="mt-2" required></IonInput>
           </IonItem>
         </div>
       </IonContent>

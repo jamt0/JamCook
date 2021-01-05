@@ -7,7 +7,9 @@ const Explore: React.FC<RouteComponentProps> = ({history}) => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-        <IonTitle><div className="md:flex md:justify-center">Explorar</div></IonTitle>
+        <IonTitle>
+          <div className="md:flex md:justify-center">Explorar</div>
+          </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

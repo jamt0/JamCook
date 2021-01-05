@@ -35,7 +35,7 @@ const ForgetPassword: React.FC<RouteComponentProps> = ({ history }) => {
           <p className="mx-auto mb-4 text-base text-center">Introduce tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</p>
           <IonItem className="mb-4 ">
             <IonLabel position="floating" color="primary">Correo Electrónico</IonLabel>
-            <IonInput value={mail} type="email" autocomplete="email" required></IonInput>
+            <IonInput value={mail} type="email" autocomplete="email" className="mt-2" required></IonInput>
           </IonItem>
         </div>
       </IonContent>
