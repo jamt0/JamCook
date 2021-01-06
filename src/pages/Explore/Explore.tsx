@@ -1,23 +1,22 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import {
+  IonContent,
+  IonPage,
+} from "@ionic/react";
+import React from "react";
+import { RouteComponentProps } from "react-router-dom";
+import Buscador from "../../components/Buscador/Buscador";
+import GridImages from "../../components/GridImages/GridImages";
 
-const Explore: React.FC<RouteComponentProps> = ({history}) => {
+
+const Explore: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-        <IonTitle>
-          <div className="md:flex md:justify-center">Explorar</div>
-          </IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Explore</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+      <IonContent>
+        <div className="flex flex-col max-w-screen-md pt-8 text-left text-gray-600 text-2xl md:text-3xl mx-4 font-bold">
+          <h6>Explorar</h6>
+        </div>
+        <Buscador placeHolder={"¿Qué plato te gustaria?"} />
+        <GridImages />
       </IonContent>
     </IonPage>
   );
