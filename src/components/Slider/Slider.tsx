@@ -56,10 +56,10 @@ const Slider: FunctionComponent<Props> = ({ slidesPerView }) => {
           return (
             <IonSlide key={index}>
               <Link to="/signIn" className="w-full">
-                <div className="grid grid-flow-row auto-rows-max w-full">
-                  <div className="h-40 w-full bg-black bg-opacity-25 z-0 absolute"></div>
+                <div className="grid grid-flow-row auto-rows-max w-full relative">
+                  <div className="h-40 w-full hover:bg-purple-700 hover:bg-opacity-25 z-20 absolute"></div>
                   <div
-                    className="h-40 w-full bg-cover bg-center z-10"
+                    className="h-40 w-full bg-cover bg-center z-10 bg-gray-500 bg-opacity-50"
                     style={{ backgroundImage: `url( ${imagen.pathImg} )` }}
                   ></div>
                   <h6 className="w-full text-left mt-2 text-base font-bold text-gray-600 ">

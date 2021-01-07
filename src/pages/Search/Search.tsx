@@ -8,10 +8,11 @@ const Search: React.FC<RouteComponentProps> = ({ history }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [slidesPerView, setslidesPerView] = useState(1.5);
 
+  function handleResize() {
+    setWidth(window.innerWidth);
+  }
+
   useEffect(() => {
-    function handleResize() {
-      setWidth(window.innerWidth);
-    }
     window.addEventListener("resize", handleResize);
     if(width >= 568){
         setslidesPerView(2.5)
@@ -29,10 +30,13 @@ const Search: React.FC<RouteComponentProps> = ({ history }) => {
     }
   });
 
-  //esto lo hago intentando solucionar el error del slider
+  //Esto parcialmente soluciona el error del slider
   useEffect(() => {
     setWidth(width+1);
-    setslidesPerView(1.5)
+    setTimeout(handleResize,1000);
+    setTimeout(handleResize,3000);
+    setTimeout(handleResize,5000);
+    setTimeout(handleResize,10000);
   }, []);
 
   return (

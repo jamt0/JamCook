@@ -12,7 +12,7 @@ const Explore: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <IonPage>
       <IonContent>
-        <div className="flex flex-col max-w-screen-md pt-8 text-left text-gray-600 text-2xl md:text-3xl mx-4 font-bold">
+        <div className="flex flex-col pt-8 text-left sm:text-center text-gray-600 text-2xl md:text-3xl mx-4 font-bold">
           <h6>Explorar</h6>
         </div>
         <Buscador placeHolder={"¿Qué plato te gustaria?"} />

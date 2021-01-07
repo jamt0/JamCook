@@ -108,19 +108,16 @@ const GridImages: FunctionComponent<Props> = ({}) => {
     <div className="grid gap-4 grid-cols-2 mx-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
       {imagenes.map((imagen, index) => {
         return (
-          <Link to="/signIn" className="w-full">
-            <div className="relative" key={index}>
-              <div className="h-40 sm:h-60 w-full bg-black bg-opacity-50 z-20 absolute rounded-md"></div>
-              <div className="w-full h-full absolute z-30 flex flex-row">
-                <div className="m-auto grid grid-flow-row">
-                  <IonIcon
-                    icon={basketOutline}
-                    className="place-self-center text-white text-5xl"
-                  />
-                  <h6 className="text-white text-base md:text-xl text-center mx-1">
-                    {imagen.titulo}
-                  </h6>
-                </div>
+          <Link to="/signIn" className="w-full" key={index}>
+            <div className="relative">
+              <div className="absolute m-auto z-20 grid grid-flow-row rounded-md bg-black bg-opacity-50 hover:rounded-md hover:bg-purple-700 hover:bg-opacity-25 h-full w-full">
+                <IonIcon
+                  icon={basketOutline}
+                  className="place-self-end mx-auto text-white text-5xl"
+                />
+                <h6 className="text-white text-base md:text-xl text-center mx-1">
+                  {imagen.titulo}
+                </h6>
               </div>
               <div
                 className="h-40 sm:h-60 w-full bg-cover bg-center z-10 rounded-md"
