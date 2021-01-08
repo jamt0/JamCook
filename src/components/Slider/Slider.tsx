@@ -1,47 +1,20 @@
 import React, { FunctionComponent } from "react";
-import { IonItem, IonSlide, IonSlides } from "@ionic/react";
+import { IonSlide, IonSlides } from "@ionic/react";
 import { Link } from "react-router-dom";
 
 interface Props {
   slidesPerView: number;
+  imagenes: {
+    titulo: string;
+    pathImg: string;
+  }[];
 }
 
-const Slider: FunctionComponent<Props> = ({ slidesPerView }) => {
+const Slider: FunctionComponent<Props> = ({ slidesPerView, imagenes }) => {
   const slideOpts = {
     slidesPerView: slidesPerView,
     spaceBetween: 20,
   };
-
-  const imagenes = [
-    {
-      pathImg: "https://picsum.photos/200/300?random=1",
-      titulo: "Tacos Mexicanos de Carnitas Asadas",
-    },
-    {
-      pathImg: "https://picsum.photos/200/300?random=2",
-      titulo: "Tacos Mexicanos",
-    },
-    {
-      pathImg: "https://picsum.photos/200/300?random=3",
-      titulo: "Tacos Mexicanos de Carnitas Asadas",
-    },
-    {
-      pathImg: "https://picsum.photos/200/300?random=4",
-      titulo: "Tacos Mexicanos de Carnitas Asadas",
-    },
-    {
-      pathImg: "https://picsum.photos/200/300?random=5",
-      titulo: "Tacos Mexicanos de Carnitas Asadas",
-    },
-    {
-      pathImg: "https://picsum.photos/200/300?random=6",
-      titulo: "Tacos Mexicanos de Carnitas Asadas",
-    },
-    {
-      pathImg: "https://picsum.photos/200/300?random=7",
-      titulo: "Tacos Mexicanos de Carnitas Asadas",
-    },
-  ];
 
   return (
     <div>

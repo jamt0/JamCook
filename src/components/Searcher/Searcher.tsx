@@ -5,7 +5,7 @@ interface Props {
     placeHolder: string;
 }
 
-const Buscador: FunctionComponent<Props> = ({ placeHolder }) => {
+const Searcher: FunctionComponent<Props> = ({ placeHolder }) => {
 
     return (
         <div className="sticky top-0 z-40 bg-white py-2">
@@ -15,4 +15,4 @@ const Buscador: FunctionComponent<Props> = ({ placeHolder }) => {
 
 };
 
-export default Buscador;
+export default Searcher;

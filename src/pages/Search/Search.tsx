@@ -2,7 +2,38 @@ import { IonContent, IonPage } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import Slider from "../../components/Slider/Slider";
-import Buscador from "../../components/Buscador/Buscador";
+import Searcher from "../../components/Searcher/Searcher";
+
+const imagenes = [
+  {
+    pathImg: "https://picsum.photos/200/300?random=1",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=2",
+    titulo: "Tacos Mexicanos",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=3",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=4",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=5",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=6",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=7",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+];
 
 const Search: React.FC<RouteComponentProps> = ({ history }) => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -46,13 +77,13 @@ const Search: React.FC<RouteComponentProps> = ({ history }) => {
           <h6>Las mejores recetas,</h6>
           <h6>con lo que tienes a mano</h6>
         </div>
-        <Buscador placeHolder={"Buscar recetas con tus ingredientes"}/>
+        <Searcher placeHolder={"Buscar recetas con tus ingredientes"}/>
         <div className="px-2">
-          <Slider slidesPerView={slidesPerView}/>
-          <Slider slidesPerView={slidesPerView}/>
-          <Slider slidesPerView={slidesPerView}/>
-          <Slider slidesPerView={slidesPerView}/>
-          <Slider slidesPerView={slidesPerView}/>
+          <Slider imagenes={imagenes} slidesPerView={slidesPerView}/>
+          <Slider imagenes={imagenes} slidesPerView={slidesPerView}/>
+          <Slider imagenes={imagenes} slidesPerView={slidesPerView}/>
+          <Slider imagenes={imagenes} slidesPerView={slidesPerView}/>
+          <Slider imagenes={imagenes} slidesPerView={slidesPerView}/>
         </div>
       </IonContent>
     </IonPage>

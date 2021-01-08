@@ -1,6 +1,6 @@
 import { IonIcon } from "@ionic/react";
 import React, { FunctionComponent } from "react";
-import { basketOutline } from "ionicons/icons";
+import { fastFoodOutline } from "ionicons/icons";
 import { Link } from "react-router-dom";
 
 interface Props {}
@@ -112,7 +112,7 @@ const GridImages: FunctionComponent<Props> = ({}) => {
             <div className="relative">
               <div className="absolute m-auto z-20 grid grid-flow-row rounded-md bg-black bg-opacity-50 hover:rounded-md hover:bg-purple-700 hover:bg-opacity-25 h-full w-full">
                 <IonIcon
-                  icon={basketOutline}
+                  icon={fastFoodOutline}
                   className="place-self-end mx-auto text-white text-5xl"
                 />
                 <h6 className="text-white text-base md:text-xl text-center mx-1">
