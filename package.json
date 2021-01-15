@@ -56,5 +56,5 @@
     "postcss-cli": "^8.3.1",
     "tailwindcss": "^2.0.2"
   },
-  "description": "An Ionic project"
+  "description": "Una app de recetas"
 }

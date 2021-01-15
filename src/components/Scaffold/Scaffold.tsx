@@ -31,7 +31,7 @@ const Scaffold: FunctionComponent<Props> = ({
         <IonToolbar>
           <IonButtons slot="start">
             <IonButton onClick={onClickBack}>
-              <IonIcon slot="icon-only" icon={chevronBackOutline} />
+              <IonIcon slot="icon-only" icon={chevronBackOutline} color="dark" />
             </IonButton>
           </IonButtons>
           <IonTitle>

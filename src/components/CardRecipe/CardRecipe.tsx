@@ -1,13 +1,24 @@
 import React, { FunctionComponent } from "react";
-import { star } from "ionicons/icons";
+import {
+  star,
+  timerOutline,
+  nutritionOutline,
+  starOutline,
+  arrowRedoOutline,
+  bookmarkOutline,
+  heartOutline,
+} from "ionicons/icons";
 import { Link } from "react-router-dom";
-import { IonCard, IonIcon } from "@ionic/react";
+import { IonButton, IonButtons, IonCard, IonIcon } from "@ionic/react";
+import ImageRecipe from "../ImageRecipe/ImageRecipe";
 
 interface Props {
   avatarUser: string;
   nameUser: string;
   titulo: string;
   pathImg: string;
+  meGusta: string;
+  valoracion: number[];
 }
 
 const CardRecipe: FunctionComponent<Props> = ({
@@ -15,38 +26,93 @@ const CardRecipe: FunctionComponent<Props> = ({
   nameUser,
   titulo,
   pathImg,
+  valoracion,
+  meGusta,
 }) => {
+  const handlerLikeButton = (e: any) => {
+    e.preventDefault();
+  };
+  const handlerShareButton = (e: any) => {
+    e.preventDefault();
+  };
+  const handlerFavButton = (e: any) => {
+    e.preventDefault();
+  };
+
   return (
-    <IonCard className="">
-      <div className="grid grid-flow-col auto-cols-max mx-1 my-1">
-        <div
-          className="h-8 w-8 bg-cover bg-center rounded-full"
-          style={{ backgroundImage: `url( ${avatarUser} )` }}
-        ></div>
-        <div className="grid grid-flow-col auto-cols-max ml-2 mt-1 w-full">
-          <h2 className="text-lg">{nameUser}</h2>
-          <h3 className="text-lg">h</h3>
-          <Link to="/signIn" className="text-purple-600 text-lg select-none">
-            i
-          </Link>
+    <IonCard>
+      <Link to="/recipe" className="w-full">
+        <div className="grid grid-flow-col mx-2 my-1">
+          <div className="flex flex-row">
+            <div
+              className="h-8 w-8 bg-cover bg-center rounded-full"
+              style={{ backgroundImage: `url( ${avatarUser} )` }}
+            ></div>
+            <h2 className="text-lg ml-2 mt-1">{nameUser}</h2>
+          </div>
+          <div className="justify-self-end grid grid-flow-col mt-1">
+            <IonIcon
+              icon={nutritionOutline}
+              className="text-black text-base mt-1 mr-1"
+            />
+            <h3 className="text-lg mr-3">8</h3>
+            <IonIcon
+              icon={timerOutline}
+              className="text-black text-base mt-1 mr-1"
+            />
+            <h3 className="text-lg">25'</h3>
+          </div>
         </div>
-      </div>
-      <div className="relative flex">
-        <div className="self-end absolute m-auto z-20 grid grid-flow-row rounded-md bg-black bg-opacity-50 hover:rounded-md hover:bg-purple-700 hover:bg-opacity-25 h-20 w-full">
-          <IonIcon
-            icon={star}
-            className="place-self-end mx-auto text-white text-5xl"
-          />
-          <h6 className="text-white text-base md:text-xl text-center mx-1">
+        <ImageRecipe pathImg={pathImg} height={60}>
+          <div className="flex flex-row">
+            {valoracion.map((element, index) => {
+              return (
+                <IonIcon
+                  key={index}
+                  icon={element == 1 ? star : starOutline}
+                  className="text-white text-xl self-end ml-1"
+                />
+              );
+            })}
+          </div>
+          <h6 className="text-white text-base md:text-xl text-left mx-1 mt-1">
             {titulo}
           </h6>
+        </ImageRecipe>
+        <div className="grid grid-flow-col mx-2 my-1 py-1">
+          <div className="flex flex-row">
+            <IonButtons slot="start">
+              <IonButton onClick={handlerShareButton}>
+                <IonIcon
+                  icon={arrowRedoOutline}
+                  className="text-black text-4xl my-auto -ml-2 -mr-2"
+                />
+              </IonButton>
+            </IonButtons>
+            <IonButtons slot="start">
+              <IonButton onClick={handlerLikeButton}>
+                <IonIcon
+                  icon={heartOutline}
+                  className="text-black text-4xl my-auto -ml-2 -mr-1"
+                />
+              </IonButton>
+            </IonButtons>
+            <h3 className="text-xl my-px inline-block align-baseline pt-1">
+              {meGusta}
+            </h3>
+          </div>
+          <div className="justify-self-end grid grid-flow-col">
+            <IonButtons slot="start">
+              <IonButton onClick={handlerFavButton}>
+                <IonIcon
+                  icon={bookmarkOutline}
+                  className="text-black text-4xl -ml-2 -mr-2"
+                />
+              </IonButton>
+            </IonButtons>
+          </div>
         </div>
-        <div
-          className="h-60 sm:h-72 w-full bg-cover bg-center z-10 rounded-md"
-          style={{ backgroundImage: `url( ${pathImg} )` }}
-        ></div>
-      </div>
-      <div>hola</div>
+      </Link>
     </IonCard>
   );
 };

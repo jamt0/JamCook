@@ -45,23 +45,26 @@ const Search: React.FC<RouteComponentProps> = ({ history }) => {
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
-    if(width >= 568){
-        setslidesPerView(2.5)
-    }else{
-        setslidesPerView(1.5)
+    if (width >= 568) {
+      setslidesPerView(2.5);
+    } else {
+      setslidesPerView(1.5);
     }
-    if(width >= 768){
-        setslidesPerView(3.5)
+    if (width >= 768) {
+      setslidesPerView(3.5);
     }
-    if(width >= 1024){
-        setslidesPerView(4.5)
+    if (width >= 1024) {
+      setslidesPerView(4.5);
     }
-    if(width >= 1280){
-        setslidesPerView(5.5)
+    if (width >= 1280) {
+      setslidesPerView(5.5);
     }
-  });
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [width, slidesPerView]);
 
-  //Esto parcialmente soluciona el error del slider
+  //Esto debe tener una solucion mejor
   useEffect(() => {
     setWidth(width+1);
     setTimeout(handleResize,1000);
@@ -77,13 +80,13 @@ const Search: React.FC<RouteComponentProps> = ({ history }) => {
           <h6>Las mejores recetas,</h6>
           <h6>con lo que tienes a mano</h6>
         </div>
-        <Searcher placeHolder={"Buscar recetas con tus ingredientes"}/>
+        <Searcher placeHolder={"Buscar recetas con tus ingredientes"} />
         <div className="px-2">
-          <Slider imagenes={imagenes} slidesPerView={slidesPerView}/>
-          <Slider imagenes={imagenes} slidesPerView={slidesPerView}/>
-          <Slider imagenes={imagenes} slidesPerView={slidesPerView}/>
-          <Slider imagenes={imagenes} slidesPerView={slidesPerView}/>
-          <Slider imagenes={imagenes} slidesPerView={slidesPerView}/>
+          <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
+          <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
+          <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
+          <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
+          <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
         </div>
       </IonContent>
     </IonPage>

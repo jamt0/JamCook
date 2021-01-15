@@ -2,6 +2,7 @@ import { IonIcon } from "@ionic/react";
 import React, { FunctionComponent } from "react";
 import { fastFoodOutline } from "ionicons/icons";
 import { Link } from "react-router-dom";
+import ImageRecipe from "../ImageRecipe/ImageRecipe";
 
 interface Props {}
 
@@ -108,7 +109,7 @@ const GridImages: FunctionComponent<Props> = ({}) => {
     <div className="grid gap-4 grid-cols-2 mx-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
       {imagenes.map((imagen, index) => {
         return (
-          <Link to="/signIn" className="w-full" key={index}>
+          <Link to="/recipe" className="w-full" key={index}>
             <div className="relative">
               <div className="absolute m-auto z-20 grid grid-flow-row rounded-md bg-black bg-opacity-50 hover:rounded-md hover:bg-purple-700 hover:bg-opacity-25 h-full w-full">
                 <IonIcon
@@ -119,10 +120,7 @@ const GridImages: FunctionComponent<Props> = ({}) => {
                   {imagen.titulo}
                 </h6>
               </div>
-              <div
-                className="h-40 sm:h-60 w-full bg-cover bg-center z-10 rounded-md"
-                style={{ backgroundImage: `url( ${imagen.pathImg} )` }}
-              ></div>
+              <ImageRecipe pathImg={imagen.pathImg} height={40}/>
             </div>
           </Link>
         );
