@@ -17,12 +17,12 @@ const Perfil: React.FC<RouteComponentProps> = ({ history }) => {
           <h6>Perfil</h6>
         </div>
         <div className="md:auto-cols-max md:grid md:grid-cols-2 max-w-screen-md md:flex md:mx-auto">
-          <div className="grid grid-flow-col auto-cols-max md:auto-rows-max md:grid-flow-row px-4 pb-4">
+          <div className="grid grid-flow-col auto-cols-max md:auto-rows-max md:grid-flow-row px-4 pb-4 md:justify-self-center">
             <div
-              className="h-20 w-20 md:h-60 md:w-60 bg-cover bg-center rounded-full mr-4"
+              className="h-20 w-20 md:h-60 md:w-60 bg-cover bg-center md:rounded-md mx-4"
               style={{ backgroundImage: `url( ${usuario.avatarUser} )` }}
             ></div>
-            <div>
+            <div className="md:grid md:grid-flow-col md:grid-cols-1 md:grid-rows-3 md:gap-1 md:flex md:text-center md:py-8">
               <h2 className="font-bold text-xl">{usuario.nameUser}</h2>
               <h3 className="text-lg">{usuario.mailUser}</h3>
               <Link
