@@ -1,4 +1,4 @@
-import { IonButton, IonIcon } from "@ionic/react";
+import { IonButton, IonButtons, IonIcon } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import ImageRecipe from "../../components/ImageRecipe/ImageRecipe";
@@ -14,6 +14,7 @@ import {
   speedometerOutline,
 } from "ionicons/icons";
 import Button from "../../components/Button/Button";
+import Commentary from "../../components/Commentary/Commentary";
 
 const receta = {
   pathImg: "https://picsum.photos/200/300?random=1",
@@ -75,6 +76,7 @@ const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
   const [porciones, setPorciones] = useState(1);
   const [isDisabled, setIsDisabled] = useState(true);
   const [classPorciones, setClassPorciones] = useState(" ");
+  const [isEstrellas, setEstrellas] = useState(false);
 
   useEffect(() => {
     if (porciones == 1) {
@@ -85,8 +87,6 @@ const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
       setIsDisabled(false)
     }
   }, [porciones])
-
-
 
   const handlerGoBackButton = (e: any) => {
     e.preventDefault();
@@ -110,7 +110,13 @@ const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
     setPorciones(porciones - 1)
   };
 
-  const handkerRecetaHecha = (e: any) => {
+  const handlerRecetaHecha = (e: any) => {
+  };
+
+  const handlerValoracion = (e: any) => {
+    e.preventDefault();
+    setEstrellas(!isEstrellas)
+    return undefined;
   };
 
   return (
@@ -234,9 +240,39 @@ const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
         </div>
         <h2 className="text-lg font-bold text-center mb-3">¿Ya has hecho la receta?</h2>
         <div className="flex mx-center w-1/2 mb-8">
-          <Button handler={handkerRecetaHecha} label={"¡Receta Hecha!"} type={"Secundario"} />
+          <Button handler={handlerRecetaHecha} label={"¡Receta Hecha!"} type={"Secundario"} />
         </div>
         <h2 className="text-lg font-bold text-center mb-3 mt-3">¿Te ha gustado la receta?</h2>
+        
+        <div className="grid grid-flow-col mx-2 my-1 py-1">
+            <IonButtons slot="start">
+              <IonButton onClick={(e) => handlerValoracion(e)}>
+                <IonIcon icon={isEstrellas? star : starOutline} color="dark" className="text-black text-4xl -ml-2 -mr-2"/>
+              </IonButton>
+            </IonButtons>
+            <IonButtons slot="start">
+              <IonButton onClick={(e) => handlerValoracion(e)}>
+                <IonIcon icon={isEstrellas? star : starOutline} color="dark" className="text-black text-4xl -ml-2 -mr-2"/>
+              </IonButton>
+            </IonButtons>
+            <IonButtons slot="start">
+              <IonButton onClick={(e) => handlerValoracion(e)}>
+                <IonIcon icon={isEstrellas? star : starOutline} color="dark" className="text-black text-4xl -ml-2 -mr-2"/>
+              </IonButton>
+            </IonButtons>
+            <IonButtons slot="start">
+              <IonButton onClick={(e) => handlerValoracion(e)}>
+                <IonIcon icon={isEstrellas? star : starOutline} color="dark" className="text-black text-4xl -ml-2 -mr-2"/>
+              </IonButton>
+            </IonButtons>
+            <IonButtons slot="start">
+              <IonButton onClick={(e) => handlerValoracion(e)}>
+                <IonIcon icon={isEstrellas? star : starOutline} color="dark" className="text-black text-4xl -ml-2 -mr-2"/>
+              </IonButton>
+            </IonButtons>
+          </div>
+         
+        <Commentary/>
       </div>
     </Scaffold>
   );

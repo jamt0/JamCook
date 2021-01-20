@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import {
   star,
   timerOutline,
@@ -6,7 +6,9 @@ import {
   starOutline,
   arrowRedoOutline,
   bookmarkOutline,
+  bookmark,
   heartOutline,
+  heart
 } from "ionicons/icons";
 import { Link } from "react-router-dom";
 import { IonButton, IonButtons, IonCard, IonIcon } from "@ionic/react";
@@ -29,14 +31,20 @@ const CardRecipe: FunctionComponent<Props> = ({
   valoracion,
   meGusta,
 }) => {
+
+  const [isLiked, setIsLiked] = useState(false);
+  const [isMarked, setIsMarked] = useState(false);
+
   const handlerLikeButton = (e: any) => {
     e.preventDefault();
+    setIsLiked(!isLiked)
   };
   const handlerShareButton = (e: any) => {
     e.preventDefault();
   };
   const handlerFavButton = (e: any) => {
     e.preventDefault();
+    setIsMarked(!isMarked)
   };
 
   return (
@@ -92,7 +100,7 @@ const CardRecipe: FunctionComponent<Props> = ({
             <IonButtons slot="start">
               <IonButton onClick={handlerLikeButton}>
                 <IonIcon
-                  icon={heartOutline}
+                  icon={isLiked? heart : heartOutline}
                   className="text-black text-4xl my-auto -ml-2 -mr-1"
                 />
               </IonButton>
@@ -105,7 +113,7 @@ const CardRecipe: FunctionComponent<Props> = ({
             <IonButtons slot="start">
               <IonButton onClick={handlerFavButton}>
                 <IonIcon
-                  icon={bookmarkOutline}
+                  icon={isMarked? bookmark: bookmarkOutline}
                   className="text-black text-4xl -ml-2 -mr-2"
                 />
               </IonButton>
