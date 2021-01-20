@@ -238,35 +238,35 @@ const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
             );
           })}
         </div>
-        <h2 className="text-lg font-bold text-center mb-3">¿Ya has hecho la receta?</h2>
-        <div className="flex mx-center w-1/2 mb-8">
+        <h2 className="text-lg font-bold text-center mb-3 p-4">¿Ya has hecho la receta?</h2>
+        <div className="flex mx-center w-1/2 mb-6">
           <Button handler={handlerRecetaHecha} label={"¡Receta Hecha!"} type={"Secundario"} />
         </div>
-        <h2 className="text-lg font-bold text-center mb-3 mt-3">¿Te ha gustado la receta?</h2>
+        <h2 className="text-lg font-bold text-center mb-3 mt-3 p-4">¿Te ha gustado la receta?</h2>
         
         <div className="grid grid-flow-col mx-2 my-1 py-1">
             <IonButtons slot="start">
-              <IonButton onClick={(e) => handlerValoracion(e)}>
+              <IonButton onClick={(e) => handlerValoracion(e, )}>
                 <IonIcon icon={isEstrellas? star : starOutline} color="dark" className="text-black text-4xl -ml-2 -mr-2"/>
               </IonButton>
             </IonButtons>
             <IonButtons slot="start">
-              <IonButton onClick={(e) => handlerValoracion(e)}>
+              <IonButton onClick={(e) => handlerValoracion(e, )}>
                 <IonIcon icon={isEstrellas? star : starOutline} color="dark" className="text-black text-4xl -ml-2 -mr-2"/>
               </IonButton>
             </IonButtons>
             <IonButtons slot="start">
-              <IonButton onClick={(e) => handlerValoracion(e)}>
+              <IonButton onClick={(e) => handlerValoracion(e, )}>
                 <IonIcon icon={isEstrellas? star : starOutline} color="dark" className="text-black text-4xl -ml-2 -mr-2"/>
               </IonButton>
             </IonButtons>
             <IonButtons slot="start">
-              <IonButton onClick={(e) => handlerValoracion(e)}>
+              <IonButton onClick={(e) => handlerValoracion(e, )}>
                 <IonIcon icon={isEstrellas? star : starOutline} color="dark" className="text-black text-4xl -ml-2 -mr-2"/>
               </IonButton>
             </IonButtons>
             <IonButtons slot="start">
-              <IonButton onClick={(e) => handlerValoracion(e)}>
+              <IonButton onClick={(e) => handlerValoracion(e, )}>
                 <IonIcon icon={isEstrellas? star : starOutline} color="dark" className="text-black text-4xl -ml-2 -mr-2"/>
               </IonButton>
             </IonButtons>

@@ -3,34 +3,41 @@ import React, { FunctionComponent } from 'react';
 
 interface Props {
 }
-const usuario = {
+const Usuario = {
 
     avatarUser: "https://picsum.photos/200/300?random=1",
+    nombreUsuario: "Leonardo Santos Franco",
+    fechaPublicacion: "Hace 4 dias",
+    comentariosUsuario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
 
 }
 const Commentary: FunctionComponent<Props> = ({ }) => {
     const estrellas = [];
     return (
         <>
-            <div className="flex md:text-center flex-col md:mx-auto max-w-screen-md py-8 text-left text-gray-600 text-2xl md:text-3xl mx-4 font-bold">
-                comentarios
-        </div>
-            <div className="flex md:auto-cols-max md:grid md:grid-cols-2 max-w-screen-md md:flex md:mx-auto">
-                <div className="grid grid-flow-col auto-cols-max md:auto-rows-max md:grid-flow-row px-4 pb-4 md:justify-self-center">
-
+            <h2><div className="text-lg font-bold text-center mb-3 mt-3 p-8">
+                Comentarios
+               </div>
+            </h2>
+            <div className="md:flex md:auto-cols-max md:grid md:grid-cols-2 max-w-screen-md md:flex md:mx-auto">
+                <div className="flex">
                     <div
-                        className="flex-1 md:grid h-4 w-4 md:h-16 md:w-16 bg-cover bg-center md:rounded-md mx-4"
-                        style={{ backgroundImage: `url( ${usuario.avatarUser} )` }}
+                        className=" md:grid h-8 w-8 md:h-12 md:w-12 bg-cover bg-center md:rounded-md mx-4 p-8"
+                        style={{ backgroundImage: `url( ${Usuario.avatarUser} )` }}
                     ></div>
-                   <div className=" flex-1 md:grid ">
+           
 
-                       Leonardo Alberto Santos Franco
-                   </div>
+                    <div className="md:grid md:grid-rows-2 md:grid-col-2 md:flex md:gap-1 text-justify">
+                        <h2 className="font-bold text-xl">{Usuario.nombreUsuario}</h2>
+                        <h3 className="text-xs">{Usuario.fechaPublicacion}</h3>
+                        <h3 className="text-xs">{Usuario.comentariosUsuario}</h3>
+
+                        
+                    </div>
                 </div>
             </div>
         </>
     );
-
 };
 
 export default Commentary;
