@@ -15,6 +15,7 @@ import {
 } from "ionicons/icons";
 import Button from "../../components/Button/Button";
 import Commentary from "../../components/Commentary/Commentary";
+import TitleRecipe from "../../components/TitleRecipe/TitleRecipe";
 
 const receta = {
   pathImg: "https://picsum.photos/200/300?random=1",
@@ -49,73 +50,88 @@ const receta = {
   ],
   pasos: [
     {
-      instruccion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis enim erat, et egestas urna ultricies dictum.",
+      instruccion:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis enim erat, et egestas urna ultricies dictum.",
     },
     {
-      instruccion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis enim erat, et egestas urna ultricies dictum.",
+      instruccion:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis enim erat, et egestas urna ultricies dictum.",
     },
     {
-      instruccion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis enim erat, et egestas urna ultricies dictum.",
+      instruccion:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis enim erat, et egestas urna ultricies dictum.",
     },
     {
-      instruccion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis enim erat, et egestas urna ultricies dictum.",
-    }
+      instruccion:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis enim erat, et egestas urna ultricies dictum.",
+    },
   ],
   trucos: [
     {
-      instruccion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis enim erat, et egestas urna ultricies dictum.",
+      instruccion:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis enim erat, et egestas urna ultricies dictum.",
     },
     {
-      instruccion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis enim erat, et egestas urna ultricies dictum.",
-    }
-  ]
+      instruccion:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis enim erat, et egestas urna ultricies dictum.",
+    },
+  ],
 };
 
 const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
-
   const [porciones, setPorciones] = useState(1);
   const [isDisabled, setIsDisabled] = useState(true);
   const [classPorciones, setClassPorciones] = useState(" ");
-  const [isEstrellas, setEstrellas] = useState(false);
+  const [isEstrellas, setEstrellas] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
 
   useEffect(() => {
     if (porciones == 1) {
-      setClassPorciones(" bg-opacity-25 ")
-      setIsDisabled(true)
+      setClassPorciones(" bg-opacity-25 ");
+      setIsDisabled(true);
     } else {
-      setClassPorciones(" ")
-      setIsDisabled(false)
+      setClassPorciones(" ");
+      setIsDisabled(false);
     }
-  }, [porciones])
+  }, [porciones]);
 
   const handlerGoBackButton = (e: any) => {
     e.preventDefault();
     history.goBack();
   };
 
-  const handlerShare = (e: any) => {
-  };
+  const handlerShare = (e: any) => {};
 
-  const handlerLike = (e: any) => {
-  };
+  const handlerLike = (e: any) => {};
 
-  const handlerMark = (e: any) => {
-  };
+  const handlerMark = (e: any) => {};
 
   const handlerSuma = (e: any) => {
-    setPorciones(porciones + 1)
+    setPorciones(porciones + 1);
   };
 
   const handlerResta = (e: any) => {
-    setPorciones(porciones - 1)
+    setPorciones(porciones - 1);
   };
 
-  const handlerRecetaHecha = (e: any) => {
-  };
+  const handlerRecetaHecha = (e: any) => {};
 
-  const handlerValoracion = (e: any) => {
+  const handlerValoracion = (e: any, index: number) => {
     e.preventDefault();
-    setEstrellas(!isEstrellas)
+    var newEstrellas = [...isEstrellas];
+    newEstrellas.map((estrella, i) => {
+      if (i <= index) {
+        newEstrellas[i] = true;
+      } else {
+        newEstrellas[i] = false;
+      }
+    });
+    setEstrellas(newEstrellas);
     return undefined;
   };
 
@@ -164,7 +180,7 @@ const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
           </h2>
         </div>
         <div className="flex flex-col items-center mt-4 mx-3">
-          <h2 className="text-xl font-bold">Introducción</h2>
+          <TitleRecipe>Introcucción</TitleRecipe>
           <p className="text-center mt-2">{receta.introduccion}</p>
         </div>
         <div className="grid grid-cols-3 my-6">
@@ -188,38 +204,54 @@ const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
           </div>
         </div>
         <div className="flex flex-col items-center mt-4 mx-3">
-          <h2 className="text-lg font-bold text-center mb-3">Porciones a Preparar</h2>
+          <TitleRecipe>Porciones a Preparar</TitleRecipe>
           <div className="p-2 mb-2 flex flex-row w-full md:w-1/2">
-            <button className={"bg-purple-300 h-12 w-12 rounded-l-md" + classPorciones} onClick={handlerResta} disabled={isDisabled}>
+            <button
+              className={
+                "bg-purple-300 h-12 w-12 rounded-l-md" + classPorciones
+              }
+              onClick={handlerResta}
+              disabled={isDisabled}
+            >
               <p className="text-white">{"<"}</p>
             </button>
             <div className="h-12 w-full bg-gray-100 flex items-center">
-              <h3 className="text-black mx-auto flex text-center">{porciones}</h3>
+              <h3 className="text-black mx-auto flex text-center">
+                {porciones}
+              </h3>
             </div>
-            <button className="bg-purple-300 h-12 w-12 rounded-r-md" onClick={handlerSuma}>
+            <button
+              className="bg-purple-300 h-12 w-12 rounded-r-md"
+              onClick={handlerSuma}
+            >
               <p className="text-white">{">"}</p>
             </button>
           </div>
         </div>
         <div className="px-3 mb-8">
-          <h2 className="text-lg font-bold text-center mb-3 mt-3">Ingredientes</h2>
+          <TitleRecipe>Ingredientes</TitleRecipe>
           {receta.ingredientes.map((ingrediente, index) => {
             return (
-              <div className="grid grid-flow-col auto-cols-max p-2 bg-gray-100 mb-2 rounded-md" key={index}>
+              <div
+                className="grid grid-flow-col auto-cols-max p-2 bg-gray-100 mb-2 rounded-md"
+                key={index}
+              >
                 <div
                   className="h-12 w-12 bg-cover bg-center mr-4"
                   style={{ backgroundImage: `url( ${ingrediente.pathImg} )` }}
                 ></div>
                 <div>
                   <h2 className="font-bold text-sm">{ingrediente.name}</h2>
-                  <h3 className="text-sm">{ingrediente.cantidadPorcion + " Unidades"}</h3>
+                  <h3 className="text-sm">
+                    {ingrediente.cantidadPorcion + " Unidades"}
+                  </h3>
                 </div>
               </div>
             );
           })}
         </div>
         <div className="px-3 mb-8">
-          <h2 className="text-lg font-bold text-center mb-3">Pasos</h2>
+          <TitleRecipe>Pasos</TitleRecipe>
           {receta.pasos.map((paso, index) => {
             return (
               <div className="p-2 bg-gray-100 mb-2 rounded-md" key={index}>
@@ -229,7 +261,7 @@ const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
           })}
         </div>
         <div className="px-3 mb-8">
-          <h2 className="text-lg font-bold text-center mb-3">Trucos y Consejos</h2>
+          <TitleRecipe>Trucos y Consejos</TitleRecipe>
           {receta.trucos.map((truco, index) => {
             return (
               <div className="p-2 bg-gray-100 mb-2 rounded-md" key={index}>
@@ -238,41 +270,35 @@ const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
             );
           })}
         </div>
-        <h2 className="text-lg font-bold text-center mb-3 p-4">¿Ya has hecho la receta?</h2>
+        <TitleRecipe>¿Ya has hecho la receta?</TitleRecipe>
         <div className="flex mx-center w-1/2 mb-6">
-          <Button handler={handlerRecetaHecha} label={"¡Receta Hecha!"} type={"Secundario"} />
+          <Button
+            handler={handlerRecetaHecha}
+            label={"¡Receta Hecha!"}
+            type={"Secundario"}
+          />
         </div>
-        <h2 className="text-lg font-bold text-center mb-3 mt-3 p-4">¿Te ha gustado la receta?</h2>
-        
-        <div className="grid grid-flow-col mx-2 my-1 py-1">
-            <IonButtons slot="start">
-              <IonButton onClick={(e) => handlerValoracion(e, )}>
-                <IonIcon icon={isEstrellas? star : starOutline} color="dark" className="text-black text-4xl -ml-2 -mr-2"/>
-              </IonButton>
-            </IonButtons>
-            <IonButtons slot="start">
-              <IonButton onClick={(e) => handlerValoracion(e, )}>
-                <IonIcon icon={isEstrellas? star : starOutline} color="dark" className="text-black text-4xl -ml-2 -mr-2"/>
-              </IonButton>
-            </IonButtons>
-            <IonButtons slot="start">
-              <IonButton onClick={(e) => handlerValoracion(e, )}>
-                <IonIcon icon={isEstrellas? star : starOutline} color="dark" className="text-black text-4xl -ml-2 -mr-2"/>
-              </IonButton>
-            </IonButtons>
-            <IonButtons slot="start">
-              <IonButton onClick={(e) => handlerValoracion(e, )}>
-                <IonIcon icon={isEstrellas? star : starOutline} color="dark" className="text-black text-4xl -ml-2 -mr-2"/>
-              </IonButton>
-            </IonButtons>
-            <IonButtons slot="start">
-              <IonButton onClick={(e) => handlerValoracion(e, )}>
-                <IonIcon icon={isEstrellas? star : starOutline} color="dark" className="text-black text-4xl -ml-2 -mr-2"/>
-              </IonButton>
-            </IonButtons>
-          </div>
-         
-        <Commentary/>
+        <TitleRecipe>¿Te ha gustado la receta?</TitleRecipe>
+        <div className="flex flex-row justify-center">
+          {isEstrellas.map((isEstrella, index) => {
+            return (
+              <IonButtons slot="icon-only" className="h-12 w-12" key={index}>
+                <IonButton
+                  onClick={(e) => handlerValoracion(e, index)}
+                  className="h-12 w-12"
+                >
+                  <IonIcon
+                    icon={isEstrella ? star : starOutline}
+                    color="dark"
+                    className="text-purple-500 text-4xl h-12 w-12"
+                  />
+                </IonButton>
+              </IonButtons>
+            );
+          })}
+        </div>
+
+        <Commentary />
       </div>
     </Scaffold>
   );
