@@ -158,7 +158,7 @@ const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
       }
     >
       {/* Portada Receta*/}
-      <ImageRecipe pathImg={receta.pathImg} height={72} sinRedondeo={true}>
+      <ImageRecipe pathImg={receta.pathImg} height={"72"} sinRedondeo={true}>
         <h6 className="text-white text-center text-2xl mx-auto my-auto">
           {receta.titulo}
         </h6>

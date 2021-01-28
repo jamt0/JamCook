@@ -68,7 +68,7 @@ const CardRecipe: FunctionComponent<Props> = ({
             <h3 className="text-lg">25'</h3>
           </div>
         </div>
-        <ImageRecipe pathImg={pathImg} height={60} sinRedondeo={true}>
+        <ImageRecipe pathImg={pathImg} height={"60"} sinRedondeo={true}>
           <div className="flex flex-row">
             {valoracion.map((element, index) => {
               return (

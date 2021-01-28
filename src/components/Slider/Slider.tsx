@@ -32,7 +32,7 @@ const Slider: FunctionComponent<Props> = ({ slidesPerView, imagenes }) => {
               <Link to="/recipe" className="w-full">
                 <div className="grid grid-flow-row auto-rows-max w-full relative">
                   <div className="h-40 w-full hover:bg-purple-700 hover:bg-opacity-25 rounded-md z-20 absolute"></div>
-                  <ImageRecipe pathImg={imagen.pathImg} height={40} />
+                  <ImageRecipe pathImg={imagen.pathImg} height={"40"} />
                   <h6 className="w-full text-left mt-2 text-base font-bold text-gray-600 ">
                     {imagen.titulo}
                   </h6>

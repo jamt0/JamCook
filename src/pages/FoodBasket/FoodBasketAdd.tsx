@@ -1,8 +1,13 @@
-import { IonContent, IonFab, IonFabButton, IonIcon, IonPage } from "@ionic/react";
-import { addOutline } from "ionicons/icons";
+import {
+  IonFab,
+  IonFabButton,
+  IonIcon,
+} from "@ionic/react";
+import { checkmarkSharp } from "ionicons/icons";
 import React from "react";
 import { RouteComponentProps } from "react-router-dom";
 import ItemIngredient from "../../components/ItemIngredient/ItemIngredient";
+import Scaffold from "../../components/Scaffold/Scaffold";
 import Searcher from "../../components/Searcher/Searcher";
 
 const imagenes = [
@@ -108,40 +113,40 @@ const imagenes = [
   },
 ];
 
-const FoodBasket: React.FC<RouteComponentProps> = ({ history }) => {
+const FoodBasketAdd: React.FC<RouteComponentProps> = ({ history }) => {
+
+  const handlerGoBackButton = (e: any) => {
+    e.preventDefault();
+    history.goBack();
+  };
 
   const handlerAddIngredient = (e: any) => {
     e.preventDefault();
-    history.push("/foodBasketAdd");
+    history.push("/home/foodBasket");
   };
 
   return (
-    <IonPage>
-      <IonContent>
-        <div className="flex flex-col pt-8 text-left sm:text-center text-gray-600 text-2xl md:text-3xl mx-4 font-bold">
-          <h6>Canasta</h6>
-        </div>
-        <Searcher placeHolder={"¿Qué ingrediente buscas?"} />
-        <div className="p-x mb-20">
-          {imagenes.map((imagen, index) => {
-            return (
-              <ItemIngredient
-                pathImg={imagen.pathImg}
-                cantidadPorcion={imagen.canridadPorcion}
-                name={imagen.name}
-                key={index}
-              />
-            );
-          })}
-        </div>
-        <IonFab vertical="bottom" horizontal="end" slot="fixed">
-          <IonFabButton onClick={handlerAddIngredient}>
-            <IonIcon icon={addOutline} />
-          </IonFabButton>
-        </IonFab>
-      </IonContent>
-    </IonPage>
+    <Scaffold tituloHeader="Agrega Ingredientes" onClickBack={handlerGoBackButton}>
+      <Searcher placeHolder={"¿Qué ingrediente buscas?"} />
+      <div className="p-x mb-20">
+        {imagenes.map((imagen, index) => {
+          return (
+            <ItemIngredient
+              pathImg={imagen.pathImg}
+              cantidadPorcion={imagen.canridadPorcion}
+              name={imagen.name}
+              key={index}
+            />
+          );
+        })}
+      </div>
+      <IonFab vertical="bottom" horizontal="end" slot="fixed">
+        <IonFabButton onClick={handlerAddIngredient}>
+          <IonIcon icon={checkmarkSharp} />
+        </IonFabButton>
+      </IonFab>
+    </Scaffold>
   );
 };
 
-export default FoodBasket;
+export default FoodBasketAdd;

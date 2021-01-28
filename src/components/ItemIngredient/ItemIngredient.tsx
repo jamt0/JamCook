@@ -1,5 +1,6 @@
-import { IonSearchbar } from "@ionic/react";
 import React, { FunctionComponent } from "react";
+import Center from "../Center/Center";
+import ImageRecipe from "../ImageRecipe/ImageRecipe";
 
 interface Props {
   cantidadPorcion: string;
@@ -14,14 +15,11 @@ const ItemIngredient: FunctionComponent<Props> = ({
 }) => {
   return (
     <div className="grid grid-flow-col auto-cols-max p-2 bg-gray-100 mb-2 rounded-md">
-      <div
-        className="h-12 w-12 bg-cover bg-center mr-4"
-        style={{ backgroundImage: `url( ${pathImg} )` }}
-      ></div>
-      <div>
+      <ImageRecipe pathImg={pathImg} height="12" width="12" />
+      <Center className="ml-4" direccion="col" eje="y">
         <h2 className="font-bold text-sm">{name}</h2>
         <h3 className="text-sm">{cantidadPorcion + " Unidades"}</h3>
-      </div>
+      </Center>
     </div>
   );
 };

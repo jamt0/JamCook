@@ -19,7 +19,7 @@ const GridImages: FunctionComponent<Props> = ({imagenes}) => {
         return (
           <Link to="/recipes" className="w-full" key={index}>
             <div className="relative">
-              <div className="absolute m-auto z-20 grid grid-flow-row rounded-md hover:rounded-md hover:bg-purple-700 hover:bg-opacity-25 h-full w-full">
+              <div className="absolute m-auto z-20 grid grid-flow-row rounded-md bg-black bg-opacity-50 hover:bg-purple-700 hover:bg-opacity-25 h-full w-full">
                 <IonIcon
                   icon={fastFoodOutline}
                   className="place-self-end mx-auto text-white text-5xl"
@@ -28,7 +28,7 @@ const GridImages: FunctionComponent<Props> = ({imagenes}) => {
                   {imagen.titulo}
                 </h6>
               </div>
-              <ImageRecipe pathImg={imagen.pathImg} height={40}/>
+              <ImageRecipe pathImg={imagen.pathImg} height={"40"}/>
             </div>
           </Link>
         );

@@ -4,13 +4,15 @@ import React, { FunctionComponent } from "react";
 interface Props {
   sinRedondeo?: boolean; 
   pathImg: string;
-  height: number;
+  height: string;
+  width?: string;
 }
 
 const ImageRecipe: FunctionComponent<Props> = ({
   pathImg,
   children,
   height,
+  width = "full",
   sinRedondeo = false, 
 }) => {
   const redondeo = sinRedondeo ? " " : " rounded-md "
@@ -22,7 +24,7 @@ const ImageRecipe: FunctionComponent<Props> = ({
         </div>
       )}
       <div
-        className={"h-" + height + " w-full bg-cover bg-center z-10" + redondeo + "bg-gray-500 bg-opacity-50"}
+        className={"h-" + height + " w-" + width + " bg-cover bg-center z-10" + redondeo + "bg-gray-500 bg-opacity-50"}
         style={{ backgroundImage: `url( ${pathImg} )` }}
       ></div>
     </div>
