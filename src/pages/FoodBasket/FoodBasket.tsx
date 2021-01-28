@@ -122,7 +122,7 @@ const FoodBasket: React.FC<RouteComponentProps> = ({ history }) => {
           <h6>Canasta</h6>
         </div>
         <Searcher placeHolder={"¿Qué ingrediente buscas?"} />
-        <div className="p-x mb-20">
+        <div className="px-2 mb-20">
           {imagenes.map((imagen, index) => {
             return (
               <ItemIngredient

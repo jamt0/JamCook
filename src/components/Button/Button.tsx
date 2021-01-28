@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 
 interface Props {
-    handler: any;
+    handler: (e: any) => void;
     label: string;
     type?: string;
 }

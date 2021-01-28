@@ -128,7 +128,7 @@ const FoodBasketAdd: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <Scaffold tituloHeader="Agrega Ingredientes" onClickBack={handlerGoBackButton}>
       <Searcher placeHolder={"¿Qué ingrediente buscas?"} />
-      <div className="p-x mb-20">
+      <div className="px-2 mb-20">
         {imagenes.map((imagen, index) => {
           return (
             <ItemIngredient
