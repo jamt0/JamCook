@@ -108,6 +108,7 @@ const recetas = [
 ];
 
 const ListRecipes: React.FC<RouteComponentProps> = ({ history }) => {
+  
   const handlerGoBackButton = (e: any) => {
     e.preventDefault();
     history.goBack();

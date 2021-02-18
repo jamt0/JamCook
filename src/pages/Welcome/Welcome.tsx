@@ -27,7 +27,7 @@ const Welcome: React.FC<RouteComponentProps> = ({history}) => {
   }
   return (
     <IonPage>
-      <IonContent> {/* si bloqueo el scrollY se quita el error de algunos navegadores, pero aveces necesito scroll, buscar solucion en el futuro*/}
+      <IonContent>
         <div className="flex flex-col justify-between max-w-screen-md mx-auto py-4 h-full">
           <div>
             <h1 className="text-center text-5xl md:text-7xl font-black mb-4">

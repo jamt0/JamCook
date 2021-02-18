@@ -13,13 +13,14 @@ import {
 } from "@ionic/react";
 
 interface Props {
-  tituloHeader: string;
+  accionesHeader?: React.ReactNode;
+  tituloHeader?: string;
   onClickBack: (e: any) => void;
-  withFooter?: boolean;
   footer?: React.ReactNode;
 }
 
 const Scaffold: FunctionComponent<Props> = ({
+  accionesHeader = null,
   tituloHeader,
   children,
   onClickBack,
@@ -33,6 +34,11 @@ const Scaffold: FunctionComponent<Props> = ({
             <IonButton onClick={onClickBack}>
               <IonIcon slot="icon-only" icon={chevronBackOutline} color="dark" />
             </IonButton>
+          </IonButtons>
+          <IonButtons slot="end">
+            {accionesHeader != null && (
+              accionesHeader
+            )}
           </IonButtons>
           <IonTitle>
             <div className="md:flex md:justify-center">{tituloHeader}</div>

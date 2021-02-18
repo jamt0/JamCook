@@ -4,114 +4,22 @@ import { fastFoodOutline } from "ionicons/icons";
 import { Link } from "react-router-dom";
 import ImageRecipe from "../ImageRecipe/ImageRecipe";
 
-interface Props {}
+interface Props {
+  imagenes: {
+    titulo: string;
+    pathImg: string;
+    icon: string;
+  }[];
+}
 
-const imagenes = [
-  {
-    pathImg: "https://picsum.photos/200/300?random=1",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos de Carnitas",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=2",
-    icon: "Tacos Mexicanos",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=3",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=4",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=5",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=6",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=7",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=4",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=5",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=6",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=7",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=7",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=1",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=2",
-    icon: "Tacos Mexicanos",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=3",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=4",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=5",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=6",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=7",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    titulo: "Tacos Mexicanos",
-  },
-];
-
-const GridImages: FunctionComponent<Props> = ({}) => {
+const GridImages: FunctionComponent<Props> = ({imagenes}) => {
   return (
     <div className="grid gap-4 grid-cols-2 mx-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
       {imagenes.map((imagen, index) => {
         return (
-          <Link to="/recipe" className="w-full" key={index}>
+          <Link to="/recipes" className="w-full" key={index}>
             <div className="relative">
-              <div className="absolute m-auto z-20 grid grid-flow-row rounded-md bg-black bg-opacity-50 hover:rounded-md hover:bg-purple-700 hover:bg-opacity-25 h-full w-full">
+              <div className="absolute m-auto z-20 grid grid-flow-row rounded-md bg-black bg-opacity-50 hover:bg-purple-700 hover:bg-opacity-25 h-full w-full">
                 <IonIcon
                   icon={fastFoodOutline}
                   className="place-self-end mx-auto text-white text-5xl"
@@ -120,7 +28,7 @@ const GridImages: FunctionComponent<Props> = ({}) => {
                   {imagen.titulo}
                 </h6>
               </div>
-              <ImageRecipe pathImg={imagen.pathImg} height={40}/>
+              <ImageRecipe pathImg={imagen.pathImg} height={"40"}/>
             </div>
           </Link>
         );

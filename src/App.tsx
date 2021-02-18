@@ -11,6 +11,7 @@ import ForgetPasswordValidate from './pages/ForgetPassword/ForgetPasswordValidat
 import NewPassword from './pages/ForgetPassword/NewPassword';
 import Recipe from './pages/Recipe/Recipe';
 import ListRecipes from './pages/ListRecipes/ListRecipes';
+import FoodBasketAdd from './pages/FoodBasket/FoodBasketAdd';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -44,6 +45,7 @@ const App: React.FC = () => (
         <Route path="/newPassword" render={ (props) => <NewPassword {...props}/>} />
         <Route path="/recipes" render={ (props) => <ListRecipes {...props}/>} exact />
         <Route path="/recipe" render={ (props) => <Recipe {...props}/>} exact />
+        <Route path="/foodBasketAdd" render={ (props) => <FoodBasketAdd {...props}/>} exact />
         <Route exact path="/" render={() => <Redirect to="/welcome" />} />
       </IonRouterOutlet>
     </IonReactRouter>

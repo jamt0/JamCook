@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import {
   star,
   timerOutline,
@@ -6,11 +6,14 @@ import {
   starOutline,
   arrowRedoOutline,
   bookmarkOutline,
+  bookmark,
   heartOutline,
+  heart,
 } from "ionicons/icons";
 import { Link } from "react-router-dom";
 import { IonButton, IonButtons, IonCard, IonIcon } from "@ionic/react";
 import ImageRecipe from "../ImageRecipe/ImageRecipe";
+import Avatar from "../Avatar/Avatar";
 
 interface Props {
   avatarUser: string;
@@ -29,14 +32,19 @@ const CardRecipe: FunctionComponent<Props> = ({
   valoracion,
   meGusta,
 }) => {
+  const [isLiked, setIsLiked] = useState(false);
+  const [isMarked, setIsMarked] = useState(false);
+
   const handlerLikeButton = (e: any) => {
     e.preventDefault();
+    setIsLiked(!isLiked);
   };
   const handlerShareButton = (e: any) => {
     e.preventDefault();
   };
   const handlerFavButton = (e: any) => {
     e.preventDefault();
+    setIsMarked(!isMarked);
   };
 
   return (
@@ -44,10 +52,7 @@ const CardRecipe: FunctionComponent<Props> = ({
       <Link to="/recipe" className="w-full">
         <div className="grid grid-flow-col mx-2 my-1">
           <div className="flex flex-row">
-            <div
-              className="h-8 w-8 bg-cover bg-center rounded-full"
-              style={{ backgroundImage: `url( ${avatarUser} )` }}
-            ></div>
+            <Avatar avatarUser={avatarUser} tamaño="8" />
             <h2 className="text-lg ml-2 mt-1">{nameUser}</h2>
           </div>
           <div className="justify-self-end grid grid-flow-col mt-1">
@@ -63,7 +68,7 @@ const CardRecipe: FunctionComponent<Props> = ({
             <h3 className="text-lg">25'</h3>
           </div>
         </div>
-        <ImageRecipe pathImg={pathImg} height={60}>
+        <ImageRecipe pathImg={pathImg} height={"60"} sinRedondeo={true}>
           <div className="flex flex-row">
             {valoracion.map((element, index) => {
               return (
@@ -85,15 +90,15 @@ const CardRecipe: FunctionComponent<Props> = ({
               <IonButton onClick={handlerShareButton}>
                 <IonIcon
                   icon={arrowRedoOutline}
-                  className="text-black text-4xl my-auto -ml-2 -mr-2"
+                  className="text-gray-500 text-4xl my-auto -ml-2 -mr-2"
                 />
               </IonButton>
             </IonButtons>
             <IonButtons slot="start">
               <IonButton onClick={handlerLikeButton}>
                 <IonIcon
-                  icon={heartOutline}
-                  className="text-black text-4xl my-auto -ml-2 -mr-1"
+                  icon={isLiked ? heart : heartOutline}
+                  className="text-gray-500 text-4xl my-auto -ml-2 -mr-1"
                 />
               </IonButton>
             </IonButtons>
@@ -105,8 +110,8 @@ const CardRecipe: FunctionComponent<Props> = ({
             <IonButtons slot="start">
               <IonButton onClick={handlerFavButton}>
                 <IonIcon
-                  icon={bookmarkOutline}
-                  className="text-black text-4xl -ml-2 -mr-2"
+                  icon={isMarked ? bookmark : bookmarkOutline}
+                  className="text-gray-500 text-4xl -ml-2 -mr-2"
                 />
               </IonButton>
             </IonButtons>
