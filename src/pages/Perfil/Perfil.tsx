@@ -32,39 +32,39 @@ const Perfil: React.FC<RouteComponentProps> = ({ history }) => {
             </div>
           </div>
           <IonList>
-            <IonItem className="px-6 pb-3" lines="none">
+            <IonItem className="px-6 pb-3" lines="none" routerLink="/perfil/preferences">
               <IonIcon icon={personOutline} slot="start" className="text-4xl" />
               <p className="text-lg">Preferencias Alimentarias</p>
             </IonItem>
-            <IonItem className="px-6 pb-3" lines="none">
+            <IonItem className="px-6 pb-3" lines="none" routerLink="/perfil/language">
               <IonIcon icon={globeOutline} slot="start" className="text-4xl" />
               <p className="text-lg">Idioma</p>
             </IonItem>
-            <IonItem className="px-6 pb-3" lines="full">
+            <IonItem className="px-6 pb-3" lines="full" routerLink="/perfil/settings">
               <IonIcon icon={buildOutline} slot="start" className="text-4xl" />
               <p className="text-lg">Configuración</p>
             </IonItem>
-            <IonItem className="px-6 pb-3" lines="none">
+            <IonItem className="px-6 pb-3" lines="none" routerLink="/perfil/ratings">
               <IonIcon icon={starOutline} slot="start" className="text-4xl" />
               <p className="text-lg">Valora JamCook</p>
             </IonItem>
-            <IonItem className="px-6 pb-3" lines="full">
+            <IonItem className="px-6 pb-3" lines="full" routerLink="/perfil/share">
               <IonIcon icon={arrowRedoOutline} slot="start" className="text-4xl" />
               <p className="text-lg">Comparte JamCook</p>
             </IonItem>
-            <IonItem className="px-6 pb-3" lines="none">
+            <IonItem className="px-6 pb-3" lines="none" routerLink="/perfil/aboutUs">
               <IonIcon icon={businessOutline} slot="start" className="text-4xl" />
               <p className="text-lg">Sobre JamCook</p>
             </IonItem>
-            <IonItem className="px-6 pb-3" lines="none">
+            <IonItem className="px-6 pb-3" lines="none" routerLink="/perfil/legalInformation">
               <IonIcon icon={briefcaseOutline} slot="start" className="text-4xl" />
               <p className="text-lg">Información Legal</p>
             </IonItem>
-            <IonItem className="px-6 pb-3" lines="full">
+            <IonItem className="px-6 pb-3" lines="full" routerLink="/perfil/contactUs">
               <IonIcon icon={chatbubbleEllipsesOutline} slot="start" className="text-4xl" />
               <p className="text-lg">Contacto</p>
             </IonItem>
-            <IonItem className="px-6 pb-3" lines="none">
+            <IonItem className="px-6 pb-3" lines="none" routerLink="/signin">
               <IonIcon icon={logOutOutline} slot="start" className="text-4xl" />
               <p className="text-lg">Cerrar Sesión</p>
             </IonItem>

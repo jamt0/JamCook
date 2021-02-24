@@ -112,7 +112,7 @@ const FoodBasket: React.FC<RouteComponentProps> = ({ history }) => {
 
   const handlerAddIngredient = (e: any) => {
     e.preventDefault();
-    history.push("/foodBasketAdd");
+    history.push("/foodBasket/add");
   };
 
   return (
@@ -129,6 +129,7 @@ const FoodBasket: React.FC<RouteComponentProps> = ({ history }) => {
                 pathImg={imagen.pathImg}
                 cantidadPorcion={imagen.canridadPorcion}
                 name={imagen.name}
+                withCounter={true}
                 key={index}
               />
             );

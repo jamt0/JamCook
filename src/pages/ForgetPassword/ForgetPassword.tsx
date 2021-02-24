@@ -13,7 +13,7 @@ const ForgetPassword: React.FC<RouteComponentProps> = ({ history }) => {
 
   const handlerForgetPasswordButton = (e: any) => {
     e.preventDefault();
-    history.push("/forgetPasswordValidate");
+    history.push("/forgetPassword/validate");
   };
 
   const handlerGoBackButton = (e: any) => {

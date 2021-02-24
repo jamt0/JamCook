@@ -135,6 +135,8 @@ const FoodBasketAdd: React.FC<RouteComponentProps> = ({ history }) => {
               pathImg={imagen.pathImg}
               cantidadPorcion={imagen.canridadPorcion}
               name={imagen.name}
+              withCounter={true}
+              withCheck={true}
               key={index}
             />
           );

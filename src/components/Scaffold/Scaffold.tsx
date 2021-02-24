@@ -10,6 +10,7 @@ import {
   IonTitle,
   IonContent,
   IonFooter,
+  IonBackButton,
 } from "@ionic/react";
 
 interface Props {
@@ -17,6 +18,7 @@ interface Props {
   tituloHeader?: string;
   onClickBack: (e: any) => void;
   footer?: React.ReactNode;
+  routeBack?: string;
 }
 
 const Scaffold: FunctionComponent<Props> = ({
@@ -25,15 +27,14 @@ const Scaffold: FunctionComponent<Props> = ({
   children,
   onClickBack,
   footer = null,
+  routeBack = "/home"
 }) => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonButton onClick={onClickBack}>
-              <IonIcon slot="icon-only" icon={chevronBackOutline} color="dark" />
-            </IonButton>
+            <IonBackButton defaultHref={routeBack}/>
           </IonButtons>
           <IonButtons slot="end">
             {accionesHeader != null && (
