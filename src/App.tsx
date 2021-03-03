@@ -13,6 +13,7 @@ import ListRecipes from "./pages/ListRecipes/ListRecipes";
 import { FoodBasketAdd } from "./pages/FoodBasket/Index";
 import { AboutUs, ContactUs, EditPerfil, Language, LegalInformation, Preferences, Ratings, Settings, Share } from "./pages/Perfil/Index";
 import { Allergies, Comensals, CookingLevel, Diet, DislikeIngredient, MyObjectives } from "./pages/Perfil/Preferences/Index";
+import { CookiesPolicy, PrivacyPolicy, TermsAndConditions } from "./pages/Perfil/LegalInformation/Index";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -52,6 +53,9 @@ const App: React.FC = () => (
         <Route path="/perfil/edit" component={EditPerfil} exact />
         <Route path="/perfil/language" component={Language} exact />
         <Route path="/perfil/legalInformation" component={LegalInformation} exact />
+        <Route path="/perfil/legalInformation/termsAndConditions" component={TermsAndConditions} exact />
+        <Route path="/perfil/legalInformation/privacyPolicy" component={PrivacyPolicy} exact />
+        <Route path="/perfil/legalInformation/cookiesPolicy" component={CookiesPolicy} exact />
         <Route path="/perfil/preferences" component={Preferences} exact />
         <Route path="/perfil/ratings" component={Ratings} exact />
         <Route path="/perfil/settings" component={Settings} exact />

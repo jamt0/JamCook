@@ -2,7 +2,7 @@ import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
 import EditPerfil from "./EditPerfil";
 import Language from "./Language";
-import LegalInformation from "./LegalInformation";
+import { LegalInformation } from "./LegalInformation/Index";
 import Perfil from "./Perfil";
 import { Preferences } from "./Preferences/Index";
 import Ratings from "./Ratings";

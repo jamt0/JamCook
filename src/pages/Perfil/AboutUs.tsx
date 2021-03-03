@@ -10,8 +10,8 @@
     };
   
     return (
-      <Scaffold tituloHeader="Agrega Ingredientes" onClickBack={handlerGoBackButton}>
-        hola
+      <Scaffold tituloHeader="Sobre JamCook" onClickBack={handlerGoBackButton}>
+        Jamcook es la verga
       </Scaffold>
     );
   };

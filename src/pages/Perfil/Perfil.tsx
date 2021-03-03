@@ -3,6 +3,7 @@ import React from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
 import { personOutline, globeOutline, buildOutline, starOutline, arrowRedoOutline, businessOutline, briefcaseOutline, chatbubbleEllipsesOutline, logOutOutline } from "ionicons/icons";
 import Avatar from "../../components/Avatar/Avatar";
+import Button from "../../components/Button/Button";
 
 const usuario = {
   avatarUser: "https://picsum.photos/200/300?random=1",
@@ -23,12 +24,9 @@ const Perfil: React.FC<RouteComponentProps> = ({ history }) => {
             <div className=" ml-4 md:ml-0 md:grid md:grid-flow-col md:grid-cols-1 md:grid-rows-3 md:gap-1 md:flex md:text-center md:py-8">
               <h2 className="font-bold text-xl">{usuario.nameUser}</h2>
               <h3 className="text-lg">{usuario.mailUser}</h3>
-              <Link
-                to="/signIn"
-                className="text-purple-600 text-lg select-none"
-              >
-                Editar Perfil
-            </Link>
+              <Link to="/perfil/edit" className="text-purple-600 text-lg select-none">
+                <Button label="Editar Perfil" type="Link" />
+              </Link>
             </div>
           </div>
           <IonList>

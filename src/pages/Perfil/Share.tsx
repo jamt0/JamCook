@@ -10,8 +10,8 @@
     };
   
     return (
-      <Scaffold tituloHeader="Agrega Ingredientes" onClickBack={handlerGoBackButton}>
-        hola
+      <Scaffold tituloHeader="Comparte JamCook" onClickBack={handlerGoBackButton}>
+        Compartir
       </Scaffold>
     );
   };

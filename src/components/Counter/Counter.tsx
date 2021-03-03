@@ -4,7 +4,7 @@ import Center from "../Center/Center";
 interface Props {
 }
 
-const Searcher: FunctionComponent<Props> = ({ }) => {
+const Counter: FunctionComponent<Props> = ({ }) => {
   const [porciones, setPorciones] = useState(1);
   const [isDisabled, setIsDisabled] = useState(true);
   const [classPorciones, setClassPorciones] = useState(" ");
@@ -48,4 +48,4 @@ const Searcher: FunctionComponent<Props> = ({ }) => {
   );
 };
 
-export default Searcher;
+export default Counter;
