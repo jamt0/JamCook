@@ -1,4 +1,3 @@
-import { IonSearchbar } from "@ionic/react";
 import React, { FunctionComponent } from "react";
 
 interface Props {

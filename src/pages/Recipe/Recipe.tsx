@@ -14,13 +14,15 @@ import {
   speedometerOutline,
 } from "ionicons/icons";
 import Button from "../../components/Button/Button";
-import Commentary from "../../components/Commentary/Commentary";
+import CommentaryBox from "../../components/CommentaryBox/CommentaryBox";
 import TitleRecipe from "../../components/TitleRecipe/TitleRecipe";
 import ItemIngredient from "../../components/ItemIngredient/ItemIngredient";
 import ItemStep from "../../components/ItemStep/ItemStep";
 import ContainerSection from "../../components/ContainerSection/ContainerSection";
 import Center from "../../components/Center/Center";
+import Counter from "../../components/Counter/Counter";
 import Avatar from "../../components/Avatar/Avatar";
+import Rating from "../../components/Rating/Rating";
 
 const receta = {
   pathImg: "https://picsum.photos/200/300?random=1",
@@ -82,6 +84,84 @@ const receta = {
     },
   ],
 };
+
+const Comentarios = [
+  {
+    id: 1,
+    avatarUser: "https://picsum.photos/200/300?random=1",
+    nombreUsuario: "Leonardo Santos Franco",
+    fechaPublicacion: "Hace 4 dias",
+    comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+    valoracion: [ true, true, true, true, true ],
+    respuestas: [
+      {
+        avatarUser: "https://picsum.photos/200/300?random=3",
+        nombreUsuario: "Leonardo Santos Franco",
+        fechaPublicacion: "Hace 4 dias",
+        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+      },
+      {
+        avatarUser: "https://picsum.photos/200/300?random=4",
+        nombreUsuario: "Leonardo Santos Franco",
+        fechaPublicacion: "Hace 4 dias",
+        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+      },
+      {
+        avatarUser: "https://picsum.photos/200/300?random=1",
+        nombreUsuario: "Leonardo Santos Franco",
+        fechaPublicacion: "Hace 4 dias",
+        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+      },
+    ]
+  },
+  {
+    id: 2,
+    avatarUser: "https://picsum.photos/200/300?random=2",
+    nombreUsuario: "Leonardo Santos Franco",
+    fechaPublicacion: "Hace 4 dias",
+    comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+    valoracion: [ true, false, false, false, false ],
+    respuestas: [
+      {
+        avatarUser: "https://picsum.photos/200/300?random=3",
+        nombreUsuario: "Leonardo Santos Franco",
+        fechaPublicacion: "Hace 4 dias",
+        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+      },
+      {
+        avatarUser: "https://picsum.photos/200/300?random=4",
+        nombreUsuario: "Leonardo Santos Franco",
+        fechaPublicacion: "Hace 4 dias",
+        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+      },
+    ]
+  },
+  {
+    id: 3,
+    avatarUser: "https://picsum.photos/200/300?random=6",
+    nombreUsuario: "Leonardo Santos Franco",
+    fechaPublicacion: "Hace 4 dias",
+    comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+    valoracion: [ true, true, true, true, false ],
+    respuestas: []
+  },
+  {
+    id: 4,
+    avatarUser: "https://picsum.photos/200/300?random=8",
+    nombreUsuario: "Leonardo Santos Franco",
+    fechaPublicacion: "Hace 4 dias",
+    comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+    valoracion: [ true, true, false, false, false ],
+    respuestas: [
+      {
+        avatarUser: "https://picsum.photos/200/300?random=9",
+        nombreUsuario: "Leonardo Santos Franco",
+        fechaPublicacion: "Hace 4 dias",
+        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+      }
+    ]
+  },
+]
 
 const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
   const [porciones, setPorciones] = useState(1);
@@ -224,29 +304,8 @@ const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
 
         {/* Porciones Receta*/}
         <ContainerSection>
-          <Center direccion="col">
-            <TitleRecipe>Porciones a Preparar</TitleRecipe>
-            <Center direccion="row" className="md:w-1/2 w-full">
-              <button
-                className={
-                  "bg-purple-500 h-12 w-12 rounded-l-md" + classPorciones
-                }
-                onClick={handlerResta}
-                disabled={isDisabled}
-              >
-                <p className="text-white">{"<"}</p>
-              </button>
-              <Center direccion="col" className="w-full bg-gray-100 h-12">
-                <h3 className="text-black text-center">{porciones}</h3>
-              </Center>
-              <button
-                className="bg-purple-500 h-12 w-12 rounded-r-md"
-                onClick={handlerSuma}
-              >
-                <p className="text-white">{">"}</p>
-              </button>
-            </Center>
-          </Center>
+          <TitleRecipe>Porciones a Preparar</TitleRecipe>
+          <Counter porciones={porciones} setPorciones={setPorciones}/>
         </ContainerSection>
 
         {/* Ingredientes Receta*/}
@@ -284,39 +343,24 @@ const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
         {/* Receta Hecha*/}
         <ContainerSection>
           <TitleRecipe>¿Ya has hecho la receta?</TitleRecipe>
-          <Center direccion="col" className="w-2/3 mx-auto">
             <Button
               handler={handlerRecetaHecha}
               label={"¡Receta Hecha!"}
               type={"Secundario"}
             />
-          </Center>
         </ContainerSection>
 
         {/* Valoración Hecha*/}
         <ContainerSection>
           <TitleRecipe>¿Te ha gustado la receta?</TitleRecipe>
-          <Center direccion="row">
-            {isEstrellas.map((isEstrella, index) => {
-              return (
-                <IonButtons slot="icon-only" className="h-12 w-12" key={index}>
-                  <IonButton
-                    onClick={(e) => handlerValoracion(e, index)}
-                    className="h-12 w-12"
-                  >
-                    <IonIcon
-                      icon={isEstrella ? star : starOutline}
-                      className="text-purple-500 text-4xl h-12 w-12"
-                    />
-                  </IonButton>
-                </IonButtons>
-              );
-            })}
-          </Center>
+          <Rating estrellas={isEstrellas} handlerValoracion={handlerValoracion} tamaño={"12"} />
         </ContainerSection>
 
         {/* Comentarios Receta*/}
-        <Commentary />
+        <ContainerSection>
+          <TitleRecipe>Comentarios</TitleRecipe>
+          <CommentaryBox comentarios = {Comentarios} />
+        </ContainerSection>
       </div>
     </Scaffold>
   );

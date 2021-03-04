@@ -22,6 +22,7 @@ const ItemIngredient: FunctionComponent<Props> = ({
 
   const [isOpen, setIsOpen] = useState(false);
   const [isSelect, setIsSelect] = useState(false);
+  const [porciones, setPorciones] = useState(1);
 
   const handlerClickItem = (e: any) => {
     e.preventDefault();
@@ -61,7 +62,7 @@ const ItemIngredient: FunctionComponent<Props> = ({
       </div>
       {isOpen && withCounter &&
       <div className="mt-2">
-      <Counter />
+      <Counter porciones={porciones} setPorciones={setPorciones}/>
       </div>}
     </div>
   );
