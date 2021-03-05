@@ -5,6 +5,7 @@ import Avatar from "../Avatar/Avatar";
 import Button from "../Button/Button";
 import Center from "../Center/Center";
 import Rating from "../Rating/Rating";
+import ResponseBox from "../ResponseBox/ResponseBox";
 
 interface Props {
   comentario: {
@@ -14,6 +15,7 @@ interface Props {
     comentario: string;
     valoracion: boolean[];
     respuestas: {
+      id: number;
       avatarUser: string;
       nombreUsuario: string;
       fechaPublicacion: string;
@@ -31,8 +33,13 @@ const Commentary: FunctionComponent<Props> = ({
   handlerAnswerButton,
   handlerLikeButton,
 }) => {
+
+  const [mostarRespuestas, setmostarRespuestas] = useState(false)
+  handlerAnswerButton = () => {
+    setmostarRespuestas(!mostarRespuestas);
+  }
   return (
-    <Center direccion="col" eje="y">
+    <Center direccion="col" eje="y" className="mt-4 border-b border-gray-300 ">
       <div className="grid grid-flow-col">
         <div className="justify-self-start flex flex-row">
           <Avatar avatarUser={comentario.avatarUser} tamaño="12" />
@@ -47,8 +54,8 @@ const Commentary: FunctionComponent<Props> = ({
           </Center>
         </div>
       </div>
-      <h3 className="text-xs ml-14 my-4">{comentario.comentario}</h3>
-      <Center direccion="row" eje="x" className="mb-2">
+      <h3 className="text-base ml-14 my-4">{comentario.comentario}</h3>
+      <Center direccion="row" eje="x" className="mb-4">
         <IonButtons slot="start" className="ml-12 mr-2">
           <IonButton onClick={handlerLikeButton}>
             <IonIcon
@@ -67,9 +74,18 @@ const Commentary: FunctionComponent<Props> = ({
         </IonButtons>
         <Button label="Responder" type="Link" handler={handlerAnswerButton} />
       </Center>
-      <div className="justify-self-end ml-14 mb-6">
-      <Button label="7 Respuestas" type="Link" handler={handlerAnswerButton} />
-      </div>
+      {comentario.respuestas.length > 0 && 
+        <div className="ml-14">
+          <div className="mb-4">
+            <Button label="7 Respuestas" type="Link" handler={handlerAnswerButton} />
+          </div>
+          {mostarRespuestas && 
+            <div className="my-4">
+              <ResponseBox respuestas={comentario.respuestas}/>
+            </div>
+          }
+        </div>
+      }
     </Center>
   );
 };

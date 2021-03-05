@@ -23,6 +23,8 @@ import Center from "../../components/Center/Center";
 import Counter from "../../components/Counter/Counter";
 import Avatar from "../../components/Avatar/Avatar";
 import Rating from "../../components/Rating/Rating";
+import ChipGroup from "../../components/ChipGroup/ChipGroup";
+import Slider from "../../components/Slider/Slider";
 
 const receta = {
   pathImg: "https://picsum.photos/200/300?random=1",
@@ -95,18 +97,21 @@ const Comentarios = [
     valoracion: [ true, true, true, true, true ],
     respuestas: [
       {
+        id: 1,
         avatarUser: "https://picsum.photos/200/300?random=3",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
         comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
       },
       {
+        id: 2,
         avatarUser: "https://picsum.photos/200/300?random=4",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
         comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
       },
       {
+        id: 3,
         avatarUser: "https://picsum.photos/200/300?random=1",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
@@ -123,12 +128,14 @@ const Comentarios = [
     valoracion: [ true, false, false, false, false ],
     respuestas: [
       {
+        id: 4,
         avatarUser: "https://picsum.photos/200/300?random=3",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
         comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
       },
       {
+        id: 5,
         avatarUser: "https://picsum.photos/200/300?random=4",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
@@ -154,6 +161,7 @@ const Comentarios = [
     valoracion: [ true, true, false, false, false ],
     respuestas: [
       {
+        id: 6,
         avatarUser: "https://picsum.photos/200/300?random=9",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
@@ -162,6 +170,102 @@ const Comentarios = [
     ]
   },
 ]
+
+const tags = [
+  {
+    id: "1",
+    ingrediente: "Brócoli",
+    outline: false,
+  },
+  {
+    id: "2",
+    ingrediente: "Coliflor",
+    outline: false,
+  },
+  {
+    id: "3",
+    ingrediente: "Pescado",
+    outline: false,
+  },
+  {
+    id: "4",
+    ingrediente: "Pepino",
+    outline: false,
+  },
+  {
+    id: "5",
+    ingrediente: "Alcachofa",
+    outline: false,
+  },
+  {
+    id: "6",
+    ingrediente: "Queso",
+    outline: false,
+  },
+
+];
+
+const recetasMasVistas = [
+  {
+    pathImg: "https://picsum.photos/200/300?random=1",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=2",
+    titulo: "Tacos Mexicanos",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=3",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=4",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=5",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=6",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=7",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+];
+
+const recetasRelacionadas = [
+  {
+    pathImg: "https://picsum.photos/200/300?random=1",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=2",
+    titulo: "Tacos Mexicanos",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=3",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=4",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=5",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=6",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+  {
+    pathImg: "https://picsum.photos/200/300?random=7",
+    titulo: "Tacos Mexicanos de Carnitas Asadas",
+  },
+];
 
 const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
   const [porciones, setPorciones] = useState(1);
@@ -360,6 +464,34 @@ const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
         <ContainerSection>
           <TitleRecipe>Comentarios</TitleRecipe>
           <CommentaryBox comentarios = {Comentarios} />
+        </ContainerSection>
+
+        {/* Tags Receta*/}
+        <ContainerSection>
+          <TitleRecipe>Temas Relacionados</TitleRecipe>
+          <div className="flex flex-wrap place-content-center">
+            <ChipGroup ingredientes={tags}/>
+          </div>
+        </ContainerSection>
+
+        {/* Recetas relacionadas*/}
+        <ContainerSection>
+          <TitleRecipe>Recetas relacionados</TitleRecipe>
+          <Slider imagenes={recetasRelacionadas} slidesPerView={1.5} />
+        </ContainerSection>
+
+        {/* Receta*/}
+        <ContainerSection>
+          <TitleRecipe>Recetas más vistas</TitleRecipe>
+          <Slider imagenes={recetasMasVistas} slidesPerView={1.5} />
+        </ContainerSection>
+
+        {/* Receta*/}
+        <ContainerSection>
+          <Button 
+            label={"Guardar receta"}
+            type={"principal"} 
+          />
         </ContainerSection>
       </div>
     </Scaffold>

@@ -1,10 +1,5 @@
-import { IonButton, IonButtons, IonIcon } from "@ionic/react";
-import { chatbubbleOutline, heart, heartOutline } from "ionicons/icons";
 import React, { FunctionComponent, useState } from "react";
-import Avatar from "../Avatar/Avatar";
 import Button from "../Button/Button";
-import Center from "../Center/Center";
-import Rating from "../Rating/Rating";
 import Commentary from "../Commentary/Commentary";
 
 interface Props {
@@ -16,6 +11,7 @@ interface Props {
     comentario: string;
     valoracion: boolean[];
     respuestas: {
+      id: number;
       avatarUser: string;
       nombreUsuario: string;
       fechaPublicacion: string;
@@ -52,6 +48,9 @@ const CommentaryBox: FunctionComponent<Props> = ({ comentarios }) => {
           </>
         );
       })}
+      <div className="mt-4">
+        <Button label="Ver todos los comentarios" type="Link" />
+      </div>
     </>
   );
 };

@@ -62,7 +62,7 @@ const ItemIngredient: FunctionComponent<Props> = ({
       </div>
       {isOpen && withCounter &&
       <div className="mt-2">
-      <Counter porciones={porciones} setPorciones={setPorciones}/>
+        <Counter porciones={porciones} setPorciones={setPorciones}/>
       </div>}
     </div>
   );
