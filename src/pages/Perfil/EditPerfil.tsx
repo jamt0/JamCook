@@ -14,6 +14,7 @@ import Avatar from "../../components/Avatar/Avatar";
 import Button from "../../components/Button/Button";
 import Center from "../../components/Center/Center";
 import Scaffold from "../../components/Scaffold/Scaffold";
+import {useHistory} from 'react-router';
 
 const usuario = {
   avatarUser: "https://picsum.photos/200/300?random=1",
@@ -21,12 +22,9 @@ const usuario = {
   mailUser: "Jamt@gmail.com",
 };
 
-const EditPerfil: React.FC<RouteComponentProps> = ({ history }) => {
-  
-  const handlerGoBackButton = (e: any) => {
-    e.preventDefault();
-    history.goBack();
-  };
+const EditPerfil: React.FC<RouteComponentProps> = ( ) => {
+
+  const history = useHistory();
 
   const handlerSaveEditButton = (e: any) => {
     e.preventDefault();
@@ -43,7 +41,6 @@ const EditPerfil: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <Scaffold
       tituloHeader="Editar perfil"
-      onClickBack={handlerGoBackButton}
       footer={
         <div className="p-2 max-w-screen-md mx-auto">
           <Button handler={handlerSaveEditButton} label={"Guardar"} />

@@ -35,7 +35,7 @@ const imagenes = [
   },
 ];
 
-const Search: React.FC<RouteComponentProps> = ({ history }) => {
+const Search: React.FC<RouteComponentProps> = ( ) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [slidesPerView, setslidesPerView] = useState(1.5);
 

@@ -107,17 +107,11 @@ const recetas = [
   },
 ];
 
-const ListRecipes: React.FC<RouteComponentProps> = ({ history }) => {
+const ListRecipes: React.FC<RouteComponentProps> = ( ) => {
   
-  const handlerGoBackButton = (e: any) => {
-    e.preventDefault();
-    history.goBack();
-  };
-
   return (
     <Scaffold
       tituloHeader="Recetas Nuevas"
-      onClickBack={handlerGoBackButton}
     >
       {recetas.map((receta, index) => {
         return (

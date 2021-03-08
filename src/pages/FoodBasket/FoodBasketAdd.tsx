@@ -9,6 +9,7 @@ import { RouteComponentProps } from "react-router-dom";
 import ItemIngredient from "../../components/ItemIngredient/ItemIngredient";
 import Scaffold from "../../components/Scaffold/Scaffold";
 import Searcher from "../../components/Searcher/Searcher";
+import {useHistory} from 'react-router';
 
 const imagenes = [
   {
@@ -113,12 +114,9 @@ const imagenes = [
   },
 ];
 
-const FoodBasketAdd: React.FC<RouteComponentProps> = ({ history }) => {
-
-  const handlerGoBackButton = (e: any) => {
-    e.preventDefault();
-    history.goBack();
-  };
+const FoodBasketAdd: React.FC<RouteComponentProps> = ( ) => {
+  
+  const history = useHistory();
 
   const handlerAddIngredient = (e: any) => {
     e.preventDefault();
@@ -126,7 +124,7 @@ const FoodBasketAdd: React.FC<RouteComponentProps> = ({ history }) => {
   };
 
   return (
-    <Scaffold tituloHeader="Agrega Ingredientes" onClickBack={handlerGoBackButton}>
+    <Scaffold tituloHeader="Agrega Ingredientes" >
       <Searcher placeHolder={"¿Qué ingrediente buscas?"} />
       <div className="px-2 mb-20">
         {imagenes.map((imagen, index) => {

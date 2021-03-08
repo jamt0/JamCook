@@ -2,15 +2,10 @@
   import { RouteComponentProps } from "react-router-dom";
   import Scaffold from "../../components/Scaffold/Scaffold";
   
-  const Share: React.FC<RouteComponentProps> = ({ history }) => {
-  
-    const handlerGoBackButton = (e: any) => {
-      e.preventDefault();
-      history.goBack();
-    };
+  const Share: React.FC<RouteComponentProps> = ( ) => {
   
     return (
-      <Scaffold tituloHeader="Comparte JamCook" onClickBack={handlerGoBackButton}>
+      <Scaffold tituloHeader="Comparte JamCook" >
         Compartir
       </Scaffold>
     );

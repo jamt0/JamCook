@@ -3,6 +3,7 @@ import { RouteComponentProps } from "react-router-dom";
 import Button from "../../../components/Button/Button";
 import ChipGroup from "../../../components/ChipGroup/ChipGroup";
 import Scaffold from "../../../components/Scaffold/Scaffold";
+import {useHistory} from 'react-router';
 
 const ingredientes = [
   {
@@ -32,12 +33,9 @@ const ingredientes = [
   },
 ];
 
-const Allergies: React.FC<RouteComponentProps> = ({ history }) => {
+const Allergies: React.FC<RouteComponentProps> = ( ) => {
 
-  const handlerGoBackButton = (e: any) => {
-    e.preventDefault();
-    history.goBack();
-  };
+  const history = useHistory();
 
   const handlerSaveEditButton = (e: any) => {
     e.preventDefault();
@@ -47,7 +45,6 @@ const Allergies: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <Scaffold
       tituloHeader="Alergias e intolerancias"
-      onClickBack={handlerGoBackButton}
       footer={
         <div className="p-2 max-w-screen-md mx-auto">
           <Button handler={handlerSaveEditButton} label={"Guardar"} />

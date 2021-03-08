@@ -10,12 +10,11 @@ import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Scaffold from "../../components/Scaffold/Scaffold";
+import {useHistory} from 'react-router';
 
-const ContactUs: React.FC<RouteComponentProps> = ({ history }) => {
-  const handlerGoBackButton = (e: any) => {
-    e.preventDefault();
-    history.goBack();
-  };
+const ContactUs: React.FC<RouteComponentProps> = ( ) => {
+
+  const history = useHistory();
 
   const handlerSendButton = (e: any) => {
     e.preventDefault();
@@ -29,7 +28,6 @@ const ContactUs: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <Scaffold
       tituloHeader="Contacto"
-      onClickBack={handlerGoBackButton}
       footer={
         <div className="p-2 max-w-screen-md mx-auto">
           <Button handler={handlerSendButton} label={"Enviar Mensaje"} />

@@ -2,15 +2,10 @@ import React from "react";
 import { RouteComponentProps } from "react-router-dom";
 import Scaffold from "../../../components/Scaffold/Scaffold";
   
-const CookiesPolicy: React.FC<RouteComponentProps> = ({ history }) => {
-
-  const handlerGoBackButton = (e: any) => {
-    e.preventDefault();
-    history.goBack();
-  };
+const CookiesPolicy: React.FC<RouteComponentProps> = ( ) => {
 
   return (
-    <Scaffold tituloHeader="Política de cookies" onClickBack={handlerGoBackButton}>
+    <Scaffold tituloHeader="Política de cookies">
       Las politicas
     </Scaffold>
   );

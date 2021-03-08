@@ -2,15 +2,10 @@
   import { RouteComponentProps } from "react-router-dom";
   import Scaffold from "../../components/Scaffold/Scaffold";
   
-  const AboutUs: React.FC<RouteComponentProps> = ({ history }) => {
-  
-    const handlerGoBackButton = (e: any) => {
-      e.preventDefault();
-      history.goBack();
-    };
+  const AboutUs: React.FC<RouteComponentProps> = ( ) => {
   
     return (
-      <Scaffold tituloHeader="Sobre JamCook" onClickBack={handlerGoBackButton}>
+      <Scaffold tituloHeader="Sobre JamCook" >
         Jamcook es la verga
       </Scaffold>
     );

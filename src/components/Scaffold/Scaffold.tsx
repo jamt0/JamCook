@@ -10,31 +10,37 @@ import {
   IonTitle,
   IonContent,
   IonFooter,
-  IonBackButton,
 } from "@ionic/react";
+import {useHistory} from 'react-router';
 
 interface Props {
   accionesHeader?: React.ReactNode;
   tituloHeader?: string;
-  onClickBack: (e: any) => void;
   footer?: React.ReactNode;
-  routeBack?: string;
 }
 
 const Scaffold: FunctionComponent<Props> = ({
   accionesHeader = null,
   tituloHeader,
   children,
-  onClickBack,
-  footer = null,
-  routeBack = "/home"
+  footer = null
 }) => {
+
+  const history = useHistory();
+
+  const handlerGoBackButton = (e: any) => {
+    e.preventDefault();
+    history.goBack();
+  };
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref={routeBack}/>
+            <IonButton onClick={handlerGoBackButton}>
+              <IonIcon slot="icon-only" icon={chevronBackOutline} color="dark" />
+            </IonButton>
           </IonButtons>
           <IonButtons slot="end">
             {accionesHeader != null && (

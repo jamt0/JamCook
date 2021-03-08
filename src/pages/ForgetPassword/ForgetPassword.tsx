@@ -7,8 +7,12 @@ import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Scaffold from "../../components/Scaffold/Scaffold";
+import {useHistory} from 'react-router';
 
-const ForgetPassword: React.FC<RouteComponentProps> = ({ history }) => {
+const ForgetPassword: React.FC<RouteComponentProps> = ( ) => {
+  
+  const history = useHistory();
+
   const [mail, setMail] = useState("");
 
   const handlerForgetPasswordButton = (e: any) => {
@@ -16,15 +20,9 @@ const ForgetPassword: React.FC<RouteComponentProps> = ({ history }) => {
     history.push("/forgetPassword/validate");
   };
 
-  const handlerGoBackButton = (e: any) => {
-    e.preventDefault();
-    history.goBack();
-  };
-
   return (
     <Scaffold
       tituloHeader="Restablecer Contraseña"
-      onClickBack={handlerGoBackButton}
       footer={
         <div className="p-2 mb-2 max-w-screen-md mx-auto">
           <Button

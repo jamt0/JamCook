@@ -7,8 +7,12 @@ import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Scaffold from "../../components/Scaffold/Scaffold";
+import {useHistory} from 'react-router';
 
-const SignIn: React.FC<RouteComponentProps> = ({ history }) => {
+const SignIn: React.FC<RouteComponentProps> = ( ) => {
+  
+  const history = useHistory();
+  
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -35,7 +39,6 @@ const SignIn: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <Scaffold
       tituloHeader="Inicia sesión"
-      onClickBack={handlerGoBackButton}
       footer={
         <div className="p-2 max-w-screen-md mx-auto">
           <Button handler={handlerSignInButton} label={"Iniciar sesión"} />

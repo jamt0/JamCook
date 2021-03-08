@@ -1,5 +1,5 @@
-import { IonButton, IonButtons, IonIcon } from "@ionic/react";
-import React, { useEffect, useState } from "react";
+import { IonButton, IonIcon } from "@ionic/react";
+import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import ImageRecipe from "../../components/ImageRecipe/ImageRecipe";
 import Scaffold from "../../components/Scaffold/Scaffold";
@@ -267,10 +267,9 @@ const recetasRelacionadas = [
   },
 ];
 
-const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
+const Recipe: React.FC<RouteComponentProps> = ( ) => {
+
   const [porciones, setPorciones] = useState(1);
-  const [isDisabled, setIsDisabled] = useState(true);
-  const [classPorciones, setClassPorciones] = useState(" ");
   const [isEstrellas, setEstrellas] = useState([
     false,
     false,
@@ -279,34 +278,11 @@ const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
     false,
   ]);
 
-  useEffect(() => {
-    if (porciones == 1) {
-      setClassPorciones(" bg-opacity-25 ");
-      setIsDisabled(true);
-    } else {
-      setClassPorciones(" ");
-      setIsDisabled(false);
-    }
-  }, [porciones]);
-
-  const handlerGoBackButton = (e: any) => {
-    e.preventDefault();
-    history.goBack();
-  };
-
   const handlerShare = (e: any) => {};
 
   const handlerLike = (e: any) => {};
 
   const handlerMark = (e: any) => {};
-
-  const handlerSuma = (e: any) => {
-    setPorciones(porciones + 1);
-  };
-
-  const handlerResta = (e: any) => {
-    setPorciones(porciones - 1);
-  };
 
   const handlerRecetaHecha = (e: any) => {};
 
@@ -326,7 +302,6 @@ const Recipe: React.FC<RouteComponentProps> = ({ history }) => {
 
   return (
     <Scaffold
-      onClickBack={handlerGoBackButton}
       accionesHeader={
         <>
           <IonButton onClick={handlerShare}>

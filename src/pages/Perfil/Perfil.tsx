@@ -11,7 +11,7 @@ const usuario = {
   mailUser: "Jamt@gmail.com",
 };
 
-const Perfil: React.FC<RouteComponentProps> = ({ history }) => {
+const Perfil: React.FC<RouteComponentProps> = ( ) => {
   return (
     <IonPage>
       <IonContent>

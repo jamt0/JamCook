@@ -7,8 +7,12 @@ import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Scaffold from "../../components/Scaffold/Scaffold";
+import {useHistory} from 'react-router';
 
-const SignUp: React.FC<RouteComponentProps> = ({ history }) => {
+const SignUp: React.FC<RouteComponentProps> = ( ) => {
+
+  const history = useHistory();
+
   const [mail, setMail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -33,14 +37,9 @@ const SignUp: React.FC<RouteComponentProps> = ({ history }) => {
     history.push("/politicaDePrivacidad");
   };
 
-  const handlerGoBackButton = (e: any) => {
-    e.preventDefault();
-    history.goBack();
-  };
   return (
     <Scaffold
       tituloHeader="Crear Cuenta"
-      onClickBack={handlerGoBackButton}
       footer={
         <div className="p-2 max-w-screen-md mx-auto">
           <Button handler={handlerSignUpButton} label={"Crear cuenta"} />

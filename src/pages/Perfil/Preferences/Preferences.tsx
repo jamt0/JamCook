@@ -3,15 +3,10 @@ import React from "react";
 import { RouteComponentProps } from "react-router-dom";
 import Scaffold from "../../../components/Scaffold/Scaffold";
 
-const Preferences: React.FC<RouteComponentProps> = ({ history }) => {
-
-  const handlerGoBackButton = (e: any) => {
-    e.preventDefault();
-    history.goBack();
-  };
+const Preferences: React.FC<RouteComponentProps> = ( ) => {
 
   return (
-    <Scaffold tituloHeader="Preferencias" onClickBack={handlerGoBackButton} routeBack="/home/perfil">
+    <Scaffold tituloHeader="Preferencias" >
       <IonList>
           <IonItem className="px-6 pb-3" lines="none" routerLink="/perfil/preferences/myObjectives">
             <p className="text-lg">Mis objetivos</p>

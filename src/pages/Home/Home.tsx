@@ -17,12 +17,12 @@ import { Allergies, Comensals, CookingLevel, Diet, DislikeIngredient, MyObjectiv
 const SignUp: React.FC<RouteComponentProps> = ({ match }) => {
   return (
       <IonTabs>
-        <IonRouterOutlet ionPage>
+        <IonRouterOutlet>
+          <Route path={match.url} render={() => <Redirect to={`${match.url}/search`} />} exact />
           <Route path={`${match.url}/search`} component={Search} exact />
           <Route path={`${match.url}/explore`} component={Explore} exact />
           <Route path={`${match.url}/foodBasket`} component={FoodBasket} exact />
           <Route path={`${match.url}/perfil`} component={Perfil} exact />
-          <Route path={match.url} render={() => <Redirect to={`${match.url}/search`} />} exact />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="search" href="/home/search">

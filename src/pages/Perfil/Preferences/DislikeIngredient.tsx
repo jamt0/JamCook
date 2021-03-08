@@ -5,6 +5,7 @@ import Button from "../../../components/Button/Button";
 import ChipGroup from "../../../components/ChipGroup/ChipGroup";
 import Searcher from "../../../components/Searcher/Searcher";
 import Scaffold from "../../../components/Scaffold/Scaffold";
+import {useHistory} from 'react-router';
 
 const ingredientes = [
   {
@@ -54,11 +55,9 @@ const ingredientes = [
   },
 ];
 
-const DislikeIngredient: React.FC<RouteComponentProps> = ({ history }) => {
-  const handlerGoBackButton = (e: any) => {
-    e.preventDefault();
-    history.goBack();
-  };
+const DislikeIngredient: React.FC<RouteComponentProps> = ( ) => {
+  
+  const history = useHistory();
 
   const handlerSaveEditButton = (e: any) => {
     e.preventDefault();
@@ -70,7 +69,6 @@ const DislikeIngredient: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <Scaffold
       tituloHeader="Ingredientes"
-      onClickBack={handlerGoBackButton}
       footer={
         <div className="p-2 max-w-screen-md mx-auto">
           <Button handler={handlerSaveEditButton} label={"Guardar"} />

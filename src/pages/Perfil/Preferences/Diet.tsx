@@ -3,6 +3,7 @@ import { RouteComponentProps } from "react-router-dom";
 import Button from "../../../components/Button/Button";
 import RadioGroup from "../../../components/RadioGroup/RadioGroup";
 import Scaffold from "../../../components/Scaffold/Scaffold";
+import {useHistory} from 'react-router';
 
 const opcionesGroup = [
   {
@@ -23,11 +24,9 @@ const opcionesGroup = [
   },
 ]
 
-const Diet: React.FC<RouteComponentProps> = ({ history }) => {
-  const handlerGoBackButton = (e: any) => {
-    e.preventDefault();
-    history.goBack();
-  };
+const Diet: React.FC<RouteComponentProps> = ( ) => {
+  
+  const history = useHistory();
 
   const handlerSaveEditButton = (e: any) => {
     e.preventDefault();
@@ -37,8 +36,6 @@ const Diet: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <Scaffold
       tituloHeader="Dieta"
-      onClickBack={handlerGoBackButton}
-      routeBack="/perfil/preferences"
       footer={
         <div className="p-2 max-w-screen-md mx-auto">
           <Button handler={handlerSaveEditButton} label={"Guardar"} />
