@@ -32,7 +32,6 @@ const Lenguage: React.FC<RouteComponentProps> = ( ) => {
   return (
     <Scaffold
       tituloHeader="Idioma"
-      routeBack="/home/perfil"
       footer={
         <div className="p-2 max-w-screen-md mx-auto">
           <Button handler={handlerSaveEditButton} label={"Guardar"} />
