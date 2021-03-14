@@ -2,11 +2,14 @@ import { IonContent, IonPage, IonText } from '@ionic/react';
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import Lottie from 'react-lottie';
-import animationData from '../../assets/26901-cooking.json';
-import Button from '../../components/Button/Button';
+import animationData from 'assets/26901-cooking.json';
+import Button from 'components/Button/Button';
+import { useHistory } from 'react-router';
 
-const Welcome: React.FC<RouteComponentProps> = ({history}) => {
+const Welcome: React.FC<RouteComponentProps> = ( ) => {
   
+  const history = useHistory();
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -25,6 +28,7 @@ const Welcome: React.FC<RouteComponentProps> = ({history}) => {
     e.preventDefault();
     history.push('/signUp');
   }
+
   return (
     <IonPage>
       <IonContent>

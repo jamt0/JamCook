@@ -1,9 +1,11 @@
 import { IonContent, IonIcon, IonItem, IonList, IonPage } from "@ionic/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
 import { personOutline, globeOutline, buildOutline, starOutline, arrowRedoOutline, businessOutline, briefcaseOutline, chatbubbleEllipsesOutline, logOutOutline } from "ionicons/icons";
-import Avatar from "../../components/Avatar/Avatar";
-import Button from "../../components/Button/Button";
+import Avatar from "components/Avatar/Avatar";
+import Button from "components/Button/Button";
+import { useHistory } from "react-router";
+import Server from "server";
 
 const usuario = {
   avatarUser: "https://picsum.photos/200/300?random=1",
@@ -11,7 +13,21 @@ const usuario = {
   mailUser: "Jamt@gmail.com",
 };
 
+interface IUser {
+  name: String;
+  email: String;
+  password: String;
+}
+
 const Perfil: React.FC<RouteComponentProps> = ( ) => {
+  const history = useHistory();
+
+  const handlerLogOutButton = ( e: any ) => {
+    e.preventDefault();
+    localStorage.removeItem('tokenAccess');
+    history.push("/signIn");
+  };
+
   return (
     <IonPage>
       <IonContent>
@@ -22,7 +38,7 @@ const Perfil: React.FC<RouteComponentProps> = ( ) => {
           <div className="grid grid-flow-col auto-cols-max md:auto-rows-max md:grid-flow-row px-4 pb-4 md:justify-self-center">
             <Avatar avatarUser={usuario.avatarUser} tamaño="20" responsive="60"/>
             <div className=" ml-4 md:ml-0 md:grid md:grid-flow-col md:grid-cols-1 md:grid-rows-3 md:gap-1 md:flex md:text-center md:py-8">
-              <h2 className="font-bold text-xl">{usuario.nameUser}</h2>
+              <h2 className="font-bold text-xl">{usuario.nameUser }</h2>
               <h3 className="text-lg">{usuario.mailUser}</h3>
               <Link to="/perfil/edit" className="text-purple-600 text-lg select-none">
                 <Button label="Editar Perfil" type="Link" />
@@ -62,7 +78,7 @@ const Perfil: React.FC<RouteComponentProps> = ( ) => {
               <IonIcon icon={chatbubbleEllipsesOutline} slot="start" className="text-4xl" />
               <p className="text-lg">Contacto</p>
             </IonItem>
-            <IonItem className="px-6 pb-3" lines="none" routerLink="/signin">
+            <IonItem className="px-6 pb-3" lines="none" onClick={handlerLogOutButton}>
               <IonIcon icon={logOutOutline} slot="start" className="text-4xl" />
               <p className="text-lg">Cerrar Sesión</p>
             </IonItem>

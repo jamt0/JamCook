@@ -8,7 +8,7 @@ interface Props {
 const Searcher: FunctionComponent<Props> = ({ placeHolder }) => {
 
     return (
-        <div className="sticky top-0 z-40 bg-white py-2">
+        <div className="sticky top-0 z-40 bg-white">
           <IonSearchbar value={""} placeholder={placeHolder}></IonSearchbar>
         </div>
     );
