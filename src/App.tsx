@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import { IonApp, IonRouterOutlet } from "@ionic/react";
+import { IonApp, IonLoading, IonRouterOutlet } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/Home/Home";
 import SignIn from "./pages/SignIn/SignIn";
@@ -14,6 +14,8 @@ import { FoodBasketAdd } from "./pages/FoodBasket/Index";
 import { AboutUs, ContactUs, EditPerfil, Language, LegalInformation, Preferences, Ratings, Settings, Share } from "./pages/Perfil/Index";
 import { Allergies, Comensals, CookingLevel, Diet, DislikeIngredient, MyObjectives } from "./pages/Perfil/Preferences/Index";
 import { CookiesPolicy, PrivacyPolicy, TermsAndConditions } from "./pages/Perfil/LegalInformation/Index";
+
+import { AuthContext, useAuthInit, AuthProvider } from "auth";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -34,42 +36,62 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 
-const App: React.FC = () => (
+const App: React.FC = () => {
+
+  const { loading, auth } =  useAuthInit();
+
+  // interface Auth {
+  //   loggedIn: boolean;
+  //   userId?: string;
+  // }
+
+  // const auth: Auth = {
+  //   loggedIn: false
+  // };
+  
+  if (loading) {
+    return <IonLoading isOpen />;
+  }
+
+  return(
   <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path="/home" render={(props) => <Home {...props} />} />
-        <Route path="/welcome" render={(props) => <Welcome {...props} />} exact />
-        <Route path="/signUp" render={(props) => <SignUp {...props} />} exact />
-        <Route path="/signIn" render={(props) => <SignIn {...props} />} exact />
-        <Route path="/forgetPassword" render={(props) => <ForgetPassword {...props} />} exact />
-        <Route path="/forgetPassword/validate" render={(props) => <ForgetPasswordValidate {...props} />} exact />
-        <Route path="/forgetPassword/newPassword" render={(props) => <NewPassword {...props} />} exact />
-        <Route path="/recipes" render={(props) => <ListRecipes {...props} />} exact />
-        <Route path="/recipe" render={(props) => <Recipe {...props} />} exact />
-        <Route path="/foodBasket/add" component={FoodBasketAdd} exact />
-        <Route path="/perfil/aboutUs" component={AboutUs} exact />
-        <Route path="/perfil/contactUs" component={ContactUs} exact />
-        <Route path="/perfil/edit" component={EditPerfil} exact />
-        <Route path="/perfil/language" component={Language} exact />
-        <Route path="/perfil/legalInformation" component={LegalInformation} exact />
-        <Route path="/perfil/legalInformation/termsAndConditions" component={TermsAndConditions} exact />
-        <Route path="/perfil/legalInformation/privacyPolicy" component={PrivacyPolicy} exact />
-        <Route path="/perfil/legalInformation/cookiesPolicy" component={CookiesPolicy} exact />
-        <Route path="/perfil/preferences" component={Preferences} exact />
-        <Route path="/perfil/ratings" component={Ratings} exact />
-        <Route path="/perfil/settings" component={Settings} exact />
-        <Route path="/perfil/share" component={Share} exact />
-        <Route path="/perfil/preferences/myObjectives" component={MyObjectives} exact />
-        <Route path="/perfil/preferences/cookingLevel" component={CookingLevel} exact />
-        <Route path="/perfil/preferences/diet" component={Diet} exact />
-        <Route path="/perfil/preferences/allergies" component={Allergies} exact />
-        <Route path="/perfil/preferences/dislikeIngredient" component={DislikeIngredient} exact />
-        <Route path="/perfil/preferences/comensals" component={Comensals} exact />
-        <Redirect from="/" to="/welcome" exact />
-      </IonRouterOutlet>
-    </IonReactRouter>
+    <AuthProvider>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route path="/home" render={(props) => <Home {...props} />} />
+          <Route path="/welcome" render={(props) => <Welcome {...props} />} exact />
+          <Route path="/signUp" render={(props) => <SignUp {...props} />} exact />
+          <Route path="/signIn" render={(props) => <SignIn {...props} />} exact />
+          <Route path="/forgetPassword" render={(props) => <ForgetPassword {...props} />} exact />
+          <Route path="/forgetPassword/validate" render={(props) => <ForgetPasswordValidate {...props} />} exact />
+          <Route path="/forgetPassword/newPassword" render={(props) => <NewPassword {...props} />} exact />
+          <Route path="/recipes" render={(props) => <ListRecipes {...props} />} exact />
+          <Route path="/recipe" render={(props) => <Recipe {...props} />} exact />
+          <Route path="/foodBasket/add" component={FoodBasketAdd} exact />
+          <Route path="/perfil/aboutUs" component={AboutUs} exact />
+          <Route path="/perfil/contactUs" component={ContactUs} exact />
+          <Route path="/perfil/edit" component={EditPerfil} exact />
+          <Route path="/perfil/language" component={Language} exact />
+          <Route path="/perfil/legalInformation" component={LegalInformation} exact />
+          <Route path="/perfil/legalInformation/termsAndConditions" component={TermsAndConditions} exact />
+          <Route path="/perfil/legalInformation/privacyPolicy" component={PrivacyPolicy} exact />
+          <Route path="/perfil/legalInformation/cookiesPolicy" component={CookiesPolicy} exact />
+          <Route path="/perfil/preferences" component={Preferences} exact />
+          <Route path="/perfil/ratings" component={Ratings} exact />
+          <Route path="/perfil/settings" component={Settings} exact />
+          <Route path="/perfil/share" component={Share} exact />
+          <Route path="/perfil/preferences/myObjectives" component={MyObjectives} exact />
+          <Route path="/perfil/preferences/cookingLevel" component={CookingLevel} exact />
+          <Route path="/perfil/preferences/diet" component={Diet} exact />
+          <Route path="/perfil/preferences/allergies" component={Allergies} exact />
+          <Route path="/perfil/preferences/dislikeIngredient" component={DislikeIngredient} exact />
+          <Route path="/perfil/preferences/comensals" component={Comensals} exact />
+          <Redirect from="/" to="/welcome" exact />
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </AuthProvider>
   </IonApp>
-);
+  );
+}
 
 export default App;

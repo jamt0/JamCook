@@ -37,7 +37,7 @@ const SignIn: React.FC<RouteComponentProps> = () => {
       .then((response) => {
         console.log(response.data);
         if (!response.data.error) {
-          localStorage.setItem('accessToken', JSON.stringify(response.data.accessToken));
+          localStorage.setItem('accessToken', response.data.accessToken);
           history.push("/home");
         } else {
           setHasErrors({ error: response.data.error });

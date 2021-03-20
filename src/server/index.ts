@@ -22,7 +22,7 @@ export default class Server {
   }
 
   public static authentication() {
-    return axios.post(`${config.baseURL}/api/auth/authentication`, {}, {
+    return axios.get(`${config.baseURL}/api/auth/authentication`, {
       validateStatus: function (status) {
         return status < 500;
       },
