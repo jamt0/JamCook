@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import Button from "components/Button/Button";
 import Scaffold from "components/Scaffold/Scaffold";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import Server from "server";
 import { useForm, Controller } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import { useAuth } from "auth";
 
 let initialValues = {
   name: "",
@@ -23,30 +24,26 @@ interface IUser {
 const SignUp: React.FC<RouteComponentProps> = () => {
   const history = useHistory();
 
-  const [hasErrors, setHasErrors] = useState({ error: null });
+  const [hasErrors, setHasErrors] = useState<string>("");
 
   const { control, handleSubmit, errors, formState } = useForm({
     defaultValues: { ...initialValues },
     mode: "onChange",
   });
 
+  const {signIn, auth} = useAuth();
+
   /**
    *
    * @param data
    */
-  const handlerSignUpButton = (user: IUser) => {
-    Server.signUp(user)
-      .then((response) => {
-        console.log(response.data);
-        if (!response.data.error) {
-          history.push("/home");
-        } else {
-          setHasErrors({ error: response.data.error });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handlerSignUpButton = async (user: IUser) => {
+    const errorSignIn = await signIn(user);
+    if (errorSignIn != null) {
+      setHasErrors(errorSignIn);
+    }else{
+      history.push("/home");
+    }
   };
 
   const handlerSignInButton = (e: any) => {
@@ -64,6 +61,10 @@ const SignUp: React.FC<RouteComponentProps> = () => {
     history.push("/politicaDePrivacidad");
   };
 
+  if (auth.loggedIn === true) {
+    return <Redirect to="/home" />;
+  }
+  
   return (
     <Scaffold
       tituloHeader="Crear Cuenta"
@@ -86,9 +87,9 @@ const SignUp: React.FC<RouteComponentProps> = () => {
       }
     >
       <div className="max-w-screen-md mx-auto p-4 h-full">
-        {hasErrors.error != null && (
+        {hasErrors != "" && (
           <p className="text-red-600 bg-red-100 px-6 py-3 my-2">
-            {hasErrors.error}
+            {hasErrors}
           </p>
         )}
         <IonItem className="mb-4 ">

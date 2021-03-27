@@ -4,11 +4,14 @@ import { RouteComponentProps } from 'react-router-dom';
 import Lottie from 'react-lottie';
 import animationData from 'assets/26901-cooking.json';
 import Button from 'components/Button/Button';
-import { useHistory } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
+import { useAuth } from 'auth';
 
 const Welcome: React.FC<RouteComponentProps> = ( ) => {
   
   const history = useHistory();
+
+  const { auth } = useAuth();
 
   const defaultOptions = {
     loop: true,
@@ -29,6 +32,10 @@ const Welcome: React.FC<RouteComponentProps> = ( ) => {
     history.push('/signUp');
   }
 
+  // if (auth.loggedIn === true) {
+  //   return <Redirect to="/home" />;
+  // }
+  
   return (
     <IonPage>
       <IonContent>

@@ -9,6 +9,7 @@ import Explore from "../Explore/Explore";
 import Search from "../Search/Search";
 
 const SignUp: React.FC<RouteComponentProps> = ({ match }) => {
+  console.log("soy tabs");
   return (
       <IonTabs>
         <IonRouterOutlet>

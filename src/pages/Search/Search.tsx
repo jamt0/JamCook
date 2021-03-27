@@ -73,6 +73,8 @@ const Search: React.FC<RouteComponentProps> = ( ) => {
     setTimeout(handleResize,10000);
   }, []);
 
+  console.log("soy page search");
+
   return (
     <IonPage>
       <IonContent>

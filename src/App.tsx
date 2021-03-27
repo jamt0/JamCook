@@ -15,7 +15,7 @@ import { AboutUs, ContactUs, EditPerfil, Language, LegalInformation, Preferences
 import { Allergies, Comensals, CookingLevel, Diet, DislikeIngredient, MyObjectives } from "./pages/Perfil/Preferences/Index";
 import { CookiesPolicy, PrivacyPolicy, TermsAndConditions } from "./pages/Perfil/LegalInformation/Index";
 
-import { AuthContext, useAuthInit, AuthProvider } from "auth";
+import { AuthProvider, useAuthInit } from "auth";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -37,21 +37,12 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 
 const App: React.FC = () => {
+  console.log("soy la page app")
 
-  const { loading, auth } =  useAuthInit();
-
-  // interface Auth {
-  //   loggedIn: boolean;
-  //   userId?: string;
+  // const { loading, auth } = useAuthInit();
+  // if (loading) {
+  //   return <IonLoading isOpen translucent />;
   // }
-
-  // const auth: Auth = {
-  //   loggedIn: false
-  // };
-  
-  if (loading) {
-    return <IonLoading isOpen />;
-  }
 
   return(
   <IonApp>

@@ -16,14 +16,16 @@ const usuario = {
 const Perfil: React.FC<RouteComponentProps> = ( ) => {
 
   const history = useHistory();
-  const { loggedIn } = useAuth();
-  console.log(loggedIn);
+
+  const { auth, logOut } = useAuth();
 
   const handlerLogOutButton = ( e: any ) => {
     e.preventDefault();
-    localStorage.removeItem('tokenAccess');
+    logOut();
     history.push("/signIn");
   };
+
+  console.log("soy page perfil");
 
   return (
     <IonPage>
@@ -31,13 +33,13 @@ const Perfil: React.FC<RouteComponentProps> = ( ) => {
         <div className="flex md:text-center flex-col md:mx-auto max-w-screen-md py-8 text-left text-gray-600 text-2xl md:text-3xl mx-4 font-bold">
           <h6>Perfil</h6>
         </div>
-        {loggedIn && (
+        {auth.loggedIn && (
           <div className="md:auto-cols-max md:grid md:grid-cols-2 max-w-screen-md md:flex md:mx-auto">
             <div className="grid grid-flow-col auto-cols-max md:auto-rows-max md:grid-flow-row px-4 pb-4 md:justify-self-center">
               <Avatar avatarUser={usuario.avatarUser} tamaño="20" responsive="60"/>
               <div className=" ml-4 md:ml-0 md:grid md:grid-flow-col md:grid-cols-1 md:grid-rows-3 md:gap-1 md:flex md:text-center md:py-8">
                 <h2 className="font-bold text-xl">{usuario.nameUser }</h2>
-                <h3 className="text-lg">{usuario.mailUser}</h3>
+                <h3 className="text-lg">{auth.user?.email}</h3>
                 <Link to="/perfil/edit" className="text-purple-600 text-lg select-none">
                   <Button label="Editar Perfil" type="Link" />
                 </Link>
@@ -83,7 +85,7 @@ const Perfil: React.FC<RouteComponentProps> = ( ) => {
             </IonList>
           </div>
         )}
-        {!loggedIn && (
+        {!auth.loggedIn && (
           <IonList>
           <IonItem className="px-6 pb-3" lines="none" routerLink="/perfil/language">
             <IonIcon icon={globeOutline} slot="start" className="text-4xl" />

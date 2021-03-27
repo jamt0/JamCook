@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import Button from "components/Button/Button";
 import Scaffold from "components/Scaffold/Scaffold";
-import { useHistory } from "react-router";
-import Server from "server";
+import { Redirect, useHistory } from "react-router";
 import { useForm, Controller } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import { useAuth } from "auth";
 
 let initialValues = {
   email: "",
@@ -19,9 +19,14 @@ interface IUser {
 }
 
 const SignIn: React.FC<RouteComponentProps> = () => {
+
+  console.log("soy la page login")
+
   const history = useHistory();
 
-  const [hasErrors, setHasErrors] = useState({ error: null });
+  const [hasErrors, setHasErrors] = useState<string>("");
+
+  const {signIn, auth} = useAuth();
 
   const { control, handleSubmit, errors, formState } = useForm({
     defaultValues: { ...initialValues },
@@ -32,20 +37,13 @@ const SignIn: React.FC<RouteComponentProps> = () => {
    *
    * @param data
    */
-  const handlerSignInButton = (user: IUser) => {
-    Server.signIn(user)
-      .then((response) => {
-        console.log(response.data);
-        if (!response.data.error) {
-          localStorage.setItem('accessToken', response.data.accessToken);
-          history.push("/home");
-        } else {
-          setHasErrors({ error: response.data.error });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handlerSignInButton = async (user: IUser) => {
+    const errorSignIn = await signIn(user);
+    if (errorSignIn != null) {
+      setHasErrors(errorSignIn);
+    }else{
+      history.push("/home");
+    }
   };
 
   const handlerSignUpButton = (e: any) => {
@@ -58,6 +56,10 @@ const SignIn: React.FC<RouteComponentProps> = () => {
     history.push("/forgetPassword");
   };
 
+  // if (auth.loggedIn === true) {
+  //   return <Redirect to="/home" />;
+  // }
+  
   return (
     <Scaffold
       tituloHeader="Inicia sesión"
@@ -80,9 +82,9 @@ const SignIn: React.FC<RouteComponentProps> = () => {
       }
     >
       <div className="max-w-screen-md mx-auto p-4 h-full">
-        {hasErrors.error != null && (
+        {hasErrors != "" && (
           <p className="text-red-600 bg-red-100 px-6 py-3 my-2">
-            {hasErrors.error}
+            {hasErrors}
           </p>
         )}
         <form onSubmit={handleSubmit(handlerSignInButton)}>
