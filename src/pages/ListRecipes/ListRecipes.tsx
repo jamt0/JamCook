@@ -1,5 +1,5 @@
 import React from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import CardRecipe from "../../components/CardRecipe/CardRecipe";
 import Scaffold from "../../components/Scaffold/Scaffold";
 
@@ -107,7 +107,7 @@ const recetas = [
   },
 ];
 
-const ListRecipes: React.FC<RouteComponentProps> = ( ) => {
+const ListRecipes: React.FC = ( ) => {
   
   return (
     <Scaffold

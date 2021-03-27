@@ -1,9 +1,9 @@
 import { IonItem, IonList } from "@ionic/react";
 import React from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import Scaffold from "../../../components/Scaffold/Scaffold";
 
-const LegalInformation: React.FC<RouteComponentProps> = ( ) => {
+const LegalInformation: React.FC = ( ) => {
 
   return (
     <Scaffold tituloHeader="Información Legal" >

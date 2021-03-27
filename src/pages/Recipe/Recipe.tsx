@@ -1,6 +1,6 @@
 import { IonButton, IonIcon } from "@ionic/react";
 import React, { useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import ImageRecipe from "../../components/ImageRecipe/ImageRecipe";
 import Scaffold from "../../components/Scaffold/Scaffold";
 import {
@@ -267,7 +267,7 @@ const recetasRelacionadas = [
   },
 ];
 
-const Recipe: React.FC<RouteComponentProps> = ( ) => {
+const Recipe: React.FC = ( ) => {
 
   const [porciones, setPorciones] = useState(1);
   const [isEstrellas, setEstrellas] = useState([

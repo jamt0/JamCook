@@ -1,8 +1,8 @@
 import React from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import Scaffold from "../../components/Scaffold/Scaffold";
 
-const AboutUs: React.FC<RouteComponentProps> = () => {
+const AboutUs: React.FC = () => {
   return (
     <Scaffold tituloHeader="Sobre JamCook">
       Sobre la mejor app.

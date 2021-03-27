@@ -60,6 +60,7 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
   const signIn = async (user: UserSignInData) => {
 
     const response = await Server.signIn(user);
+    console.log("funcion logearse en el auth")
 
     console.log(response.data);
 
@@ -107,11 +108,12 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
 
   }
 
-  const logOut = () => {
+  const logOut = async () => {
     localStorage.removeItem('accessToken');
     setAuth({
       loggedIn: false
     });
+    return null;
   }
 
   useEffect(() => {

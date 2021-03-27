@@ -1,9 +1,9 @@
 import { IonItem, IonList } from "@ionic/react";
 import React from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import Scaffold from "../../../components/Scaffold/Scaffold";
 
-const Preferences: React.FC<RouteComponentProps> = ( ) => {
+const Preferences: React.FC = ( ) => {
 
   return (
     <Scaffold tituloHeader="Preferencias" >

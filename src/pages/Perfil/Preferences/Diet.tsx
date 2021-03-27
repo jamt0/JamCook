@@ -1,5 +1,5 @@
 import React from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import Button from "../../../components/Button/Button";
 import RadioGroup from "../../../components/RadioGroup/RadioGroup";
 import Scaffold from "../../../components/Scaffold/Scaffold";
@@ -24,7 +24,7 @@ const opcionesGroup = [
   },
 ]
 
-const Diet: React.FC<RouteComponentProps> = ( ) => {
+const Diet: React.FC = ( ) => {
   
   const history = useHistory();
 

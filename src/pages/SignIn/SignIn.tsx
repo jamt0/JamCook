@@ -1,10 +1,9 @@
 import { IonItem, IonLabel, IonInput } from "@ionic/react";
-import React, { useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
+import React, { memo, useState } from "react";
 import Button from "components/Button/Button";
 import Scaffold from "components/Scaffold/Scaffold";
 import { Redirect, useHistory } from "react-router";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, FormProvider, useFormContext  } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useAuth } from "auth";
 
@@ -18,17 +17,21 @@ interface IUser {
   password: String;
 }
 
-const SignIn: React.FC<RouteComponentProps> = () => {
-
-  console.log("soy la page login")
+const SignIn: React.FC = () => {
+  console.log("soy la page login");
 
   const history = useHistory();
 
   const [hasErrors, setHasErrors] = useState<string>("");
 
-  const {signIn, auth} = useAuth();
+  const { signIn, auth } = useAuth();
 
-  const { control, handleSubmit, errors, formState } = useForm({
+  const {
+    control,
+    handleSubmit,
+    errors,
+    formState: { isSubmitting, isValid },
+  } = useForm({
     defaultValues: { ...initialValues },
     mode: "onChange",
   });
@@ -38,28 +41,32 @@ const SignIn: React.FC<RouteComponentProps> = () => {
    * @param data
    */
   const handlerSignInButton = async (user: IUser) => {
+    //la funcion asincrona hace que se vea un doble home pero esto no hace que haga un re render, esto lo hace el form-hook
     const errorSignIn = await signIn(user);
     if (errorSignIn != null) {
       setHasErrors(errorSignIn);
-    }else{
-      history.push("/home");
+    } else {
+      history.replace("/home");
+      //esto soluciona parcialmente el doble render, pero ya no se ve animacion y hay una pantalla blanca
+      // return <Redirect to="/home" />;
     }
   };
 
   const handlerSignUpButton = (e: any) => {
     e.preventDefault();
-    history.push("/signUp");
+    history.replace("/signUp");
+    //esto causa una pagina en blanco al cambiar rapidamente
   };
 
   const handlerForgetPasswordButton = (e: any) => {
     e.preventDefault();
     history.push("/forgetPassword");
   };
-
+  
   // if (auth.loggedIn === true) {
   //   return <Redirect to="/home" />;
   // }
-  
+
   return (
     <Scaffold
       tituloHeader="Inicia sesión"
@@ -68,7 +75,7 @@ const SignIn: React.FC<RouteComponentProps> = () => {
           <Button
             label="Iniciar sesión"
             handler={handleSubmit(handlerSignInButton)}
-            disable={!formState.isValid}
+            disable={!isValid || isSubmitting}
           />
           <div className="flex justify-center py-2">
             <p className="mr-1">¿No tienes una cuenta? </p>
@@ -83,9 +90,7 @@ const SignIn: React.FC<RouteComponentProps> = () => {
     >
       <div className="max-w-screen-md mx-auto p-4 h-full">
         {hasErrors != "" && (
-          <p className="text-red-600 bg-red-100 px-6 py-3 my-2">
-            {hasErrors}
-          </p>
+          <p className="text-red-600 bg-red-100 px-6 py-3 my-2">{hasErrors}</p>
         )}
         <form onSubmit={handleSubmit(handlerSignInButton)}>
           <IonItem className="mb-4">

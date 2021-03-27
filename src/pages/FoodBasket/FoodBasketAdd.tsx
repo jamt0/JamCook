@@ -5,7 +5,7 @@ import {
 } from "@ionic/react";
 import { checkmarkSharp } from "ionicons/icons";
 import React from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import ItemIngredient from "../../components/ItemIngredient/ItemIngredient";
 import Scaffold from "../../components/Scaffold/Scaffold";
 import Searcher from "../../components/Searcher/Searcher";
@@ -114,7 +114,7 @@ const imagenes = [
   },
 ];
 
-const FoodBasketAdd: React.FC<RouteComponentProps> = ( ) => {
+const FoodBasketAdd: React.FC = ( ) => {
   
   const history = useHistory();
 

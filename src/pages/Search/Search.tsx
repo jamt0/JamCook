@@ -1,6 +1,6 @@
 import { IonContent, IonPage } from "@ionic/react";
 import React, { useEffect, useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import Slider from "../../components/Slider/Slider";
 import Searcher from "../../components/Searcher/Searcher";
 
@@ -35,7 +35,7 @@ const imagenes = [
   },
 ];
 
-const Search: React.FC<RouteComponentProps> = ( ) => {
+const Search: React.FC = ( ) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [slidesPerView, setslidesPerView] = useState(1.5);
 

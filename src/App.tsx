@@ -7,7 +7,7 @@ import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Welcome from "./pages/Welcome/Welcome";
 import { ForgetPassword, ForgetPasswordValidate, NewPassword } from "./pages/ForgetPassword/Index";
-
+import NoFound from "pages/General/NoFound";
 import Recipe from "./pages/Recipe/Recipe";
 import ListRecipes from "./pages/ListRecipes/ListRecipes";
 import { FoodBasketAdd } from "./pages/FoodBasket/Index";
@@ -49,35 +49,93 @@ const App: React.FC = () => {
     <AuthProvider>
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route path="/home" render={(props) => <Home {...props} />} />
-          <Route path="/welcome" render={(props) => <Welcome {...props} />} exact />
-          <Route path="/signUp" render={(props) => <SignUp {...props} />} exact />
-          <Route path="/signIn" render={(props) => <SignIn {...props} />} exact />
-          <Route path="/forgetPassword" render={(props) => <ForgetPassword {...props} />} exact />
-          <Route path="/forgetPassword/validate" render={(props) => <ForgetPasswordValidate {...props} />} exact />
-          <Route path="/forgetPassword/newPassword" render={(props) => <NewPassword {...props} />} exact />
-          <Route path="/recipes" render={(props) => <ListRecipes {...props} />} exact />
-          <Route path="/recipe" render={(props) => <Recipe {...props} />} exact />
-          <Route path="/foodBasket/add" component={FoodBasketAdd} exact />
-          <Route path="/perfil/aboutUs" component={AboutUs} exact />
-          <Route path="/perfil/contactUs" component={ContactUs} exact />
-          <Route path="/perfil/edit" component={EditPerfil} exact />
-          <Route path="/perfil/language" component={Language} exact />
-          <Route path="/perfil/legalInformation" component={LegalInformation} exact />
-          <Route path="/perfil/legalInformation/termsAndConditions" component={TermsAndConditions} exact />
-          <Route path="/perfil/legalInformation/privacyPolicy" component={PrivacyPolicy} exact />
-          <Route path="/perfil/legalInformation/cookiesPolicy" component={CookiesPolicy} exact />
-          <Route path="/perfil/preferences" component={Preferences} exact />
-          <Route path="/perfil/ratings" component={Ratings} exact />
-          <Route path="/perfil/settings" component={Settings} exact />
-          <Route path="/perfil/share" component={Share} exact />
-          <Route path="/perfil/preferences/myObjectives" component={MyObjectives} exact />
-          <Route path="/perfil/preferences/cookingLevel" component={CookingLevel} exact />
-          <Route path="/perfil/preferences/diet" component={Diet} exact />
-          <Route path="/perfil/preferences/allergies" component={Allergies} exact />
-          <Route path="/perfil/preferences/dislikeIngredient" component={DislikeIngredient} exact />
-          <Route path="/perfil/preferences/comensals" component={Comensals} exact />
-          <Redirect from="/" to="/welcome" exact />
+          <Route path="/home" >
+            <Home />
+          </Route>
+          <Route path="/" exact >
+            <Welcome />
+          </Route>
+          <Route path="/signUp" exact >
+            <SignUp />
+          </Route>
+          <Route path="/signIn" exact >
+            <SignIn />
+          </Route>
+          <Route path="/forgetPassword" exact >
+            <ForgetPassword />
+          </Route>
+          <Route path="/forgetPassword/validate" exact >
+            <ForgetPasswordValidate />
+          </Route>
+          <Route path="/forgetPassword/newPassword" exact >
+            <NewPassword />
+          </Route>
+          <Route path="/recipes" exact >
+            <ListRecipes />
+          </Route>
+          <Route path="/recipe" exact >
+            <Recipe />
+          </Route>
+          <Route path="/foodBasket/add" exact >
+            <FoodBasketAdd />
+          </Route>
+          <Route path="/perfil/aboutUs" exact >
+            <AboutUs />
+          </Route>
+          <Route path="/perfil/contactUs" exact >
+            <ContactUs />
+          </Route>
+          <Route path="/perfil/edit" exact >
+            <EditPerfil />
+          </Route>
+          <Route path="/perfil/language" exact >
+            <Language />
+          </Route>
+          <Route path="/perfil/legalInformation" exact >
+            <LegalInformation />
+          </Route>
+          <Route path="/perfil/legalInformation/termsAndConditions" exact >
+            <TermsAndConditions />
+          </Route>
+          <Route path="/perfil/legalInformation/privacyPolicy" exact >
+            <PrivacyPolicy />
+          </Route>
+          <Route path="/perfil/legalInformation/cookiesPolicy" exact >
+            <CookiesPolicy />
+          </Route>
+          <Route path="/perfil/preferences" exact >
+            <Preferences />
+          </Route>
+          <Route path="/perfil/ratings" exact >
+            <Ratings />
+          </Route>
+          <Route path="/perfil/settings" exact >
+            <Settings />
+          </Route>
+          <Route path="/perfil/share" exact >
+            <Share />
+          </Route>
+          <Route path="/perfil/preferences/myObjectives" exact >
+            <MyObjectives />
+          </Route>
+          <Route path="/perfil/preferences/cookingLevel" exact >
+            <CookingLevel />
+          </Route>
+          <Route path="/perfil/preferences/diet" exact >
+            <Diet />
+          </Route>
+          <Route path="/perfil/preferences/allergies" exact >
+            <Allergies />
+          </Route>
+          <Route path="/perfil/preferences/dislikeIngredient" exact >
+            <DislikeIngredient />
+          </Route>
+          <Route path="/perfil/preferences/comensals" exact >
+            <Comensals />
+          </Route>
+          <Route >
+            <NoFound />
+          </Route>
         </IonRouterOutlet>
       </IonReactRouter>
     </AuthProvider>

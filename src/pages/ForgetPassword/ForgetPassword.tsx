@@ -4,12 +4,12 @@ import {
   IonLabel,
 } from "@ionic/react";
 import React, { useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import Button from "../../components/Button/Button";
 import Scaffold from "../../components/Scaffold/Scaffold";
 import {useHistory} from 'react-router';
 
-const ForgetPassword: React.FC<RouteComponentProps> = ( ) => {
+const ForgetPassword: React.FC = ( ) => {
   
   const history = useHistory();
 

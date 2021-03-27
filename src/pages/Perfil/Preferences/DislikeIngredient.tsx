@@ -1,6 +1,6 @@
 import { IonButton, IonModal } from "@ionic/react";
 import React, { useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import Button from "../../../components/Button/Button";
 import ChipGroup from "../../../components/ChipGroup/ChipGroup";
 import Searcher from "../../../components/Searcher/Searcher";
@@ -55,7 +55,7 @@ const ingredientes = [
   },
 ];
 
-const DislikeIngredient: React.FC<RouteComponentProps> = ( ) => {
+const DislikeIngredient: React.FC = ( ) => {
   
   const history = useHistory();
 

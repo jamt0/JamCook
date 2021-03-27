@@ -1,5 +1,5 @@
 import React from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import Button from "../../../components/Button/Button";
 import RadioGroup from "../../../components/RadioGroup/RadioGroup";
 import Scaffold from "../../../components/Scaffold/Scaffold";
@@ -16,7 +16,7 @@ const opcionesGroup = [
   },
 ]
 
-const Comensals: React.FC<RouteComponentProps> = ( ) => {
+const Comensals: React.FC = ( ) => {
 
   const history = useHistory();
 

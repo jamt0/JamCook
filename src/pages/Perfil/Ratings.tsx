@@ -1,8 +1,8 @@
   import React from "react";
-  import { RouteComponentProps } from "react-router-dom";
+  
   import Scaffold from "../../components/Scaffold/Scaffold";
   
-  const Ratings: React.FC<RouteComponentProps> = ( ) => {
+  const Ratings: React.FC = ( ) => {
   
     return (
       <Scaffold tituloHeader="Valora Jamcook" >

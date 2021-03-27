@@ -1,10 +1,8 @@
 import { IonItem, IonLabel, IonInput } from "@ionic/react";
 import React, { useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
 import Button from "components/Button/Button";
 import Scaffold from "components/Scaffold/Scaffold";
 import { Redirect, useHistory } from "react-router";
-import Server from "server";
 import { useForm, Controller } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useAuth } from "auth";
@@ -21,34 +19,42 @@ interface IUser {
   password: String;
 }
 
-const SignUp: React.FC<RouteComponentProps> = () => {
+const SignUp: React.FC = () => {
   const history = useHistory();
 
   const [hasErrors, setHasErrors] = useState<string>("");
 
-  const { control, handleSubmit, errors, formState } = useForm({
+  const {
+    control,
+    handleSubmit,
+    errors,
+    formState: { isSubmitting, isValid },
+  } = useForm({
     defaultValues: { ...initialValues },
     mode: "onChange",
   });
 
-  const {signIn, auth} = useAuth();
+  const { signUp, auth } = useAuth();
 
   /**
    *
    * @param data
    */
   const handlerSignUpButton = async (user: IUser) => {
-    const errorSignIn = await signIn(user);
-    if (errorSignIn != null) {
-      setHasErrors(errorSignIn);
-    }else{
-      history.push("/home");
+    const errorSignUp = await signUp(user);
+    if (errorSignUp != null) {
+      setHasErrors(errorSignUp);
+    } else {
+      // history.replace("/home");
+      //esto soluciona parcialmente el doble render, pero ya no se ve animacion y hay una pantalla blanca
+      return <Redirect to="/home" />;
     }
   };
 
   const handlerSignInButton = (e: any) => {
     e.preventDefault();
-    history.push("/signIn");
+    history.replace("/signIn");
+    //esto causa una pagina en blanco al cambiar rapidamente
   };
 
   const handlerTerminosYCondicionesButton = (e: any) => {
@@ -64,7 +70,9 @@ const SignUp: React.FC<RouteComponentProps> = () => {
   if (auth.loggedIn === true) {
     return <Redirect to="/home" />;
   }
-  
+
+  console.log("soy la page registro");
+
   return (
     <Scaffold
       tituloHeader="Crear Cuenta"
@@ -73,7 +81,7 @@ const SignUp: React.FC<RouteComponentProps> = () => {
           <Button
             handler={handleSubmit(handlerSignUpButton)}
             label={"Crear cuenta"}
-            disable={!formState.isValid}
+            disable={!isValid || isSubmitting}
           />
           <div className="flex justify-center py-2">
             <p className="mr-1 text-base inline">¿Ya tienes una cuenta? </p>
@@ -88,9 +96,7 @@ const SignUp: React.FC<RouteComponentProps> = () => {
     >
       <div className="max-w-screen-md mx-auto p-4 h-full">
         {hasErrors != "" && (
-          <p className="text-red-600 bg-red-100 px-6 py-3 my-2">
-            {hasErrors}
-          </p>
+          <p className="text-red-600 bg-red-100 px-6 py-3 my-2">{hasErrors}</p>
         )}
         <IonItem className="mb-4 ">
           <IonLabel position="floating" color="primary">
@@ -202,4 +208,4 @@ const SignUp: React.FC<RouteComponentProps> = () => {
   );
 };
 
-export default SignUp;
+export default React.memo(SignUp);

@@ -3,7 +3,7 @@ import {
   IonPage,
 } from "@ionic/react";
 import React from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import Searcher from "../../components/Searcher/Searcher";
 import GridImages from "../../components/GridImages/GridImages";
 
@@ -105,7 +105,8 @@ const imagenes = [
   },
 ];
 
-const Explore: React.FC<RouteComponentProps> = ({ history }) => {
+const Explore: React.FC = () => {
+  console.log("soy page explore");
   return (
     <IonPage>
       <IonContent>

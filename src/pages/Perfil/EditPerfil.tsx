@@ -9,7 +9,7 @@ import {
   IonSelectOption,
 } from "@ionic/react";
 import React, { useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import Avatar from "../../components/Avatar/Avatar";
 import Button from "../../components/Button/Button";
 import Center from "../../components/Center/Center";
@@ -22,7 +22,7 @@ const usuario = {
   mailUser: "Jamt@gmail.com",
 };
 
-const EditPerfil: React.FC<RouteComponentProps> = ( ) => {
+const EditPerfil: React.FC = ( ) => {
 
   const history = useHistory();
 

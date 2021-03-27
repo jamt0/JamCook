@@ -1,10 +1,10 @@
 import { IonContent, IonIcon, IonItem, IonList, IonPage } from "@ionic/react";
 import React from "react";
-import { Link, RouteComponentProps } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { personOutline, globeOutline, buildOutline, starOutline, arrowRedoOutline, businessOutline, briefcaseOutline, chatbubbleEllipsesOutline, logOutOutline } from "ionicons/icons";
 import Avatar from "components/Avatar/Avatar";
 import Button from "components/Button/Button";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import { useAuth } from 'auth';
 
 const usuario = {
@@ -13,16 +13,22 @@ const usuario = {
   mailUser: "Jamt@gmail.com",
 };
 
-const Perfil: React.FC<RouteComponentProps> = ( ) => {
+const Perfil: React.FC = ( ) => {
 
   const history = useHistory();
 
   const { auth, logOut } = useAuth();
 
-  const handlerLogOutButton = ( e: any ) => {
+  const handlerLogOutButton = async ( e: any ) => {
     e.preventDefault();
-    logOut();
-    history.push("/signIn");
+    //esto causa un doble vistaso al sigin
+    const errorLogOut = await logOut();
+    if (errorLogOut == null) {
+      
+      //esto soluciona parcialmente el doble render, pero ya no se ve animacion y hay una pantalla blanca
+      // return <Redirect to="/signIn" />;
+      history.push("/signIn");
+    }
   };
 
   console.log("soy page perfil");

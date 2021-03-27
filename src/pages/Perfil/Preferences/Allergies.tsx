@@ -1,5 +1,5 @@
 import React from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import Button from "../../../components/Button/Button";
 import ChipGroup from "../../../components/ChipGroup/ChipGroup";
 import Scaffold from "../../../components/Scaffold/Scaffold";
@@ -33,7 +33,7 @@ const ingredientes = [
   },
 ];
 
-const Allergies: React.FC<RouteComponentProps> = ( ) => {
+const Allergies: React.FC = ( ) => {
 
   const history = useHistory();
 
