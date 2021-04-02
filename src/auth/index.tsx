@@ -8,6 +8,7 @@ type User = {
 
 type Auth = {
   loggedIn: boolean;
+  initialized: boolean;
   user?: User;
 }
 
@@ -24,8 +25,10 @@ type UserSignUpData = {
 
 type DataAuth = {
   auth: Auth,
+  loading: boolean;
   signIn: (user: UserSignInData) => Promise<string>|Promise<void>,
   signUp: (user: UserSignUpData) => Promise<string>|Promise<void>,
+  initialize: () => Promise<void>,
   logOut: () => void,
 }
 
@@ -34,50 +37,62 @@ type Props = {
 };
 
 const contextDefaultValues: DataAuth = {
-  auth: {loggedIn: false},
+  auth: {
+    loggedIn: false,
+    initialized: false,
+  },
+  loading: false,
   signIn: async (user: UserSignInData) => {},
   signUp: async (user: UserSignUpData) => {},
+  initialize: async () => {},
   logOut: () => {}
 };
 
-const AuthContext = createContext<DataAuth>(contextDefaultValues);
+const AuthContext = createContext<DataAuth  | undefined>(contextDefaultValues);
 
-function useAuth(): DataAuth {
-  return useContext(AuthContext);
-}
+// function useAuth(): DataAuth {
+//   return useContext(AuthContext);
+// }
 
 
 const defaultAuthState: Auth = {
-  loggedIn: false
+  loggedIn: false,
+  initialized: false,
 };
 
-const AuthProvider = ({ children }: Props): JSX.Element => {
+export const AuthProvider = ({ children }: Props): JSX.Element => {
 
   console.log("soy el provider auth");
   
   const [auth, setAuth] = useState(defaultAuthState);
+  const [loading, setLoading] = useState(false);
 
   const signIn = async (user: UserSignInData) => {
 
+    setLoading(true);
     const response = await Server.signIn(user);
     console.log("funcion logearse en el auth")
 
     console.log(response.data);
 
     if (!response.data.error) {
+      localStorage.setItem('accessToken', response.data.accessToken);
       setAuth({
         loggedIn: true,
+        initialized: true,
         user: {
           email: response.data.user.email,
           id: response.data.user.id
         }
       });
-      localStorage.setItem('accessToken', response.data.accessToken);
+      setLoading(false);
       return null;
     }else{
       setAuth({
-        loggedIn: false
+        loggedIn: false,
+        initialized: true,
       });
+      setLoading(false);
       return response.data.error;
     }
 
@@ -85,38 +100,49 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
 
   const signUp = async (user: UserSignUpData) => {
 
+    setLoading(true);
+
     const response = await Server.signUp(user);
 
     console.log(response.data);
 
     if (!response.data.error) {
+      localStorage.setItem('accessToken', response.data.accessToken);
       setAuth({
         loggedIn: true,
+        initialized: true,
         user: {
           email: response.data.user.email,
           id: response.data.user.id
         }
       });
-      localStorage.setItem('accessToken', response.data.accessToken);
+      setLoading(false);
       return null;
     }else{
       setAuth({
-        loggedIn: false
+        loggedIn: false,
+        initialized: true,
       });
+      setLoading(false);
       return response.data.error;
     }
 
   }
 
   const logOut = async () => {
+    setLoading(true);
     localStorage.removeItem('accessToken');
     setAuth({
-      loggedIn: false
+      loggedIn: false,
+      initialized: true,
     });
+    setLoading(false);
     return null;
   }
 
-  useEffect(() => {
+  const initialize = async () => {
+
+    console.log("funcion inicializar en el auth")
 
     Server.authentication()
       .then((response) => {
@@ -124,6 +150,7 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
         if (!response.data.error) {
           setAuth({
             loggedIn: true,
+            initialized: true,
             user: {
               email: response.data.user.email,
               id: response.data.user.id
@@ -131,7 +158,8 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
           });
         } else {
           setAuth({
-            loggedIn: false
+            loggedIn: false,
+            initialized: true
           });
         }
       })
@@ -139,13 +167,14 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
         //aca se deben manejar mejor los errores
         console.log(error);
         setAuth({
-          loggedIn: false
+          loggedIn: false,
+          initialized: true
         });
       });
 
-  }, [])
+  }
 
-  const data = {auth, signIn, signUp, logOut };
+  const data = {auth, loading, signIn, signUp, logOut, initialize };
 
   return (
     <AuthContext.Provider
@@ -156,60 +185,60 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
   );
 };
 
-type AuthInit = {
-  loading: boolean;
-  auth?: Auth;
-}
+// type AuthInit = {
+//   loading: boolean;
+//   auth?: Auth;
+// }
 
-const stateInitial: AuthInit = {
-  loading: true
-};
+// const stateInitial: AuthInit = {
+//   loading: true
+// };
 
-function useAuthInit(): AuthInit {
+// function useAuthInit(): AuthInit {
 
-  console.log("soy el authinit");
+//   console.log("soy el authinit");
 
-  const [authInit, setAuthInit] = useState<AuthInit>({ loading: true});
+//   const [authInit, setAuthInit] = useState<AuthInit>({ loading: true});
 
-  useEffect(() => {
+//   useEffect(() => {
 
-    Server.authentication()
-    .then((response) => {
-      console.log(response.data);
-      if (!response.data.error) {
-        setAuthInit({
-          loading: false,
-          auth: {
-            loggedIn: true,
-            user: {
-              email: response.data.user.email,
-              id: response.data.user.id
-            }
-          }
-        });
-      } else {
-        setAuthInit({
-          loading: false,
-          auth: {
-            loggedIn: false,
-          }
-        });
-      }
-    })
-    .catch((error) => {
-      //aca se deben manejar mejor los errores
-      console.log(error);
-      setAuthInit({
-        loading: false,
-        auth: {
-          loggedIn: false,
-        }
-      });
-    });
+//     Server.authentication()
+//     .then((response) => {
+//       console.log(response.data);
+//       if (!response.data.error) {
+//         setAuthInit({
+//           loading: false,
+//           auth: {
+//             loggedIn: true,
+//             user: {
+//               email: response.data.user.email,
+//               id: response.data.user.id
+//             }
+//           }
+//         });
+//       } else {
+//         setAuthInit({
+//           loading: false,
+//           auth: {
+//             loggedIn: false,
+//           }
+//         });
+//       }
+//     })
+//     .catch((error) => {
+//       //aca se deben manejar mejor los errores
+//       console.log(error);
+//       setAuthInit({
+//         loading: false,
+//         auth: {
+//           loggedIn: false,
+//         }
+//       });
+//     });
 
-  }, []);
+//   }, []);
 
-  return authInit;
-}
+//   return authInit;
+// }
 
-export {AuthProvider, useAuth, useAuthInit}
+export const useAuth = () => React.useContext(AuthContext);

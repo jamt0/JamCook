@@ -4,122 +4,126 @@ import {
   IonInput,
   IonItem,
   IonLabel,
+  IonLoading,
   IonModal,
   IonSelect,
   IonSelectOption,
 } from "@ionic/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Avatar from "../../components/Avatar/Avatar";
 import Button from "../../components/Button/Button";
 import Center from "../../components/Center/Center";
 import Scaffold from "../../components/Scaffold/Scaffold";
-import {useHistory} from 'react-router';
+import { useHistory } from "react-router";
+import { useAuth } from "auth";
+import { useForm } from "react-hook-form";
+import Input from "components/Input/Input";
+import Select from "components/Select/Select";
 
 const usuario = {
-  avatarUser: "https://picsum.photos/200/300?random=1",
-  nameUser: "Jonatan Mancera",
-  mailUser: "Jamt@gmail.com",
+  avatarUser: "https://picsum.photos/200/300?random=1"
 };
 
-const EditPerfil: React.FC = ( ) => {
+let defaultValues = {
+  email: "",
+  password: "",
+  age: "",
+};
+
+interface IUser {
+  email: String;
+  password: String;
+  age: String;
+}
+
+const EditPerfil: React.FC = () => {
 
   const history = useHistory();
+
+  const { signIn, auth, loading } = useAuth()!;
+
+  const [hasErrors, setHasErrors] = useState<string>("");
+
+  const [initialValue, setinitialValue] = useState(defaultValues)
+
+  const [showAlert, setShowAlert] = useState(false);
+
+  const {
+    control,
+    handleSubmit,
+    errors,
+    setValue,
+    reset,
+    formState: { isSubmitting, isValid },
+  } = useForm({
+    // defaultValues: { defaultValues },
+    mode: "onChange",
+  });
+
+  /**
+   *
+   * @param data
+   */
+  const handlerSignInButton = async (user: IUser) => {
+    console.log("click");
+    console.log(user);
+  };
 
   const handlerSaveEditButton = (e: any) => {
     e.preventDefault();
     history.push("/home/perfil");
   };
 
-  const [showAlert, setShowAlert] = useState(false);
-  const [mail, setMail] = useState("jamt@gmail.com");
-  const [name, setName] = useState("Jam Avo");
-  const [password, setPassword] = useState("UnaputaContra");
-  const [gender , setGender ] = useState("1");
-  const [age, setAge] = useState("1");
+  useEffect(() => {
+    setValue("email", "valorNuevo@gmail.com");
+    setValue("age", "5");
+    reset({
+      email: "valorNuevo2@gmail.com",
+      age: "3"
+    });
+    setinitialValue({
+      email: "valorNuevo2@gmail.com",
+      age: "3",
+      password: "1234"
+    })
+  }, [reset])
+
+  console.log(isValid);
 
   return (
     <Scaffold
       tituloHeader="Editar perfil"
       footer={
         <div className="p-2 max-w-screen-md mx-auto">
-          <Button handler={handlerSaveEditButton} label={"Guardar"} />
+          <Button
+            handler={handleSubmit(handlerSignInButton)}
+            disable={!isValid || isSubmitting}
+            label={"Guardar"}
+          />
         </div>
       }
     >
-      <Center direccion="col" className="mt-8">
-        <Avatar avatarUser={usuario.avatarUser} tamaño="20" responsive="60" />
-        <div className="mt-4">
-          <Button
-            handler={() => setShowAlert(true)}
-            label="Cambiar imagen"
-            type="Link"
-          />
+      <IonLoading isOpen={loading} translucent />
+      {hasErrors != "" && (
+        <p className="text-red-600 bg-red-100 px-6 py-3 my-2">{hasErrors}</p>
+      )}
+      <form onSubmit={handleSubmit(handlerSignInButton)}>
+        <Center direccion="col" className="mt-8">
+          <Avatar avatarUser={usuario.avatarUser} tamaño="20" responsive="60" />
+          <div className="mt-4">
+            <Button
+              handler={() => setShowAlert(true)}
+              label="Cambiar imagen"
+              type="Link"
+            />
+          </div>
+        </Center>
+        <div className="max-w-screen-md m-4">
+          <Input control={control} errors={errors} defaultValue={initialValue.email} setValue={setValue}/>
+          <Select control={control} errors={errors} defaultValue={initialValue.age} setValue={setValue}/>
         </div>
-      </Center>
-      <div className="max-w-screen-md m-4">
-        <IonItem className="mb-4">
-          <IonLabel position="floating" color="primary">
-            Nombres
-          </IonLabel>
-          <IonInput
-            value={name}
-            type="text"
-            autocomplete="name"
-            className="mt-2"
-            required
-          ></IonInput>
-        </IonItem>
-        <IonItem className="mb-4">
-          <IonLabel position="floating" color="primary">
-            Edad
-          </IonLabel>
-          <IonSelect value={age} interface="action-sheet">
-            <IonSelectOption value="1">Menos de 25</IonSelectOption>
-            <IonSelectOption value="2">25-29</IonSelectOption>
-            <IonSelectOption value="3">30-34</IonSelectOption>
-            <IonSelectOption value="4">35-39</IonSelectOption>
-            <IonSelectOption value="5">40-45</IonSelectOption>
-            <IonSelectOption value="6">45-49</IonSelectOption>
-            <IonSelectOption value="7">50-64</IonSelectOption>
-            <IonSelectOption value="8">65+</IonSelectOption>
-          </IonSelect>
-        </IonItem>
-        <IonItem className="mb-4">
-          <IonLabel position="floating" color="primary">
-            Genero
-          </IonLabel>
-          <IonSelect value={gender} interface="action-sheet">
-            <IonSelectOption value="1">Mujer</IonSelectOption>
-            <IonSelectOption value="2">Hombre</IonSelectOption>
-            <IonSelectOption value="3">Otro</IonSelectOption>
-            <IonSelectOption value="4">Prefiero no decirlo</IonSelectOption>
-          </IonSelect>
-        </IonItem>
-        <IonItem className="mb-4">
-          <IonLabel position="floating" color="primary">
-            Correo Electrónico
-          </IonLabel>
-          <IonInput
-            value={mail}
-            type="email"
-            autocomplete="email"
-            className="mt-2"
-            required
-          ></IonInput>
-        </IonItem>
-        <IonItem>
-          <IonLabel position="floating" color="primary">
-            Contraseña
-          </IonLabel>
-          <IonInput
-            value={password}
-            type="password"
-            className="mt-2"
-            required
-          ></IonInput>
-        </IonItem>
-      </div>
+      </form>
       <IonAlert
         isOpen={showAlert}
         onDidDismiss={() => setShowAlert(false)}

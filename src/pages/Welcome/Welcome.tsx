@@ -3,17 +3,13 @@ import React from 'react';
 import Lottie from 'react-lottie';
 import animationData from 'assets/26901-cooking.json';
 import Button from 'components/Button/Button';
-import { Redirect, useHistory } from 'react-router';
-import { useAuth } from 'auth';
+import { useHistory } from 'react-router';
 
 const Welcome: React.FC = ( ) => {
 
   console.log("soy la page welcome")
   
   const history = useHistory();
-
-  //al parecer comentar esto soluciono todos los errores
-  // const { auth } = useAuth();
 
   const defaultOptions = {
     loop: true,
@@ -34,10 +30,6 @@ const Welcome: React.FC = ( ) => {
     history.push('/signUp');
   }
 
-  // if (auth.loggedIn === true) {
-  //   return <Redirect to="/home" />;
-  // }
-  
   return (
     <IonPage>
       <IonContent>

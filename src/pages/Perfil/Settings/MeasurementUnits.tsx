@@ -1,8 +1,8 @@
 import React from "react";
 
-import Button from "../../components/Button/Button";
-import RadioGroup from "../../components/RadioGroup/RadioGroup";
-import Scaffold from "../../components/Scaffold/Scaffold";
+import Button from "components/Button/Button";
+import RadioGroup from "components/RadioGroup/RadioGroup";
+import Scaffold from "components/Scaffold/Scaffold";
 import {useHistory} from 'react-router';
 
 const opcionesGroup = [
@@ -16,13 +16,13 @@ const opcionesGroup = [
   },
 ]
 
-const Settings: React.FC = ( ) => {
+const MeasurementUnits: React.FC = ( ) => {
 
   const history = useHistory();
 
   const handlerSaveEditButton = (e: any) => {
     e.preventDefault();
-    history.push("/home/perfil");
+    history.replace("/perfil/settings");
   };
 
   return (
@@ -44,4 +44,4 @@ const Settings: React.FC = ( ) => {
   );
 };
 
-export default Settings;
+export default MeasurementUnits;

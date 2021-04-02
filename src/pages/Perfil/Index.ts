@@ -6,7 +6,7 @@ import { LegalInformation } from "./LegalInformation/Index";
 import Perfil from "./Perfil";
 import { Preferences } from "./Preferences/Index";
 import Ratings from "./Ratings";
-import Settings from "./Settings";
+import { Settings } from "./Settings/Index";
 import Share from "./Share";
 
 export {
