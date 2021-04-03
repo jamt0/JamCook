@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext, createContext } from "react";
 import Server from "server";
 
 type User = {
-  email: String;
-  id: String;
+  email: string;
+  id: string;
 }
 
 type Auth = {
@@ -13,14 +13,14 @@ type Auth = {
 }
 
 type UserSignInData = {
-  email: String;
-  password: String;
+  email: string;
+  password: string;
 }
 
 type UserSignUpData = {
-  name: String;
-  email: String;
-  password: String;
+  name: string;
+  email: string;
+  password: string;
 }
 
 type DataAuth = {

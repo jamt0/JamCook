@@ -21,4 +21,13 @@ export default class Server {
     });
   }
 
+  public static getUser(id: string) {
+    console.log(id);
+    return axios.get(`${config.baseURL}/api/users/getUser/${id}`, {
+      headers: {
+        accessToken: localStorage.getItem('accessToken')
+      }
+    });
+  }
+
 }

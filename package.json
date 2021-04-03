@@ -26,12 +26,12 @@
     "ionicons": "^5.5.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-hook-form": "^6.15.4",
+    "react-hook-form": "^7.0.0",
     "react-lottie": "^1.2.3",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
-    "typescript": "^3.8.3"
+    "typescript": "^4.2.3"
   },
   "scripts": {
     "start": "npm run watch:css && react-scripts start",

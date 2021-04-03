@@ -1,41 +1,64 @@
-import { IonItem, IonLabel, IonInput, IonLoading } from "@ionic/react";
 import React, { useState } from "react";
 import Button from "components/Button/Button";
 import Scaffold from "components/Scaffold/Scaffold";
+import Input from "components/Input/Input";
+import { IonLoading } from "@ionic/react";
 import { Redirect, useHistory } from "react-router";
-import { useForm, Controller } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
+import { useForm } from "react-hook-form";
 import { useAuth } from "auth";
 
-let initialValues = {
+let defaultValues = {
   name: "",
   email: "",
   password: "",
 };
 
 interface IUser {
-  name: String;
-  email: String;
-  password: String;
+  name: string;
+  email: string;
+  password: string;
 }
+
+const rulesNombre = {
+  required: "Este campo es obligatorio",
+  minLength: {
+    value: 3,
+    message: "El nombre debe tener minimo 3 caracteres",
+  },
+};
+
+const rulesEmail = {
+  required: "Este campo es obligatorio",
+  pattern: {
+    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+    message: "Correo electrónico invalido",
+  },
+};
+
+const rulesPassword = {
+  required: "Este campo es obligatorio",
+  minLength: {
+    value: 8,
+    message: "La contraseña debe tener minimo 8 caracteres",
+  },
+};
 
 const SignUp: React.FC = () => {
 
   const history = useHistory();
 
-  const { signUp, auth, loading } = useAuth()!;
+  const { signUp, loading, auth } = useAuth()!;
+
+  const [hasErrors, setHasErrors] = useState<string>("");
 
   const {
     control,
     handleSubmit,
-    errors,
-    formState: { isSubmitting, isValid },
+    formState: { isSubmitting, isValid, errors },
   } = useForm({
-    defaultValues: { ...initialValues },
+    defaultValues: defaultValues,
     mode: "onChange",
   });
-  
-  const [hasErrors, setHasErrors] = useState<string>("");
 
   /**
    *
@@ -46,8 +69,6 @@ const SignUp: React.FC = () => {
     if (errorSignUp != null) {
       setHasErrors(errorSignUp);
     } else {
-      // history.replace("/home");
-      //esto soluciona parcialmente el doble render, pero ya no se ve animacion y hay una pantalla blanca
       return <Redirect to="/home" />;
     }
   };
@@ -55,7 +76,6 @@ const SignUp: React.FC = () => {
   const handlerSignInButton = (e: any) => {
     e.preventDefault();
     history.replace("/signIn");
-    //esto causa una pagina en blanco al cambiar rapidamente
   };
 
   const handlerTerminosYCondicionesButton = (e: any) => {
@@ -70,7 +90,7 @@ const SignUp: React.FC = () => {
 
   console.log("soy la page registro");
 
-  if (auth.loggedIn === true) {
+  if(auth.loggedIn) {
     return <Redirect to="/home" />;
   }else{
     return (
@@ -99,92 +119,32 @@ const SignUp: React.FC = () => {
           {hasErrors != "" && (
             <p className="text-red-600 bg-red-100 px-6 py-3 my-2">{hasErrors}</p>
           )}
-          <IonItem className="mb-4 ">
-            <IonLabel position="floating" color="primary">
-              Nombres
-            </IonLabel>
-            <Controller
-              render={({ onChange }) => (
-                <IonInput
-                  onIonChange={onChange}
-                  autocomplete="name"
-                  className="mt-2"
-                  type="text"
-                />
-              )}
-              control={control}
-              name="name"
-              rules={{
-                required: "Este campo es obligatorio",
-                minLength: {
-                  value: 3,
-                  message: "El nombre debe tener minimo 3 caracteres",
-                },
-              }}
-            />
-          </IonItem>
-          <ErrorMessage
+          <Input
+            control={control}
             errors={errors}
+            defaultValue={defaultValues.name}
             name="name"
-            as={<div className="text-red-600 px-6" />}
+            type="name"
+            label="Nombre"
+            rules={rulesNombre}
           />
-          <IonItem className="mb-4 ">
-            <IonLabel position="floating" color="primary">
-              Correo Electrónico
-            </IonLabel>
-            <Controller
-              render={({ onChange }) => (
-                <IonInput
-                  onIonChange={onChange}
-                  autocomplete="email"
-                  className="mt-2"
-                  type="email"
-                />
-              )}
-              control={control}
-              name="email"
-              rules={{
-                required: "Este campo es obligatorio",
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: "Correo electrónico invalido",
-                },
-              }}
-            />
-          </IonItem>
-          <ErrorMessage
+          <Input
+            control={control}
             errors={errors}
+            defaultValue={defaultValues.email}
             name="email"
-            as={<div className="text-red-600 px-6" />}
+            type="email"
+            label="Correo Electrónico"
+            rules={rulesEmail}
           />
-          <IonItem>
-            <IonLabel position="floating" color="primary">
-              Contraseña
-            </IonLabel>
-            <Controller
-              render={({ onChange }) => (
-                <IonInput
-                  onIonChange={onChange}
-                  autocomplete="current-password"
-                  className="mt-2"
-                  type="password"
-                />
-              )}
-              control={control}
-              name="password"
-              rules={{
-                required: "Este campo es obligatorio",
-                minLength: {
-                  value: 8,
-                  message: "La contraseña debe tener minimo 8 caracteres",
-                },
-              }}
-            />
-          </IonItem>
-          <ErrorMessage
+          <Input
+            control={control}
             errors={errors}
+            defaultValue={defaultValues.password}
             name="password"
-            as={<div className="text-red-600 px-6" />}
+            type="password"
+            label="Contraseña"
+            rules={rulesPassword}
           />
           <div className="flex justify-center">
             <div className="mt-8 mb-4 text-center">
