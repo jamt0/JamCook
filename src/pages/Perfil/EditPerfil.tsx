@@ -10,6 +10,7 @@ import { useHistory } from "react-router";
 import { useAuth } from "auth";
 import { useForm } from "react-hook-form";
 import Server from "server";
+import { usePhoto } from "hooks/usePhoto"
 
 const usuario = {
   avatarUser: "https://picsum.photos/200/300?random=1",
@@ -17,15 +18,15 @@ const usuario = {
 
 let defaultValues = {
   name: "",
-  age: "",
-  gender: "",
+  ageId: "",
+  genderId: "",
   email: "",
 };
 
 interface IUser {
   name: string;
-  age: string;
-  gender: string;
+  ageId: string;
+  genderId: string;
   email: string;
 }
 
@@ -75,16 +76,23 @@ const EditPerfil: React.FC = () => {
 
   const history = useHistory();
 
-  const { auth, loading } = useAuth()!;
+  const { auth } = useAuth()!;
+
+  const { takePhoto } = usePhoto();
 
   const [hasErrors, setHasErrors] = useState<string>("");
 
   const [showAlert, setShowAlert] = useState(false);
 
+  const [avatarImage, setAvatarImage] = useState("");
+
+  const [avatarImageUrl, setAvatarImageUrl] = useState<any>("https://picsum.photos/200/300?random=1");
+
+  const [loading, setLoading] = useState<boolean>(false)
+
   const {
     control,
     handleSubmit,
-    setValue,
     reset,
     formState: { isSubmitting, isValid, errors },
   } = useForm<IUser>({
@@ -97,33 +105,72 @@ const EditPerfil: React.FC = () => {
    * @param data
    */
   const handlerSaveEditButton = async (user: IUser) => {
-    console.log("click");
-    console.log(user);
-    // history.push("/home/perfil");
+    if (auth.user?.id) {
+      setLoading(true);
+      const errorUpdate = await Server.updateUser(auth.user.id, user);
+      if (errorUpdate.data.error != null) {
+        setLoading(false);
+        setHasErrors(errorUpdate.data.error);
+      } else {
+        //aca esta el erro de doble page y no lo puedo resolver con redirect
+        history.replace("/home/perfil");
+        setLoading(false);
+      }
+    }
   };
+
+  const fileChangedHandler = async (e : any) => {
+    const reader = new FileReader();
+    reader.onload = (event) =>{
+    if(reader.readyState === 2){
+        setAvatarImageUrl(event?.target?.result);
+      }
+    }
+    reader.readAsDataURL(e.target.files[0]);
+
+    console.log(e.target.files[0]);
+
+    const imageAvatar = new FormData()
+    imageAvatar.append(
+      "avatarImage",
+      e.target.files[0],
+      e.target.files[0].name
+    )
+
+    console.log(imageAvatar);
+
+    if (auth.user?.id) {
+      const errorUpdateAvatar = await Server.updateAvatarUser(auth.user.id, imageAvatar);
+      setHasErrors(errorUpdateAvatar.data.error);
+    }
+  }
+
+  const sendAvatarImage = async () => {
+
+    
+  }
 
   useEffect(() => {
     if (auth.user?.id) {
+      setLoading(true);
       Server.getUser(auth.user.id)
         .then((response) => {
-          console.log(response.data);
           if (!response.data.error) {
-            setValue("name", "value prueba", { shouldValidate: true });
-            setValue("email", "value3@gmail.com", { shouldValidate: true });
-            setValue("age", "1", { shouldValidate: true });
-            setValue("gender", "1", { shouldValidate: true });
             reset({
-              name: "jon",
-              email: "jon@gmail.com",
-              age: "8",
-              gender: "4"
+              name: String(response.data.user.name),
+              email: String(response.data.user.email),
+              ageId: String(response.data.user.ageId),
+              genderId: String(response.data.user.genderId)
             });
+            setLoading(false);
           } else {
+            setLoading(false);
             setHasErrors(response.data.error);
           }
         })
         .catch((error) => {
           console.log(error);
+          setLoading(false);
         });
     }
   }, []);
@@ -143,22 +190,23 @@ const EditPerfil: React.FC = () => {
         </div>
       }
     >
-      <IonLoading isOpen={loading} translucent />
+      <IonLoading isOpen={loading} translucent/>
       {hasErrors != "" && (
-        <p className="text-red-600 bg-red-100 px-6 py-3 my-2">{hasErrors}</p>
+        <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
       )}
       <form onSubmit={handleSubmit(handlerSaveEditButton)}>
         <Center direccion="col" className="mt-8">
-          <Avatar avatarUser={usuario.avatarUser} tamaño="20" responsive="60" />
+          <Avatar avatarUser={avatarImageUrl} tamaño="20" responsive="60" />
           <div className="mt-4">
-            <Button
-              handler={() => setShowAlert(true)}
-              label="Cambiar imagen"
-              type="Link"
-            />
+            <label htmlFor="inputAvatar" >
+              {/* // handler={() => setShowAlert(true)} */}{/*Hasta ahora lo dejare asi, hasta que se pruebe en android*/}
+              Cambiar imagen
+              {/* type="Link" */}
+            </label>
           </div>
         </Center>
         <div className="max-w-screen-md m-4">
+          <input type="file" accept=".jpg, .jpeg, .png" id="inputAvatar" onChange={fileChangedHandler} className="hidden"/>
           <Input
             control={control}
             errors={errors}
@@ -180,18 +228,18 @@ const EditPerfil: React.FC = () => {
           <Select
             control={control}
             errors={errors}
-            defaultValue={defaultValues.age}
+            defaultValue={defaultValues.ageId}
             opciones={opcionesEdad}
-            name="age"
+            name="ageId"
             label="Edad"
             rules={rulesEdad}
           />
           <Select
             control={control}
             errors={errors}
-            defaultValue={defaultValues.gender}
+            defaultValue={defaultValues.genderId}
             opciones={opcionesGenero}
-            name="gender"
+            name="genderId"
             label="Genero"
             rules={rulesGenero}
           />
@@ -206,6 +254,8 @@ const EditPerfil: React.FC = () => {
           {
             text: "Camara",
             handler: () => {
+              const photo = takePhoto();
+              console.log(photo)
               console.log("Camara");
             },
           },

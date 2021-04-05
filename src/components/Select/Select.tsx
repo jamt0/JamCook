@@ -34,10 +34,11 @@ const Select: FunctionComponent<Props> = ({
           {label}
         </IonLabel>
         <Controller
-          render={({ field: { onChange, value } }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <IonSelect
               value={value}
               onIonChange={onChange}
+              onIonBlur={onBlur}
               interface="action-sheet"
               className="mt-2"
             >

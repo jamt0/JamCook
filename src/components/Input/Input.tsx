@@ -33,20 +33,19 @@ const Input: FunctionComponent<Props> = ({
             field: { onChange, onBlur, value, ref }
           }) => (
             <IonInput
-              autocomplete="email"
+              autocomplete="new-password" //Por ahora la solucion fue dejar el value para permitir inicializar, pero no funciona el autocomplete, buscar solucion a esto despues
               className="mt-2"
               onIonChange={onChange}
               onIonBlur={onBlur}
-              // value={value} esto soluciona lo del autocompletado, pero daña los valores iniciales
               type={type}
-              // value={value}
+              value={value} //comentar esto soluciona lo del autocompletado, pero daña los valores iniciales
             />
           )}
           control={control}
           name={name}
           defaultValue={defaultValue}
           rules={rules}
-        />
+          />
       </IonItem>
       <ErrorMessage
         errors={errors}

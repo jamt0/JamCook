@@ -5,6 +5,6 @@ console.log('API Host : ' + api_url)
 export default {
     baseURL: api_url,
     headers: {
-        "Content-type": "application/json"
+        accessToken: localStorage.getItem('accessToken')
     },
 }
