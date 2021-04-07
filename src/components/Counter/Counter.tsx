@@ -2,10 +2,11 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 import Center from "../Center/Center";
 
 interface Props {
+  porciones: number;
+  setPorciones: (porciones: number) => void;
 }
 
-const Searcher: FunctionComponent<Props> = ({ }) => {
-  const [porciones, setPorciones] = useState(1);
+const Counter: FunctionComponent<Props> = ({ porciones, setPorciones}) => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [classPorciones, setClassPorciones] = useState(" ");
 
@@ -27,7 +28,7 @@ const Searcher: FunctionComponent<Props> = ({ }) => {
     setPorciones(porciones - 1);
   };
   return (
-    <Center direccion="row" className="md:w-1/2 w-full">
+    <Center direccion="row" className="w-full">
       <button
         className={"bg-purple-500 h-12 w-12 rounded-l-md" + classPorciones}
         onClick={handlerResta}
@@ -48,4 +49,4 @@ const Searcher: FunctionComponent<Props> = ({ }) => {
   );
 };
 
-export default Searcher;
+export default Counter;

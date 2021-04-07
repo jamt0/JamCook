@@ -1,7 +1,7 @@
 import { IonContent, IonFab, IonFabButton, IonIcon, IonPage } from "@ionic/react";
 import { addOutline } from "ionicons/icons";
 import React from "react";
-import { RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps, useHistory } from "react-router-dom";
 import ItemIngredient from "../../components/ItemIngredient/ItemIngredient";
 import Searcher from "../../components/Searcher/Searcher";
 
@@ -108,11 +108,14 @@ const imagenes = [
   },
 ];
 
-const FoodBasket: React.FC<RouteComponentProps> = ({ history }) => {
+const FoodBasket: React.FC = () => {
+  console.log("soy page foodbasket");
+
+  const history = useHistory();
 
   const handlerAddIngredient = (e: any) => {
     e.preventDefault();
-    history.push("/foodBasketAdd");
+    history.push("/foodBasket/add");
   };
 
   return (
@@ -129,6 +132,7 @@ const FoodBasket: React.FC<RouteComponentProps> = ({ history }) => {
                 pathImg={imagen.pathImg}
                 cantidadPorcion={imagen.canridadPorcion}
                 name={imagen.name}
+                withCounter={true}
                 key={index}
               />
             );

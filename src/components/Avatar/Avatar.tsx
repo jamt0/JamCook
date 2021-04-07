@@ -3,7 +3,7 @@ import React, { FunctionComponent } from "react";
 interface Props {
     tamaño: string;
     responsive?: string;
-    avatarUser: string;
+    avatarUser: any;
 }
 
 const Avatar: FunctionComponent<Props> = ({ avatarUser, tamaño, responsive = null }) => {

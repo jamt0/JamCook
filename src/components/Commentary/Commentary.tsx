@@ -1,96 +1,93 @@
-import { IonContent } from '@ionic/react';
-import React, { FunctionComponent } from 'react';
+import { IonButton, IonButtons, IonIcon } from "@ionic/react";
+import { chatbubbleOutline, heart, heartOutline } from "ionicons/icons";
+import React, { FunctionComponent, useState } from "react";
+import Avatar from "../Avatar/Avatar";
+import Button from "../Button/Button";
+import Center from "../Center/Center";
+import Rating from "../Rating/Rating";
+import ResponseBox from "../ResponseBox/ResponseBox";
 
 interface Props {
+  comentario: {
+    avatarUser: string;
+    nombreUsuario: string;
+    fechaPublicacion: string;
+    comentario: string;
+    valoracion: boolean[];
+    respuestas: {
+      id: number;
+      avatarUser: string;
+      nombreUsuario: string;
+      fechaPublicacion: string;
+      comentario: string;
+    }[];
+  };
+  isLiked: boolean;
+  handlerLikeButton: (e: any) => void;
+  handlerAnswerButton: (e: any) => void;
 }
-const Usuario = {
 
-    avatarUser: "https://picsum.photos/200/300?random=1",
-    nombreUsuario: "Leonardo Santos Franco",
-    fechaPublicacion: "Hace 4 dias",
-    comentariosUsuario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+const Commentary: FunctionComponent<Props> = ({
+  comentario,
+  isLiked,
+  handlerAnswerButton,
+  handlerLikeButton,
+}) => {
 
-}
-const Commentary: FunctionComponent<Props> = ({ }) => {
-    const estrellas = {
-        valoracionEstrella: [1,1,1,0,0],
-    };
-    return (
-        <>
-            <h2><div className="text-lg font-bold text-center mb-3 mt-3 p-8">
-                Comentarios
-               </div>
-            </h2>
-            <div className="grid grid-cols-1 divide-y divide-black-500 ">
-
-            <div className="md:flex md:auto-cols-max md:grid md:grid-cols-2 max-w-screen-md md:flex md:mx-auto md:mx-4 md:p-4 ">
-                <div className="flex">
-                    <div
-                        className=" md:grid h-8 w-8 md:h-12 md:w-12 bg-cover bg-center md:rounded-md mx-4 p-8"
-                        style={{ backgroundImage: `url( ${Usuario.avatarUser} )` }}
-                    ></div>
-                    <div className="md:grid md:grid-rows-2 md:grid-col-2 md:flex md:gap-1 text-justify">
-                        <h2 className="font-bold text-xl">{Usuario.nombreUsuario}</h2>
-                        <h3 className="text-xs">{Usuario.fechaPublicacion}</h3>
-                        <h3 className="text-xs">{Usuario.comentariosUsuario}</h3>
-                        <div className="item-inner-highlight">{estrellas.valoracionEstrella}</div>
-
-                    </div>
-                </div>
-            </div>
-        
-            <div className="md:flex md:auto-cols-max md:grid md:grid-cols-2 max-w-screen-md md:flex md:mx-auto md:mx-4 md:p-4">
-                <div className="flex">
-                    <div
-                        className=" md:grid h-8 w-8 md:h-12 md:w-12 bg-cover bg-center md:rounded-md mx-4 p-8"
-                        style={{ backgroundImage: `url( ${Usuario.avatarUser} )` }}
-                    ></div>
-                    <div className="md:grid md:grid-rows-2 md:grid-col-2 md:flex md:gap-1 text-justify">
-                        <h2 className="font-bold text-xl">{Usuario.nombreUsuario}</h2>
-                        <h3 className="text-xs">{Usuario.fechaPublicacion}</h3>
-                        <h3 className="text-xs">{Usuario.comentariosUsuario}</h3>
-                        <div className="item-inner-highlight">......</div>
-
-                    </div>
-                </div>
-            </div>
-
-
-            <div className="md:flex md:auto-cols-max md:grid md:grid-cols-2 max-w-screen-md md:flex md:mx-auto md:mx-4 md:p-4">
-                <div className="flex">
-                    <div
-                        className=" md:grid h-8 w-8 md:h-12 md:w-12 bg-cover bg-center md:rounded-md mx-4 p-8"
-                        style={{ backgroundImage: `url( ${Usuario.avatarUser} )` }}
-                    ></div>
-                    <div className="md:grid md:grid-rows-2 md:grid-col-2 md:flex md:gap-1 text-justify">
-                        <h2 className="font-bold text-xl">{Usuario.nombreUsuario}</h2>
-                        <h3 className="text-xs">{Usuario.fechaPublicacion}</h3>
-                        <h3 className="text-xs">{Usuario.comentariosUsuario}</h3>
-                        <div className="item-inner-highlight">......</div>
-                        
-
-                    </div>
-                </div>
-            </div>
-
-            <div className="md:flex md:auto-cols-max md:grid md:grid-cols-2 max-w-screen-md md:flex md:mx-auto md:mx-4 md:p-4">
-                <div className="flex">
-                    <div
-                        className=" md:grid h-8 w-8 md:h-12 md:w-12 bg-cover bg-center md:rounded-md mx-4 p-8"
-                        style={{ backgroundImage: `url( ${Usuario.avatarUser} )` }}
-                    ></div>
-                    <div className="md:grid md:grid-rows-2 md:grid-col-2 md:flex md:gap-1 text-justify">
-                        <h2 className="font-bold text-xl">{Usuario.nombreUsuario}</h2>
-                        <h3 className="text-xs">{Usuario.fechaPublicacion}</h3>
-                        <h3 className="text-xs">{Usuario.comentariosUsuario}</h3>
-                        <div className="item-inner-highlight">......</div>
-
-                    </div>
-                </div>
-            </div>
+  const [mostarRespuestas, setmostarRespuestas] = useState(false)
+  handlerAnswerButton = () => {
+    setmostarRespuestas(!mostarRespuestas);
+  }
+  return (
+    <Center direccion="col" eje="y" className="mt-4 border-b border-gray-300 ">
+      <div className="grid grid-flow-col">
+        <div className="justify-self-start flex flex-row">
+          <Avatar avatarUser={comentario.avatarUser} tamaño="12" />
+          <Center direccion="col" eje="y">
+            <h3 className="text-base ml-2">{comentario.nombreUsuario}</h3>
+            <h3 className="text-xs ml-2">{comentario.fechaPublicacion}</h3>
+          </Center>
+        </div>
+        <div className="justify-self-end">
+          <Center direccion="row" eje="y" className="h-full">
+            <Rating estrellas={comentario.valoracion} tamaño={"4"} />
+          </Center>
+        </div>
+      </div>
+      <h3 className="text-base ml-14 my-4">{comentario.comentario}</h3>
+      <Center direccion="row" eje="x" className="mb-4">
+        <IonButtons slot="start" className="ml-12 mr-2">
+          <IonButton onClick={handlerLikeButton}>
+            <IonIcon
+              icon={isLiked ? heart : heartOutline}
+              className="text-gray-500 text-xl"
+            />
+          </IonButton>
+        </IonButtons>
+        <IonButtons slot="start" className="-ml-2">
+          <IonButton onClick={handlerAnswerButton}>
+            <IonIcon
+              icon={chatbubbleOutline}
+              className="text-gray-500 text-xl"
+            />
+          </IonButton>
+        </IonButtons>
+        <Button label="Responder" type="Link" handler={handlerAnswerButton} />
+      </Center>
+      {comentario.respuestas.length > 0 && 
+        <div className="ml-14">
+          <div className="mb-4">
+            <Button label="7 Respuestas" type="Link" handler={handlerAnswerButton} />
           </div>
-        </>
-    );
+          {mostarRespuestas && 
+            <div className="my-4">
+              <ResponseBox respuestas={comentario.respuestas}/>
+            </div>
+          }
+        </div>
+      }
+    </Center>
+  );
 };
 
 export default Commentary;

@@ -3,31 +3,29 @@ import {
   IonItem,
 } from "@ionic/react";
 import React, { useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import Button from "../../components/Button/Button";
 import Scaffold from "../../components/Scaffold/Scaffold";
+import {useHistory} from 'react-router';
 
-const ForgetPasswordValidate: React.FC<RouteComponentProps> = ({ history }) => {
+const ForgetPasswordValidate: React.FC = ( ) => {
+  
+  const history = useHistory();
+
   const [codigo, setCodigo] = useState(["", "", "", "", "", ""]);
 
   const handlerForgetPasswordValidateButton = (e: any) => {
     e.preventDefault();
-    history.push("/newPassword");
+    history.push("/forgetPassword/newPassword");
   };
 
   const handlerResendMailButton = (e: any) => {
     e.preventDefault();
   };
 
-  const handlerGoBackButton = (e: any) => {
-    e.preventDefault();
-    history.goBack();
-  };
-
   return (
     <Scaffold
       tituloHeader="Restablecer Contraseña"
-      onClickBack={handlerGoBackButton}
       footer={
         <div className="p-2 mb-2 max-w-screen-md mx-auto">
           <Button

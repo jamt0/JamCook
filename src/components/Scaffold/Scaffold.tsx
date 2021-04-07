@@ -11,11 +11,11 @@ import {
   IonContent,
   IonFooter,
 } from "@ionic/react";
+import {useHistory} from 'react-router';
 
 interface Props {
   accionesHeader?: React.ReactNode;
   tituloHeader?: string;
-  onClickBack: (e: any) => void;
   footer?: React.ReactNode;
 }
 
@@ -23,15 +23,22 @@ const Scaffold: FunctionComponent<Props> = ({
   accionesHeader = null,
   tituloHeader,
   children,
-  onClickBack,
-  footer = null,
+  footer = null
 }) => {
+
+  const history = useHistory();
+
+  const handlerGoBackButton = (e: any) => {
+    e.preventDefault();
+    history.goBack();
+  };
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonButton onClick={onClickBack}>
+            <IonButton onClick={handlerGoBackButton}>
               <IonIcon slot="icon-only" icon={chevronBackOutline} color="dark" />
             </IonButton>
           </IonButtons>

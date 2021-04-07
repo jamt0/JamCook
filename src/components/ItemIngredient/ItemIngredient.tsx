@@ -1,4 +1,4 @@
-import { IonCheckbox, IonItem } from "@ionic/react";
+import { IonCheckbox } from "@ionic/react";
 import React, { FunctionComponent, useState } from "react";
 import Center from "../Center/Center";
 import Counter from "../Counter/Counter";
@@ -8,19 +8,26 @@ interface Props {
   cantidadPorcion: string;
   name: string;
   pathImg: string;
+  withCheck?: boolean;
+  withCounter?: boolean;
 }
 
 const ItemIngredient: FunctionComponent<Props> = ({
   cantidadPorcion,
   name,
   pathImg,
+  withCheck = false,
+  withCounter = false
 }) => {
+
   const [isOpen, setIsOpen] = useState(false);
   const [isSelect, setIsSelect] = useState(false);
+  const [porciones, setPorciones] = useState(1);
 
   const handlerClickItem = (e: any) => {
     e.preventDefault();
     setIsOpen(!isOpen);
+    setIsSelect(true);
   };
 
   const handlerClickCheck = (e: any) => {
@@ -41,6 +48,7 @@ const ItemIngredient: FunctionComponent<Props> = ({
             <h3 className="text-sm">{cantidadPorcion + " Unidades"}</h3>
           </Center>
         </div>
+        {withCheck &&
         <div onClick={handlerClickCheck} className="h-full px-2">
           <Center direccion="row" className="h-full">
             <IonCheckbox
@@ -50,11 +58,11 @@ const ItemIngredient: FunctionComponent<Props> = ({
               className="z-20"
             ></IonCheckbox>
           </Center>
-        </div>
+        </div>}
       </div>
-      {isOpen && 
+      {isOpen && withCounter &&
       <div className="mt-2">
-      <Counter />
+        <Counter porciones={porciones} setPorciones={setPorciones}/>
       </div>}
     </div>
   );

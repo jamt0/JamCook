@@ -1,5 +1,5 @@
 import React from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import CardRecipe from "../../components/CardRecipe/CardRecipe";
 import Scaffold from "../../components/Scaffold/Scaffold";
 
@@ -107,17 +107,11 @@ const recetas = [
   },
 ];
 
-const ListRecipes: React.FC<RouteComponentProps> = ({ history }) => {
+const ListRecipes: React.FC = ( ) => {
   
-  const handlerGoBackButton = (e: any) => {
-    e.preventDefault();
-    history.goBack();
-  };
-
   return (
     <Scaffold
       tituloHeader="Recetas Nuevas"
-      onClickBack={handlerGoBackButton}
     >
       {recetas.map((receta, index) => {
         return (

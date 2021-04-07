@@ -1,6 +1,6 @@
 import { IonContent, IonPage } from "@ionic/react";
 import React, { useEffect, useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
+
 import Slider from "../../components/Slider/Slider";
 import Searcher from "../../components/Searcher/Searcher";
 
@@ -35,7 +35,7 @@ const imagenes = [
   },
 ];
 
-const Search: React.FC<RouteComponentProps> = ({ history }) => {
+const Search: React.FC = ( ) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [slidesPerView, setslidesPerView] = useState(1.5);
 
@@ -72,6 +72,8 @@ const Search: React.FC<RouteComponentProps> = ({ history }) => {
     setTimeout(handleResize,5000);
     setTimeout(handleResize,10000);
   }, []);
+
+  console.log("soy page search");
 
   return (
     <IonPage>
