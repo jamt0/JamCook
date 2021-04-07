@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { IonLoading } from "@ionic/react";
 import Avatar from "components/Avatar/Avatar";
 import Button from "components/Button/Button";
 import Center from "components/Center/Center";
 import Scaffold from "components/Scaffold/Scaffold";
 import Input from "components/Input/Input";
 import Select from "components/Select/Select";
-import { IonAlert, IonLoading } from "@ionic/react";
 import { useHistory } from "react-router";
 import { useAuth } from "auth";
 import { useForm } from "react-hook-form";
 import Server from "server";
-import { usePhoto } from "hooks/usePhoto"
-
-const usuario = {
-  avatarUser: "https://picsum.photos/200/300?random=1",
-};
+import config from "config/general";
 
 let defaultValues = {
   name: "",
@@ -78,15 +74,9 @@ const EditPerfil: React.FC = () => {
 
   const { auth } = useAuth()!;
 
-  const { takePhoto } = usePhoto();
-
   const [hasErrors, setHasErrors] = useState<string>("");
 
-  const [showAlert, setShowAlert] = useState(false);
-
-  const [avatarImage, setAvatarImage] = useState("");
-
-  const [avatarImageUrl, setAvatarImageUrl] = useState<any>("https://picsum.photos/200/300?random=1");
+  const [avatarImageUrl, setAvatarImageUrl] = useState<any>(`${config.baseURL}/images/avatars/default.png`);
 
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -94,10 +84,10 @@ const EditPerfil: React.FC = () => {
     control,
     handleSubmit,
     reset,
-    formState: { isSubmitting, isValid, errors },
+    formState: { isSubmitting, isValid, errors }
   } = useForm<IUser>({
     defaultValues: defaultValues,
-    mode: "onChange",
+    mode: "onChange"
   });
 
   /**
@@ -109,10 +99,9 @@ const EditPerfil: React.FC = () => {
       setLoading(true);
       const errorUpdate = await Server.updateUser(auth.user.id, user);
       if (errorUpdate.data.error != null) {
-        setLoading(false);
         setHasErrors(errorUpdate.data.error);
+        setLoading(false);
       } else {
-        //aca esta el erro de doble page y no lo puedo resolver con redirect
         history.replace("/home/perfil");
         setLoading(false);
       }
@@ -128,26 +117,18 @@ const EditPerfil: React.FC = () => {
     }
     reader.readAsDataURL(e.target.files[0]);
 
-    console.log(e.target.files[0]);
-
     const imageAvatar = new FormData()
     imageAvatar.append(
       "avatarImage",
-      e.target.files[0],
-      e.target.files[0].name
+      e.target.files[0]
     )
 
-    console.log(imageAvatar);
-
     if (auth.user?.id) {
+      setLoading(true);
       const errorUpdateAvatar = await Server.updateAvatarUser(auth.user.id, imageAvatar);
       setHasErrors(errorUpdateAvatar.data.error);
+      setLoading(false);
     }
-  }
-
-  const sendAvatarImage = async () => {
-
-    
   }
 
   useEffect(() => {
@@ -164,7 +145,19 @@ const EditPerfil: React.FC = () => {
             });
             setLoading(false);
           } else {
+            setHasErrors(response.data.error);
             setLoading(false);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoading(false);
+        });
+      Server.getAvatarUser(auth.user.id)
+        .then((response) => {
+          if (!response.data.error) {
+            setAvatarImageUrl(response.data.AvatarUser);
+          }else{
             setHasErrors(response.data.error);
           }
         })
@@ -198,14 +191,12 @@ const EditPerfil: React.FC = () => {
         <Center direccion="col" className="mt-8">
           <Avatar avatarUser={avatarImageUrl} tamaño="20" responsive="60" />
           <div className="mt-4">
-            <label htmlFor="inputAvatar" >
-              {/* // handler={() => setShowAlert(true)} */}{/*Hasta ahora lo dejare asi, hasta que se pruebe en android*/}
+            <label className="" htmlFor="inputAvatar" >
               Cambiar imagen
-              {/* type="Link" */}
             </label>
           </div>
         </Center>
-        <div className="max-w-screen-md m-4">
+        <div className="m-4 max-w-screen-md mx-auto">
           <input type="file" accept=".jpg, .jpeg, .png" id="inputAvatar" onChange={fileChangedHandler} className="hidden"/>
           <Input
             control={control}
@@ -245,28 +236,6 @@ const EditPerfil: React.FC = () => {
           />
         </div>
       </form>
-      <IonAlert
-        isOpen={showAlert}
-        onDidDismiss={() => setShowAlert(false)}
-        header={"Cambiar imagen"}
-        message={"Haz una foto o elige una de tu galeria."}
-        buttons={[
-          {
-            text: "Camara",
-            handler: () => {
-              const photo = takePhoto();
-              console.log(photo)
-              console.log("Camara");
-            },
-          },
-          {
-            text: "Galeria",
-            handler: () => {
-              console.log("Galeria");
-            },
-          },
-        ]}
-      />
     </Scaffold>
   );
 };

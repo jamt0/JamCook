@@ -1,5 +1,5 @@
 import axios from "axios";
-import config from "../config/general";
+import config from "config/general";
 
 interface IUser {
   name?: string;
@@ -50,6 +50,13 @@ export default class Server {
     };
     return axios.post(`${config.baseURL}/api/users/updateAvatarUser/${id}`, imageAvatar, {
       headers: headers
+    });
+  }
+
+  public static getAvatarUser(id: string) {
+    console.log(id);
+    return axios.get(`${config.baseURL}/api/users/getAvatarUser/${id}`, {
+      headers: config.headers
     });
   }
 

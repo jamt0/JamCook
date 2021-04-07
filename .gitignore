@@ -8,6 +8,9 @@
 #eslint
 eslintcache
 
+#tailwinds
+src/assets/main.css
+
 # testing
 /coverage
 
