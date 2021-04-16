@@ -2,19 +2,19 @@ import React, { useEffect } from "react";
 import { Redirect, Route } from "react-router-dom";
 import { IonApp, IonLoading, IonRouterOutlet } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import Home from "./pages/Home/Home";
-import SignIn from "./pages/SignIn/SignIn";
-import SignUp from "./pages/SignUp/SignUp";
-import Welcome from "./pages/Welcome/Welcome";
-import { ForgetPassword, ForgetPasswordValidate, NewPassword } from "./pages/ForgetPassword/Index";
+import Home from "pages/Home/Home";
+import SignIn from "pages/SignIn/SignIn";
+import SignUp from "pages/SignUp/SignUp";
+import Welcome from "pages/Welcome/Welcome";
+import { ForgetPassword, ForgetPasswordValidate, NewPassword } from "pages/ForgetPassword/Index";
 import NoFound from "pages/General/NoFound";
-import Recipe from "./pages/Recipe/Recipe";
-import ListRecipes from "./pages/ListRecipes/ListRecipes";
-import { FoodBasketAdd } from "./pages/FoodBasket/Index";
-import { AboutUs, ContactUs, EditPerfil, Language, LegalInformation, Preferences, Ratings, Settings, Share } from "./pages/Perfil/Index";
-import { Allergies, Comensals, CookingLevel, Diet, DislikeIngredient, MyObjectives } from "./pages/Perfil/Preferences/Index";
-import { CookiesPolicy, PrivacyPolicy, TermsAndConditions } from "./pages/Perfil/LegalInformation/Index";
-import { MeasurementUnits, Theme } from "./pages/Perfil/Settings/Index";
+import Recipe from "pages/Recipe/Recipe";
+import ListRecipes from "pages/ListRecipes/ListRecipes";
+import { FoodBasketAdd } from "pages/FoodBasket/Index";
+import { AboutUs, ContactUs, EditPerfil, Language, LegalInformation, Preferences, Ratings, Settings, Share } from "pages/Perfil/Index";
+import { Allergies, Comensals, CookingLevel, Diet, DislikeIngredient, MyObjectives } from "pages/Perfil/Preferences/Index";
+import { CookiesPolicy, PrivacyPolicy, TermsAndConditions } from "pages/Perfil/LegalInformation/Index";
+import { MeasurementUnits, Theme } from "pages/Perfil/Settings/Index";
 
 import { useAuth } from "auth";
 
@@ -35,7 +35,7 @@ import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
 /* Theme variables */
-import "./theme/variables.css";
+import "theme/variables.css";
 
 const App: React.FC = () => {
   console.log("soy la app")

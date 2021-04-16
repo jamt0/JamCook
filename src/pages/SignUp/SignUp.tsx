@@ -6,6 +6,7 @@ import { IonLoading } from "@ionic/react";
 import { Redirect, useHistory } from "react-router";
 import { useForm } from "react-hook-form";
 import { useAuth } from "auth";
+import { useSettingsUser } from "context/settingsUser";
 
 let defaultValues = {
   name: "",
@@ -19,38 +20,14 @@ interface IUser {
   password: string;
 }
 
-const rulesNombre = {
-  required: "Este campo es obligatorio",
-  minLength: {
-    value: 3,
-    message: "El nombre debe tener minimo 3 caracteres",
-  },
-};
-
-const rulesEmail = {
-  required: "Este campo es obligatorio",
-  pattern: {
-    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-    message: "Correo electrónico invalido",
-  },
-};
-
-const rulesPassword = {
-  required: "Este campo es obligatorio",
-  minLength: {
-    value: 8,
-    message: "La contraseña debe tener minimo 8 caracteres",
-  },
-};
-
 const SignUp: React.FC = () => {
 
   const history = useHistory();
-
   const { signUp, loading, auth } = useAuth()!;
+  const { textos } = useSettingsUser()!;
 
   const [hasErrors, setHasErrors] = useState<string>("");
-
+  
   const {
     control,
     handleSubmit,
@@ -88,6 +65,30 @@ const SignUp: React.FC = () => {
     history.push("/politicaDePrivacidad");
   };
 
+  const rulesNombre = {
+    required: textos["campo_requerido"],
+    minLength: {
+      value: 3,
+      message: textos["campo_nombre_min"]
+    },
+  };
+
+  const rulesEmail = {
+    required: textos["campo_requerido"],
+    pattern: {
+      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+      message: textos["campo_correo_invalido"]
+    },
+  };
+
+  const rulesPassword = {
+    required: textos["campo_requerido"],
+    minLength: {
+      value: 8,
+      message: textos["campo_contrasena_min"]
+    },
+  };
+
   console.log("soy la page registro");
 
   if(auth.loggedIn) {
@@ -95,19 +96,19 @@ const SignUp: React.FC = () => {
   }else{
     return (
       <Scaffold
-        tituloHeader="Crear Cuenta"
+        tituloHeader={textos["signup_crear_cuenta"]}
         footer={
           <div className="p-2 max-w-screen-md mx-auto">
             <Button
               handler={handleSubmit(handlerSignUpButton)}
-              label={"Crear cuenta"}
+              label={textos["signup_crear_cuenta"]}
               disable={!isValid || isSubmitting}
             />
             <div className="flex justify-center py-2">
-              <p className="mr-1 text-base inline">¿Ya tienes una cuenta? </p>
+              <p className="mr-1 text-base inline">{textos["signup_tiene_cuenta"]}</p>
               <Button
                 handler={handlerSignInButton}
-                label={"Inicia sesión."}
+                label={textos["signin_iniciar_sesion"]}
                 type={"Link"}
               />
             </div>
@@ -125,7 +126,7 @@ const SignUp: React.FC = () => {
             defaultValue={defaultValues.name}
             name="name"
             type="name"
-            label="Nombre"
+            label={textos["campo_nombre"]}
             rules={rulesNombre}
           />
           <Input
@@ -134,7 +135,7 @@ const SignUp: React.FC = () => {
             defaultValue={defaultValues.email}
             name="email"
             type="email"
-            label="Correo Electrónico"
+            label={textos["campo_correo"]}
             rules={rulesEmail}
           />
           <Input
@@ -143,23 +144,23 @@ const SignUp: React.FC = () => {
             defaultValue={defaultValues.password}
             name="password"
             type="password"
-            label="Contraseña"
+            label={textos["campo_contraseña"]}
             rules={rulesPassword}
           />
           <div className="flex justify-center">
             <div className="mt-8 mb-4 text-center">
               <p className="mr-1 text-base inline">
-                Al registrarte, aceptas nuestros
+                {textos["signup_acepta_nuestros"]}
               </p>
               <Button
                 handler={handlerTerminosYCondicionesButton}
-                label={"Terminos y condiciones"}
+                label={textos["terminos_condiciones"]}
                 type={"Link"}
               />
-              <p className="mx-1 text-base inline">y</p>
+              <p className="mx-1 text-base inline">{textos["y"]}</p>
               <Button
                 handler={handlerPoliticaDePrivacidadButton}
-                label={"Política de Privacidad."}
+                label={textos["politica_privacidad"]}
                 type={"Link"}
               />
             </div>
@@ -170,4 +171,4 @@ const SignUp: React.FC = () => {
   }
 };
 
-export default React.memo(SignUp);
+export default SignUp;

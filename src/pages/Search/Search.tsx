@@ -1,8 +1,8 @@
 import { IonContent, IonPage } from "@ionic/react";
 import React, { useEffect, useState } from "react";
-
-import Slider from "../../components/Slider/Slider";
-import Searcher from "../../components/Searcher/Searcher";
+import Slider from "components/Slider/Slider";
+import Searcher from "components/Searcher/Searcher";
+import { useSettingsUser } from 'context/settingsUser';
 
 const imagenes = [
   {
@@ -36,8 +36,11 @@ const imagenes = [
 ];
 
 const Search: React.FC = ( ) => {
+
   const [width, setWidth] = useState(window.innerWidth);
   const [slidesPerView, setslidesPerView] = useState(1.5);
+
+  const { textos } = useSettingsUser()!;
 
   function handleResize() {
     setWidth(window.innerWidth);
@@ -79,10 +82,10 @@ const Search: React.FC = ( ) => {
     <IonPage>
       <IonContent>
         <div className="flex flex-col max-w-screen-md mx-auto pt-8 text-center text-gray-600 text-2xl md:text-3xl font-bold">
-          <h6>Las mejores recetas,</h6>
-          <h6>con lo que tienes a mano</h6>
+          <h6>{textos["slogan_2_1"]}</h6>
+          <h6>{textos["slogan_2_2"]}</h6>
         </div>
-        <Searcher placeHolder={"Buscar recetas con tus ingredientes"} />
+        <Searcher placeHolder={textos["search_buscar_recetas"]} />
         <div className="px-2">
           <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
           <Slider imagenes={imagenes} slidesPerView={slidesPerView} />

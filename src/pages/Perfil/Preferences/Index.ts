@@ -1,10 +1,10 @@
-import Allergies from "./Allergies";
-import Comensals from "./Comensals";
-import CookingLevel from "./CookingLevel";
-import Diet from "./Diet";
-import DislikeIngredient from "./DislikeIngredient";
-import MyObjectives from "./MyObjectives";
-import Preferences from "./Preferences";
+import Allergies from "pages/Perfil/Preferences/Allergies";
+import Comensals from "pages/Perfil/Preferences/Comensals";
+import CookingLevel from "pages/Perfil/Preferences/CookingLevel";
+import Diet from "pages/Perfil/Preferences/Diet";
+import DislikeIngredient from "pages/Perfil/Preferences/DislikeIngredient";
+import MyObjectives from "pages/Perfil/Preferences/MyObjectives";
+import Preferences from "pages/Perfil/Preferences/Preferences";
 
 export {
     Allergies,

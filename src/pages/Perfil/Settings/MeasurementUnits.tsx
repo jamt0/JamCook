@@ -38,7 +38,7 @@ const MeasurementUnits: React.FC = ( ) => {
         <p className=" mb-8 text-xl mt-2 text-gray-600 text-center">
           Escoge en qué unidades de medida prefieres que te mostremos la cantidad de ingredientes que necesitas para cada receta.
         </p>
-        <RadioGroup opcionesGroup={opcionesGroup} defaultOption="1"/>
+        <RadioGroup optionsGroup={opcionesGroup} defaultOption="1"/>
       </div>
     </Scaffold>
   );

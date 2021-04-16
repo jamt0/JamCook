@@ -1,7 +1,6 @@
 import { IonItem, IonList } from "@ionic/react";
 import React from "react";
-
-import Scaffold from "../../../components/Scaffold/Scaffold";
+import Scaffold from "components/Scaffold/Scaffold";
 
 const Preferences: React.FC = ( ) => {
 

@@ -1,6 +1,6 @@
   import React from "react";
   
-  import Scaffold from "../../components/Scaffold/Scaffold";
+  import Scaffold from "components/Scaffold/Scaffold";
   
   const Ratings: React.FC = ( ) => {
   

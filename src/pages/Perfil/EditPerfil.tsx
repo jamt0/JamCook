@@ -71,13 +71,10 @@ const rulesEmail = {
 const EditPerfil: React.FC = () => {
 
   const history = useHistory();
-
   const { auth } = useAuth()!;
 
   const [hasErrors, setHasErrors] = useState<string>("");
-
   const [avatarImageUrl, setAvatarImageUrl] = useState<any>(`${config.baseURL}/images/avatars/default.png`);
-
   const [loading, setLoading] = useState<boolean>(false)
 
   const {
@@ -97,7 +94,7 @@ const EditPerfil: React.FC = () => {
   const handlerSaveEditButton = async (user: IUser) => {
     if (auth.user?.id) {
       setLoading(true);
-      const errorUpdate = await Server.updateUser(auth.user.id, user);
+      const errorUpdate = await Server.putUser(auth.user.id, user);
       if (errorUpdate.data.error != null) {
         setHasErrors(errorUpdate.data.error);
         setLoading(false);
@@ -125,8 +122,10 @@ const EditPerfil: React.FC = () => {
 
     if (auth.user?.id) {
       setLoading(true);
-      const errorUpdateAvatar = await Server.updateAvatarUser(auth.user.id, imageAvatar);
-      setHasErrors(errorUpdateAvatar.data.error);
+      const errorUpdateAvatar = await Server.putImageAvatar(auth.user.id, imageAvatar);
+      if (errorUpdateAvatar.data.error) {
+        setHasErrors(errorUpdateAvatar.data.error);
+      }
       setLoading(false);
     }
   }
@@ -153,10 +152,10 @@ const EditPerfil: React.FC = () => {
           console.log(error);
           setLoading(false);
         });
-      Server.getAvatarUser(auth.user.id)
+      Server.getImageAvatar(auth.user.id)
         .then((response) => {
           if (!response.data.error) {
-            setAvatarImageUrl(response.data.AvatarUser);
+            setAvatarImageUrl(`${config.baseURL}/${response.data.path}`);
           }else{
             setHasErrors(response.data.error);
           }

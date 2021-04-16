@@ -1,8 +1,20 @@
 import { IonButton, IonIcon } from "@ionic/react";
 import React, { useState } from "react";
-
-import ImageRecipe from "../../components/ImageRecipe/ImageRecipe";
-import Scaffold from "../../components/Scaffold/Scaffold";
+import { useSettingsUser } from 'context/settingsUser';
+import ImageRecipe from "components/ImageRecipe/ImageRecipe";
+import Scaffold from "components/Scaffold/Scaffold";
+import Button from "components/Button/Button";
+import CommentaryBox from "components/CommentaryBox/CommentaryBox";
+import TitleRecipe from "components/TitleRecipe/TitleRecipe";
+import ItemIngredient from "components/ItemIngredient/ItemIngredient";
+import ItemStep from "components/ItemStep/ItemStep";
+import ContainerSection from "components/ContainerSection/ContainerSection";
+import Center from "components/Center/Center";
+import Counter from "components/Counter/Counter";
+import Avatar from "components/Avatar/Avatar";
+import Rating from "components/Rating/Rating";
+import ChipGroup from "components/ChipGroup/ChipGroup";
+import Slider from "components/Slider/Slider";
 import {
   star,
   timerOutline,
@@ -13,18 +25,6 @@ import {
   heartOutline,
   speedometerOutline,
 } from "ionicons/icons";
-import Button from "../../components/Button/Button";
-import CommentaryBox from "../../components/CommentaryBox/CommentaryBox";
-import TitleRecipe from "../../components/TitleRecipe/TitleRecipe";
-import ItemIngredient from "../../components/ItemIngredient/ItemIngredient";
-import ItemStep from "../../components/ItemStep/ItemStep";
-import ContainerSection from "../../components/ContainerSection/ContainerSection";
-import Center from "../../components/Center/Center";
-import Counter from "../../components/Counter/Counter";
-import Avatar from "../../components/Avatar/Avatar";
-import Rating from "../../components/Rating/Rating";
-import ChipGroup from "../../components/ChipGroup/ChipGroup";
-import Slider from "../../components/Slider/Slider";
 
 const receta = {
   pathImg: "https://picsum.photos/200/300?random=1",
@@ -278,6 +278,8 @@ const Recipe: React.FC = ( ) => {
     false,
   ]);
 
+  const { textos } = useSettingsUser()!;
+
   const handlerShare = (e: any) => {};
 
   const handlerLike = (e: any) => {};
@@ -341,7 +343,7 @@ const Recipe: React.FC = ( ) => {
               })}
             </Center>
             <h2 className="text-sm mt-2">
-              {receta.numeroValoraciones + " Valoraciones"}
+              {receta.numeroValoraciones + " " + textos["valoraciones"]}
             </h2>
           </Center>
         </ContainerSection>
@@ -349,7 +351,7 @@ const Recipe: React.FC = ( ) => {
         {/* Introduccion Receta*/}
         <ContainerSection>
           <Center direccion="col">
-            <TitleRecipe>Introducción</TitleRecipe>
+            <TitleRecipe>{textos["introduccion"]}</TitleRecipe>
             <p className="text-center">{receta.introduccion}</p>
           </Center>
         </ContainerSection>
@@ -362,14 +364,14 @@ const Recipe: React.FC = ( ) => {
                 icon={nutritionOutline}
                 className="text-black text-lg mr-1"
               />
-              <h3 className="text-sm">8 ingredientes</h3>
+              <h3 className="text-sm">{"8"+ " " + textos["ingredientes"]}</h3>
             </Center>
             <Center direccion="row">
               <IonIcon
                 icon={speedometerOutline}
                 className="text-black text-lg mr-1"
               />
-              <h3 className="text-sm">Dificultad</h3>
+              <h3 className="text-sm">{textos["dificultad"]}</h3>
             </Center>
             <Center direccion="row">
               <IonIcon
@@ -383,14 +385,14 @@ const Recipe: React.FC = ( ) => {
 
         {/* Porciones Receta*/}
         <ContainerSection>
-          <TitleRecipe>Porciones a Preparar</TitleRecipe>
+          <TitleRecipe>{textos["recipe_porciones_preparar"]}</TitleRecipe>
           <Counter porciones={porciones} setPorciones={setPorciones}/>
         </ContainerSection>
 
         {/* Ingredientes Receta*/}
 
         <ContainerSection>
-          <TitleRecipe>Ingredientes</TitleRecipe>
+          <TitleRecipe>{textos["ingredientes"]}</TitleRecipe>
           {receta.ingredientes.map((ingrediente, index) => {
             return (
               <ItemIngredient
@@ -405,7 +407,7 @@ const Recipe: React.FC = ( ) => {
 
         {/* Pasos Receta*/}
         <ContainerSection>
-          <TitleRecipe>Pasos</TitleRecipe>
+          <TitleRecipe>{textos["pasos"]}</TitleRecipe>
           {receta.pasos.map((paso, index) => {
             return <ItemStep key={index}>{paso.instruccion}</ItemStep>;
           })}
@@ -413,7 +415,7 @@ const Recipe: React.FC = ( ) => {
 
         {/* Trucos Receta*/}
         <ContainerSection>
-          <TitleRecipe>Trucos y Consejos</TitleRecipe>
+          <TitleRecipe>{textos["recipe_trucos_consejos"]}</TitleRecipe>
           {receta.trucos.map((truco, index) => {
             return <ItemStep key={index}>{truco.instruccion}</ItemStep>;
           })}
@@ -421,29 +423,29 @@ const Recipe: React.FC = ( ) => {
 
         {/* Receta Hecha*/}
         <ContainerSection>
-          <TitleRecipe>¿Ya has hecho la receta?</TitleRecipe>
+          <TitleRecipe>{textos["recipe_hiciste_receta"]}</TitleRecipe>
             <Button
               handler={handlerRecetaHecha}
-              label={"¡Receta Hecha!"}
+              label={textos["recipe_receta_hecha"]}
               type={"Secundario"}
             />
         </ContainerSection>
 
         {/* Valoración Hecha*/}
         <ContainerSection>
-          <TitleRecipe>¿Te ha gustado la receta?</TitleRecipe>
+          <TitleRecipe>{textos["recipe_gusto_receta"]}</TitleRecipe>
           <Rating estrellas={isEstrellas} handlerValoracion={handlerValoracion} tamaño={"12"} />
         </ContainerSection>
 
         {/* Comentarios Receta*/}
         <ContainerSection>
-          <TitleRecipe>Comentarios</TitleRecipe>
+          <TitleRecipe>{textos["comentarios"]}</TitleRecipe>
           <CommentaryBox comentarios = {Comentarios} />
         </ContainerSection>
 
         {/* Tags Receta*/}
         <ContainerSection>
-          <TitleRecipe>Temas Relacionados</TitleRecipe>
+          <TitleRecipe>{textos["recipe_temas_relacionados"]}</TitleRecipe>
           <div className="flex flex-wrap place-content-center">
             <ChipGroup ingredientes={tags}/>
           </div>
@@ -451,20 +453,20 @@ const Recipe: React.FC = ( ) => {
 
         {/* Recetas relacionadas*/}
         <ContainerSection>
-          <TitleRecipe>Recetas relacionados</TitleRecipe>
+          <TitleRecipe>{textos["recipe_recetas_relacionados"]}</TitleRecipe>
           <Slider imagenes={recetasRelacionadas} slidesPerView={1.5} />
         </ContainerSection>
 
-        {/* Receta*/}
+        {/* Recetas mas vistas*/}
         <ContainerSection>
-          <TitleRecipe>Recetas más vistas</TitleRecipe>
+          <TitleRecipe>{textos["recipe_recetas_mas_vistas"]}</TitleRecipe>
           <Slider imagenes={recetasMasVistas} slidesPerView={1.5} />
         </ContainerSection>
 
-        {/* Receta*/}
+        {/* Guardar Receta*/}
         <ContainerSection>
           <Button 
-            label={"Guardar receta"}
+            label={textos["recipe_guardar_receta"]}
             type={"principal"} 
           />
         </ContainerSection>

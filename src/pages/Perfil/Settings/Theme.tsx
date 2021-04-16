@@ -37,7 +37,7 @@ const Theme: React.FC = ( ) => {
         <p className=" mb-8 text-xl mt-2 text-gray-600 text-center">
           Escoge el tema para la aplicación.
         </p>
-        <RadioGroup opcionesGroup={opcionesGroup} defaultOption="1"/>
+        <RadioGroup optionsGroup={opcionesGroup} defaultOption="1"/>
       </div>
     </Scaffold>
   );

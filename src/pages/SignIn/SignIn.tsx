@@ -6,6 +6,7 @@ import { IonLoading } from "@ionic/react";
 import { Redirect, useHistory } from "react-router";
 import { useForm } from "react-hook-form";
 import { useAuth } from "auth";
+import { useSettingsUser } from "context/settingsUser";
 
 let defaultValues = {
   email: "",
@@ -17,28 +18,14 @@ interface IUser {
   password: string;
 }
 
-const rulesPassword = {
-  required: "Este campo es obligatorio",
-  minLength: {
-    value: 8,
-    message: "La contraseña debe tener minimo 8 caracteres",
-  },
-};
-
-const rulesEmail = {
-  required: "Este campo es obligatorio",
-  pattern: {
-    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-    message: "Correo electrónico invalido",
-  },
-};
-
 const SignIn: React.FC = () => {
 
   const history = useHistory();
-
   const { signIn, loading, auth } = useAuth()!;
+  const { textos } = useSettingsUser()!;
 
+  const [hasErrors, setHasErrors] = useState<string>("");
+  
   const {
     control,
     handleSubmit,
@@ -47,8 +34,6 @@ const SignIn: React.FC = () => {
     defaultValues: defaultValues,
     mode: "onChange",
   });
-
-  const [hasErrors, setHasErrors] = useState<string>("");
 
   /**
    *
@@ -59,7 +44,6 @@ const SignIn: React.FC = () => {
     if (errorSignIn != null) {
       setHasErrors(errorSignIn);
     } else {
-      // history.replace('/home');
       return <Redirect to="/home" />;
     }
   };
@@ -74,6 +58,22 @@ const SignIn: React.FC = () => {
     history.push("/forgetPassword");
   };
 
+  const rulesPassword = {
+    required: textos["campo_requerido"],
+    minLength: {
+      value: 8,
+      message: textos["campo_contrasena_min"]
+    },
+  };
+  
+  const rulesEmail = {
+    required: textos["campo_requerido"],
+    pattern: {
+      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+      message: textos["campo_correo_invalido"]
+    },
+  };
+
   console.log("soy la page login");
 
   if(auth.loggedIn) {
@@ -81,19 +81,19 @@ const SignIn: React.FC = () => {
   }else{
     return (
       <Scaffold
-        tituloHeader="Inicia sesión"
+        tituloHeader={textos["signin_iniciar_sesion"]}
         footer={
           <div className="p-2 max-w-screen-md mx-auto">
             <Button
-              label="Iniciar sesión"
+              label={textos["signin_iniciar_sesion"]}
               handler={handleSubmit(handlerSignInButton)}
               disable={!isValid || isSubmitting}
             />
             <div className="flex justify-center py-2">
-              <p className="mr-1">¿No tienes una cuenta? </p>
+              <p className="mr-1">{textos["signin_no_tiene_cuenta"]}</p>
               <Button
                 handler={handlerSignUpButton}
-                label={"Registrate."}
+                label={textos["signup_registrate"]}
                 type={"Link"}
               />
             </div>
@@ -112,7 +112,7 @@ const SignIn: React.FC = () => {
               defaultValue={defaultValues.email}
               name="email"
               type="email"
-              label="Correo Electrónico"
+              label={textos["campo_correo"]}
               rules={rulesEmail}
             />
             <Input
@@ -121,14 +121,14 @@ const SignIn: React.FC = () => {
               defaultValue={defaultValues.password}
               name="password"
               type="password"
-              label="Contraseña"
+              label={textos["campo_contraseña"]}
               rules={rulesPassword}
             />
           </form>
           <div className="flex justify-end pt-6">
             <Button
               handler={handlerForgetPasswordButton}
-              label={"¿Has olvidado tu contraseña?"}
+              label={textos["signin_olvido_contraseña"]}
               type={"Link"}
             />
           </div>
