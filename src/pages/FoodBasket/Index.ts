@@ -1,5 +1,5 @@
-import FoodBasket from "./FoodBasket";
-import FoodBasketAdd from "./FoodBasketAdd";
+import FoodBasket from "pages/FoodBasket/FoodBasket";
+import FoodBasketAdd from "pages/FoodBasket/FoodBasketAdd";
 
 export {
     FoodBasket,

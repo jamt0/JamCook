@@ -5,12 +5,14 @@ import RadioGroup from "components/RadioGroup/RadioGroup";
 import Scaffold from "components/Scaffold/Scaffold";
 import {useHistory} from 'react-router';
 import { useAuth } from "auth";
+import { useSettingsUser } from "context/settingsUser";
 import Server from "server";
 
 const Diet: React.FC = ( ) => {
   
   const history = useHistory();
   const { auth } = useAuth()!;
+  const { textos } = useSettingsUser()!;
 
   const [options, setOptions] = useState();
   const [optionUser, setOptionUser] = useState();
@@ -58,10 +60,10 @@ const Diet: React.FC = ( ) => {
 
   return (
     <Scaffold
-      tituloHeader="Dieta"
+      tituloHeader={textos["preferencias_dieta"]}
       footer={
         <div className="p-2 max-w-screen-md mx-auto">
-          <Button handler={handlerSaveEditButton} label={"Guardar"} />
+          <Button handler={handlerSaveEditButton} label={textos["guardar"]} />
         </div>
       }
     >
@@ -71,10 +73,10 @@ const Diet: React.FC = ( ) => {
       )}
       <div className="max-w-screen-md mx-auto p-4">
         <h6 className="text-2xl font-bold text-center">
-          ¿Sigues alguna dieta?
+          {textos["dieta_header"]}
         </h6>
         <p className=" mb-8 text-xl mt-2 text-gray-600 text-center">
-          Indícalo para que podamos mostrarte recetas personalizadas. 
+          {textos["dieta_sub_header"]}
         </p>
         <RadioGroup optionsGroup={options} defaultOption={optionUser} />
       </div>

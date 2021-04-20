@@ -1,7 +1,6 @@
 import React from "react";
-
-import CardRecipe from "../../components/CardRecipe/CardRecipe";
-import Scaffold from "../../components/Scaffold/Scaffold";
+import CardRecipe from "components/CardRecipe/CardRecipe";
+import Scaffold from "components/Scaffold/Scaffold";
 
 //toca hacer algo para cortar los nombres largos cuando se implementen publicaciones
 const recetas = [

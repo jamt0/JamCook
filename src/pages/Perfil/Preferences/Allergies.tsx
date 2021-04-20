@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { IonLoading } from "@ionic/react";
 import Button from "components/Button/Button";
 import ChipGroup from "components/ChipGroup/ChipGroup";
 import Scaffold from "components/Scaffold/Scaffold";
 import {useHistory} from 'react-router';
-import Server from "server";
 import { useAuth } from "auth";
-import { IonLoading } from "@ionic/react";
+import { useSettingsUser } from "context/settingsUser";
+import Server from "server";
 
 //cuando se cree la tabla ingredientes se cambia esto.
 const ingredientes = [
@@ -40,6 +41,7 @@ const Allergies: React.FC = ( ) => {
 
   const history = useHistory();
   const { auth } = useAuth()!;
+  const { textos } = useSettingsUser()!;
   
   const [ingredients, setIngredients] = useState()
   const [ingredientsUser, setIngredientsUser] = useState()
@@ -87,10 +89,10 @@ const Allergies: React.FC = ( ) => {
 
   return (
     <Scaffold
-      tituloHeader="Alergias e intolerancias"
+      tituloHeader={textos["preferencias_alergias_intolerancias"]}
       footer={
         <div className="p-2 max-w-screen-md mx-auto">
-          <Button handler={handlerSaveEditButton} label={"Guardar"} />
+          <Button handler={handlerSaveEditButton} label={textos["guardar"]} />
         </div>
       }
     >
@@ -100,11 +102,10 @@ const Allergies: React.FC = ( ) => {
       )}
       <div className="max-w-screen-md mx-auto p-4">
         <h6 className="text-2xl font-bold text-center">
-          ¿Tienes alguna alergia o intolerancia?
+          {textos["alergias_intolerancias_header"]}
         </h6>
         <p className=" mb-8 text-xl mt-2 text-gray-600 text-center">
-          Así podremos filtrar en tus busquedas las recetas que tengan estos
-          ingredientes.
+          {textos["alergias_intolerancias_sub_header"]}
         </p>
         <ChipGroup ingredientes={ingredientes}/>
       </div>

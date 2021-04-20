@@ -1,31 +1,26 @@
 import { ErrorMessage } from "@hookform/error-message";
-import { IonItem, IonLabel, IonSelect, IonSelectOption } from "@ionic/react";
+import { IonItem, IonLabel, IonTextarea } from "@ionic/react";
 import { FunctionComponent } from "react";
 import { Controller } from "react-hook-form";
 
-type Option = {
-  label: string;
-  value: string;
-};
-
 interface Props {
+  defaultValue: any;
   control: any;
   errors: any;
-  defaultValue: any;
+  rules: any;
   name: string;
   label: string;
-  rules: any;
-  options: Option[] | undefined;
+  placeHolder: string;
 }
 
-const Select: FunctionComponent<Props> = ({
-  options,
+const TextArea : FunctionComponent<Props> = ({
   control,
   errors,
   defaultValue,
   name,
   label,
-  rules
+  rules,
+  placeHolder
 }) => {
   return (
     <>
@@ -34,28 +29,23 @@ const Select: FunctionComponent<Props> = ({
           {label}
         </IonLabel>
         <Controller
-          render={({ field: { onChange, onBlur, value } }) => (
-            <IonSelect
-              value={value}
+          render={({
+            field: { onChange, onBlur, value, ref }
+          }) => (
+            <IonTextarea
+              placeholder={placeHolder}
+              rows={4}
+              className="mt-2"
               onIonChange={onChange}
               onIonBlur={onBlur}
-              interface="action-sheet"
-              className="mt-2"
-            >
-              {options ? options.map((opcion) => {
-                return (
-                  <IonSelectOption value={opcion.value} key={opcion.value}>
-                    {opcion.label}
-                  </IonSelectOption>
-                );
-              }):""}
-            </IonSelect>
+              value={value} //comentar esto soluciona lo del autocompletado, pero daña los valores iniciales
+            />
           )}
           control={control}
           name={name}
           defaultValue={defaultValue}
           rules={rules}
-        />
+          />
       </IonItem>
       <ErrorMessage
         errors={errors}
@@ -66,4 +56,4 @@ const Select: FunctionComponent<Props> = ({
   );
 };
 
-export default Select;
+export default TextArea;

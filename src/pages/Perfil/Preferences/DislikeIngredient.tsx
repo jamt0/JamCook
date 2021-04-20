@@ -6,6 +6,7 @@ import Searcher from "components/Searcher/Searcher";
 import Scaffold from "components/Scaffold/Scaffold";
 import {useHistory} from 'react-router';
 import { useAuth } from "auth";
+import { useSettingsUser } from "context/settingsUser";
 import Server from "server";
 
 const ingredientes = [
@@ -60,6 +61,7 @@ const DislikeIngredient: React.FC = () => {
   
   const history = useHistory();
   const { auth } = useAuth()!;
+  const { textos } = useSettingsUser()!;
   
   const [showModal, setShowModal] = useState(false);
   const [ingredients, setIngredients] = useState()
@@ -108,10 +110,10 @@ const DislikeIngredient: React.FC = () => {
 
   return (
     <Scaffold
-      tituloHeader="Ingredientes"
+      tituloHeader={textos["preferencias_ingredientes_no_gustan"]}
       footer={
         <div className="p-2 max-w-screen-md mx-auto">
-          <Button handler={handlerSaveEditButton} label={"Guardar"} />
+          <Button handler={handlerSaveEditButton} label={textos["guardar"]} />
         </div>
       }
     >
@@ -121,23 +123,22 @@ const DislikeIngredient: React.FC = () => {
       )}
       <div className="max-w-screen-md mx-auto p-4">
         <h6 className="text-2xl font-bold text-center">
-          ¿Qué ingredientes te disgustan?
+          {textos["ingredientes_no_gustan_header"]}
         </h6>
         <p className=" mb-8 text-xl mt-2 text-gray-600 text-center">
-          Indícanos que ingredientes no te gustan para filtrarlos en las
-          búsquedas que realices.
+          {textos["ingredientes_no_gustan_sub_header"]}
         </p>
         <ChipGroup ingredientes={ingredientes} />
         <div className="ml-4 mt-4">
           <Button
-            label="Ver más"
+            label={textos["ver_mas"]}
             type="Link"
             handler={() => setShowModal(true)}
           />
         </div>
         <IonModal isOpen={showModal} >
-          <Searcher placeHolder={"¿Qué ingrediente te disgusta?"} />
-          <IonButton onClick={() => setShowModal(false)}>Cerrar</IonButton>
+          <Searcher placeHolder={textos["ingredientes_no_gustan_searcher"]}/>
+          <IonButton onClick={() => setShowModal(false)}>{textos["cerrar"]}</IonButton>
         </IonModal>
       </div>
     </Scaffold>

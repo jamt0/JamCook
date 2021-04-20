@@ -19,13 +19,12 @@ interface IUser {
 }
 
 const SignIn: React.FC = () => {
-
   const history = useHistory();
   const { signIn, loading, auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
 
   const [hasErrors, setHasErrors] = useState<string>("");
-  
+
   const {
     control,
     handleSubmit,
@@ -62,23 +61,23 @@ const SignIn: React.FC = () => {
     required: textos["campo_requerido"],
     minLength: {
       value: 8,
-      message: textos["campo_contrasena_min"]
+      message: textos["campo_contrasena_min"],
     },
   };
-  
+
   const rulesEmail = {
     required: textos["campo_requerido"],
     pattern: {
       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-      message: textos["campo_correo_invalido"]
+      message: textos["campo_correo_invalido"],
     },
   };
 
   console.log("soy la page login");
 
-  if(auth.loggedIn) {
+  if (auth.loggedIn) {
     return <Redirect to="/home" />;
-  }else{
+  } else {
     return (
       <Scaffold
         tituloHeader={textos["signin_iniciar_sesion"]}
@@ -103,28 +102,28 @@ const SignIn: React.FC = () => {
         <IonLoading isOpen={loading} translucent />
         <div className="max-w-screen-md mx-auto p-4 h-full">
           {hasErrors != "" && (
-            <p className="text-red-600 bg-red-100 px-6 py-3 my-2">{hasErrors}</p>
+            <p className="text-red-600 bg-red-100 px-6 py-3 my-2">
+              {hasErrors}
+            </p>
           )}
-          <form>
-            <Input
-              control={control}
-              errors={errors}
-              defaultValue={defaultValues.email}
-              name="email"
-              type="email"
-              label={textos["campo_correo"]}
-              rules={rulesEmail}
-            />
-            <Input
-              control={control}
-              errors={errors}
-              defaultValue={defaultValues.password}
-              name="password"
-              type="password"
-              label={textos["campo_contraseña"]}
-              rules={rulesPassword}
-            />
-          </form>
+          <Input
+            control={control}
+            errors={errors}
+            defaultValue={defaultValues.email}
+            name="email"
+            type="email"
+            label={textos["campo_correo"]}
+            rules={rulesEmail}
+          />
+          <Input
+            control={control}
+            errors={errors}
+            defaultValue={defaultValues.password}
+            name="password"
+            type="password"
+            label={textos["campo_contrasena"]}
+            rules={rulesPassword}
+          />
           <div className="flex justify-end pt-6">
             <Button
               handler={handlerForgetPasswordButton}

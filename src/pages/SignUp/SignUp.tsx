@@ -144,7 +144,7 @@ const SignUp: React.FC = () => {
             defaultValue={defaultValues.password}
             name="password"
             type="password"
-            label={textos["campo_contraseña"]}
+            label={textos["campo_contrasena"]}
             rules={rulesPassword}
           />
           <div className="flex justify-center">

@@ -1,9 +1,10 @@
+import React from "react";
 import { IonContent, IonFab, IonFabButton, IonIcon, IonPage } from "@ionic/react";
 import { addOutline } from "ionicons/icons";
-import React from "react";
-import { RouteComponentProps, useHistory } from "react-router-dom";
-import ItemIngredient from "../../components/ItemIngredient/ItemIngredient";
-import Searcher from "../../components/Searcher/Searcher";
+import { useHistory } from "react-router-dom";
+import ItemIngredient from "components/ItemIngredient/ItemIngredient";
+import Searcher from "components/Searcher/Searcher";
+import { useSettingsUser } from "context/settingsUser";
 
 const imagenes = [
   {
@@ -109,22 +110,24 @@ const imagenes = [
 ];
 
 const FoodBasket: React.FC = () => {
-  console.log("soy page foodbasket");
-
+  
   const history = useHistory();
-
+  const { textos } = useSettingsUser()!;
+  
   const handlerAddIngredient = (e: any) => {
     e.preventDefault();
     history.push("/foodBasket/add");
   };
 
+  console.log("soy page foodbasket");
+
   return (
     <IonPage>
       <IonContent>
         <div className="flex flex-col pt-8 text-left sm:text-center text-gray-600 text-2xl md:text-3xl mx-4 font-bold">
-          <h6>Canasta</h6>
+          <h6>{textos["page_almacen"]}</h6>
         </div>
-        <Searcher placeHolder={"¿Qué ingrediente buscas?"} />
+        <Searcher placeHolder={textos["ingredientes_buscas"]} />
         <div className="px-2 mb-20">
           {imagenes.map((imagen, index) => {
             return (

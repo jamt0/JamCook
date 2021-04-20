@@ -5,9 +5,10 @@ import RadioGroup from "components/RadioGroup/RadioGroup";
 import Scaffold from "components/Scaffold/Scaffold";
 import { useHistory } from 'react-router';
 import { useAuth } from "auth";
+import { useSettingsUser } from "context/settingsUser";
 import Server from "server";
 
-const opcionesGroup = [
+const options = [
   {
     "descripcion" : "No, yo me lo guiso, yo me lo como",
     "value": "1",
@@ -22,6 +23,7 @@ const Comensals: React.FC = ( ) => {
 
   const history = useHistory();
   const { auth } = useAuth()!;
+  const { textos } = useSettingsUser()!;
 
   const [amountUser, setAmountUser] = useState();
   const [loading, setLoading] = useState<boolean>(false);
@@ -54,10 +56,10 @@ const Comensals: React.FC = ( ) => {
 
   return (
     <Scaffold
-      tituloHeader="Número de comensales"
+      tituloHeader={textos["preferencias_numero_comensales"]}
       footer={
         <div className="p-2 max-w-screen-md mx-auto">
-          <Button handler={handlerSaveEditButton} label={"Guardar"} />
+          <Button handler={handlerSaveEditButton} label={textos["guardar"]} />
         </div>
       }
     >
@@ -67,12 +69,14 @@ const Comensals: React.FC = ( ) => {
       )}
       <div className="max-w-screen-md mx-auto p-4">
         <h6 className="text-2xl font-bold text-center">
-          ¿Cocinas para alguien más?
+          {textos["comensales_header"]}
+          
         </h6>
         <p className=" mb-8 text-xl mt-2 text-gray-600 text-center">
-          Así podremos recomendarte platos con las porciones adecuadas.
+          {textos["comensales_sub_header"]}
+          
         </p>
-        <RadioGroup optionsGroup={opcionesGroup} defaultOption="1"/>
+        <RadioGroup optionsGroup={options} defaultOption="1"/>
       </div>
     </Scaffold>
   );

@@ -5,11 +5,14 @@ import Scaffold from "components/Scaffold/Scaffold";
 import { useHistory } from "react-router";
 import { IonLoading } from "@ionic/react";
 import { useAuth } from "auth";
+import { useSettingsUser } from "context/settingsUser";
 import Server from "server";
 
 const MyObjectives: React.FC = () => {
+
   const history = useHistory();
   const { auth } = useAuth()!;
+  const { textos } = useSettingsUser()!;
 
   const [options, setOptions] = useState();
   const [optionUser, setOptionUser] = useState();
@@ -57,10 +60,10 @@ const MyObjectives: React.FC = () => {
 
   return (
     <Scaffold
-      tituloHeader="Mis Objetivos"
+      tituloHeader={textos["preferencias_mis_objetivos"]}
       footer={
         <div className="p-2 max-w-screen-md mx-auto">
-          <Button handler={handlerSaveEditButton} label={"Guardar"} />
+          <Button handler={handlerSaveEditButton} label={textos["guardar"]} />
         </div>
       }
     >
@@ -70,10 +73,10 @@ const MyObjectives: React.FC = () => {
       )}
       <div className="max-w-screen-md mx-auto p-4">
         <h6 className="text-2xl font-bold text-center">
-          ¿Qué objetivos persigues?
+          {textos["objetivos_header"]}
         </h6>
         <p className=" mb-8 text-xl mt-2 text-gray-600 text-center">
-          Así podremos mejorar las recomendaciones para ti.
+          {textos["objetivos_sub_header"]}
         </p>
         <RadioGroup optionsGroup={options} defaultOption={optionUser} />
       </div>

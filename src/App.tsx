@@ -38,15 +38,16 @@ import "@ionic/react/css/display.css";
 import "theme/variables.css";
 
 const App: React.FC = () => {
-  console.log("soy la app")
-
+  
   const { auth, initialize } = useAuth()!;
   console.log(auth)
 
   useEffect(() => {
     !auth.initialized && (async () => await initialize())();
   },[auth, initialize]);
-
+  
+  console.log("soy la app")
+  
   if (!auth || !auth.initialized) { 
     return (
       <IonApp>

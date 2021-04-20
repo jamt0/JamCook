@@ -1,15 +1,15 @@
+import React from "react";
+import ItemIngredient from "components/ItemIngredient/ItemIngredient";
+import Scaffold from "components/Scaffold/Scaffold";
+import Searcher from "components/Searcher/Searcher";
+import { checkmarkSharp } from "ionicons/icons";
+import {useHistory} from 'react-router';
+import { useSettingsUser } from "context/settingsUser";
 import {
   IonFab,
   IonFabButton,
   IonIcon,
 } from "@ionic/react";
-import { checkmarkSharp } from "ionicons/icons";
-import React from "react";
-
-import ItemIngredient from "../../components/ItemIngredient/ItemIngredient";
-import Scaffold from "../../components/Scaffold/Scaffold";
-import Searcher from "../../components/Searcher/Searcher";
-import {useHistory} from 'react-router';
 
 const imagenes = [
   {
@@ -117,15 +117,18 @@ const imagenes = [
 const FoodBasketAdd: React.FC = ( ) => {
   
   const history = useHistory();
+  const { textos } = useSettingsUser()!;
 
   const handlerAddIngredient = (e: any) => {
     e.preventDefault();
     history.push("/home/foodBasket");
   };
 
+  console.log("soy page foodbasket add");
+
   return (
-    <Scaffold tituloHeader="Agrega Ingredientes" >
-      <Searcher placeHolder={"¿Qué ingrediente buscas?"} />
+    <Scaffold tituloHeader={textos["agregar_ingredientes"]} >
+      <Searcher placeHolder={textos["ingredientes_buscas"]} />
       <div className="px-2 mb-20">
         {imagenes.map((imagen, index) => {
           return (

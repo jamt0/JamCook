@@ -1,19 +1,20 @@
 import { createContext, useContext, useState } from "react";
-import textos from 'lang/es/textos'
+import Spanish from 'lang/es/textos'
+import English from 'lang/en/textos'
 
 type DataSettings = {
-  lang: string;
+  language: string;
   theme: string;
-  textos: any;
-  setLang: () => void;
-  setTheme: () => void;
+  textos: typeof English | typeof Spanish;
+  setLanguage: (language: string) => void;
+  setTheme: (theme: string) => void;
 };
 
 const settingDefaultValues: DataSettings = {
-  lang: "es",
+  language: "es",
   theme: "light",
-  textos: textos,
-  setLang: () => {},
+  textos: Spanish,
+  setLanguage: () => {},
   setTheme: () => {},
 };
 
@@ -26,14 +27,19 @@ type Props = {
 };
 
 export const SettingsProvider = ({ children }: Props): JSX.Element => {
-  const [lang, setLangState] = useState<string>(settingDefaultValues.lang);
-  const [textos, setTextos] = useState<string>(settingDefaultValues.textos);
+  const [language, setLanguageState] = useState<string>(settingDefaultValues.language);
+  const [textos, setTextos] = useState<typeof English | typeof Spanish>(settingDefaultValues.textos);
   const [theme, setThemeState] = useState<string>(settingDefaultValues.theme);
 
-  const setLang = () => {};
-  const setTheme = () => {};
+  const setLanguage = (language: string) => {
+    setLanguageState(language);
+    setTextos(English)
+  };
+  const setTheme = (theme: string) => {
+    setThemeState(theme);
+  };
 
-  const data = { lang, theme, textos, setLang, setTheme };
+  const data = { language, theme, textos, setLanguage, setTheme };
 
   return (
     <SettingsContext.Provider value={data}>{children}</SettingsContext.Provider>

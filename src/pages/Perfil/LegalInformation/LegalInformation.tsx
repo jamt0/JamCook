@@ -1,21 +1,23 @@
 import { IonItem, IonList } from "@ionic/react";
 import React from "react";
-
-import Scaffold from "../../../components/Scaffold/Scaffold";
+import Scaffold from "components/Scaffold/Scaffold";
+import { useSettingsUser } from "context/settingsUser";
 
 const LegalInformation: React.FC = ( ) => {
 
+  const { textos } = useSettingsUser()!;
+  
   return (
-    <Scaffold tituloHeader="Información Legal" >
+    <Scaffold tituloHeader={textos["informacion_legal"]} >
       <IonList>
         <IonItem className="px-6 pb-3" lines="none" routerLink="/perfil/legalInformation/termsAndConditions">
-          <p className="text-lg">Términos y condiciones</p>
+          <p className="text-lg">{textos["terminos_condiciones"]}</p>
         </IonItem>
         <IonItem className="px-6 pb-3" lines="none" routerLink="/perfil/legalInformation/privacyPolicy">
-          <p className="text-lg">Política de privacidad</p>
+          <p className="text-lg">{textos["politica_privacidad"]}</p>
         </IonItem>
         <IonItem className="px-6 pb-3" lines="none" routerLink="/perfil/legalInformation/cookiesPolicy">
-          <p className="text-lg">Política de cookies</p>
+          <p className="text-lg">{textos["politica_cookies"]}</p>
         </IonItem>
       </IonList>
     </Scaffold>

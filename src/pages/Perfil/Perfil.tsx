@@ -6,7 +6,8 @@ import Center from "components/Center/Center";
 import { useAuth } from "auth";
 import Server from "server";
 import config from "config/general";
-import { useSettingsUser } from 'context/settingsUser';import {
+import { useSettingsUser } from 'context/settingsUser';
+import {
   IonContent,
   IonIcon,
   IonItem,
@@ -78,7 +79,7 @@ const Perfil: React.FC = () => {
           <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
         )}
         <div className="flex md:text-center flex-col md:mx-auto max-w-screen-md py-8 text-left text-gray-600 text-2xl md:text-3xl mx-4 font-bold">
-          <h6>{textos["perfil"]}</h6>
+          <h6>{textos["page_perfil"]}</h6>
         </div>
           <div className="md:auto-cols-max md:grid md:grid-cols-2 max-w-screen-md md:flex md:mx-auto">
             {auth.loggedIn ? (
@@ -129,7 +130,7 @@ const Perfil: React.FC = () => {
                     slot="start"
                     className="text-4xl"
                   />
-                  <p className="text-lg">{textos["perfil_preferencias"]}</p>
+                  <p className="text-lg">{textos["perfil_preferencias_alimentarias"]}</p>
                 </IonItem>
               )}
               <IonItem
@@ -154,7 +155,7 @@ const Perfil: React.FC = () => {
                   slot="start"
                   className="text-4xl"
                 />
-                <p className="text-lg">{textos["configuracion"]}</p>
+                <p className="text-lg">{textos["configuraciones"]}</p>
               </IonItem>
               <IonItem
                 className="px-6 pb-3"
