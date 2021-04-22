@@ -1,13 +1,13 @@
 import React from "react";
-import { IonContent, IonPage, IonText } from "@ionic/react";
+import { IonText } from "@ionic/react";
 import Lottie from "react-lottie";
 import animationData from "assets/40806-error-404.json";
 import { useHistory } from "react-router";
 import Button from "components/Button/Button";
 import { useSettingsUser } from "context/settingsUser";
+import Scaffold from "components/Scaffold/Scaffold";
 
 const NoFound: React.FC = () => {
-
   const history = useHistory();
   const { textos } = useSettingsUser()!;
 
@@ -26,9 +26,9 @@ const NoFound: React.FC = () => {
   };
 
   return (
-    <IonPage>
-      <IonContent>
-        <div className="flex flex-col justify-between max-w-screen-md mx-auto pt-16 pb-8 px-4 h-full">
+    <Scaffold>
+      <Scaffold.Content>
+        <div className="flex flex-col justify-between pt-12 pb-4 h-full">
           <div>
             <h1 className="text-center text-5xl md:text-7xl font-black mb-4">
               <IonText className="text-red-600">{textos["jam"]}</IonText>
@@ -44,10 +44,12 @@ const NoFound: React.FC = () => {
               {textos["page_404_ups"]}
             </h6>
           </div>
-          <Button handler={handlerRedirectButton} label={textos["page_404_inicio"]} />
+          <Button onClick={handlerRedirectButton}>
+            {textos["page_404_inicio"]}
+          </Button>
         </div>
-      </IonContent>
-    </IonPage>
+      </Scaffold.Content>
+    </Scaffold>
   );
 };
 export default NoFound;

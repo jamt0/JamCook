@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from "react";
-import Button from "../Button/Button";
+import Button from "components/Button/Button";
 import Commentary from "../Commentary/Commentary";
 
 interface Props {
@@ -49,7 +49,9 @@ const CommentaryBox: FunctionComponent<Props> = ({ comentarios }) => {
         );
       })}
       <div className="mt-4">
-        <Button label="Ver todos los comentarios" type="Link" />
+        <Button color="light">
+          Ver todos los comentarios
+        </Button>
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import { IonButton, IonIcon } from "@ionic/react";
 import React, { useState } from "react";
-import { useSettingsUser } from 'context/settingsUser';
+import { useSettingsUser } from "context/settingsUser";
 import ImageRecipe from "components/ImageRecipe/ImageRecipe";
 import Scaffold from "components/Scaffold/Scaffold";
 import Button from "components/Button/Button";
@@ -93,83 +93,93 @@ const Comentarios = [
     avatarUser: "https://picsum.photos/200/300?random=1",
     nombreUsuario: "Leonardo Santos Franco",
     fechaPublicacion: "Hace 4 dias",
-    comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
-    valoracion: [ true, true, true, true, true ],
+    comentario:
+      "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+    valoracion: [true, true, true, true, true],
     respuestas: [
       {
         id: 1,
         avatarUser: "https://picsum.photos/200/300?random=3",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
-        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+        comentario:
+          "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
       },
       {
         id: 2,
         avatarUser: "https://picsum.photos/200/300?random=4",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
-        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+        comentario:
+          "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
       },
       {
         id: 3,
         avatarUser: "https://picsum.photos/200/300?random=1",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
-        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+        comentario:
+          "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
       },
-    ]
+    ],
   },
   {
     id: 2,
     avatarUser: "https://picsum.photos/200/300?random=2",
     nombreUsuario: "Leonardo Santos Franco",
     fechaPublicacion: "Hace 4 dias",
-    comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
-    valoracion: [ true, false, false, false, false ],
+    comentario:
+      "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+    valoracion: [true, false, false, false, false],
     respuestas: [
       {
         id: 4,
         avatarUser: "https://picsum.photos/200/300?random=3",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
-        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+        comentario:
+          "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
       },
       {
         id: 5,
         avatarUser: "https://picsum.photos/200/300?random=4",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
-        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+        comentario:
+          "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
       },
-    ]
+    ],
   },
   {
     id: 3,
     avatarUser: "https://picsum.photos/200/300?random=6",
     nombreUsuario: "Leonardo Santos Franco",
     fechaPublicacion: "Hace 4 dias",
-    comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
-    valoracion: [ true, true, true, true, false ],
-    respuestas: []
+    comentario:
+      "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+    valoracion: [true, true, true, true, false],
+    respuestas: [],
   },
   {
     id: 4,
     avatarUser: "https://picsum.photos/200/300?random=8",
     nombreUsuario: "Leonardo Santos Franco",
     fechaPublicacion: "Hace 4 dias",
-    comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
-    valoracion: [ true, true, false, false, false ],
+    comentario:
+      "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+    valoracion: [true, true, false, false, false],
     respuestas: [
       {
         id: 6,
         avatarUser: "https://picsum.photos/200/300?random=9",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
-        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
-      }
-    ]
+        comentario:
+          "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+      },
+    ],
   },
-]
+];
 
 const tags = [
   {
@@ -202,7 +212,6 @@ const tags = [
     ingrediente: "Queso",
     outline: false,
   },
-
 ];
 
 const recetasMasVistas = [
@@ -267,8 +276,7 @@ const recetasRelacionadas = [
   },
 ];
 
-const Recipe: React.FC = ( ) => {
-
+const Recipe: React.FC = () => {
   const [porciones, setPorciones] = useState(1);
   const [isEstrellas, setEstrellas] = useState([
     false,
@@ -303,9 +311,10 @@ const Recipe: React.FC = ( ) => {
   };
 
   return (
-    <Scaffold
-      accionesHeader={
-        <>
+    <Scaffold>
+      <Scaffold.Header title={"Receta"}>
+        <Scaffold.Header.BackAction />
+        <Scaffold.Header.Actions>
           <IonButton onClick={handlerShare}>
             <IonIcon slot="icon-only" icon={arrowRedoOutline} color="dark" />
           </IonButton>
@@ -315,21 +324,20 @@ const Recipe: React.FC = ( ) => {
           <IonButton onClick={handlerMark}>
             <IonIcon slot="icon-only" icon={bookmarkOutline} color="dark" />
           </IonButton>
-        </>
-      }
-    >
-      {/* Portada Receta*/}
-      <ImageRecipe pathImg={receta.pathImg} height={"72"} sinRedondeo={true}>
-        <h6 className="text-white text-center text-2xl mx-auto my-auto">
-          {receta.titulo}
-        </h6>
-      </ImageRecipe>
+        </Scaffold.Header.Actions>
+      </Scaffold.Header>
+      <Scaffold.Content>
+        {/* Portada Receta*/}
+        <ImageRecipe src={receta.pathImg} height={72}>
+          <h6 className="text-white text-center text-2xl mx-auto my-auto">
+            {receta.titulo}
+          </h6>
+        </ImageRecipe>
 
-      <div className="max-w-screen-md mx-auto">
         {/* Encabezado Receta*/}
         <ContainerSection>
           <Center direccion="col" className="mt-4">
-            <Avatar avatarUser={receta.avatarUser} tamaño="8"/>
+            <Avatar src={receta.avatarUser} size={8} />
             <h2 className="text-sm mt-2 font-bold">{receta.nameUser}</h2>
             <Center direccion="row" className="mt-2">
               {receta.valoracion.map((element, index) => {
@@ -364,7 +372,7 @@ const Recipe: React.FC = ( ) => {
                 icon={nutritionOutline}
                 className="text-black text-lg mr-1"
               />
-              <h3 className="text-sm">{"8"+ " " + textos["ingredientes"]}</h3>
+              <h3 className="text-sm">{"8" + " " + textos["ingredientes"]}</h3>
             </Center>
             <Center direccion="row">
               <IonIcon
@@ -386,7 +394,7 @@ const Recipe: React.FC = ( ) => {
         {/* Porciones Receta*/}
         <ContainerSection>
           <TitleRecipe>{textos["recipe_porciones_preparar"]}</TitleRecipe>
-          <Counter porciones={porciones} setPorciones={setPorciones}/>
+          <Counter porciones={porciones} setPorciones={setPorciones} />
         </ContainerSection>
 
         {/* Ingredientes Receta*/}
@@ -424,30 +432,32 @@ const Recipe: React.FC = ( ) => {
         {/* Receta Hecha*/}
         <ContainerSection>
           <TitleRecipe>{textos["recipe_hiciste_receta"]}</TitleRecipe>
-            <Button
-              handler={handlerRecetaHecha}
-              label={textos["recipe_receta_hecha"]}
-              type={"Secundario"}
-            />
+          <Button onClick={handlerRecetaHecha} color="secondary">
+            {textos["recipe_receta_hecha"]}
+          </Button>
         </ContainerSection>
 
         {/* Valoración Hecha*/}
         <ContainerSection>
           <TitleRecipe>{textos["recipe_gusto_receta"]}</TitleRecipe>
-          <Rating estrellas={isEstrellas} handlerValoracion={handlerValoracion} tamaño={"12"} />
+          <Rating
+            stars={isEstrellas}
+            handlerValoracion={handlerValoracion}
+            size={12}
+          />
         </ContainerSection>
 
         {/* Comentarios Receta*/}
         <ContainerSection>
           <TitleRecipe>{textos["comentarios"]}</TitleRecipe>
-          <CommentaryBox comentarios = {Comentarios} />
+          <CommentaryBox comentarios={Comentarios} />
         </ContainerSection>
 
         {/* Tags Receta*/}
         <ContainerSection>
           <TitleRecipe>{textos["recipe_temas_relacionados"]}</TitleRecipe>
           <div className="flex flex-wrap place-content-center">
-            <ChipGroup ingredientes={tags}/>
+            <ChipGroup ingredientes={tags} />
           </div>
         </ContainerSection>
 
@@ -465,12 +475,9 @@ const Recipe: React.FC = ( ) => {
 
         {/* Guardar Receta*/}
         <ContainerSection>
-          <Button 
-            label={textos["recipe_guardar_receta"]}
-            type={"principal"} 
-          />
+          <Button>{textos["recipe_guardar_receta"]}</Button>
         </ContainerSection>
-      </div>
+      </Scaffold.Content>
     </Scaffold>
   );
 };

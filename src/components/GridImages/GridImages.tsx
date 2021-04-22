@@ -28,7 +28,7 @@ const GridImages: FunctionComponent<Props> = ({imagenes}) => {
                   {imagen.titulo}
                 </h6>
               </div>
-              <ImageRecipe pathImg={imagen.pathImg} height={"40"}/>
+              <ImageRecipe src={imagen.pathImg} height={40} rounded />
             </div>
           </Link>
         );

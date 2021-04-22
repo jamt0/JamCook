@@ -3,13 +3,12 @@ import React, { useEffect, useState } from "react";
 import Button from "components/Button/Button";
 import RadioGroup from "components/RadioGroup/RadioGroup";
 import Scaffold from "components/Scaffold/Scaffold";
-import {useHistory} from 'react-router';
+import { useHistory } from "react-router";
 import { useAuth } from "auth";
 import { useSettingsUser } from "context/settingsUser";
 import Server from "server";
 
-const CookingLevel: React.FC = ( ) => {
-  
+const CookingLevel: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
@@ -18,7 +17,7 @@ const CookingLevel: React.FC = ( ) => {
   const [optionUser, setOptionUser] = useState();
   const [loading, setLoading] = useState<boolean>(false);
   const [hasErrors, setHasErrors] = useState<string>("");
-  
+
   const handlerSaveEditButton = (e: any) => {
     e.preventDefault();
     history.push("/perfil/preferences");
@@ -28,7 +27,7 @@ const CookingLevel: React.FC = ( ) => {
     setLoading(true);
     Server.getkitchenLevels()
       .then((response) => {
-        console.log(response)
+        console.log(response);
         if (!response.data.error) {
           setOptions(response.data.options);
           setLoading(false);
@@ -60,19 +59,15 @@ const CookingLevel: React.FC = ( ) => {
   }, []);
 
   return (
-    <Scaffold
-      tituloHeader={textos["preferencias_mi_nivel_cocina"]}
-      footer={
-        <div className="p-2 max-w-screen-md mx-auto">
-          <Button handler={handlerSaveEditButton} label={textos["guardar"]} />
-        </div>
-      }
-    >
-      <IonLoading isOpen={loading} translucent />
-      {hasErrors != "" && (
-        <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
-      )}
-      <div className="max-w-screen-md mx-auto p-4">
+    <Scaffold>
+      <Scaffold.Header title={textos["preferencias_mi_nivel_cocina"]}>
+        <Scaffold.Header.BackAction />
+      </Scaffold.Header>
+      <Scaffold.Content>
+        <IonLoading isOpen={loading} translucent />
+        {hasErrors != "" && (
+          <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
+        )}
         <h6 className="text-2xl font-bold text-center">
           {textos["nivel_cocina_header"]}
         </h6>
@@ -80,7 +75,10 @@ const CookingLevel: React.FC = ( ) => {
           {textos["nivel_cocina_sub_header"]}
         </p>
         <RadioGroup optionsGroup={options} defaultOption={optionUser} />
-      </div>
+      </Scaffold.Content>
+      <Scaffold.Footer>
+        <Button onClick={handlerSaveEditButton}>{textos["guardar"]}</Button>
+      </Scaffold.Footer>
     </Scaffold>
   );
 };

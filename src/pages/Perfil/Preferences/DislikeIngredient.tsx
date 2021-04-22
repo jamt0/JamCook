@@ -4,7 +4,7 @@ import Button from "components/Button/Button";
 import ChipGroup from "components/ChipGroup/ChipGroup";
 import Searcher from "components/Searcher/Searcher";
 import Scaffold from "components/Scaffold/Scaffold";
-import {useHistory} from 'react-router';
+import { useHistory } from "react-router";
 import { useAuth } from "auth";
 import { useSettingsUser } from "context/settingsUser";
 import Server from "server";
@@ -58,15 +58,14 @@ const ingredientes = [
 ];
 
 const DislikeIngredient: React.FC = () => {
-  
   const history = useHistory();
   const { auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
-  
+
   const [showModal, setShowModal] = useState(false);
-  const [ingredients, setIngredients] = useState()
-  const [ingredientsUser, setIngredientsUser] = useState()
-  const [loading, setLoading] = useState<boolean>(false)
+  const [ingredients, setIngredients] = useState();
+  const [ingredientsUser, setIngredientsUser] = useState();
+  const [loading, setLoading] = useState<boolean>(false);
   const [hasErrors, setHasErrors] = useState<string>("");
 
   const handlerSaveEditButton = (e: any) => {
@@ -77,24 +76,9 @@ const DislikeIngredient: React.FC = () => {
   useEffect(() => {
     setLoading(true);
     Server.getDislikeIngredients()
-    .then((response) => {
-      if (!response.data.error) {
-        setIngredients(response.data.ingredients);
-        setLoading(false);
-      } else {
-        setHasErrors(response.data.error);
-        setLoading(false);
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      setLoading(false);
-    });
-    if (auth.user?.id) {
-      Server.getDislikeIngredientsUser(auth.user.id)
       .then((response) => {
         if (!response.data.error) {
-          setIngredientsUser(response.data.ingredients);
+          setIngredients(response.data.ingredients);
           setLoading(false);
         } else {
           setHasErrors(response.data.error);
@@ -105,23 +89,34 @@ const DislikeIngredient: React.FC = () => {
         console.log(error);
         setLoading(false);
       });
+    if (auth.user?.id) {
+      Server.getDislikeIngredientsUser(auth.user.id)
+        .then((response) => {
+          if (!response.data.error) {
+            setIngredientsUser(response.data.ingredients);
+            setLoading(false);
+          } else {
+            setHasErrors(response.data.error);
+            setLoading(false);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoading(false);
+        });
     }
-  }, [])
+  }, []);
 
   return (
-    <Scaffold
-      tituloHeader={textos["preferencias_ingredientes_no_gustan"]}
-      footer={
-        <div className="p-2 max-w-screen-md mx-auto">
-          <Button handler={handlerSaveEditButton} label={textos["guardar"]} />
-        </div>
-      }
-    >
-      <IonLoading isOpen={loading} translucent/>
-      {hasErrors != "" && (
-        <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
-      )}
-      <div className="max-w-screen-md mx-auto p-4">
+    <Scaffold>
+      <Scaffold.Header title={textos["preferencias_ingredientes_no_gustan"]}>
+        <Scaffold.Header.BackAction />
+      </Scaffold.Header>
+      <Scaffold.Content>
+        <IonLoading isOpen={loading} translucent />
+        {hasErrors != "" && (
+          <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
+        )}
         <h6 className="text-2xl font-bold text-center">
           {textos["ingredientes_no_gustan_header"]}
         </h6>
@@ -130,17 +125,20 @@ const DislikeIngredient: React.FC = () => {
         </p>
         <ChipGroup ingredientes={ingredientes} />
         <div className="ml-4 mt-4">
-          <Button
-            label={textos["ver_mas"]}
-            type="Link"
-            handler={() => setShowModal(true)}
-          />
+          <Button onClick={() => setShowModal(true)} color="light">
+            {textos["ver_mas"]}
+          </Button>
         </div>
-        <IonModal isOpen={showModal} >
-          <Searcher placeHolder={textos["ingredientes_no_gustan_searcher"]}/>
-          <IonButton onClick={() => setShowModal(false)}>{textos["cerrar"]}</IonButton>
+        <IonModal isOpen={showModal}>
+          <Searcher placeHolder={textos["ingredientes_no_gustan_searcher"]} />
+          <IonButton onClick={() => setShowModal(false)}>
+            {textos["cerrar"]}
+          </IonButton>
         </IonModal>
-      </div>
+      </Scaffold.Content>
+      <Scaffold.Footer>
+        <Button onClick={handlerSaveEditButton}>{textos["guardar"]}</Button>
+      </Scaffold.Footer>
     </Scaffold>
   );
 };

@@ -79,28 +79,12 @@ const SignIn: React.FC = () => {
     return <Redirect to="/home" />;
   } else {
     return (
-      <Scaffold
-        tituloHeader={textos["signin_iniciar_sesion"]}
-        footer={
-          <div className="p-2 max-w-screen-md mx-auto">
-            <Button
-              label={textos["signin_iniciar_sesion"]}
-              handler={handleSubmit(handlerSignInButton)}
-              disable={!isValid || isSubmitting}
-            />
-            <div className="flex justify-center py-2">
-              <p className="mr-1">{textos["signin_no_tiene_cuenta"]}</p>
-              <Button
-                handler={handlerSignUpButton}
-                label={textos["signup_registrate"]}
-                type={"Link"}
-              />
-            </div>
-          </div>
-        }
-      >
-        <IonLoading isOpen={loading} translucent />
-        <div className="max-w-screen-md mx-auto p-4 h-full">
+      <Scaffold>
+        <Scaffold.Header title={textos["signin_iniciar_sesion"]}>
+          <Scaffold.Header.BackAction />
+        </Scaffold.Header>
+        <Scaffold.Content>
+          <IonLoading isOpen={loading} translucent />
           {hasErrors != "" && (
             <p className="text-red-600 bg-red-100 px-6 py-3 my-2">
               {hasErrors}
@@ -125,13 +109,25 @@ const SignIn: React.FC = () => {
             rules={rulesPassword}
           />
           <div className="flex justify-end pt-6">
-            <Button
-              handler={handlerForgetPasswordButton}
-              label={textos["signin_olvido_contraseña"]}
-              type={"Link"}
-            />
+            <Button onClick={handlerForgetPasswordButton} color="light">
+              {textos["signin_olvido_contraseña"]}
+            </Button>
           </div>
-        </div>
+        </Scaffold.Content>
+        <Scaffold.Footer>
+          <Button
+            onClick={handleSubmit(handlerSignInButton)}
+            disabled={!isValid || isSubmitting}
+          >
+            {textos["signin_iniciar_sesion"]}
+          </Button>
+          <div className="flex justify-center py-2">
+            <p className="mr-1">{textos["signin_no_tiene_cuenta"]}</p>
+            <Button onClick={handlerSignUpButton} color="light">
+              {textos["signup_registrate"]}
+            </Button>
+          </div>
+        </Scaffold.Footer>
       </Scaffold>
     );
   }

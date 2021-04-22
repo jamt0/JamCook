@@ -1,17 +1,23 @@
+import { IonAvatar, IonImg } from "@ionic/react";
 import React, { FunctionComponent } from "react";
 
 interface Props {
-    tamaño: string;
-    responsive?: string;
-    avatarUser: any;
+  size: number;
+  sizeResponsive?: number;
+  src: any;
 }
 
-const Avatar: FunctionComponent<Props> = ({ avatarUser, tamaño, responsive = null }) => {
+const Avatar: FunctionComponent<Props> = ({
+  src,
+  size,
+  sizeResponsive = size,
+}) => {
   return (
-    <div
-      className={"h-" + tamaño + " w-" + tamaño + " md:h-" + (responsive == null? tamaño : responsive) + " md:w-" + (responsive == null? tamaño : responsive) + " bg-cover bg-center bg-gray-300 rounded-full"}
-      style={{ backgroundImage: `url( ${avatarUser} )` }}
-    ></div>
+    <IonAvatar
+      className={`w-${size} h-${size} md:h-${sizeResponsive} md:h-${sizeResponsive}`}
+    >
+      <IonImg src={src} />
+    </IonAvatar>
   );
 };
 

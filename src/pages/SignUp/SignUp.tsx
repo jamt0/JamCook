@@ -21,13 +21,12 @@ interface IUser {
 }
 
 const SignUp: React.FC = () => {
-
   const history = useHistory();
   const { signUp, loading, auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
 
   const [hasErrors, setHasErrors] = useState<string>("");
-  
+
   const {
     control,
     handleSubmit,
@@ -69,7 +68,7 @@ const SignUp: React.FC = () => {
     required: textos["campo_requerido"],
     minLength: {
       value: 3,
-      message: textos["campo_nombre_min"]
+      message: textos["campo_nombre_min"],
     },
   };
 
@@ -77,7 +76,7 @@ const SignUp: React.FC = () => {
     required: textos["campo_requerido"],
     pattern: {
       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-      message: textos["campo_correo_invalido"]
+      message: textos["campo_correo_invalido"],
     },
   };
 
@@ -85,40 +84,26 @@ const SignUp: React.FC = () => {
     required: textos["campo_requerido"],
     minLength: {
       value: 8,
-      message: textos["campo_contrasena_min"]
+      message: textos["campo_contrasena_min"],
     },
   };
 
   console.log("soy la page registro");
 
-  if(auth.loggedIn) {
+  if (auth.loggedIn) {
     return <Redirect to="/home" />;
-  }else{
+  } else {
     return (
-      <Scaffold
-        tituloHeader={textos["signup_crear_cuenta"]}
-        footer={
-          <div className="p-2 max-w-screen-md mx-auto">
-            <Button
-              handler={handleSubmit(handlerSignUpButton)}
-              label={textos["signup_crear_cuenta"]}
-              disable={!isValid || isSubmitting}
-            />
-            <div className="flex justify-center py-2">
-              <p className="mr-1 text-base inline">{textos["signup_tiene_cuenta"]}</p>
-              <Button
-                handler={handlerSignInButton}
-                label={textos["signin_iniciar_sesion"]}
-                type={"Link"}
-              />
-            </div>
-          </div>
-        }
-      >
-        <IonLoading isOpen={loading} translucent />
-        <div className="max-w-screen-md mx-auto p-4 h-full">
+      <Scaffold>
+        <Scaffold.Header title={textos["signup_crear_cuenta"]}>
+          <Scaffold.Header.BackAction />
+        </Scaffold.Header>
+        <Scaffold.Content>
+          <IonLoading isOpen={loading} translucent />
           {hasErrors != "" && (
-            <p className="text-red-600 bg-red-100 px-6 py-3 my-2">{hasErrors}</p>
+            <p className="text-red-600 bg-red-100 px-6 py-3 my-2">
+              {hasErrors}
+            </p>
           )}
           <Input
             control={control}
@@ -152,20 +137,32 @@ const SignUp: React.FC = () => {
               <p className="mr-1 text-base inline">
                 {textos["signup_acepta_nuestros"]}
               </p>
-              <Button
-                handler={handlerTerminosYCondicionesButton}
-                label={textos["terminos_condiciones"]}
-                type={"Link"}
-              />
+              <Button onClick={handlerTerminosYCondicionesButton} color="light">
+                {textos["terminos_condiciones"]}
+              </Button>
               <p className="mx-1 text-base inline">{textos["y"]}</p>
-              <Button
-                handler={handlerPoliticaDePrivacidadButton}
-                label={textos["politica_privacidad"]}
-                type={"Link"}
-              />
+              <Button onClick={handlerPoliticaDePrivacidadButton} color="light">
+                {textos["politica_privacidad"]}
+              </Button>
             </div>
           </div>
-        </div>
+        </Scaffold.Content>
+        <Scaffold.Footer>
+          <Button
+            onClick={handleSubmit(handlerSignUpButton)}
+            disabled={!isValid || isSubmitting}
+          >
+            {textos["signup_crear_cuenta"]}
+          </Button>
+          <div className="flex justify-center py-2">
+            <p className="mr-1 text-base inline">
+              {textos["signup_tiene_cuenta"]}
+            </p>
+            <Button onClick={handlerSignInButton} color="light">
+              {textos["signin_iniciar_sesion"]}
+            </Button>
+          </div>
+        </Scaffold.Footer>
       </Scaffold>
     );
   }

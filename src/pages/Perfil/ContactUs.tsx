@@ -4,7 +4,7 @@ import Scaffold from "components/Scaffold/Scaffold";
 import TextArea from "components/TextArea/TextArea";
 import Input from "components/Input/Input";
 import Select from "components/Select/Select";
-import {useHistory} from 'react-router';
+import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
 import { useAuth } from "auth";
 import { useSettingsUser } from "context/settingsUser";
@@ -14,7 +14,7 @@ import Server from "server";
 let defaultValues = {
   email: "",
   subjectId: "",
-  message: ""
+  message: "",
 };
 
 interface IMessage {
@@ -23,11 +23,10 @@ interface IMessage {
   message: string;
 }
 
-const ContactUs: React.FC = ( ) => {
-
+const ContactUs: React.FC = () => {
   const history = useHistory();
   //SE DEJA ESTE AUTH YA QUE SE VA A UTILIZAR CUANDO QUERAMOS OBTENER EL CORREO
-  const { auth } = useAuth()!; 
+  const { auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
 
   const [hasErrors, setHasErrors] = useState<string>("");
@@ -47,9 +46,8 @@ const ContactUs: React.FC = ( ) => {
    *
    * @param data
    */
-  const handlerSendButton = async ( message: IMessage) => {
+  const handlerSendButton = async (message: IMessage) => {
     setLoading(true);
-    //ACA SE DEJA ESTE ERROR HASTA QUE EXISTA EL POINT
     const errorMessage = await Server.sendMessage(message);
     if (errorMessage.data.error != null) {
       setHasErrors(errorMessage.data.error);
@@ -61,7 +59,6 @@ const ContactUs: React.FC = ( ) => {
   };
 
   useEffect(() => {
-    //HAY QUE CREAR EL METODO EN SERVER
     Server.getSubjects()
       .then((response) => {
         if (!response.data.error) {
@@ -73,7 +70,7 @@ const ContactUs: React.FC = ( ) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [])
+  }, []);
 
   const rulesSubject = {
     required: textos["campo_requerido"],
@@ -92,54 +89,54 @@ const ContactUs: React.FC = ( ) => {
   };
 
   return (
-    <Scaffold
-      tituloHeader="Contacto"
-      footer={
-        <div className="p-2 max-w-screen-md mx-auto">
-          <Button
-            handler={handleSubmit(handlerSendButton)}
-            label={textos["contacto_enviar"]}
-            disable={!isValid || isSubmitting}
-          />
-        </div>
-      }
-    >
-      <IonLoading isOpen={loading} translucent />
-      <div className="max-w-screen-md mx-auto p-4">
+    <Scaffold>
+      <Scaffold.Header title={textos["contacto"]}>
+        <Scaffold.Header.BackAction />
+      </Scaffold.Header>
+      <Scaffold.Content>
+        <IonLoading isOpen={loading} translucent />
         {hasErrors != "" && (
           <p className="text-red-600 bg-red-100 px-6 py-3 my-2">{hasErrors}</p>
         )}
         <h6 className="text-2xl font-bold text-center">
-          {textos["campo_correo"]}
+          {textos["contacto_header"]}
         </h6>
         <Input
-            control={control}
-            errors={errors}
-            defaultValue={defaultValues.email}
-            name="email"
-            type="email"
-            label={textos["campo_correo"]}
-            rules={rulesEmail}
-          />
+          control={control}
+          errors={errors}
+          defaultValue={defaultValues.email}
+          name="email"
+          type="email"
+          label={textos["campo_correo"]}
+          rules={rulesEmail}
+        />
         <Select
-            control={control}
-            errors={errors}
-            defaultValue={defaultValues.subjectId}
-            options={optionsSubjects}
-            name="subjectId"
-            label={textos["campo_asunto"]}
-            rules={rulesSubject}
-          />
-          <TextArea
-            control={control}
-            errors={errors}
-            defaultValue={defaultValues.message}
-            name="message"
-            placeHolder={textos["contacto_placeholder"]}
-            label={textos["campo_mensaje"]}
-            rules={rulesMessage}
-          />
-      </div>
+          control={control}
+          errors={errors}
+          defaultValue={defaultValues.subjectId}
+          options={optionsSubjects}
+          name="subjectId"
+          label={textos["campo_asunto"]}
+          rules={rulesSubject}
+        />
+        <TextArea
+          control={control}
+          errors={errors}
+          defaultValue={defaultValues.message}
+          name="message"
+          placeHolder={textos["contacto_placeholder"]}
+          label={textos["campo_mensaje"]}
+          rules={rulesMessage}
+        />
+      </Scaffold.Content>
+      <Scaffold.Footer>
+        <Button
+          onClick={handleSubmit(handlerSendButton)}
+          disabled={!isValid || isSubmitting}
+        >
+          {textos["contacto_enviar"]}
+        </Button>
+      </Scaffold.Footer>
     </Scaffold>
   );
 };

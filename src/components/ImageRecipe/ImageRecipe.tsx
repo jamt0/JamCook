@@ -1,30 +1,30 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 
-interface Props {
-  sinRedondeo?: boolean; 
-  pathImg: string;
-  height: string;
-  width?: string;
+type Props = {
+  rounded?: boolean; 
+  src: string;
+  height: number;
+  width?: number;
 }
 
 const ImageRecipe: FunctionComponent<Props> = ({
-  pathImg,
+  src,
   children,
   height,
   width = "full",
-  sinRedondeo = false, 
+  rounded = false, 
 }) => {
-  const redondeo = sinRedondeo ? " " : " rounded-md "
+  const redondeo = rounded ? "rounded-md" : ""
   return (
     <div className="relative flex">
       {children != null && (
-        <div className={"self-end absolute m-auto z-20 grid grid-flow-row" + redondeo + "bg-black bg-opacity-50 h-20 w-full px-2"}>
+        <div className={`self-end absolute z-20 flex flex-col ${redondeo} bg-black bg-opacity-50 h-20 w-full justify-center px-4`} >
           {children}
         </div>
       )}
       <div
-        className={"h-" + height + " w-" + width + " bg-cover bg-center z-10" + redondeo + "bg-gray-500 bg-opacity-50"}
-        style={{ backgroundImage: `url( ${pathImg} )` }}
+        className={`w-${width} h-${height} ${redondeo} bg-gray-500 bg-opacity-50 bg-cover bg-center z-10`}
+        style={{ backgroundImage: `url( ${src} )` }}
       ></div>
     </div>
   );

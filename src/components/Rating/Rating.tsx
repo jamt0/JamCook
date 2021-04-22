@@ -1,58 +1,63 @@
 import { IonButton, IonButtons, IonIcon } from "@ionic/react";
 import { star, starOutline } from "ionicons/icons";
-import React, { FunctionComponent } from "react";
-import Center from "../Center/Center";
+import { FunctionComponent } from "react";
 
-interface Props {
-  estrellas: boolean[];
-  tamaño: string;
+type Props = {
+  stars: boolean[];
+  size: number;
+  color?: string;
+  sizeResponsive?: number;
   handlerValoracion?: (e: any, index: number) => void;
 }
 
-const Rating: FunctionComponent<Props> = (
-  { estrellas, handlerValoracion, tamaño},
-) => {
-
-    if (handlerValoracion) {
-        return (
-            <Center direccion="row">
-              {estrellas.map((estrella, index) => {
-                return (
-                  <IonButtons
-                    slot="icon-only"
-                    className={"w-" + tamaño + " h-" + tamaño}
-                    key={index}
-                  >
-                    <IonButton
-                      onClick={(e) => handlerValoracion(e, index)}
-                      className={"w-" + tamaño + " h-" + tamaño}
-                    >
-                      <IonIcon
-                        icon={estrella ? star : starOutline}
-                        className={"text-purple-500 w-" + tamaño + " h-" + tamaño}
-                      />
-                    </IonButton>
-                  </IonButtons>
-                );
-              })}
-            </Center>
+const Rating: FunctionComponent<Props> = ({
+  stars,
+  handlerValoracion,
+  size,
+  sizeResponsive = size,
+  color,
+}) => {
+  if (handlerValoracion) {
+    return (
+      <div className="flex flex-row">
+        {stars.map((estrella, index) => {
+          return (
+            <IonButtons
+              slot="icon-only"
+              className={`w-${size} h-${size} md:h-${sizeResponsive} md:h-${sizeResponsive}`}
+              key={index}
+            >
+              <IonButton
+                onClick={(e) => handlerValoracion(e, index)}
+                className={`w-${size} h-${size} md:h-${sizeResponsive} md:h-${sizeResponsive}`}
+              >
+                <IonIcon
+                  icon={estrella ? star : starOutline}
+                  color={color}
+                  className={`w-${size} h-${size} md:h-${sizeResponsive} md:h-${sizeResponsive}`}
+                />
+              </IonButton>
+            </IonButtons>
           );
-    }else{
-        return(
-            <Center direccion="row">
-              {estrellas.map((estrella, index) => {
-                return (
-                    <IonIcon
-                    key={index}
-                    icon={estrella ? star : starOutline}
-                    className={"text-purple-500 w-" + tamaño + " h-" + tamaño}
-                    />
-                );
-              })}
-            </Center>
-        );
-    }
-  
+        })}
+      </div>
+    );
+  } else {
+    return (
+      <div className="flex flex-row">
+        {stars.map((estrella, index) => {
+          return (
+            <IonIcon
+              key={index}
+              icon={estrella ? star : starOutline}
+              color={color}
+              className={`w-${size} h-${size} md:h-${sizeResponsive} md:h-${sizeResponsive}`}
+            />
+          );
+        })}
+      </div>
+    );
+  }
 };
 
 export default Rating;

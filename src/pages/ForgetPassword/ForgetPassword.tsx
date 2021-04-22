@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "components/Button/Button";
 import Scaffold from "components/Scaffold/Scaffold";
-import {useHistory} from 'react-router';
+import { useHistory } from "react-router";
 import { useSettingsUser } from "context/settingsUser";
 import { IonLoading } from "@ionic/react";
 import { useForm } from "react-hook-form";
@@ -12,8 +12,7 @@ let defaultValues = {
   email: "",
 };
 
-const ForgetPassword: React.FC = ( ) => {
-  
+const ForgetPassword: React.FC = () => {
   const history = useHistory();
   const { textos } = useSettingsUser()!;
 
@@ -35,7 +34,6 @@ const ForgetPassword: React.FC = ( ) => {
    */
   const handlerForgetPasswordButton = async (email: any) => {
     setLoading(true);
-    //ACA SE DEJA ESTE ERROR HASTA QUE EXISTA EL POINT
     const errorMailForgetPassword = await Server.sendMailForgetPassword(email);
     if (errorMailForgetPassword.data.error != null) {
       setHasErrors(errorMailForgetPassword.data.error);
@@ -50,25 +48,17 @@ const ForgetPassword: React.FC = ( ) => {
     required: textos["campo_requerido"],
     pattern: {
       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-      message: textos["campo_correo_invalido"]
+      message: textos["campo_correo_invalido"],
     },
   };
 
   return (
-    <Scaffold
-      tituloHeader={textos["contrasena_restablecer"]}
-      footer={
-        <div className="p-2 mb-2 max-w-screen-md mx-auto">
-          <Button
-            handler={handleSubmit(handlerForgetPasswordButton)}
-            disable={!isValid || isSubmitting}
-            label={textos["contrasena_restablecer"]}
-          />
-        </div>
-      }
-    >
-      <IonLoading isOpen={loading} translucent />
-      <div className="max-w-screen-md mx-auto p-4 h-full">
+    <Scaffold>
+      <Scaffold.Header title={textos["contrasena_restablecer"]}>
+        <Scaffold.Header.BackAction />
+      </Scaffold.Header>
+      <Scaffold.Content>
+        <IonLoading isOpen={loading} translucent />
         {hasErrors != "" && (
           <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
         )}
@@ -87,7 +77,15 @@ const ForgetPassword: React.FC = ( ) => {
           label={textos["campo_correo"]}
           rules={rulesEmail}
         />
-      </div>
+      </Scaffold.Content>
+      <Scaffold.Footer>
+        <Button
+          onClick={handleSubmit(handlerForgetPasswordButton)}
+          disabled={!isValid || isSubmitting}
+        >
+          {textos["contrasena_restablecer"]}
+        </Button>
+      </Scaffold.Footer>
     </Scaffold>
   );
 };

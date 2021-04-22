@@ -9,7 +9,6 @@ import { useSettingsUser } from "context/settingsUser";
 import Server from "server";
 
 const MyObjectives: React.FC = () => {
-
   const history = useHistory();
   const { auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
@@ -59,19 +58,15 @@ const MyObjectives: React.FC = () => {
   }, []);
 
   return (
-    <Scaffold
-      tituloHeader={textos["preferencias_mis_objetivos"]}
-      footer={
-        <div className="p-2 max-w-screen-md mx-auto">
-          <Button handler={handlerSaveEditButton} label={textos["guardar"]} />
-        </div>
-      }
-    >
-      <IonLoading isOpen={loading} translucent />
-      {hasErrors != "" && (
-        <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
-      )}
-      <div className="max-w-screen-md mx-auto p-4">
+    <Scaffold>
+      <Scaffold.Header title={textos["preferencias_mis_objetivos"]}>
+        <Scaffold.Header.BackAction />
+      </Scaffold.Header>
+      <Scaffold.Content>
+        <IonLoading isOpen={loading} translucent />
+        {hasErrors != "" && (
+          <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
+        )}
         <h6 className="text-2xl font-bold text-center">
           {textos["objetivos_header"]}
         </h6>
@@ -79,7 +74,10 @@ const MyObjectives: React.FC = () => {
           {textos["objetivos_sub_header"]}
         </p>
         <RadioGroup optionsGroup={options} defaultOption={optionUser} />
-      </div>
+      </Scaffold.Content>
+      <Scaffold.Footer>
+        <Button onClick={handlerSaveEditButton}>{textos["guardar"]}</Button>
+      </Scaffold.Footer>
     </Scaffold>
   );
 };

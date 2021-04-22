@@ -1,10 +1,11 @@
 import React from "react";
-import { IonContent, IonFab, IonFabButton, IonIcon, IonPage } from "@ionic/react";
+import { IonFab, IonFabButton, IonIcon } from "@ionic/react";
 import { addOutline } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
 import ItemIngredient from "components/ItemIngredient/ItemIngredient";
 import Searcher from "components/Searcher/Searcher";
 import { useSettingsUser } from "context/settingsUser";
+import Scaffold from "components/Scaffold/Scaffold";
 
 const imagenes = [
   {
@@ -110,10 +111,9 @@ const imagenes = [
 ];
 
 const FoodBasket: React.FC = () => {
-  
   const history = useHistory();
   const { textos } = useSettingsUser()!;
-  
+
   const handlerAddIngredient = (e: any) => {
     e.preventDefault();
     history.push("/foodBasket/add");
@@ -122,8 +122,8 @@ const FoodBasket: React.FC = () => {
   console.log("soy page foodbasket");
 
   return (
-    <IonPage>
-      <IonContent>
+    <Scaffold>
+      <Scaffold.Content>
         <div className="flex flex-col pt-8 text-left sm:text-center text-gray-600 text-2xl md:text-3xl mx-4 font-bold">
           <h6>{textos["page_almacen"]}</h6>
         </div>
@@ -146,8 +146,8 @@ const FoodBasket: React.FC = () => {
             <IonIcon icon={addOutline} />
           </IonFabButton>
         </IonFab>
-      </IonContent>
-    </IonPage>
+      </Scaffold.Content>
+    </Scaffold>
   );
 };
 

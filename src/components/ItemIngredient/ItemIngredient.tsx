@@ -42,7 +42,7 @@ const ItemIngredient: FunctionComponent<Props> = ({
           className="grid grid-flow-col auto-cols-max w-full"
           onClick={handlerClickItem}
         >
-          <ImageRecipe pathImg={pathImg} height="12" width="12" />
+          <ImageRecipe src={pathImg} height={12} width={12} />
           <Center className="ml-4" direccion="col" eje="y">
             <h2 className="font-bold text-sm">{name}</h2>
             <h3 className="text-sm">{cantidadPorcion + " Unidades"}</h3>

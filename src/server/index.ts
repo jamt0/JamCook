@@ -12,7 +12,6 @@ export default class Server {
 
   //Auth
   public static signIn(user: IUser) {
-    console.log(user);
     return axios.post(`${config.baseURL}/api/auth/signin`, user);
   }
 
@@ -140,6 +139,28 @@ export default class Server {
     return axios.get(`${config.baseURL}/api/users/preferences/objectives/${userId}`, {
       headers: config.headers
     });
+  }
+
+  //User ForgetPassword
+  public static validateVerificationCode(verificationCode: string) {
+    return axios.post(`${config.baseURL}/api/auth/validateVerificationCode`, verificationCode);
+  }
+
+  public static sendMailForgetPassword(email: string) {
+    return axios.post(`${config.baseURL}/api/auth/sendMailForgetPassword`, email);
+  }
+
+  public static changePassword(password: string) {
+    return axios.post(`${config.baseURL}/api/auth/changePassword`, password);
+  }
+
+  //Contact Us
+  public static sendMessage(message: any) {
+    return axios.post(`${config.baseURL}/api/auth/sendMessage`, message);
+  }
+
+  public static getSubjects() {
+    return axios.get(`${config.baseURL}/api/auth/getSubjects`);
   }
 
 }

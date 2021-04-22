@@ -1,8 +1,8 @@
-import { IonContent, IonPage } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import Slider from "components/Slider/Slider";
 import Searcher from "components/Searcher/Searcher";
-import { useSettingsUser } from 'context/settingsUser';
+import { useSettingsUser } from "context/settingsUser";
+import Scaffold from "components/Scaffold/Scaffold";
 
 const imagenes = [
   {
@@ -35,8 +35,7 @@ const imagenes = [
   },
 ];
 
-const Search: React.FC = ( ) => {
-
+const Search: React.FC = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const [slidesPerView, setslidesPerView] = useState(1.5);
 
@@ -63,38 +62,36 @@ const Search: React.FC = ( ) => {
       setslidesPerView(5.5);
     }
     return () => {
-      window.removeEventListener('resize', handleResize)
-    }
+      window.removeEventListener("resize", handleResize);
+    };
   }, [width, slidesPerView]);
 
   //Esto debe tener una solucion mejor
   useEffect(() => {
-    setWidth(width+1);
-    setTimeout(handleResize,1000);
-    setTimeout(handleResize,3000);
-    setTimeout(handleResize,5000);
-    setTimeout(handleResize,10000);
+    setWidth(width + 1);
+    setTimeout(handleResize, 1000);
+    setTimeout(handleResize, 3000);
+    setTimeout(handleResize, 5000);
+    setTimeout(handleResize, 10000);
   }, []);
 
   console.log("soy page search");
 
   return (
-    <IonPage>
-      <IonContent>
-        <div className="flex flex-col max-w-screen-md mx-auto pt-8 text-center text-gray-600 text-2xl md:text-3xl font-bold">
+    <Scaffold>
+      <Scaffold.Content>
+        <div className="flex flex-col text-center text-gray-600 text-2xl md:text-3xl font-bold">
           <h6>{textos["slogan_2_1"]}</h6>
           <h6>{textos["slogan_2_2"]}</h6>
         </div>
         <Searcher placeHolder={textos["search_buscar_recetas"]} />
-        <div className="px-2">
-          <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
-          <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
-          <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
-          <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
-          <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
-        </div>
-      </IonContent>
-    </IonPage>
+        <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
+        <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
+        <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
+        <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
+        <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
+      </Scaffold.Content>
+    </Scaffold>
   );
 };
 

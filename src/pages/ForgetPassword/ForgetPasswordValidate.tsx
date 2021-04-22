@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "components/Button/Button";
 import Scaffold from "components/Scaffold/Scaffold";
 import Input from "components/Input/Input";
-import {useHistory} from 'react-router';
+import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
 import { useSettingsUser } from "context/settingsUser";
 import { IonLoading } from "@ionic/react";
@@ -12,8 +12,7 @@ let defaultValues = {
   VerificationCode: "",
 };
 
-const ForgetPasswordValidate: React.FC = ( ) => {
-  
+const ForgetPasswordValidate: React.FC = () => {
   const history = useHistory();
   const { textos } = useSettingsUser()!;
 
@@ -30,7 +29,9 @@ const ForgetPasswordValidate: React.FC = ( ) => {
   });
 
   const handlerForgetPasswordValidateButton = async (verificationCode: any) => {
-    const errorValidateVerificationCode = await Server.validateVerificationCode(verificationCode);
+    const errorValidateVerificationCode = await Server.validateVerificationCode(
+      verificationCode
+    );
     if (errorValidateVerificationCode.data.error != null) {
       setHasErrors(errorValidateVerificationCode.data.error);
       setLoading(false);
@@ -46,26 +47,18 @@ const ForgetPasswordValidate: React.FC = ( ) => {
 
   //VALIDAR QUE SEA LONGITUD 6
   const rulesVerificationCode = {
-    required: textos["campo_requerido"]
+    required: textos["campo_requerido"],
   };
 
   console.log("soy la page forget validation pass");
 
   return (
-    <Scaffold
-      tituloHeader={textos["contrasena_restablecer"]}
-      footer={
-        <div className="p-2 mb-2 max-w-screen-md mx-auto">
-          <Button
-            handler={handleSubmit(handlerForgetPasswordValidateButton)}
-            disable={!isValid || isSubmitting}
-            label={textos["contrasena_restablecer"]}
-          />
-        </div>
-      }
-    >
-      <IonLoading isOpen={loading} translucent />
-      <div className="max-w-screen-md mx-auto p-4 h-full">
+    <Scaffold>
+      <Scaffold.Header title={textos["contrasena_restablecer"]}>
+        <Scaffold.Header.BackAction />
+      </Scaffold.Header>
+      <Scaffold.Content>
+        <IonLoading isOpen={loading} translucent />
         {hasErrors != "" && (
           <p className="text-red-600 bg-red-100 px-6 py-3 my-2">{hasErrors}</p>
         )}
@@ -85,13 +78,19 @@ const ForgetPasswordValidate: React.FC = ( ) => {
           rules={rulesVerificationCode}
         />
         <div className="flex justify-end">
-          <Button
-            handler={handlerResendMailButton}
-            label={textos["no_recibio_contrasena"]}
-            type={"Link"}
-          />
+          <Button onClick={handlerResendMailButton} color="light">
+            {textos["no_recibio_contrasena"]}
+          </Button>
         </div>
-      </div>
+      </Scaffold.Content>
+      <Scaffold.Footer>
+        <Button
+          onClick={handleSubmit(handlerForgetPasswordValidateButton)}
+          disabled={!isValid || isSubmitting}
+        >
+          {textos["contrasena_restablecer"]}
+        </Button>
+      </Scaffold.Footer>
     </Scaffold>
   );
 };

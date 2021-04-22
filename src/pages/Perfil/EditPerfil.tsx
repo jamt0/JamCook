@@ -28,7 +28,6 @@ interface IUser {
 }
 
 const EditPerfil: React.FC = () => {
-  
   const history = useHistory();
   const { auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
@@ -181,31 +180,23 @@ const EditPerfil: React.FC = () => {
   console.log("soy la page edit perfil");
 
   return (
-    <Scaffold
-      tituloHeader={textos["perfil_editar"]}
-      footer={
-        <div className="p-2 max-w-screen-md mx-auto">
-          <Button
-            handler={handleSubmit(handlerSaveEditButton)}
-            disable={!isValid || isSubmitting}
-            label={textos["guardar"]}
-          />
-        </div>
-      }
-    >
-      <IonLoading isOpen={loading} translucent />
-      {hasErrors != "" && (
-        <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
-      )}
-      <Center direccion="col" className="mt-8">
-        <Avatar avatarUser={avatarImageUrl} tamaño="20" responsive="60" />
-        <div className="mt-4">
-          <label className="" htmlFor="inputAvatar">
-            {textos["perfil_edit_cambiar_avatar"]}
-          </label>
-        </div>
-      </Center>
-      <div className="m-4 max-w-screen-md mx-auto">
+    <Scaffold>
+      <Scaffold.Header title={textos["perfil_editar"]}>
+        <Scaffold.Header.BackAction />
+      </Scaffold.Header>
+      <Scaffold.Content>
+        <IonLoading isOpen={loading} translucent />
+        {hasErrors != "" && (
+          <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
+        )}
+        <Center direccion="col" className="mt-8">
+          <Avatar src={avatarImageUrl} size={20} sizeResponsive={60} />
+          <div className="mt-4">
+            <label className="" htmlFor="inputAvatar">
+              {textos["perfil_edit_cambiar_avatar"]}
+            </label>
+          </div>
+        </Center>
         <input
           type="file"
           accept=".jpg, .jpeg, .png"
@@ -249,7 +240,15 @@ const EditPerfil: React.FC = () => {
           label={textos["campo_genero"]}
           rules={rulesGender}
         />
-      </div>
+      </Scaffold.Content>
+      <Scaffold.Footer>
+        <Button
+          onClick={handleSubmit(handlerSaveEditButton)}
+          disabled={!isValid || isSubmitting}
+        >
+          {textos["guardar"]}
+        </Button>
+      </Scaffold.Footer>
     </Scaffold>
   );
 };

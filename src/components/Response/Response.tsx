@@ -17,7 +17,7 @@ const Response: FunctionComponent<Props> = ({ respuesta }) => {
     <Center direccion="col" eje="y">
       <div className="grid grid-flow-col">
         <div className="justify-self-start flex flex-row">
-          <Avatar avatarUser={respuesta.avatarUser} tamaño="12" />
+          <Avatar src={respuesta.avatarUser} size={12} />
           <Center direccion="col" eje="y">
             <h3 className="text-base ml-2">{respuesta.nombreUsuario}</h3>
             <h3 className="text-xs ml-2">{respuesta.fechaPublicacion}</h3>
