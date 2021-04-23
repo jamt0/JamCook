@@ -4,6 +4,8 @@ import RadioGroup from "components/RadioGroup/RadioGroup";
 import Scaffold from "components/Scaffold/Scaffold";
 import { useHistory } from "react-router";
 import { useSettingsUser } from "context/settingsUser";
+import { IonIcon, IonItem, IonLabel, IonToggle } from "@ionic/react";
+import { moon } from "ionicons/icons";
 
 const Theme: React.FC = () => {
   const history = useHistory();
@@ -26,6 +28,10 @@ const Theme: React.FC = () => {
     history.replace("/perfil/settings");
   };
 
+  const toggleDarkModeHandler = () => {
+    document.body.classList.toggle("dark");
+  };
+
   return (
     <Scaffold>
       <Scaffold.Header title={textos["tema"]}>
@@ -36,6 +42,11 @@ const Theme: React.FC = () => {
           {textos["tema_escoge"]}
         </p>
         <RadioGroup optionsGroup={options} defaultOption="1" />
+        <IonItem>
+            <IonIcon slot="start" icon={moon} />
+            <IonLabel>Dark Mode</IonLabel>
+            <IonToggle slot="end" name="darkMode" onIonChange={toggleDarkModeHandler} />
+          </IonItem>
       </Scaffold.Content>
       <Scaffold.Footer>
         <Button onClick={handlerSaveEditButton}>{textos["guardar"]}</Button>

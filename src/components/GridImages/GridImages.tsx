@@ -2,7 +2,7 @@ import { IonIcon } from "@ionic/react";
 import React, { FunctionComponent } from "react";
 import { fastFoodOutline } from "ionicons/icons";
 import { Link } from "react-router-dom";
-import ImageRecipe from "../ImageRecipe/ImageRecipe";
+import Image from "../Image/Image";
 
 interface Props {
   imagenes: {
@@ -28,7 +28,7 @@ const GridImages: FunctionComponent<Props> = ({imagenes}) => {
                   {imagen.titulo}
                 </h6>
               </div>
-              <ImageRecipe src={imagen.pathImg} height={40} rounded />
+              <Image src={imagen.pathImg} height={40} rounded />
             </div>
           </Link>
         );

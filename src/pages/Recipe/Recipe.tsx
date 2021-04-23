@@ -6,7 +6,7 @@ import Scaffold from "components/Scaffold/Scaffold";
 import Button from "components/Button/Button";
 import CommentaryBox from "components/CommentaryBox/CommentaryBox";
 import TitleRecipe from "components/TitleRecipe/TitleRecipe";
-import ItemIngredient from "components/ItemIngredient/ItemIngredient";
+import ItemIngredient from "layouts/ItemIngredient/ItemIngredient";
 import ItemStep from "components/ItemStep/ItemStep";
 import ContainerSection from "components/ContainerSection/ContainerSection";
 import Center from "components/Center/Center";
@@ -14,7 +14,7 @@ import Counter from "components/Counter/Counter";
 import Avatar from "components/Avatar/Avatar";
 import Rating from "components/Rating/Rating";
 import ChipGroup from "components/ChipGroup/ChipGroup";
-import Slider from "components/Slider/Slider";
+import SliderRecipes from "layouts/SliderRecipes/SliderRecipes";
 import {
   star,
   timerOutline,
@@ -214,65 +214,41 @@ const tags = [
   },
 ];
 
-const recetasMasVistas = [
+const imagenes = [
   {
-    pathImg: "https://picsum.photos/200/300?random=1",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=1",
+    name: "Tacos Mexicanos de Carnitas Asadas",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=2",
-    titulo: "Tacos Mexicanos",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=2",
+    name: "Tacos Mexicanos",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=3",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=3",
+    name: "Tacos Mexicanos de Carnitas Asadas",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=4",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=4",
+    name: "Tacos Mexicanos de Carnitas Asadas",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=5",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=5",
+    name: "Tacos Mexicanos de Carnitas Asadas",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=6",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=6",
+    name: "Tacos Mexicanos de Carnitas Asadas",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=7",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
-  },
-];
-
-const recetasRelacionadas = [
-  {
-    pathImg: "https://picsum.photos/200/300?random=1",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=2",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=3",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=4",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=5",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=6",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=7",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=7",
+    name: "Tacos Mexicanos de Carnitas Asadas",
   },
 ];
 
@@ -405,9 +381,9 @@ const Recipe: React.FC = () => {
             return (
               <ItemIngredient
                 key={index}
-                pathImg={ingrediente.pathImg}
+                src={ingrediente.pathImg}
                 name={ingrediente.name}
-                cantidadPorcion={ingrediente.cantidadPorcion}
+                amount={ingrediente.cantidadPorcion}
               />
             );
           })}
@@ -464,13 +440,13 @@ const Recipe: React.FC = () => {
         {/* Recetas relacionadas*/}
         <ContainerSection>
           <TitleRecipe>{textos["recipe_recetas_relacionados"]}</TitleRecipe>
-          <Slider imagenes={recetasRelacionadas} slidesPerView={1.5} />
+          <SliderRecipes recipes={imagenes} slidesPerView={1.5} nameListRecipes="Recetas relacionadas"/>
         </ContainerSection>
 
         {/* Recetas mas vistas*/}
         <ContainerSection>
           <TitleRecipe>{textos["recipe_recetas_mas_vistas"]}</TitleRecipe>
-          <Slider imagenes={recetasMasVistas} slidesPerView={1.5} />
+          <SliderRecipes recipes={imagenes} slidesPerView={1.5} nameListRecipes="Recetas más vistas"/>
         </ContainerSection>
 
         {/* Guardar Receta*/}

@@ -1,37 +1,45 @@
 import React, { useEffect, useState } from "react";
-import Slider from "components/Slider/Slider";
+import SliderRecipes from "layouts/SliderRecipes/SliderRecipes";
 import Searcher from "components/Searcher/Searcher";
 import { useSettingsUser } from "context/settingsUser";
 import Scaffold from "components/Scaffold/Scaffold";
+import Title from "components/Text/Title";
 
 const imagenes = [
   {
-    pathImg: "https://picsum.photos/200/300?random=1",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=1",
+    name: "Tacos Mexicanos de Carnitas Asadas",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=2",
-    titulo: "Tacos Mexicanos",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=2",
+    name: "Tacos Mexicanos",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=3",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=3",
+    name: "Tacos Mexicanos de Carnitas Asadas",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=4",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=4",
+    name: "Tacos Mexicanos de Carnitas Asadas",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=5",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=5",
+    name: "Tacos Mexicanos de Carnitas Asadas",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=6",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=6",
+    name: "Tacos Mexicanos de Carnitas Asadas",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=7",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=7",
+    name: "Tacos Mexicanos de Carnitas Asadas",
   },
 ];
 
@@ -42,7 +50,10 @@ const Search: React.FC = () => {
   const { textos } = useSettingsUser()!;
 
   function handleResize() {
-    setWidth(window.innerWidth);
+    console.log("cambio tamañooo");
+    if (window.innerWidth >= 568 && width < 568) setWidth(window.innerWidth);
+
+    if (window.innerWidth <= 568 && width > 568) setWidth(window.innerWidth);
   }
 
   useEffect(() => {
@@ -52,44 +63,27 @@ const Search: React.FC = () => {
     } else {
       setslidesPerView(1.5);
     }
-    if (width >= 768) {
-      setslidesPerView(3.5);
-    }
-    if (width >= 1024) {
-      setslidesPerView(4.5);
-    }
-    if (width >= 1280) {
-      setslidesPerView(5.5);
-    }
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [width, slidesPerView]);
-
-  //Esto debe tener una solucion mejor
-  useEffect(() => {
-    setWidth(width + 1);
-    setTimeout(handleResize, 1000);
-    setTimeout(handleResize, 3000);
-    setTimeout(handleResize, 5000);
-    setTimeout(handleResize, 10000);
-  }, []);
+  }, [width]);
 
   console.log("soy page search");
 
   return (
     <Scaffold>
       <Scaffold.Content>
-        <div className="flex flex-col text-center text-gray-600 text-2xl md:text-3xl font-bold">
-          <h6>{textos["slogan_2_1"]}</h6>
-          <h6>{textos["slogan_2_2"]}</h6>
-        </div>
+        <Title align="center" color="medium">
+          {textos["slogan_2_1"]}
+          <br />
+          {textos["slogan_2_2"]}
+        </Title>
         <Searcher placeHolder={textos["search_buscar_recetas"]} />
-        <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
-        <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
-        <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
-        <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
-        <Slider imagenes={imagenes} slidesPerView={slidesPerView} />
+        <SliderRecipes recipes={imagenes} slidesPerView={slidesPerView} nameListRecipes="Recetas Nuevas"/>
+        <SliderRecipes recipes={imagenes} slidesPerView={slidesPerView} nameListRecipes="Recetas más vistas"/>
+        <SliderRecipes recipes={imagenes} slidesPerView={slidesPerView} nameListRecipes="Recetas Saludables"/>
+        <SliderRecipes recipes={imagenes} slidesPerView={slidesPerView} nameListRecipes="Recetas más vistas"/>
+        <SliderRecipes recipes={imagenes} slidesPerView={slidesPerView} nameListRecipes="Recetas más vistas"/>
       </Scaffold.Content>
     </Scaffold>
   );

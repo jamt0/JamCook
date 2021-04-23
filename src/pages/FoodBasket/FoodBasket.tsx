@@ -1,11 +1,12 @@
 import React from "react";
-import { IonFab, IonFabButton, IonIcon } from "@ionic/react";
+import { IonContent, IonFab, IonFabButton, IonIcon } from "@ionic/react";
 import { addOutline } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
-import ItemIngredient from "components/ItemIngredient/ItemIngredient";
+import ItemIngredient from "layouts/ItemIngredient/ItemIngredient";
 import Searcher from "components/Searcher/Searcher";
 import { useSettingsUser } from "context/settingsUser";
 import Scaffold from "components/Scaffold/Scaffold";
+import Title from "components/Text/Title";
 
 const imagenes = [
   {
@@ -123,29 +124,33 @@ const FoodBasket: React.FC = () => {
 
   return (
     <Scaffold>
-      <Scaffold.Content>
-        <div className="flex flex-col pt-8 text-left sm:text-center text-gray-600 text-2xl md:text-3xl mx-4 font-bold">
-          <h6>{textos["page_almacen"]}</h6>
-        </div>
+      <Scaffold.Content
+        fabButton={
+          <IonFab
+            vertical="bottom"
+            horizontal="end"
+            slot="fixed"
+          >
+            <IonFabButton onClick={handlerAddIngredient}>
+              <IonIcon icon={addOutline} />
+            </IonFabButton>
+          </IonFab>
+        }
+      >
+        <Title color="medium">{textos["page_almacen"]}</Title>
         <Searcher placeHolder={textos["ingredientes_buscas"]} />
-        <div className="px-2 mb-20">
+        <div className="pb-14">
           {imagenes.map((imagen, index) => {
             return (
               <ItemIngredient
-                pathImg={imagen.pathImg}
-                cantidadPorcion={imagen.canridadPorcion}
+                src={imagen.pathImg}
+                amount={imagen.canridadPorcion}
                 name={imagen.name}
-                withCounter={true}
                 key={index}
               />
             );
           })}
         </div>
-        <IonFab vertical="bottom" horizontal="end" slot="fixed">
-          <IonFabButton onClick={handlerAddIngredient}>
-            <IonIcon icon={addOutline} />
-          </IonFabButton>
-        </IonFab>
       </Scaffold.Content>
     </Scaffold>
   );

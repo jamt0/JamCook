@@ -79,7 +79,7 @@ const Commentary: FunctionComponent<Props> = ({
       {comentario.respuestas.length > 0 && 
         <div className="ml-14">
           <div className="mb-4">
-            <Button color="light" onClick={handlerAnswerButton}>
+            <Button color="light" onClick={handlerAnswerButton} size="small">
               7 Respuestas
             </Button>
           </div>

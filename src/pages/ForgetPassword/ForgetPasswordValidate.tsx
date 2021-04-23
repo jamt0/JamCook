@@ -78,7 +78,7 @@ const ForgetPasswordValidate: React.FC = () => {
           rules={rulesVerificationCode}
         />
         <div className="flex justify-end">
-          <Button onClick={handlerResendMailButton} color="light">
+          <Button onClick={handlerResendMailButton} color="light" size="small">
             {textos["no_recibio_contrasena"]}
           </Button>
         </div>

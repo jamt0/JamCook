@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "components/Button/Button";
 import Scaffold from "components/Scaffold/Scaffold";
 import Input from "components/Input/Input";
+import Text from "components/Text/Text";
 import { IonLoading } from "@ionic/react";
 import { Redirect, useHistory } from "react-router";
 import { useForm } from "react-hook-form";
@@ -137,11 +138,19 @@ const SignUp: React.FC = () => {
               <p className="mr-1 text-base inline">
                 {textos["signup_acepta_nuestros"]}
               </p>
-              <Button onClick={handlerTerminosYCondicionesButton} color="light">
+              <Button
+                onClick={handlerTerminosYCondicionesButton}
+                color="light"
+                size="small"
+              >
                 {textos["terminos_condiciones"]}
               </Button>
               <p className="mx-1 text-base inline">{textos["y"]}</p>
-              <Button onClick={handlerPoliticaDePrivacidadButton} color="light">
+              <Button
+                onClick={handlerPoliticaDePrivacidadButton}
+                color="light"
+                size="small"
+              >
                 {textos["politica_privacidad"]}
               </Button>
             </div>
@@ -155,10 +164,8 @@ const SignUp: React.FC = () => {
             {textos["signup_crear_cuenta"]}
           </Button>
           <div className="flex justify-center py-2">
-            <p className="mr-1 text-base inline">
-              {textos["signup_tiene_cuenta"]}
-            </p>
-            <Button onClick={handlerSignInButton} color="light">
+            <Text>{textos["signup_tiene_cuenta"]}</Text>
+            <Button onClick={handlerSignInButton} color="light" size="small">
               {textos["signin_iniciar_sesion"]}
             </Button>
           </div>

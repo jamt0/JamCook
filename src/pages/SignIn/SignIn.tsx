@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "components/Button/Button";
 import Scaffold from "components/Scaffold/Scaffold";
 import Input from "components/Input/Input";
+import Text from "components/Text/Text";
 import { IonLoading } from "@ionic/react";
 import { Redirect, useHistory } from "react-router";
 import { useForm } from "react-hook-form";
@@ -109,7 +110,7 @@ const SignIn: React.FC = () => {
             rules={rulesPassword}
           />
           <div className="flex justify-end pt-6">
-            <Button onClick={handlerForgetPasswordButton} color="light">
+            <Button onClick={handlerForgetPasswordButton} color="light" size="small">
               {textos["signin_olvido_contraseña"]}
             </Button>
           </div>
@@ -122,8 +123,8 @@ const SignIn: React.FC = () => {
             {textos["signin_iniciar_sesion"]}
           </Button>
           <div className="flex justify-center py-2">
-            <p className="mr-1">{textos["signin_no_tiene_cuenta"]}</p>
-            <Button onClick={handlerSignUpButton} color="light">
+            <Text>{textos["signin_no_tiene_cuenta"]}</Text>
+            <Button onClick={handlerSignUpButton} color="light" size="small">
               {textos["signup_registrate"]}
             </Button>
           </div>

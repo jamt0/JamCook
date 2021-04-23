@@ -1,5 +1,6 @@
-import { IonSearchbar } from '@ionic/react';
-import React, { FunctionComponent } from 'react';
+import { IonItemDivider, IonSearchbar, IonToolbar } from '@ionic/react';
+import Item from 'components/Item/Item';
+import { FunctionComponent } from 'react';
 
 interface Props {
     placeHolder: string;
@@ -8,9 +9,9 @@ interface Props {
 const Searcher: FunctionComponent<Props> = ({ placeHolder }) => {
 
     return (
-        <div className="sticky top-0 z-40 bg-white">
-          <IonSearchbar value={""} placeholder={placeHolder}></IonSearchbar>
-        </div>
+        <IonItemDivider sticky className="ion-no-padding" mode="md">
+            <IonSearchbar value={""} placeholder={placeHolder} color="light"></IonSearchbar>
+        </IonItemDivider>
     );
 
 };

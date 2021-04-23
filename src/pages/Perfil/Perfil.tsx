@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "components/Avatar/Avatar";
 import Button from "components/Button/Button";
-import Center from "components/Center/Center";
 import Scaffold from "components/Scaffold/Scaffold";
+import SubTitle from "components/Text/SubTitle";
+import Text from "components/Text/Text";
+import Title from "components/Text/Title";
+import ItemIcon from "layouts/ItemIcon/ItemIcon";
 import { useAuth } from "auth";
 import Server from "server";
 import config from "config/general";
 import { useSettingsUser } from "context/settingsUser";
-import { IonIcon, IonItem, IonList } from "@ionic/react";
 import {
   personOutline,
   globeOutline,
@@ -74,9 +76,7 @@ const Perfil: React.FC = () => {
         {hasErrors != "" && (
           <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
         )}
-        <div className="flex md:text-center text-left text-gray-600 text-2xl md:text-3xl font-bold">
-          <h6>{textos["page_perfil"]}</h6>
-        </div>
+        <Title color="medium">{textos["page_perfil"]}</Title>
         <div className="md:auto-cols-max md:grid md:grid-cols-2">
           {auth.loggedIn ? (
             <div className="grid grid-flow-col auto-cols-max md:auto-rows-max md:grid-flow-row px-4 pb-4 md:justify-self-center">
@@ -84,144 +84,77 @@ const Perfil: React.FC = () => {
               <div className=" ml-4 md:ml-0 md:grid md:grid-flow-col md:grid-cols-1 md:grid-rows-3 md:gap-1 md:flex md:text-center md:py-8">
                 <h2 className="text-base">{user.name}</h2>
                 <h3 className="text-lg">{user.email}</h3>
-                <Link
-                  to="/perfil/edit"
-                  className="text-purple-600 text-lg select-none"
-                >
-                  <Button color="light">{textos["perfil_editar"]}</Button>
+                <Link to="/perfil/edit">
+                  <Button color="light" size="small">
+                    {textos["perfil_editar"]}
+                  </Button>
                 </Link>
               </div>
             </div>
           ) : (
-            <div className="mx-4 mb-4">
-              <h2 className="text-xl text-center mb-4">
-                {textos["perfil_inicie_sesion"]}
-              </h2>
-              <Link to="/signIn" className="">
-                <div className="mt-8 mb-4 mx-24">
-                  <Button>{textos["signin_iniciar_sesion"]}</Button>
-                </div>
+            <div className="my-4">
+              <SubTitle>{textos["perfil_inicie_sesion"]}</SubTitle>
+              <Link to="/signIn">
+                <Button>{textos["signin_iniciar_sesion"]}</Button>
               </Link>
-              <Center direccion="row" className="mb-8">
-                <p className="text-base text-center mr-1">
-                  {textos["signin_no_tiene_cuenta"]}
-                </p>
+              <div className="flex flex-row justify-center">
+                <Text>{textos["signin_no_tiene_cuenta"]}</Text>
                 <Link to="/signUp">
-                  <Button color="light">{textos["signup_registrate"]}</Button>
+                  <Button color="light" size="small">
+                    {textos["signup_registrate"]}
+                  </Button>
                 </Link>
-              </Center>
+              </div>
             </div>
           )}
-          <IonList>
+          <div>
             {auth.loggedIn && (
-              <IonItem
-                className="px-6 pb-3"
-                lines="none"
-                routerLink="/perfil/preferences"
-              >
-                <IonIcon
-                  icon={personOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">
-                  {textos["perfil_preferencias_alimentarias"]}
-                </p>
-              </IonItem>
+              <ItemIcon routerLink="/perfil/preferences" icon={personOutline}>
+                {textos["perfil_preferencias_alimentarias"]}
+              </ItemIcon>
             )}
-            <IonItem
-              className="px-6 pb-3"
-              lines="none"
-              routerLink="/perfil/language"
-            >
-              <IonIcon icon={globeOutline} slot="start" className="text-4xl" />
-              <p className="text-lg">{textos["idioma"]}</p>
-            </IonItem>
-            <IonItem
-              className="px-6 pb-3"
-              lines="full"
+            <ItemIcon routerLink="/perfil/language" icon={globeOutline}>
+              {textos["idioma"]}
+            </ItemIcon>
+            <ItemIcon
               routerLink="/perfil/settings"
-            >
-              <IonIcon icon={buildOutline} slot="start" className="text-4xl" />
-              <p className="text-lg">{textos["configuraciones"]}</p>
-            </IonItem>
-            <IonItem
-              className="px-6 pb-3"
-              lines="none"
-              routerLink="/perfil/ratings"
-            >
-              <IonIcon icon={starOutline} slot="start" className="text-4xl" />
-              <p className="text-lg">
-                {textos["valora"] + " " + textos["name_app"]}
-              </p>
-            </IonItem>
-            <IonItem
-              className="px-6 pb-3"
+              icon={buildOutline}
               lines="full"
+            >
+              {textos["configuraciones"]}
+            </ItemIcon>
+            <ItemIcon routerLink="/perfil/ratings" icon={starOutline}>
+              {textos["valora"] + " " + textos["name_app"]}
+            </ItemIcon>
+            <ItemIcon
               routerLink="/perfil/share"
-            >
-              <IonIcon
-                icon={arrowRedoOutline}
-                slot="start"
-                className="text-4xl"
-              />
-              <p className="text-lg">
-                {textos["comparte"] + " " + textos["name_app"]}
-              </p>
-            </IonItem>
-            <IonItem
-              className="px-6 pb-3"
-              lines="none"
-              routerLink="/perfil/aboutUs"
-            >
-              <IonIcon
-                icon={businessOutline}
-                slot="start"
-                className="text-4xl"
-              />
-              <p className="text-lg">
-                {textos["acerca"] + " " + textos["name_app"]}
-              </p>
-            </IonItem>
-            <IonItem
-              className="px-6 pb-3"
-              lines="none"
-              routerLink="/perfil/legalInformation"
-            >
-              <IonIcon
-                icon={briefcaseOutline}
-                slot="start"
-                className="text-4xl"
-              />
-              <p className="text-lg">{textos["informacion_legal"]}</p>
-            </IonItem>
-            <IonItem
-              className="px-6 pb-3"
+              icon={arrowRedoOutline}
               lines="full"
-              routerLink="/perfil/contactUs"
             >
-              <IonIcon
-                icon={chatbubbleEllipsesOutline}
-                slot="start"
-                className="text-4xl"
-              />
-              <p className="text-lg">{textos["contacto"]}</p>
-            </IonItem>
+              {textos["comparte"] + " " + textos["name_app"]}
+            </ItemIcon>
+            <ItemIcon routerLink="/perfil/aboutUs" icon={businessOutline}>
+              {textos["acerca"] + " " + textos["name_app"]}
+            </ItemIcon>
+            <ItemIcon
+              routerLink="/perfil/legalInformation"
+              icon={briefcaseOutline}
+            >
+              {textos["informacion_legal"]}
+            </ItemIcon>
+            <ItemIcon
+              routerLink="/perfil/contactUs"
+              icon={chatbubbleEllipsesOutline}
+              lines="full"
+            >
+              {textos["contacto"]}
+            </ItemIcon>
             {auth.loggedIn && (
-              <IonItem
-                className="px-6 pb-3"
-                lines="none"
-                onClick={handlerLogOutButton}
-              >
-                <IonIcon
-                  icon={logOutOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">{textos["logout"]}</p>
-              </IonItem>
+              <ItemIcon onClick={handlerLogOutButton} icon={logOutOutline}>
+                {textos["logout"]}
+              </ItemIcon>
             )}
-          </IonList>
+          </div>
         </div>
       </Scaffold.Content>
     </Scaffold>

@@ -1,5 +1,5 @@
 import React from "react";
-import ItemIngredient from "components/ItemIngredient/ItemIngredient";
+import ItemIngredient from "layouts/ItemIngredient/ItemIngredient";
 import Scaffold from "components/Scaffold/Scaffold";
 import Searcher from "components/Searcher/Searcher";
 import { checkmarkSharp } from "ionicons/icons";
@@ -126,27 +126,34 @@ const FoodBasketAdd: React.FC = () => {
       <Scaffold.Header title={textos["agregar_ingredientes"]}>
         <Scaffold.Header.BackAction />
       </Scaffold.Header>
-      <Scaffold.Content>
+      <Scaffold.Content
+        fabButton={
+          <IonFab
+            vertical="bottom"
+            horizontal="end"
+            slot="fixed"
+          >
+            <IonFabButton onClick={handlerAddIngredient}>
+              <IonIcon icon={checkmarkSharp} />
+            </IonFabButton>
+          </IonFab>
+        }
+      >
         <Searcher placeHolder={textos["ingredientes_buscas"]} />
-        <div className="px-2 mb-20">
+        <div className="pb-14">
           {imagenes.map((imagen, index) => {
             return (
               <ItemIngredient
-                pathImg={imagen.pathImg}
-                cantidadPorcion={imagen.canridadPorcion}
+                src={imagen.pathImg}
+                amount={imagen.canridadPorcion}
                 name={imagen.name}
-                withCounter={true}
-                withCheck={true}
+                counter
+                check
                 key={index}
               />
             );
           })}
         </div>
-        <IonFab vertical="bottom" horizontal="end" slot="fixed">
-          <IonFabButton onClick={handlerAddIngredient}>
-            <IonIcon icon={checkmarkSharp} />
-          </IonFabButton>
-        </IonFab>
       </Scaffold.Content>
     </Scaffold>
   );

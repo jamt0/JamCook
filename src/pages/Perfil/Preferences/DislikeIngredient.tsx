@@ -125,7 +125,7 @@ const DislikeIngredient: React.FC = () => {
         </p>
         <ChipGroup ingredientes={ingredientes} />
         <div className="ml-4 mt-4">
-          <Button onClick={() => setShowModal(true)} color="light">
+          <Button onClick={() => setShowModal(true)} color="light" size="small">
             {textos["ver_mas"]}
           </Button>
         </div>

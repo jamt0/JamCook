@@ -8,7 +8,7 @@ const CardHeaderExpanded: FunctionComponent<Props> = ({
   children
 }) => {
   return (
-      <IonLabel className="mx-2">{children}</IonLabel>
+      <IonLabel className="mx-2 ion-no-padding">{children}</IonLabel>
   );
 };
 

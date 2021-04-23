@@ -49,7 +49,7 @@ const CommentaryBox: FunctionComponent<Props> = ({ comentarios }) => {
         );
       })}
       <div className="mt-4">
-        <Button color="light">
+        <Button color="light" size="small">
           Ver todos los comentarios
         </Button>
       </div>

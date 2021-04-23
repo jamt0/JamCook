@@ -4,15 +4,17 @@ import CardHeaderCompact from "components/Card/CardHeader/CardHeaderCompact";
 
 type Props = {
   routerLink?: string;
+  color?: string;
   children: React.ReactNode;
 };
 
 const CardHeader = ({
   routerLink,
   children,
+  color,
 }: Props) => {
   return (
-    <IonItem lines="none" routerLink={routerLink}>
+    <IonItem lines="none" routerLink={routerLink} color={color} className="ion-no-padding ml-2">
       {children}
     </IonItem>
   );

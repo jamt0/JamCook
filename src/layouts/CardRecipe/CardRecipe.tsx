@@ -4,6 +4,7 @@ import ImageRecipe from "components/ImageRecipe/ImageRecipe";
 import Avatar from "components/Avatar/Avatar";
 import Card from "components/Card/Card";
 import Rating from "components/Rating/Rating";
+import Text from "components/Text/Text";
 import {
   timerOutline,
   nutritionOutline,
@@ -47,34 +48,33 @@ const CardRecipe: FunctionComponent<Props> = ({ recipe }) => {
   };
 
   return (
-    <Card>
-      <Card.Header routerLink="/perfil/preferences">
+    <Card color="light">
+      <Card.Header color="light">
         <Card.Header.Compact>
           <Avatar src={recipe.pathAvatarImage} size={8} />
         </Card.Header.Compact>
         <Card.Header.Expanded>{recipe.nameUser}</Card.Header.Expanded>
         <Card.Header.Compact>
-          <IonIcon icon={nutritionOutline} />
+          <IonIcon icon={nutritionOutline} color="medium"/>
           <span className="ml-1 mr-2">{recipe.ingredients}</span>
-          <IonIcon icon={timerOutline} />
+          <IonIcon icon={timerOutline} color="medium"/>
           <span className="ml-1">{recipe.time}</span>
         </Card.Header.Compact>
       </Card.Header>
       <Card.Content routerLink={"/recipe"}>
         <ImageRecipe src={recipe.pathRecipeImage} height={60}>
           <Rating stars={recipe.valoration} size={6} color="light" />
-          <h6 className="text-white text-base md:text-xl text-left mx-1 mt-1">
-            {recipe.name}
-          </h6>
+          <Text color="light" align="left" className="font-extrabold">{recipe.name}</Text>
         </ImageRecipe>
       </Card.Content>
-      <Card.Header>
+      <Card.Header color="light">
         <Card.Header.Compact>
           <IonButtons>
             <IonButton onClick={handlerShareButton}>
               <IonIcon
                 icon={arrowRedoOutline}
-                className="text-gray-500 text-4xl -mx-2"
+                color="medium"
+                className="text-4xl -mx-2"
               />
             </IonButton>
           </IonButtons>
@@ -82,11 +82,12 @@ const CardRecipe: FunctionComponent<Props> = ({ recipe }) => {
             <IonButton onClick={handlerLikeButton}>
               <IonIcon
                 icon={isLiked ? heart : heartOutline}
-                className="text-gray-500 text-4xl my-auto -mx-2"
+                color="medium"
+                className="text-4xl my-auto -mx-2"
               />
             </IonButton>
           </IonButtons>
-          <h3 className="text-gray-500 text-xl my-px pt-1">{recipe.likes}</h3>
+          <Text color="medium" align="left" className="text-xl my-px pt-1">{recipe.likes}</Text>
         </Card.Header.Compact>
         <Card.Header.Expanded />
         <Card.Header.Compact>
@@ -94,7 +95,8 @@ const CardRecipe: FunctionComponent<Props> = ({ recipe }) => {
             <IonButton onClick={handlerFavButton}>
               <IonIcon
                 icon={isMarked ? bookmark : bookmarkOutline}
-                className="text-gray-500 text-4xl -mx-2"
+                color="medium"
+                className="text-4xl -mx-2"
               />
             </IonButton>
           </IonButtons>
