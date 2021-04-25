@@ -4,10 +4,12 @@ import Scaffold from "components/Scaffold/Scaffold";
 import Input from "components/Input/Input";
 import Text from "components/Text/Text";
 import { IonLoading } from "@ionic/react";
-import { Redirect, useHistory } from "react-router";
+import { Redirect } from "react-router";
 import { useForm } from "react-hook-form";
 import { useAuth } from "auth";
 import { useSettingsUser } from "context/settingsUser";
+import ButtonLink from "components/ButtonLink/ButtonLink";
+import Center from "components/Center/Center";
 
 let defaultValues = {
   email: "",
@@ -20,7 +22,6 @@ interface IUser {
 }
 
 const SignIn: React.FC = () => {
-  const history = useHistory();
   const { signIn, loading, auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
 
@@ -46,16 +47,6 @@ const SignIn: React.FC = () => {
     } else {
       return <Redirect to="/home" />;
     }
-  };
-
-  const handlerSignUpButton = (e: any) => {
-    e.preventDefault();
-    history.replace("/signUp");
-  };
-
-  const handlerForgetPasswordButton = (e: any) => {
-    e.preventDefault();
-    history.push("/forgetPassword");
   };
 
   const rulesPassword = {
@@ -109,11 +100,11 @@ const SignIn: React.FC = () => {
             label={textos["campo_contrasena"]}
             rules={rulesPassword}
           />
-          <div className="flex justify-end pt-6">
-            <Button onClick={handlerForgetPasswordButton} color="light" size="small">
+          <Center justify="end" className="mt-6">
+            <ButtonLink routerLink="/forgetPassword">
               {textos["signin_olvido_contraseña"]}
-            </Button>
-          </div>
+            </ButtonLink>
+          </Center>
         </Scaffold.Content>
         <Scaffold.Footer>
           <Button
@@ -122,12 +113,12 @@ const SignIn: React.FC = () => {
           >
             {textos["signin_iniciar_sesion"]}
           </Button>
-          <div className="flex justify-center py-2">
-            <Text>{textos["signin_no_tiene_cuenta"]}</Text>
-            <Button onClick={handlerSignUpButton} color="light" size="small">
+          <Center className="py-2">
+            <Text className="mr-1">{textos["signin_no_tiene_cuenta"]}</Text>
+            <ButtonLink routerLink="/signUp">
               {textos["signup_registrate"]}
-            </Button>
-          </div>
+            </ButtonLink>
+          </Center>
         </Scaffold.Footer>
       </Scaffold>
     );

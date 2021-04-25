@@ -1,16 +1,14 @@
-import React, { FunctionComponent } from 'react';
+import SubTitle from "components/Text/SubTitle";
+import { FunctionComponent } from "react";
 
-interface Props {
-}
+interface Props {}
 
 const TitleRecipe: FunctionComponent<Props> = ({ children }) => {
-
-    return (
-        <h2 className="text-lg font-bold text-center mb-3">
-            {children}
-        </h2>
-    );
-
+  return (
+    <SubTitle align="center" className="mb-3 font-bold" color="dark">
+      {children}
+    </SubTitle>
+  );
 };
 
 export default TitleRecipe;

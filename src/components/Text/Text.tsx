@@ -6,16 +6,18 @@ interface Props {
   color?: string;
   className?: string;
   align?: "right" | "center" | "left" | undefined;
+  onClick?: (e: any) => void;
 }
 
 const Text: FunctionComponent<Props> = ({
   color,
   children,
   align,
-  className
+  className,
+  onClick,
 }) => {
   return (
-    <IonText color={color} className={`text-${align} text-base flex flex-col justify-center ${className}`}>
+    <IonText color={color} onClick={onClick} className={`text-${align} text-sm flex flex-col justify-center ${className}`}>
       <p>
         {children}
       </p>

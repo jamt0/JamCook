@@ -4,10 +4,12 @@ import Scaffold from "components/Scaffold/Scaffold";
 import Input from "components/Input/Input";
 import Text from "components/Text/Text";
 import { IonLoading } from "@ionic/react";
-import { Redirect, useHistory } from "react-router";
+import { Redirect } from "react-router";
 import { useForm } from "react-hook-form";
 import { useAuth } from "auth";
 import { useSettingsUser } from "context/settingsUser";
+import ButtonLink from "components/ButtonLink/ButtonLink";
+import Center from "components/Center/Center";
 
 let defaultValues = {
   name: "",
@@ -22,7 +24,6 @@ interface IUser {
 }
 
 const SignUp: React.FC = () => {
-  const history = useHistory();
   const { signUp, loading, auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
 
@@ -48,21 +49,6 @@ const SignUp: React.FC = () => {
     } else {
       return <Redirect to="/home" />;
     }
-  };
-
-  const handlerSignInButton = (e: any) => {
-    e.preventDefault();
-    history.replace("/signIn");
-  };
-
-  const handlerTerminosYCondicionesButton = (e: any) => {
-    e.preventDefault();
-    history.push("/terminosYCondiciones");
-  };
-
-  const handlerPoliticaDePrivacidadButton = (e: any) => {
-    e.preventDefault();
-    history.push("/politicaDePrivacidad");
   };
 
   const rulesNombre = {
@@ -99,7 +85,7 @@ const SignUp: React.FC = () => {
         <Scaffold.Header title={textos["signup_crear_cuenta"]}>
           <Scaffold.Header.BackAction />
         </Scaffold.Header>
-        <Scaffold.Content>
+        <Scaffold.Content margin="md">
           <IonLoading isOpen={loading} translucent />
           {hasErrors != "" && (
             <p className="text-red-600 bg-red-100 px-6 py-3 my-2">
@@ -133,28 +119,16 @@ const SignUp: React.FC = () => {
             label={textos["campo_contrasena"]}
             rules={rulesPassword}
           />
-          <div className="flex justify-center">
-            <div className="mt-8 mb-4 text-center">
-              <p className="mr-1 text-base inline">
-                {textos["signup_acepta_nuestros"]}
-              </p>
-              <Button
-                onClick={handlerTerminosYCondicionesButton}
-                color="light"
-                size="small"
-              >
-                {textos["terminos_condiciones"]}
-              </Button>
-              <p className="mx-1 text-base inline">{textos["y"]}</p>
-              <Button
-                onClick={handlerPoliticaDePrivacidadButton}
-                color="light"
-                size="small"
-              >
-                {textos["politica_privacidad"]}
-              </Button>
-            </div>
-          </div>
+          <Center direction="col" className="mt-8">
+            <Text>{textos["signup_acepta_nuestros"]}</Text>
+            <ButtonLink routerLink="/terminosYCondiciones">
+              {textos["terminos_condiciones"]}
+            </ButtonLink>
+            <Text>{textos["y"]}</Text>
+            <ButtonLink routerLink="/politicaDePrivacidad">
+              {textos["politica_privacidad"]}
+            </ButtonLink>
+          </Center>
         </Scaffold.Content>
         <Scaffold.Footer>
           <Button
@@ -163,12 +137,12 @@ const SignUp: React.FC = () => {
           >
             {textos["signup_crear_cuenta"]}
           </Button>
-          <div className="flex justify-center py-2">
-            <Text>{textos["signup_tiene_cuenta"]}</Text>
-            <Button onClick={handlerSignInButton} color="light" size="small">
+          <Center className="py-2">
+            <Text className="mr-1">{textos["signup_tiene_cuenta"]}</Text>
+            <ButtonLink routerLink="/signIn">
               {textos["signin_iniciar_sesion"]}
-            </Button>
-          </div>
+            </ButtonLink>
+          </Center>
         </Scaffold.Footer>
       </Scaffold>
     );

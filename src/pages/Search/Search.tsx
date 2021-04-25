@@ -59,9 +59,9 @@ const Search: React.FC = () => {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     if (width >= 568) {
-      setslidesPerView(2.5);
+      setslidesPerView(2.25);
     } else {
-      setslidesPerView(1.5);
+      setslidesPerView(1.25);
     }
     return () => {
       window.removeEventListener("resize", handleResize);

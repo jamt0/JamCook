@@ -7,6 +7,10 @@ import { useForm } from "react-hook-form";
 import { useSettingsUser } from "context/settingsUser";
 import { IonLoading } from "@ionic/react";
 import Server from "server";
+import ButtonLink from "components/ButtonLink/ButtonLink";
+import Center from "components/Center/Center";
+import SubTitle from "components/Text/SubTitle";
+import Text from "components/Text/Text";
 
 let defaultValues = {
   VerificationCode: "",
@@ -28,6 +32,10 @@ const ForgetPasswordValidate: React.FC = () => {
     mode: "onChange",
   });
 
+  /**
+   *
+   * @param data
+   */
   const handlerForgetPasswordValidateButton = async (verificationCode: any) => {
     const errorValidateVerificationCode = await Server.validateVerificationCode(
       verificationCode
@@ -36,12 +44,13 @@ const ForgetPasswordValidate: React.FC = () => {
       setHasErrors(errorValidateVerificationCode.data.error);
       setLoading(false);
     } else {
-      history.replace("/home/perfil");
+      history.replace("/forgetPassword/newPassword");
       setLoading(false);
     }
   };
 
   const handlerResendMailButton = (e: any) => {
+    console.log("se envio mail");
     e.preventDefault();
   };
 
@@ -62,12 +71,10 @@ const ForgetPasswordValidate: React.FC = () => {
         {hasErrors != "" && (
           <p className="text-red-600 bg-red-100 px-6 py-3 my-2">{hasErrors}</p>
         )}
-        <p className="text-base text-center font-bold mt-6">
-          {textos["consulta_correo"]}
-        </p>
-        <p className="mx-1 mb-4 text-base text-center md:text-left">
+        <SubTitle className="mt-6">{textos["consulta_correo"]}</SubTitle>
+        <Text align="center" color="medium" className="mb-4 mt-2">
           {textos["introduce_codigo"]}
-        </p>
+        </Text>
         <Input
           control={control}
           errors={errors}
@@ -77,11 +84,11 @@ const ForgetPasswordValidate: React.FC = () => {
           label={textos["campo_nombre"]}
           rules={rulesVerificationCode}
         />
-        <div className="flex justify-end">
-          <Button onClick={handlerResendMailButton} color="light" size="small">
+        <Center justify="end">
+          <ButtonLink onClick={handlerResendMailButton}>
             {textos["no_recibio_contrasena"]}
-          </Button>
-        </div>
+          </ButtonLink>
+        </Center>
       </Scaffold.Content>
       <Scaffold.Footer>
         <Button

@@ -4,16 +4,22 @@ import { FunctionComponent } from "react";
 interface Props {
   centerAlways?: boolean;
   color?: string;
+  className?: string;
+  align?: "right" | "center" | "left" | undefined;
 }
 
 const SubTitle: FunctionComponent<Props> = ({
   color,
   children,
+  className,
+  align="center"
 }) => {
   return (
-    <h3 className="text-center text-xl md:text-2xl">
-      <IonText color={color}>{children}</IonText>
+    <IonText color={color} className={`text-${align} text-xl flex flex-col justify-center ${className}`}>
+    <h3>
+      {children}
     </h3>
+  </IonText>
   );
 };
 

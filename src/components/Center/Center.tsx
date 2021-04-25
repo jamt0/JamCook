@@ -1,17 +1,16 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 interface Props {
-    direccion: string;
+    justify?: "start" | "center" | "end" | undefined;
+    content?: "start" | "center" | "end" | undefined;
+    direction?: "row" | "col" | undefined;
     className?: string;
-    eje?: string;
 }
 
-const Center: FunctionComponent<Props> = ({ children, direccion, className="", eje }) => {
-
-    const centradoEje = eje == null ? " items-center | justify-self-center justify-center " : eje == "x" ? " items-center " : " justify-self-center justify-center "
+const Center: FunctionComponent<Props> = ({ children, direction="row", className="", justify="center", content="center" }) => {
 
     return (
-        <div className={"flex flex-" + direccion + centradoEje + className}>
+        <div className={`flex flex-${direction} justify-${justify} content-${content} items-${content} ${className}`}>
             {children}
         </div>
     );

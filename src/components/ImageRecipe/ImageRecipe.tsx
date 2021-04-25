@@ -3,7 +3,8 @@ import Image from "components/Image/Image";
 import { IonItemDivider } from "@ionic/react";
 
 type Props = {
-  rounded?: boolean; 
+  rounded?: boolean;
+  fullCover?: boolean;
   src: string;
   height: number;
 }
@@ -11,21 +12,24 @@ type Props = {
 const ImageRecipe: FunctionComponent<Props> = ({
   src,
   children,
+  fullCover,
   height,
   rounded = false, 
 }) => {
-  const redondeo = rounded ? "rounded-md" : ""
+  const heightCover = fullCover ? "full" : "20"
+  const alignCover = fullCover ? "center" : "start"
+  const opacityCover = fullCover ? "25" : "50"
   return (
     <div className="relative flex">
       {children != null && (
         <>
-        <IonItemDivider color="dark" className={` ion-no-padding self-end absolute z-20 flex flex-col ${redondeo} opacity-50 bg-opacity-50 h-20 w-full justify-center px-2`} mode="md"/>
-        <div className={`self-end absolute z-20 flex flex-col ${redondeo} h-20 w-full justify-center px-2`} >
+        <IonItemDivider color="dark" className={`ion-no-padding self-end absolute z-20 opacity-${opacityCover} h-${heightCover} w-full`} mode="md"/>
+        <div className={`self-end absolute z-30 flex flex-col h-${heightCover} w-full justify-${alignCover} px-2 pt-2`} >
           {children}
         </div>
         </>
       )}
-      <Image src={src} height={height} />
+      <Image src={src} height={height} rounded={rounded}/>
     </div>
   );
 };

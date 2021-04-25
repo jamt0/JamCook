@@ -7,6 +7,7 @@ type Props = {
   size: number;
   color?: string;
   sizeResponsive?: number;
+  align?: "start" | "center" | "end" | undefined;
   handlerValoracion?: (e: any, index: number) => void;
 }
 
@@ -14,12 +15,13 @@ const Rating: FunctionComponent<Props> = ({
   stars,
   handlerValoracion,
   size,
+  align="start",
   sizeResponsive = size,
   color,
 }) => {
   if (handlerValoracion) {
     return (
-      <div className="flex flex-row">
+      <div className={`flex flex-row justify-${align}`}>
         {stars.map((estrella, index) => {
           return (
             <IonButtons
@@ -44,7 +46,7 @@ const Rating: FunctionComponent<Props> = ({
     );
   } else {
     return (
-      <div className="flex flex-row">
+      <div className={`flex flex-row justify-${align}`}>
         {stars.map((estrella, index) => {
           return (
             <IonIcon

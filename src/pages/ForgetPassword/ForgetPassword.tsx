@@ -7,6 +7,8 @@ import { IonLoading } from "@ionic/react";
 import { useForm } from "react-hook-form";
 import Input from "components/Input/Input";
 import Server from "server";
+import SubTitle from "components/Text/SubTitle";
+import Text from "components/Text/Text";
 
 let defaultValues = {
   email: "",
@@ -62,12 +64,10 @@ const ForgetPassword: React.FC = () => {
         {hasErrors != "" && (
           <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
         )}
-        <p className="text-base text-center font-bold mt-6">
-          {textos["signin_olvido_contraseña"]}
-        </p>
-        <p className="mx-auto mb-4 text-base text-center">
+        <SubTitle className="mt-6">{textos["signin_olvido_contraseña"]}</SubTitle>
+        <Text align="center" color="medium" className="mb-4 mt-2">
           {textos["introduce_contrasena"]}
-        </p>
+        </Text>
         <Input
           control={control}
           errors={errors}

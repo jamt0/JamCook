@@ -14,7 +14,7 @@ const Avatar: FunctionComponent<Props> = ({
 }) => {
   return (
     <IonAvatar
-      className={`w-${size} h-${size} md:h-${sizeResponsive} md:h-${sizeResponsive}`}
+      className={`w-${size} h-${size} md:h-${sizeResponsive} md:w-${sizeResponsive}`}
     >
       <IonImg src={src} />
     </IonAvatar>

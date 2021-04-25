@@ -4,7 +4,7 @@ import ScaffoldHeaderBackAction from "components/Scaffold/ScaffoldHeader/Scaffol
 
 type Props = {
   children: React.ReactNode;
-  title: string;
+  title?: string;
 };
 
 const ScaffoldHeader = ({ children, title }: Props) => {

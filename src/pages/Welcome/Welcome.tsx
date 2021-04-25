@@ -38,7 +38,7 @@ const Welcome: React.FC = () => {
       <Scaffold.Content height="full">
         <div className="flex flex-col justify-between h-full">
           <div>
-            <Brand />
+            <Brand/>
             <Slogan color="medium">{textos["slogan"]}</Slogan>
           </div>
           <Lottie options={defaultOptions} height={350} width={350} />

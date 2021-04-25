@@ -25,9 +25,9 @@ const ItemIcon: FunctionComponent<Props> = ({
     onClick={onClick}
   >
     {icon && (
-      <IonIcon icon={icon} slot="start" className="text-4xl ml-6" />
+      <IonIcon icon={icon} slot="start" className="text-4xl ml-7" />
     )}
-    <SubTitle>{children}</SubTitle>
+    <SubTitle className="ml-3" >{children}</SubTitle>
   </Item>
   );
 };

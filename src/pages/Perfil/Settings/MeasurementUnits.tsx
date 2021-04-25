@@ -25,6 +25,8 @@ const MeasurementUnits: React.FC = () => {
     },
   ];
 
+  console.log("soy la page unidades de medida")
+
   return (
     <Scaffold>
       <Scaffold.Header title={textos["unidades_medida"]}>

@@ -189,7 +189,7 @@ const EditPerfil: React.FC = () => {
         {hasErrors != "" && (
           <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
         )}
-        <Center direccion="col" className="mt-8">
+        <Center direction="col" className="mt-8">
           <Avatar src={avatarImageUrl} size={20} sizeResponsive={60} />
           <div className="mt-4">
             <label className="" htmlFor="inputAvatar">

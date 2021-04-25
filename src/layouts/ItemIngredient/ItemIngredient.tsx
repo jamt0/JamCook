@@ -37,7 +37,7 @@ const ItemIngredient: FunctionComponent<Props> = ({
   return (
     <div className="flex flex-col my-2">
       <div className="relative flex flex-row">
-        <Item color="light" onClick={handlerClickItem} className="w-full">
+        <Item color="light" onClick={handlerClickItem} className="w-full rounded-md">
           <Image src={src} height={12} width={12} rounded/>
           <IonLabel className="ion-text-wrap ml-2 my-4">
             <IonText color="dark">

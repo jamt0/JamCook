@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "components/Avatar/Avatar";
 import Button from "components/Button/Button";
@@ -22,6 +22,10 @@ import {
   chatbubbleEllipsesOutline,
   logOutOutline,
 } from "ionicons/icons";
+import Item from "components/Item/Item";
+import Center from "components/Center/Center";
+import ButtonLink from "components/ButtonLink/ButtonLink";
+import { IonLabel } from "@ionic/react";
 
 const Perfil: React.FC = () => {
   const { auth, logOut } = useAuth()!;
@@ -77,84 +81,83 @@ const Perfil: React.FC = () => {
           <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
         )}
         <Title color="medium">{textos["page_perfil"]}</Title>
-        <div className="md:auto-cols-max md:grid md:grid-cols-2">
-          {auth.loggedIn ? (
-            <div className="grid grid-flow-col auto-cols-max md:auto-rows-max md:grid-flow-row px-4 pb-4 md:justify-self-center">
-              <Avatar src={avatarImageUrl} size={20} sizeResponsive={60} />
-              <div className=" ml-4 md:ml-0 md:grid md:grid-flow-col md:grid-cols-1 md:grid-rows-3 md:gap-1 md:flex md:text-center md:py-8">
-                <h2 className="text-base">{user.name}</h2>
-                <h3 className="text-lg">{user.email}</h3>
-                <Link to="/perfil/edit">
-                  <Button color="light" size="small">
-                    {textos["perfil_editar"]}
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          ) : (
-            <div className="my-4">
-              <SubTitle>{textos["perfil_inicie_sesion"]}</SubTitle>
-              <Link to="/signIn">
+        {auth.loggedIn && (
+          <Item className="my-4 px-4">
+            <Avatar src={avatarImageUrl} size={16} />
+            <IonLabel className="ml-4">
+              <Text className="mb-2">{user.name}</Text>
+              <Text className="mb-2">{user.email}</Text>
+              <ButtonLink routerLink="/perfil/edit">
+                {textos["perfil_editar"]}
+              </ButtonLink>
+            </IonLabel>
+          </Item>
+        )}
+        {!auth.loggedIn && (
+          <Item color="light" className="py-4 rounded-md">
+            <Center direction="col" className="mt-2" justify="center">
+              <SubTitle className="mb-4">
+                {textos["perfil_inicie_sesion"]}
+              </SubTitle>
+              <Link to="/signIn" className="w-full pr-2">
                 <Button>{textos["signin_iniciar_sesion"]}</Button>
               </Link>
-              <div className="flex flex-row justify-center">
-                <Text>{textos["signin_no_tiene_cuenta"]}</Text>
-                <Link to="/signUp">
-                  <Button color="light" size="small">
-                    {textos["signup_registrate"]}
-                  </Button>
-                </Link>
-              </div>
-            </div>
+              <Center className="mb-2">
+                <Text className="mr-1">{textos["signin_no_tiene_cuenta"]}</Text>
+                <ButtonLink routerLink="/signUp">
+                  {textos["signup_registrate"]}
+                </ButtonLink>
+              </Center>
+            </Center>
+          </Item>
+        )}
+        <div className="mt-4">
+          {auth.loggedIn && (
+            <ItemIcon routerLink="/perfil/preferences" icon={personOutline}>
+              {textos["perfil_preferencias_alimentarias"]}
+            </ItemIcon>
           )}
-          <div>
-            {auth.loggedIn && (
-              <ItemIcon routerLink="/perfil/preferences" icon={personOutline}>
-                {textos["perfil_preferencias_alimentarias"]}
-              </ItemIcon>
-            )}
-            <ItemIcon routerLink="/perfil/language" icon={globeOutline}>
-              {textos["idioma"]}
+          <ItemIcon routerLink="/perfil/language" icon={globeOutline}>
+            {textos["idioma"]}
+          </ItemIcon>
+          <ItemIcon
+            routerLink="/perfil/settings"
+            icon={buildOutline}
+            lines="full"
+          >
+            {textos["configuraciones"]}
+          </ItemIcon>
+          <ItemIcon routerLink="/perfil/ratings" icon={starOutline}>
+            {textos["valora"] + " " + textos["name_app"]}
+          </ItemIcon>
+          <ItemIcon
+            routerLink="/perfil/share"
+            icon={arrowRedoOutline}
+            lines="full"
+          >
+            {textos["comparte"] + " " + textos["name_app"]}
+          </ItemIcon>
+          <ItemIcon routerLink="/perfil/aboutUs" icon={businessOutline}>
+            {textos["acerca"] + " " + textos["name_app"]}
+          </ItemIcon>
+          <ItemIcon
+            routerLink="/perfil/legalInformation"
+            icon={briefcaseOutline}
+          >
+            {textos["informacion_legal"]}
+          </ItemIcon>
+          <ItemIcon
+            routerLink="/perfil/contactUs"
+            icon={chatbubbleEllipsesOutline}
+            lines="full"
+          >
+            {textos["contacto"]}
+          </ItemIcon>
+          {auth.loggedIn && (
+            <ItemIcon onClick={handlerLogOutButton} icon={logOutOutline}>
+              {textos["logout"]}
             </ItemIcon>
-            <ItemIcon
-              routerLink="/perfil/settings"
-              icon={buildOutline}
-              lines="full"
-            >
-              {textos["configuraciones"]}
-            </ItemIcon>
-            <ItemIcon routerLink="/perfil/ratings" icon={starOutline}>
-              {textos["valora"] + " " + textos["name_app"]}
-            </ItemIcon>
-            <ItemIcon
-              routerLink="/perfil/share"
-              icon={arrowRedoOutline}
-              lines="full"
-            >
-              {textos["comparte"] + " " + textos["name_app"]}
-            </ItemIcon>
-            <ItemIcon routerLink="/perfil/aboutUs" icon={businessOutline}>
-              {textos["acerca"] + " " + textos["name_app"]}
-            </ItemIcon>
-            <ItemIcon
-              routerLink="/perfil/legalInformation"
-              icon={briefcaseOutline}
-            >
-              {textos["informacion_legal"]}
-            </ItemIcon>
-            <ItemIcon
-              routerLink="/perfil/contactUs"
-              icon={chatbubbleEllipsesOutline}
-              lines="full"
-            >
-              {textos["contacto"]}
-            </ItemIcon>
-            {auth.loggedIn && (
-              <ItemIcon onClick={handlerLogOutButton} icon={logOutOutline}>
-                {textos["logout"]}
-              </ItemIcon>
-            )}
-          </div>
+          )}
         </div>
       </Scaffold.Content>
     </Scaffold>

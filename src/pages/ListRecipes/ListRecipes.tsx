@@ -8,8 +8,7 @@ const listRecipes = {
   recipes: [
     {
       id: "1",
-      pathRecipeImage:
-        "https://d1kxxrc2vqy8oa.cloudfront.net/wp-content/uploads/2020/01/09214916/RFB-2312-2-tacos.jpg",
+      pathRecipeImage: "https://d1kxxrc2vqy8oa.cloudfront.net/wp-content/uploads/2020/01/09214916/RFB-2312-2-tacos.jpg",
       pathAvatarImage: "https://picsum.photos/200/300?random=2",
       name: "Tacos Mexicanos de Carnitas",
       valoration: [true, true, true, true, false],

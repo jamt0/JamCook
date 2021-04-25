@@ -9,11 +9,31 @@ type Props = {
   disabled?: boolean;
   onClick?: (e: any) => void;
   routerDirection?: "none" | "forward" | "back" | "root" | undefined;
+  className?: string;
 };
 
-const Button: FunctionComponent<Props>  = ({ color, expand="block", fill, size="large", disabled, onClick, routerDirection, children }) => {
+const Button: FunctionComponent<Props> = ({
+  color,
+  expand = "block",
+  fill,
+  size = "large",
+  disabled,
+  onClick,
+  routerDirection,
+  children,
+  className,
+}) => {
   return (
-    <IonButton color={color} expand={expand} fill={fill} size={size} disabled={disabled} onClick={onClick} routerDirection={routerDirection}>
+    <IonButton
+      color={color}
+      expand={expand}
+      fill={fill}
+      size={size}
+      disabled={disabled}
+      onClick={onClick}
+      routerDirection={routerDirection}
+      className={className}
+    >
       {children}
     </IonButton>
   );

@@ -5,7 +5,7 @@ import ItemIcon from "layouts/ItemIcon/ItemIcon";
 
 const Settings: React.FC = () => {
   const { textos } = useSettingsUser()!;
-
+  console.log("soy la page configuraciones")
   return (
     <Scaffold>
       <Scaffold.Header title={textos["configuraciones"]}>

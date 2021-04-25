@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 import Response from "../Response/Response";
 
 interface Props {
@@ -16,9 +16,7 @@ const ResponseBox: FunctionComponent<Props> = ({ respuestas }) => {
     <>
       {respuestas.map((respuesta) => {
         return (
-          <>
             <Response respuesta={respuesta} key={respuesta.id} />
-          </>
         );
       })}
     </>
