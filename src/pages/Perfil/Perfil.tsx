@@ -1,13 +1,16 @@
-import {
-  IonContent,
-  IonIcon,
-  IonItem,
-  IonList,
-  IonLoading,
-  IonPage,
-} from "@ionic/react";
-import React from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Avatar from "components/Avatar/Avatar";
+import Button from "components/Button/Button";
+import Scaffold from "components/Scaffold/Scaffold";
+import SubTitle from "components/Text/SubTitle";
+import Text from "components/Text/Text";
+import Title from "components/Text/Title";
+import ItemIcon from "layouts/ItemIcon/ItemIcon";
+import { useAuth } from "auth";
+import Server from "server";
+import config from "config/general";
+import { useSettingsUser } from "context/settingsUser";
 import {
   personOutline,
   globeOutline,
@@ -19,275 +22,145 @@ import {
   chatbubbleEllipsesOutline,
   logOutOutline,
 } from "ionicons/icons";
-import Avatar from "components/Avatar/Avatar";
-import Button from "components/Button/Button";
-import { Redirect, useHistory } from "react-router";
-import { useAuth } from "auth";
+import Item from "components/Item/Item";
 import Center from "components/Center/Center";
-
-const usuario = {
-  avatarUser: "https://picsum.photos/200/300?random=1",
-  nameUser: "Jonatan Mancera",
-  mailUser: "Jamt@gmail.com",
-};
+import ButtonLink from "components/ButtonLink/ButtonLink";
+import { IonLabel } from "@ionic/react";
 
 const Perfil: React.FC = () => {
-  const history = useHistory();
+  const { auth, logOut } = useAuth()!;
+  const { textos } = useSettingsUser()!;
 
-  const { auth, logOut, loading } = useAuth()!;
+  const [user, setUser] = useState({ name: "", email: "" });
+  const [avatarImageUrl, setAvatarImageUrl] = useState<any>(
+    `${config.baseURL}/images/avatars/default.png`
+  );
+  const [hasErrors, setHasErrors] = useState<string>("");
 
   const handlerLogOutButton = async (e: any) => {
     e.preventDefault();
     await logOut();
-    //esto causa un doble vistaso al sigin
-    // const errorLogOut = await logOut();
-    // if (errorLogOut == null) {
-    //   //esto soluciona parcialmente el doble render, pero ya no se ve animacion y hay una pantalla blanca
-    //   // return <Redirect to="/signIn" />;
-    //   history.push("/signIn");
-    // }
   };
+
+  useEffect(() => {
+    if (auth.user?.id) {
+      Server.getUser(auth.user.id)
+        .then((response) => {
+          if (!response.data.error) {
+            setUser({
+              name: String(response.data.user.name),
+              email: String(response.data.user.email),
+            });
+          } else {
+            setHasErrors(response.data.error);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      Server.getImageAvatar(auth.user.id)
+        .then((response) => {
+          if (!response.data.error) {
+            setAvatarImageUrl(`${config.baseURL}/${response.data.path}`);
+          } else {
+            setHasErrors(response.data.error);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, []);
 
   console.log("soy page perfil");
 
   return (
-    <IonPage>
-      <IonContent>
-        <IonLoading isOpen={loading} translucent />
-        <div className="flex md:text-center flex-col md:mx-auto max-w-screen-md py-8 text-left text-gray-600 text-2xl md:text-3xl mx-4 font-bold">
-          <h6>Perfil</h6>
-        </div>
+    <Scaffold>
+      <Scaffold.Content>
+        {hasErrors != "" && (
+          <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
+        )}
+        <Title color="medium">{textos["page_perfil"]}</Title>
         {auth.loggedIn && (
-          <div className="md:auto-cols-max md:grid md:grid-cols-2 max-w-screen-md md:flex md:mx-auto">
-            <div className="grid grid-flow-col auto-cols-max md:auto-rows-max md:grid-flow-row px-4 pb-4 md:justify-self-center">
-              <Avatar
-                avatarUser={usuario.avatarUser}
-                tamaño="20"
-                responsive="60"
-              />
-              <div className=" ml-4 md:ml-0 md:grid md:grid-flow-col md:grid-cols-1 md:grid-rows-3 md:gap-1 md:flex md:text-center md:py-8">
-                <h2 className="text-base">{usuario.nameUser}</h2>
-                <h3 className="text-lg">{auth.user?.email}</h3>
-                <Link
-                  to="/perfil/edit"
-                  className="text-purple-600 text-lg select-none"
-                >
-                  <Button label="Editar Perfil" type="Link" />
-                </Link>
-              </div>
-            </div>
-            <IonList>
-              <IonItem
-                className="px-6 pb-3"
-                lines="none"
-                routerLink="/perfil/preferences"
-              >
-                <IonIcon
-                  icon={personOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">Preferencias Alimentarias</p>
-              </IonItem>
-              <IonItem
-                className="px-6 pb-3"
-                lines="none"
-                routerLink="/perfil/language"
-              >
-                <IonIcon
-                  icon={globeOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">Idioma</p>
-              </IonItem>
-              <IonItem
-                className="px-6 pb-3"
-                lines="full"
-                routerLink="/perfil/settings"
-              >
-                <IonIcon
-                  icon={buildOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">Configuración</p>
-              </IonItem>
-              <IonItem
-                className="px-6 pb-3"
-                lines="none"
-                routerLink="/perfil/ratings"
-              >
-                <IonIcon icon={starOutline} slot="start" className="text-4xl" />
-                <p className="text-lg">Valora JamCook</p>
-              </IonItem>
-              <IonItem
-                className="px-6 pb-3"
-                lines="full"
-                routerLink="/perfil/share"
-              >
-                <IonIcon
-                  icon={arrowRedoOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">Comparte JamCook</p>
-              </IonItem>
-              <IonItem
-                className="px-6 pb-3"
-                lines="none"
-                routerLink="/perfil/aboutUs"
-              >
-                <IonIcon
-                  icon={businessOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">Sobre JamCook</p>
-              </IonItem>
-              <IonItem
-                className="px-6 pb-3"
-                lines="none"
-                routerLink="/perfil/legalInformation"
-              >
-                <IonIcon
-                  icon={briefcaseOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">Información Legal</p>
-              </IonItem>
-              <IonItem
-                className="px-6 pb-3"
-                lines="full"
-                routerLink="/perfil/contactUs"
-              >
-                <IonIcon
-                  icon={chatbubbleEllipsesOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">Contacto</p>
-              </IonItem>
-              <IonItem
-                className="px-6 pb-3"
-                lines="none"
-                onClick={handlerLogOutButton}
-              >
-                <IonIcon
-                  icon={logOutOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">Cerrar Sesión</p>
-              </IonItem>
-            </IonList>
-          </div>
+          <Item className="my-4 px-4">
+            <Avatar src={avatarImageUrl} size={16} />
+            <IonLabel className="ml-4">
+              <Text className="mb-2">{user.name}</Text>
+              <Text className="mb-2">{user.email}</Text>
+              <ButtonLink routerLink="/perfil/edit">
+                {textos["perfil_editar"]}
+              </ButtonLink>
+            </IonLabel>
+          </Item>
         )}
         {!auth.loggedIn && (
-          <div className="md:auto-cols-max md:grid md:grid-cols-2 max-w-screen-md md:flex md:mx-auto">
-            <div className="mx-4 mb-4">
-              <h2 className="text-xl text-center mb-4">
-                Inicie sesión para obtener más beneficios de la aplicación
-              </h2>
-              <Link to="/signIn" className="">
-                <div className="mt-8 mb-4 mx-24">
-                  <Button label={"Iniciar Sesión"}/>
-                </div>
+          <Item color="light" className="py-4 rounded-md">
+            <Center direction="col" className="mt-2" justify="center">
+              <SubTitle className="mb-4">
+                {textos["perfil_inicie_sesion"]}
+              </SubTitle>
+              <Link to="/signIn" className="w-full pr-2">
+                <Button>{textos["signin_iniciar_sesion"]}</Button>
               </Link>
-              <Center direccion="row" className="mb-8">
-                <p className="text-base text-center mr-1">¿No tienes cuenta?</p>
-                <Link to="/signUp">
-                  <Button label={"Registrarse"} type={"Link"} />
-                </Link>
+              <Center className="mb-2">
+                <Text className="mr-1">{textos["signin_no_tiene_cuenta"]}</Text>
+                <ButtonLink routerLink="/signUp">
+                  {textos["signup_registrate"]}
+                </ButtonLink>
               </Center>
-            </div>
-            <IonList>
-              <IonItem
-                className="px-6 pb-3"
-                lines="none"
-                routerLink="/perfil/language"
-              >
-                <IonIcon
-                  icon={globeOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">Idioma</p>
-              </IonItem>
-              <IonItem
-                className="px-6 pb-3"
-                lines="full"
-                routerLink="/perfil/settings"
-              >
-                <IonIcon
-                  icon={buildOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">Configuración</p>
-              </IonItem>
-              <IonItem
-                className="px-6 pb-3"
-                lines="none"
-                routerLink="/perfil/ratings"
-              >
-                <IonIcon icon={starOutline} slot="start" className="text-4xl" />
-                <p className="text-lg">Valora JamCook</p>
-              </IonItem>
-              <IonItem
-                className="px-6 pb-3"
-                lines="full"
-                routerLink="/perfil/share"
-              >
-                <IonIcon
-                  icon={arrowRedoOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">Comparte JamCook</p>
-              </IonItem>
-              <IonItem
-                className="px-6 pb-3"
-                lines="none"
-                routerLink="/perfil/aboutUs"
-              >
-                <IonIcon
-                  icon={businessOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">Sobre JamCook</p>
-              </IonItem>
-              <IonItem
-                className="px-6 pb-3"
-                lines="none"
-                routerLink="/perfil/legalInformation"
-              >
-                <IonIcon
-                  icon={briefcaseOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">Información Legal</p>
-              </IonItem>
-              <IonItem
-                className="px-6 pb-3"
-                lines="none"
-                routerLink="/perfil/contactUs"
-              >
-                <IonIcon
-                  icon={chatbubbleEllipsesOutline}
-                  slot="start"
-                  className="text-4xl"
-                />
-                <p className="text-lg">Contacto</p>
-              </IonItem>
-            </IonList>
-          </div>
+            </Center>
+          </Item>
         )}
-      </IonContent>
-    </IonPage>
+        <div className="mt-4">
+          {auth.loggedIn && (
+            <ItemIcon routerLink="/perfil/preferences" icon={personOutline}>
+              {textos["perfil_preferencias_alimentarias"]}
+            </ItemIcon>
+          )}
+          <ItemIcon routerLink="/perfil/language" icon={globeOutline}>
+            {textos["idioma"]}
+          </ItemIcon>
+          <ItemIcon
+            routerLink="/perfil/settings"
+            icon={buildOutline}
+            lines="full"
+          >
+            {textos["configuraciones"]}
+          </ItemIcon>
+          <ItemIcon routerLink="/perfil/ratings" icon={starOutline}>
+            {textos["valora"] + " " + textos["name_app"]}
+          </ItemIcon>
+          <ItemIcon
+            routerLink="/perfil/share"
+            icon={arrowRedoOutline}
+            lines="full"
+          >
+            {textos["comparte"] + " " + textos["name_app"]}
+          </ItemIcon>
+          <ItemIcon routerLink="/perfil/aboutUs" icon={businessOutline}>
+            {textos["acerca"] + " " + textos["name_app"]}
+          </ItemIcon>
+          <ItemIcon
+            routerLink="/perfil/legalInformation"
+            icon={briefcaseOutline}
+          >
+            {textos["informacion_legal"]}
+          </ItemIcon>
+          <ItemIcon
+            routerLink="/perfil/contactUs"
+            icon={chatbubbleEllipsesOutline}
+            lines="full"
+          >
+            {textos["contacto"]}
+          </ItemIcon>
+          {auth.loggedIn && (
+            <ItemIcon onClick={handlerLogOutButton} icon={logOutOutline}>
+              {textos["logout"]}
+            </ItemIcon>
+          )}
+        </div>
+      </Scaffold.Content>
+    </Scaffold>
   );
 };
 

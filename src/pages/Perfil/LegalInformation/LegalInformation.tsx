@@ -1,26 +1,29 @@
-import { IonItem, IonList } from "@ionic/react";
 import React from "react";
+import Scaffold from "components/Scaffold/Scaffold";
+import { useSettingsUser } from "context/settingsUser";
+import ItemIcon from "layouts/ItemIcon/ItemIcon";
 
-import Scaffold from "../../../components/Scaffold/Scaffold";
-
-const LegalInformation: React.FC = ( ) => {
+const LegalInformation: React.FC = () => {
+  const { textos } = useSettingsUser()!;
 
   return (
-    <Scaffold tituloHeader="Información Legal" >
-      <IonList>
-        <IonItem className="px-6 pb-3" lines="none" routerLink="/perfil/legalInformation/termsAndConditions">
-          <p className="text-lg">Términos y condiciones</p>
-        </IonItem>
-        <IonItem className="px-6 pb-3" lines="none" routerLink="/perfil/legalInformation/privacyPolicy">
-          <p className="text-lg">Política de privacidad</p>
-        </IonItem>
-        <IonItem className="px-6 pb-3" lines="none" routerLink="/perfil/legalInformation/cookiesPolicy">
-          <p className="text-lg">Política de cookies</p>
-        </IonItem>
-      </IonList>
+    <Scaffold>
+      <Scaffold.Header title={textos["informacion_legal"]}>
+        <Scaffold.Header.BackAction />
+      </Scaffold.Header>
+      <Scaffold.Content>
+      <ItemIcon routerLink="/perfil/legalInformation/termsAndConditions">
+          {textos["terminos_condiciones"]}
+        </ItemIcon>
+        <ItemIcon routerLink="/perfil/legalInformation/privacyPolicy">
+          {textos["politica_privacidad"]}
+        </ItemIcon>
+        <ItemIcon routerLink="/perfil/legalInformation/cookiesPolicy">
+          {textos["politica_cookies"]}
+        </ItemIcon>
+      </Scaffold.Content>
     </Scaffold>
   );
 };
 
 export default LegalInformation;
-  

@@ -1,11 +1,9 @@
-import {
-  IonContent,
-  IonPage,
-} from "@ionic/react";
 import React from "react";
-
-import Searcher from "../../components/Searcher/Searcher";
-import GridImages from "../../components/GridImages/GridImages";
+import Searcher from "components/Searcher/Searcher";
+import GridImages from "components/GridImages/GridImages";
+import { useSettingsUser } from "context/settingsUser";
+import Scaffold from "components/Scaffold/Scaffold";
+import Title from "components/Text/Title";
 
 const imagenes = [
   {
@@ -106,17 +104,18 @@ const imagenes = [
 ];
 
 const Explore: React.FC = () => {
+  const { textos } = useSettingsUser()!;
+
   console.log("soy page explore");
+
   return (
-    <IonPage>
-      <IonContent>
-        <div className="flex flex-col pt-8 text-left sm:text-center text-gray-600 text-2xl md:text-3xl mx-4 font-bold">
-          <h6>Explorar</h6>
-        </div>
-        <Searcher placeHolder={"¿Qué tipo de plato te gustaria?"} />
+    <Scaffold>
+      <Scaffold.Content>
+        <Title color="medium">{textos["page_explorar"]}</Title>
+        <Searcher placeHolder={textos["plato_gustaria"]} />
         <GridImages imagenes={imagenes} />
-      </IonContent>
-    </IonPage>
+      </Scaffold.Content>
+    </Scaffold>
   );
 };
 

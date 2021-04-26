@@ -1,11 +1,15 @@
 import React from "react";
-
-import Scaffold from "../../components/Scaffold/Scaffold";
+import Scaffold from "components/Scaffold/Scaffold";
 
 const AboutUs: React.FC = () => {
   return (
-    <Scaffold tituloHeader="Sobre JamCook">
-      Sobre la mejor app.
+    <Scaffold>
+      <Scaffold.Header title={"sobre"}>
+        <Scaffold.Header.BackAction />
+      </Scaffold.Header>
+      <Scaffold.Content>
+        <h1>Sobre la mejor app.</h1>
+      </Scaffold.Content>
     </Scaffold>
   );
 };

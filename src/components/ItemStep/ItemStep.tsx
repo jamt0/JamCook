@@ -1,12 +1,16 @@
+import Item from "components/Item/Item";
+import Text from "components/Text/Text";
 import React, { FunctionComponent } from "react";
 
 interface Props {}
 
 const ItemStep: FunctionComponent<Props> = ({ children }) => {
   return (
-    <div className="p-2 bg-gray-100 mb-2 rounded-md">
-      <h3 className="text-sm">{children}</h3>
-    </div>
+    <Item color="light" className="w-full mb-2 rounded-md">
+      <Text className="my-2">
+        {children}
+      </Text>
+    </Item>
   );
 };
 

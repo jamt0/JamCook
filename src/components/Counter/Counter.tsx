@@ -1,18 +1,21 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import { IonItemDivider } from "@ionic/react";
+import { FunctionComponent, useEffect, useState } from "react";
 import Center from "../Center/Center";
+import Text from "components/Text/Text";
+import Button from "components/Button/Button";
 
 interface Props {
   porciones: number;
   setPorciones: (porciones: number) => void;
 }
 
-const Counter: FunctionComponent<Props> = ({ porciones, setPorciones}) => {
+const Counter: FunctionComponent<Props> = ({ porciones, setPorciones }) => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [classPorciones, setClassPorciones] = useState(" ");
 
   useEffect(() => {
     if (porciones == 1) {
-      setClassPorciones(" bg-opacity-25 ");
+      setClassPorciones(" opacity-25 ");
       setIsDisabled(true);
     } else {
       setClassPorciones(" ");
@@ -28,23 +31,39 @@ const Counter: FunctionComponent<Props> = ({ porciones, setPorciones}) => {
     setPorciones(porciones - 1);
   };
   return (
-    <Center direccion="row" className="w-full">
-      <button
-        className={"bg-purple-500 h-12 w-12 rounded-l-md" + classPorciones}
-        onClick={handlerResta}
-        disabled={isDisabled}
+    <Center direction="row">
+      <IonItemDivider
+        className= {"ion-no-padding h-12 w-14 rounded-l-md"}
+        mode="md"
       >
-        <p className="text-white">{"<"}</p>
-      </button>
-      <Center direccion="col" className="w-full bg-gray-100 h-12">
-        <h3 className="text-black text-center">{porciones}</h3>
-      </Center>
-      <button
-        className="bg-purple-500 h-12 w-12 rounded-r-md"
-        onClick={handlerSuma}
+        <Button
+          color="primary"
+          className="w-full h-full"
+          onClick={handlerResta}
+          disabled={isDisabled}
+        >
+          <Text color="light" align="center">
+            {"<"}
+          </Text>
+        </Button>
+      </IonItemDivider>
+      <IonItemDivider color="light" className="ion-no-padding w-full h-12" mode="md">
+        <div className="w-full">
+          <Text color="medium" align="center">
+            {porciones}
+          </Text>
+        </div>
+      </IonItemDivider>
+      <IonItemDivider
+        className="ion-no-padding h-12 w-14 rounded-r-md"
+        mode="md"
       >
-        <p className="text-white">{">"}</p>
-      </button>
+        <Button color="primary" className="w-full h-full" onClick={handlerSuma}>
+          <Text color="light" align="center">
+            {">"}
+          </Text>
+        </Button>
+      </IonItemDivider>
     </Center>
   );
 };

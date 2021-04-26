@@ -1,11 +1,12 @@
 import { IonButton, IonButtons, IonIcon } from "@ionic/react";
 import { chatbubbleOutline, heart, heartOutline } from "ionicons/icons";
 import React, { FunctionComponent, useState } from "react";
-import Avatar from "../Avatar/Avatar";
-import Button from "../Button/Button";
-import Center from "../Center/Center";
-import Rating from "../Rating/Rating";
-import ResponseBox from "../ResponseBox/ResponseBox";
+import Avatar from "components/Avatar/Avatar";
+import Button from "components/Button/Button";
+import Center from "components/Center/Center";
+import Rating from "components/Rating/Rating";
+import ResponseBox from "components/ResponseBox/ResponseBox";
+import ButtonLink from "components/ButtonLink/ButtonLink";
 
 interface Props {
   comentario: {
@@ -39,28 +40,29 @@ const Commentary: FunctionComponent<Props> = ({
     setmostarRespuestas(!mostarRespuestas);
   }
   return (
-    <Center direccion="col" eje="y" className="mt-4 border-b border-gray-300 ">
+    <Center direction="col" className="mt-4 border-b border-gray-300 ">
       <div className="grid grid-flow-col">
         <div className="justify-self-start flex flex-row">
-          <Avatar avatarUser={comentario.avatarUser} tamaño="12" />
-          <Center direccion="col" eje="y">
+          <Avatar src={comentario.avatarUser} size={12} />
+          <Center direction="col">
             <h3 className="text-base ml-2">{comentario.nombreUsuario}</h3>
             <h3 className="text-xs ml-2">{comentario.fechaPublicacion}</h3>
           </Center>
         </div>
         <div className="justify-self-end">
-          <Center direccion="row" eje="y" className="h-full">
-            <Rating estrellas={comentario.valoracion} tamaño={"4"} />
+          <Center direction="row" className="h-full">
+            <Rating stars={comentario.valoracion} size={4} />
           </Center>
         </div>
       </div>
       <h3 className="text-base ml-14 my-4">{comentario.comentario}</h3>
-      <Center direccion="row" eje="x" className="mb-4">
+      <Center direction="row" justify="start" className="mb-4 w-full">
         <IonButtons slot="start" className="ml-12 mr-2">
           <IonButton onClick={handlerLikeButton}>
             <IonIcon
               icon={isLiked ? heart : heartOutline}
-              className="text-gray-500 text-xl"
+              color="medium"
+              className="text-xl"
             />
           </IonButton>
         </IonButtons>
@@ -68,16 +70,21 @@ const Commentary: FunctionComponent<Props> = ({
           <IonButton onClick={handlerAnswerButton}>
             <IonIcon
               icon={chatbubbleOutline}
-              className="text-gray-500 text-xl"
+              color="medium"
+              className="text-xl"
             />
           </IonButton>
         </IonButtons>
-        <Button label="Responder" type="Link" handler={handlerAnswerButton} />
+        <ButtonLink onClick={handlerAnswerButton}>
+          Responder
+        </ButtonLink>
       </Center>
       {comentario.respuestas.length > 0 && 
         <div className="ml-14">
           <div className="mb-4">
-            <Button label="7 Respuestas" type="Link" handler={handlerAnswerButton} />
+            <ButtonLink onClick={handlerAnswerButton} >
+              7 Respuestas
+            </ButtonLink>
           </div>
           {mostarRespuestas && 
             <div className="my-4">

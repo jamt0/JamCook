@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import Button from "components/Button/Button";
 import Scaffold from "components/Scaffold/Scaffold";
 import Input from "components/Input/Input";
+import Text from "components/Text/Text";
 import { IonLoading } from "@ionic/react";
-import { Redirect, useHistory } from "react-router";
+import { Redirect } from "react-router";
 import { useForm } from "react-hook-form";
 import { useAuth } from "auth";
+import { useSettingsUser } from "context/settingsUser";
+import ButtonLink from "components/ButtonLink/ButtonLink";
+import Center from "components/Center/Center";
 
 let defaultValues = {
   email: "",
@@ -17,27 +21,11 @@ interface IUser {
   password: string;
 }
 
-const rulesPassword = {
-  required: "Este campo es obligatorio",
-  minLength: {
-    value: 8,
-    message: "La contraseña debe tener minimo 8 caracteres",
-  },
-};
-
-const rulesEmail = {
-  required: "Este campo es obligatorio",
-  pattern: {
-    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-    message: "Correo electrónico invalido",
-  },
-};
-
 const SignIn: React.FC = () => {
-
-  const history = useHistory();
-
   const { signIn, loading, auth } = useAuth()!;
+  const { textos } = useSettingsUser()!;
+
+  const [hasErrors, setHasErrors] = useState<string>("");
 
   const {
     control,
@@ -48,8 +36,6 @@ const SignIn: React.FC = () => {
     mode: "onChange",
   });
 
-  const [hasErrors, setHasErrors] = useState<string>("");
-
   /**
    *
    * @param data
@@ -59,80 +45,81 @@ const SignIn: React.FC = () => {
     if (errorSignIn != null) {
       setHasErrors(errorSignIn);
     } else {
-      // history.replace('/home');
       return <Redirect to="/home" />;
     }
   };
 
-  const handlerSignUpButton = (e: any) => {
-    e.preventDefault();
-    history.replace("/signUp");
+  const rulesPassword = {
+    required: textos["campo_requerido"],
+    minLength: {
+      value: 8,
+      message: textos["campo_contrasena_min"],
+    },
   };
 
-  const handlerForgetPasswordButton = (e: any) => {
-    e.preventDefault();
-    history.push("/forgetPassword");
+  const rulesEmail = {
+    required: textos["campo_requerido"],
+    pattern: {
+      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+      message: textos["campo_correo_invalido"],
+    },
   };
 
   console.log("soy la page login");
 
-  if(auth.loggedIn) {
+  if (auth.loggedIn) {
     return <Redirect to="/home" />;
-  }else{
+  } else {
     return (
-      <Scaffold
-        tituloHeader="Inicia sesión"
-        footer={
-          <div className="p-2 max-w-screen-md mx-auto">
-            <Button
-              label="Iniciar sesión"
-              handler={handleSubmit(handlerSignInButton)}
-              disable={!isValid || isSubmitting}
-            />
-            <div className="flex justify-center py-2">
-              <p className="mr-1">¿No tienes una cuenta? </p>
-              <Button
-                handler={handlerSignUpButton}
-                label={"Registrate."}
-                type={"Link"}
-              />
-            </div>
-          </div>
-        }
-      >
-        <IonLoading isOpen={loading} translucent />
-        <div className="max-w-screen-md mx-auto p-4 h-full">
+      <Scaffold>
+        <Scaffold.Header title={textos["signin_iniciar_sesion"]}>
+          <Scaffold.Header.BackAction />
+        </Scaffold.Header>
+        <Scaffold.Content>
+          <IonLoading isOpen={loading} translucent />
           {hasErrors != "" && (
-            <p className="text-red-600 bg-red-100 px-6 py-3 my-2">{hasErrors}</p>
+            <p className="text-red-600 bg-red-100 px-6 py-3 my-2">
+              {hasErrors}
+            </p>
           )}
-          <form>
-            <Input
-              control={control}
-              errors={errors}
-              defaultValue={defaultValues.email}
-              name="email"
-              type="email"
-              label="Correo Electrónico"
-              rules={rulesEmail}
-            />
-            <Input
-              control={control}
-              errors={errors}
-              defaultValue={defaultValues.password}
-              name="password"
-              type="password"
-              label="Contraseña"
-              rules={rulesPassword}
-            />
-          </form>
-          <div className="flex justify-end pt-6">
-            <Button
-              handler={handlerForgetPasswordButton}
-              label={"¿Has olvidado tu contraseña?"}
-              type={"Link"}
-            />
-          </div>
-        </div>
+          <Input
+            control={control}
+            errors={errors}
+            defaultValue={defaultValues.email}
+            name="email"
+            type="email"
+            label={textos["campo_correo"]}
+            rules={rulesEmail}
+          />
+          <Input
+            control={control}
+            errors={errors}
+            defaultValue={defaultValues.password}
+            name="password"
+            type="password"
+            label={textos["campo_contrasena"]}
+            rules={rulesPassword}
+          />
+          <Center justify="end" className="mt-6">
+            <ButtonLink routerLink="/forgetPassword">
+              {textos["signin_olvido_contraseña"]}
+            </ButtonLink>
+          </Center>
+        </Scaffold.Content>
+        <Scaffold.Footer>
+          <Button
+            onClick={handleSubmit(handlerSignInButton)}
+            disabled={!isValid || isSubmitting}
+          >
+            {textos["signin_iniciar_sesion"]}
+          </Button>
+          <Center className="py-2">
+            <Text className="mr-1">{textos["signin_no_tiene_cuenta"]}</Text>
+            <ButtonLink routerLink="/signUp">
+              {textos["signup_registrate"]}
+            </ButtonLink>
+          </Center>
+        </Scaffold.Footer>
       </Scaffold>
     );
   }

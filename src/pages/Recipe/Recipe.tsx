@@ -1,37 +1,38 @@
 import { IonButton, IonIcon } from "@ionic/react";
 import React, { useState } from "react";
-
-import ImageRecipe from "../../components/ImageRecipe/ImageRecipe";
-import Scaffold from "../../components/Scaffold/Scaffold";
+import { useSettingsUser } from "context/settingsUser";
+import ImageRecipe from "components/ImageRecipe/ImageRecipe";
+import Scaffold from "components/Scaffold/Scaffold";
+import Button from "components/Button/Button";
+import CommentaryBox from "components/CommentaryBox/CommentaryBox";
+import TitleRecipe from "components/TitleRecipe/TitleRecipe";
+import ItemIngredient from "layouts/ItemIngredient/ItemIngredient";
+import ItemStep from "components/ItemStep/ItemStep";
+import ContainerSection from "components/ContainerSection/ContainerSection";
+import Center from "components/Center/Center";
+import Counter from "components/Counter/Counter";
+import Avatar from "components/Avatar/Avatar";
+import Rating from "components/Rating/Rating";
+import ChipGroup from "components/ChipGroup/ChipGroup";
+import SliderRecipesSimple from "layouts/SliderRecipes/SliderRecipesSimple";
+import Text from "components/Text/Text";
 import {
-  star,
   timerOutline,
   nutritionOutline,
-  starOutline,
   arrowRedoOutline,
   bookmarkOutline,
   heartOutline,
   speedometerOutline,
 } from "ionicons/icons";
-import Button from "../../components/Button/Button";
-import CommentaryBox from "../../components/CommentaryBox/CommentaryBox";
-import TitleRecipe from "../../components/TitleRecipe/TitleRecipe";
-import ItemIngredient from "../../components/ItemIngredient/ItemIngredient";
-import ItemStep from "../../components/ItemStep/ItemStep";
-import ContainerSection from "../../components/ContainerSection/ContainerSection";
-import Center from "../../components/Center/Center";
-import Counter from "../../components/Counter/Counter";
-import Avatar from "../../components/Avatar/Avatar";
-import Rating from "../../components/Rating/Rating";
-import ChipGroup from "../../components/ChipGroup/ChipGroup";
-import Slider from "../../components/Slider/Slider";
+import SubTitle from "components/Text/SubTitle";
 
-const receta = {
-  pathImg: "https://picsum.photos/200/300?random=1",
+const recipe = {
+  pathImg:
+    "https://d1kxxrc2vqy8oa.cloudfront.net/wp-content/uploads/2020/01/09214916/RFB-2312-2-tacos.jpg",
   avatarUser: "https://picsum.photos/200/300?random=2",
   titulo: "Tacos Mexicanos de Carnitas",
   nameUser: "Jonathan Mancera",
-  valoracion: [1, 1, 1, 1, 0],
+  valoration: [true, true, true, true, false],
   numeroValoraciones: "78",
   introduccion:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis enim erat, et egestas urna ultricies dictum. Phasellus ex justo, gravida vitae nisl vitae, iaculis placerat massa.",
@@ -93,83 +94,93 @@ const Comentarios = [
     avatarUser: "https://picsum.photos/200/300?random=1",
     nombreUsuario: "Leonardo Santos Franco",
     fechaPublicacion: "Hace 4 dias",
-    comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
-    valoracion: [ true, true, true, true, true ],
+    comentario:
+      "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+    valoracion: [true, true, true, true, true],
     respuestas: [
       {
         id: 1,
         avatarUser: "https://picsum.photos/200/300?random=3",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
-        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+        comentario:
+          "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
       },
       {
         id: 2,
         avatarUser: "https://picsum.photos/200/300?random=4",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
-        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+        comentario:
+          "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
       },
       {
         id: 3,
         avatarUser: "https://picsum.photos/200/300?random=1",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
-        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+        comentario:
+          "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
       },
-    ]
+    ],
   },
   {
     id: 2,
     avatarUser: "https://picsum.photos/200/300?random=2",
     nombreUsuario: "Leonardo Santos Franco",
     fechaPublicacion: "Hace 4 dias",
-    comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
-    valoracion: [ true, false, false, false, false ],
+    comentario:
+      "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+    valoracion: [true, false, false, false, false],
     respuestas: [
       {
         id: 4,
         avatarUser: "https://picsum.photos/200/300?random=3",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
-        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+        comentario:
+          "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
       },
       {
         id: 5,
         avatarUser: "https://picsum.photos/200/300?random=4",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
-        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+        comentario:
+          "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
       },
-    ]
+    ],
   },
   {
     id: 3,
     avatarUser: "https://picsum.photos/200/300?random=6",
     nombreUsuario: "Leonardo Santos Franco",
     fechaPublicacion: "Hace 4 dias",
-    comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
-    valoracion: [ true, true, true, true, false ],
-    respuestas: []
+    comentario:
+      "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+    valoracion: [true, true, true, true, false],
+    respuestas: [],
   },
   {
     id: 4,
     avatarUser: "https://picsum.photos/200/300?random=8",
     nombreUsuario: "Leonardo Santos Franco",
     fechaPublicacion: "Hace 4 dias",
-    comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
-    valoracion: [ true, true, false, false, false ],
+    comentario:
+      "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+    valoracion: [true, true, false, false, false],
     respuestas: [
       {
         id: 6,
         avatarUser: "https://picsum.photos/200/300?random=9",
         nombreUsuario: "Leonardo Santos Franco",
         fechaPublicacion: "Hace 4 dias",
-        comentario: "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
-      }
-    ]
+        comentario:
+          "Me encanta los platos a la carta como la langosta, camarones, y creo que el señor ingeniero mancera le falto implementarlo, ojo osino me vere obligado a desinstalar la app.",
+      },
+    ],
   },
-]
+];
 
 const tags = [
   {
@@ -202,73 +213,54 @@ const tags = [
     ingrediente: "Queso",
     outline: false,
   },
-
 ];
 
-const recetasMasVistas = [
+const imagenes = [
   {
-    pathImg: "https://picsum.photos/200/300?random=1",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=1",
+    name: "Tacos Mexicanos de Carnitas Asadas",
+    valoration: [true, true, true, true, false],
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=2",
-    titulo: "Tacos Mexicanos",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=2",
+    name: "Tacos Mexicanos",
+    valoration: [true, true, true, true, false],
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=3",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=3",
+    name: "Tacos Mexicanos de Carnitas Asadas",
+    valoration: [true, true, true, true, false],
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=4",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=4",
+    name: "Tacos Mexicanos de Carnitas Asadas",
+    valoration: [true, true, true, true, false],
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=5",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=5",
+    name: "Tacos Mexicanos de Carnitas Asadas",
+    valoration: [true, true, true, true, false],
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=6",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=6",
+    name: "Tacos Mexicanos de Carnitas Asadas",
+    valoration: [true, true, true, true, false],
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=7",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
-  },
-];
-
-const recetasRelacionadas = [
-  {
-    pathImg: "https://picsum.photos/200/300?random=1",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=2",
-    titulo: "Tacos Mexicanos",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=3",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=4",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=5",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=6",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
-  },
-  {
-    pathImg: "https://picsum.photos/200/300?random=7",
-    titulo: "Tacos Mexicanos de Carnitas Asadas",
+    path: "/recipe",
+    src: "https://picsum.photos/200/300?random=7",
+    name: "Tacos Mexicanos de Carnitas Asadas",
+    valoration: [true, true, true, true, false],
   },
 ];
 
-const Recipe: React.FC = ( ) => {
-
+const Recipe: React.FC = () => {
   const [porciones, setPorciones] = useState(1);
   const [isEstrellas, setEstrellas] = useState([
     false,
@@ -277,6 +269,8 @@ const Recipe: React.FC = ( ) => {
     false,
     false,
   ]);
+
+  const { textos } = useSettingsUser()!;
 
   const handlerShare = (e: any) => {};
 
@@ -301,9 +295,10 @@ const Recipe: React.FC = ( ) => {
   };
 
   return (
-    <Scaffold
-      accionesHeader={
-        <>
+    <Scaffold>
+      <Scaffold.Header>
+        <Scaffold.Header.BackAction />
+        <Scaffold.Header.Actions>
           <IonButton onClick={handlerShare}>
             <IonIcon slot="icon-only" icon={arrowRedoOutline} color="dark" />
           </IonButton>
@@ -313,162 +308,176 @@ const Recipe: React.FC = ( ) => {
           <IonButton onClick={handlerMark}>
             <IonIcon slot="icon-only" icon={bookmarkOutline} color="dark" />
           </IonButton>
-        </>
-      }
-    >
-      {/* Portada Receta*/}
-      <ImageRecipe pathImg={receta.pathImg} height={"72"} sinRedondeo={true}>
-        <h6 className="text-white text-center text-2xl mx-auto my-auto">
-          {receta.titulo}
-        </h6>
-      </ImageRecipe>
-
-      <div className="max-w-screen-md mx-auto">
-        {/* Encabezado Receta*/}
+        </Scaffold.Header.Actions>
+      </Scaffold.Header>
+      <Scaffold.Content
+        banner={
+          <ImageRecipe src={recipe.pathImg} height={72}>
+            <SubTitle color="light" align="center" className="font-extrabold">
+              {recipe.titulo}
+            </SubTitle>
+          </ImageRecipe>
+        }
+      >
+        {/* Encabezado recipe*/}
         <ContainerSection>
-          <Center direccion="col" className="mt-4">
-            <Avatar avatarUser={receta.avatarUser} tamaño="8"/>
-            <h2 className="text-sm mt-2 font-bold">{receta.nameUser}</h2>
-            <Center direccion="row" className="mt-2">
-              {receta.valoracion.map((element, index) => {
-                return (
-                  <IonIcon
-                    key={index}
-                    icon={element == 1 ? star : starOutline}
-                    className="text-purple-500 text-sm ml-1"
-                  />
-                );
-              })}
-            </Center>
-            <h2 className="text-sm mt-2">
-              {receta.numeroValoraciones + " Valoraciones"}
-            </h2>
+          <Center direction="row" justify="center">
+            <Avatar src={recipe.avatarUser} size={8} />
+          </Center>
+          <Text color="dark" align="center" className="font-bold mt-2">
+            {recipe.nameUser}
+          </Text>
+          <Rating
+            stars={recipe.valoration}
+            size={4}
+            color="primary"
+            align="center"
+          />
+          <Text color="primary" align="center" className="mt-2">
+            {recipe.numeroValoraciones + " " + textos["valoraciones"]}
+          </Text>
+        </ContainerSection>
+
+        {/* Introduccion recipe*/}
+        <ContainerSection>
+          <Center direction="col">
+            <TitleRecipe>{textos["introduccion"]}</TitleRecipe>
+            <Text align="center">{recipe.introduccion}</Text>
           </Center>
         </ContainerSection>
 
-        {/* Introduccion Receta*/}
+        {/* Información recipe en iconos*/}
         <ContainerSection>
-          <Center direccion="col">
-            <TitleRecipe>Introducción</TitleRecipe>
-            <p className="text-center">{receta.introduccion}</p>
-          </Center>
-        </ContainerSection>
-
-        {/* Información Receta en iconos*/}
-        <ContainerSection>
-          <div className="grid grid-cols-3">
-            <Center direccion="row">
+          <div className="flex flex-wrap justify-center">
+            <Center direction="row" justify="center">
               <IonIcon
                 icon={nutritionOutline}
-                className="text-black text-lg mr-1"
+                color="dark"
+                className="text-lg mr-1"
               />
-              <h3 className="text-sm">8 ingredientes</h3>
+              <Text color="medium" align="center" className="mr-2">
+                {"8" + " " + textos["ingredientes"]}
+              </Text>
             </Center>
-            <Center direccion="row">
+            <Center direction="row" justify="center">
               <IonIcon
                 icon={speedometerOutline}
-                className="text-black text-lg mr-1"
+                color="dark"
+                className="text-lg mr-1"
               />
-              <h3 className="text-sm">Dificultad</h3>
+              <Text color="medium" align="center" className="mr-2">
+                {textos["dificultad"]}
+              </Text>
             </Center>
-            <Center direccion="row">
+            <Center direction="row" justify="center">
               <IonIcon
                 icon={timerOutline}
-                className="text-black text-lg mr-1"
+                color="dark"
+                className="text-lg mr-1"
               />
-              <h3 className="text-sm">25 minutos</h3>
+              <Text color="medium" align="center" className="mr-2">
+                25 minutos
+              </Text>
             </Center>
           </div>
         </ContainerSection>
 
-        {/* Porciones Receta*/}
+        {/* Porciones recipe*/}
         <ContainerSection>
-          <TitleRecipe>Porciones a Preparar</TitleRecipe>
-          <Counter porciones={porciones} setPorciones={setPorciones}/>
+          <TitleRecipe>{textos["recipe_porciones_preparar"]}</TitleRecipe>
+          <Counter porciones={porciones} setPorciones={setPorciones} />
         </ContainerSection>
 
-        {/* Ingredientes Receta*/}
+        {/* Ingredientes recipe*/}
 
         <ContainerSection>
-          <TitleRecipe>Ingredientes</TitleRecipe>
-          {receta.ingredientes.map((ingrediente, index) => {
+          <TitleRecipe>{textos["ingredientes"]}</TitleRecipe>
+          {recipe.ingredientes.map((ingrediente, index) => {
             return (
               <ItemIngredient
                 key={index}
-                pathImg={ingrediente.pathImg}
+                src={ingrediente.pathImg}
                 name={ingrediente.name}
-                cantidadPorcion={ingrediente.cantidadPorcion}
+                amount={ingrediente.cantidadPorcion}
               />
             );
           })}
         </ContainerSection>
 
-        {/* Pasos Receta*/}
+        {/* Pasos recipe*/}
         <ContainerSection>
-          <TitleRecipe>Pasos</TitleRecipe>
-          {receta.pasos.map((paso, index) => {
+          <TitleRecipe>{textos["pasos"]}</TitleRecipe>
+          {recipe.pasos.map((paso, index) => {
             return <ItemStep key={index}>{paso.instruccion}</ItemStep>;
           })}
         </ContainerSection>
 
-        {/* Trucos Receta*/}
+        {/* Trucos recipe*/}
         <ContainerSection>
-          <TitleRecipe>Trucos y Consejos</TitleRecipe>
-          {receta.trucos.map((truco, index) => {
+          <TitleRecipe>{textos["recipe_trucos_consejos"]}</TitleRecipe>
+          {recipe.trucos.map((truco, index) => {
             return <ItemStep key={index}>{truco.instruccion}</ItemStep>;
           })}
         </ContainerSection>
 
-        {/* Receta Hecha*/}
+        {/* recipe Hecha*/}
         <ContainerSection>
-          <TitleRecipe>¿Ya has hecho la receta?</TitleRecipe>
-            <Button
-              handler={handlerRecetaHecha}
-              label={"¡Receta Hecha!"}
-              type={"Secundario"}
-            />
+          <TitleRecipe>{textos["recipe_hiciste_receta"]}</TitleRecipe>
+          <Button onClick={handlerRecetaHecha} color="secondary">
+            {textos["recipe_receta_hecha"]}
+          </Button>
         </ContainerSection>
 
         {/* Valoración Hecha*/}
         <ContainerSection>
-          <TitleRecipe>¿Te ha gustado la receta?</TitleRecipe>
-          <Rating estrellas={isEstrellas} handlerValoracion={handlerValoracion} tamaño={"12"} />
+          <TitleRecipe>{textos["recipe_gusto_receta"]}</TitleRecipe>
+          <Rating
+            stars={isEstrellas}
+            handlerValoracion={handlerValoracion}
+            align="center"
+            size={12}
+          />
         </ContainerSection>
 
         {/* Comentarios Receta*/}
         <ContainerSection>
-          <TitleRecipe>Comentarios</TitleRecipe>
-          <CommentaryBox comentarios = {Comentarios} />
+          <TitleRecipe>{textos["comentarios"]}</TitleRecipe>
+          <CommentaryBox comentarios={Comentarios} />
         </ContainerSection>
 
         {/* Tags Receta*/}
         <ContainerSection>
-          <TitleRecipe>Temas Relacionados</TitleRecipe>
+          <TitleRecipe>{textos["recipe_temas_relacionados"]}</TitleRecipe>
           <div className="flex flex-wrap place-content-center">
-            <ChipGroup ingredientes={tags}/>
+            <ChipGroup ingredientes={tags} />
           </div>
         </ContainerSection>
 
         {/* Recetas relacionadas*/}
         <ContainerSection>
-          <TitleRecipe>Recetas relacionados</TitleRecipe>
-          <Slider imagenes={recetasRelacionadas} slidesPerView={1.5} />
-        </ContainerSection>
-
-        {/* Receta*/}
-        <ContainerSection>
-          <TitleRecipe>Recetas más vistas</TitleRecipe>
-          <Slider imagenes={recetasMasVistas} slidesPerView={1.5} />
-        </ContainerSection>
-
-        {/* Receta*/}
-        <ContainerSection>
-          <Button 
-            label={"Guardar receta"}
-            type={"principal"} 
+          <TitleRecipe>{textos["recipe_recetas_relacionados"]}</TitleRecipe>
+          <SliderRecipesSimple
+            recipes={imagenes}
+            slidesPerView={1.5}
+            nameListRecipes="Recetas relacionadas"
           />
         </ContainerSection>
-      </div>
+
+        {/* Recetas mas vistas*/}
+        <ContainerSection>
+          <TitleRecipe>{textos["recipe_recetas_mas_vistas"]}</TitleRecipe>
+          <SliderRecipesSimple
+            recipes={imagenes}
+            slidesPerView={1.5}
+            nameListRecipes="Recetas más vistas"
+          />
+        </ContainerSection>
+
+        {/* Guardar Receta*/}
+        <ContainerSection>
+          <Button>{textos["recipe_guardar_receta"]}</Button>
+        </ContainerSection>
+      </Scaffold.Content>
     </Scaffold>
   );
 };

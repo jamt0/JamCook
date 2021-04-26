@@ -1,31 +1,35 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
+import Image from "components/Image/Image";
+import { IonItemDivider } from "@ionic/react";
 
-interface Props {
-  sinRedondeo?: boolean; 
-  pathImg: string;
-  height: string;
-  width?: string;
+type Props = {
+  rounded?: boolean;
+  fullCover?: boolean;
+  src: string;
+  height: number;
 }
 
 const ImageRecipe: FunctionComponent<Props> = ({
-  pathImg,
+  src,
   children,
+  fullCover,
   height,
-  width = "full",
-  sinRedondeo = false, 
+  rounded = false, 
 }) => {
-  const redondeo = sinRedondeo ? " " : " rounded-md "
+  const heightCover = fullCover ? "full" : "20"
+  const alignCover = fullCover ? "center" : "start"
+  const opacityCover = fullCover ? "25" : "50"
   return (
     <div className="relative flex">
       {children != null && (
-        <div className={"self-end absolute m-auto z-20 grid grid-flow-row" + redondeo + "bg-black bg-opacity-50 h-20 w-full px-2"}>
+        <>
+        <IonItemDivider color="dark" className={`ion-no-padding self-end absolute z-20 opacity-${opacityCover} h-${heightCover} w-full`} mode="md"/>
+        <div className={`self-end absolute z-30 flex flex-col h-${heightCover} w-full justify-${alignCover} px-2 pt-2`} >
           {children}
         </div>
+        </>
       )}
-      <div
-        className={"h-" + height + " w-" + width + " bg-cover bg-center z-10" + redondeo + "bg-gray-500 bg-opacity-50"}
-        style={{ backgroundImage: `url( ${pathImg} )` }}
-      ></div>
+      <Image src={src} height={height} rounded={rounded}/>
     </div>
   );
 };

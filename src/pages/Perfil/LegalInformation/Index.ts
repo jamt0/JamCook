@@ -1,7 +1,7 @@
-import LegalInformation from "./LegalInformation";
-import TermsAndConditions from "./TermsAndConditions";
-import PrivacyPolicy from "./PrivacyPolicy";
-import CookiesPolicy from "./CookiesPolicy";
+import LegalInformation from "pages/Perfil/LegalInformation/LegalInformation";
+import TermsAndConditions from "pages/Perfil/LegalInformation/TermsAndConditions";
+import PrivacyPolicy from "pages/Perfil/LegalInformation/PrivacyPolicy";
+import CookiesPolicy from "pages/Perfil/LegalInformation/CookiesPolicy";
 
 export {
     LegalInformation,

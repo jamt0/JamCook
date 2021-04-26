@@ -3,7 +3,7 @@ import { IonItem, IonLabel, IonSelect, IonSelectOption } from "@ionic/react";
 import { FunctionComponent } from "react";
 import { Controller } from "react-hook-form";
 
-type Opcion = {
+type Option = {
   label: string;
   value: string;
 };
@@ -15,11 +15,11 @@ interface Props {
   name: string;
   label: string;
   rules: any;
-  opciones: Opcion[];
+  options: Option[] | undefined;
 }
 
 const Select: FunctionComponent<Props> = ({
-  opciones,
+  options,
   control,
   errors,
   defaultValue,
@@ -42,13 +42,13 @@ const Select: FunctionComponent<Props> = ({
               interface="action-sheet"
               className="mt-2"
             >
-              {opciones.map((opcion) => {
+              {options ? options.map((opcion) => {
                 return (
                   <IonSelectOption value={opcion.value} key={opcion.value}>
                     {opcion.label}
                   </IonSelectOption>
                 );
-              })}
+              }):""}
             </IonSelect>
           )}
           control={control}

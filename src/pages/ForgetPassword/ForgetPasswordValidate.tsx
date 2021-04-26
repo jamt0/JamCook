@@ -1,112 +1,103 @@
-import {
-  IonInput,
-  IonItem,
-} from "@ionic/react";
 import React, { useState } from "react";
+import Button from "components/Button/Button";
+import Scaffold from "components/Scaffold/Scaffold";
+import Input from "components/Input/Input";
+import { useHistory } from "react-router";
+import { useForm } from "react-hook-form";
+import { useSettingsUser } from "context/settingsUser";
+import { IonLoading } from "@ionic/react";
+import Server from "server";
+import ButtonLink from "components/ButtonLink/ButtonLink";
+import Center from "components/Center/Center";
+import SubTitle from "components/Text/SubTitle";
+import Text from "components/Text/Text";
 
-import Button from "../../components/Button/Button";
-import Scaffold from "../../components/Scaffold/Scaffold";
-import {useHistory} from 'react-router';
+let defaultValues = {
+  VerificationCode: "",
+};
 
-const ForgetPasswordValidate: React.FC = ( ) => {
-  
+const ForgetPasswordValidate: React.FC = () => {
   const history = useHistory();
+  const { textos } = useSettingsUser()!;
 
-  const [codigo, setCodigo] = useState(["", "", "", "", "", ""]);
+  const [hasErrors, setHasErrors] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handlerForgetPasswordValidateButton = (e: any) => {
-    e.preventDefault();
-    history.push("/forgetPassword/newPassword");
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting, isValid, errors },
+  } = useForm({
+    defaultValues: defaultValues,
+    mode: "onChange",
+  });
+
+  /**
+   *
+   * @param data
+   */
+  const handlerForgetPasswordValidateButton = async (verificationCode: any) => {
+    const errorValidateVerificationCode = await Server.validateVerificationCode(
+      verificationCode
+    );
+    if (errorValidateVerificationCode.data.error != null) {
+      setHasErrors(errorValidateVerificationCode.data.error);
+      setLoading(false);
+    } else {
+      history.replace("/forgetPassword/newPassword");
+      setLoading(false);
+    }
   };
 
   const handlerResendMailButton = (e: any) => {
+    console.log("se envio mail");
     e.preventDefault();
   };
 
+  //VALIDAR QUE SEA LONGITUD 6
+  const rulesVerificationCode = {
+    required: textos["campo_requerido"],
+  };
+
+  console.log("soy la page forget validation pass");
+
   return (
-    <Scaffold
-      tituloHeader="Restablecer Contraseña"
-      footer={
-        <div className="p-2 mb-2 max-w-screen-md mx-auto">
-          <Button
-            handler={handlerForgetPasswordValidateButton}
-            label={"Restablecer Contraseña"}
-          />
-        </div>
-      }
-    >
-      <div className="max-w-screen-md mx-auto p-4 h-full">
-        <p className="text-base text-center font-bold mt-6">
-          Consulta tu correo
-        </p>
-        <p className="mx-1 mb-4 text-base text-center md:text-left">
-          Introduce codigo de verificación o entra al vinculo que hemos enviado
-          a tu correo electrónico.
-        </p>
-        <IonItem className="mt-8 mb-4">
-          <IonInput
-            type="number"
-            value={codigo[0]}
-            placeholder="0"
-            maxlength={1}
-            min="0"
-            max="9"
-            className="text-xl text-center"
-          ></IonInput>
-          <IonInput
-            type="number"
-            value={codigo[1]}
-            placeholder="0"
-            maxlength={1}
-            min="0"
-            max="9"
-            className="text-xl text-center"
-          ></IonInput>
-          <IonInput
-            type="number"
-            value={codigo[2]}
-            placeholder="0"
-            maxlength={1}
-            min="0"
-            max="9"
-            className="text-xl text-center"
-          ></IonInput>
-          <IonInput
-            type="number"
-            value={codigo[3]}
-            placeholder="0"
-            maxlength={1}
-            min="0"
-            max="9"
-            className="text-xl text-center"
-          ></IonInput>
-          <IonInput
-            type="number"
-            value={codigo[4]}
-            placeholder="0"
-            maxlength={1}
-            min="0"
-            max="9"
-            className="text-xl text-center"
-          ></IonInput>
-          <IonInput
-            type="number"
-            value={codigo[5]}
-            placeholder="0"
-            maxlength={1}
-            min="0"
-            max="9"
-            className="text-xl text-center"
-          ></IonInput>
-        </IonItem>
-        <div className="flex justify-end">
-          <Button
-            handler={handlerResendMailButton}
-            label={"¿No recibiste el correo?"}
-            type={"Link"}
-          />
-        </div>
-      </div>
+    <Scaffold>
+      <Scaffold.Header title={textos["contrasena_restablecer"]}>
+        <Scaffold.Header.BackAction />
+      </Scaffold.Header>
+      <Scaffold.Content>
+        <IonLoading isOpen={loading} translucent />
+        {hasErrors != "" && (
+          <p className="text-red-600 bg-red-100 px-6 py-3 my-2">{hasErrors}</p>
+        )}
+        <SubTitle className="mt-6">{textos["consulta_correo"]}</SubTitle>
+        <Text align="center" color="medium" className="mb-4 mt-2">
+          {textos["introduce_codigo"]}
+        </Text>
+        <Input
+          control={control}
+          errors={errors}
+          defaultValue={defaultValues.VerificationCode}
+          name="VerificationCode"
+          type="number"
+          label={textos["campo_nombre"]}
+          rules={rulesVerificationCode}
+        />
+        <Center justify="end">
+          <ButtonLink onClick={handlerResendMailButton}>
+            {textos["no_recibio_contrasena"]}
+          </ButtonLink>
+        </Center>
+      </Scaffold.Content>
+      <Scaffold.Footer>
+        <Button
+          onClick={handleSubmit(handlerForgetPasswordValidateButton)}
+          disabled={!isValid || isSubmitting}
+        >
+          {textos["contrasena_restablecer"]}
+        </Button>
+      </Scaffold.Footer>
     </Scaffold>
   );
 };

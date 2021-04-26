@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import Button from "components/Button/Button";
 import Scaffold from "components/Scaffold/Scaffold";
 import Input from "components/Input/Input";
+import Text from "components/Text/Text";
 import { IonLoading } from "@ionic/react";
-import { Redirect, useHistory } from "react-router";
+import { Redirect } from "react-router";
 import { useForm } from "react-hook-form";
 import { useAuth } from "auth";
+import { useSettingsUser } from "context/settingsUser";
+import ButtonLink from "components/ButtonLink/ButtonLink";
+import Center from "components/Center/Center";
 
 let defaultValues = {
   name: "",
@@ -19,35 +23,9 @@ interface IUser {
   password: string;
 }
 
-const rulesNombre = {
-  required: "Este campo es obligatorio",
-  minLength: {
-    value: 3,
-    message: "El nombre debe tener minimo 3 caracteres",
-  },
-};
-
-const rulesEmail = {
-  required: "Este campo es obligatorio",
-  pattern: {
-    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-    message: "Correo electrónico invalido",
-  },
-};
-
-const rulesPassword = {
-  required: "Este campo es obligatorio",
-  minLength: {
-    value: 8,
-    message: "La contraseña debe tener minimo 8 caracteres",
-  },
-};
-
 const SignUp: React.FC = () => {
-
-  const history = useHistory();
-
   const { signUp, loading, auth } = useAuth()!;
+  const { textos } = useSettingsUser()!;
 
   const [hasErrors, setHasErrors] = useState<string>("");
 
@@ -73,51 +51,46 @@ const SignUp: React.FC = () => {
     }
   };
 
-  const handlerSignInButton = (e: any) => {
-    e.preventDefault();
-    history.replace("/signIn");
+  const rulesNombre = {
+    required: textos["campo_requerido"],
+    minLength: {
+      value: 3,
+      message: textos["campo_nombre_min"],
+    },
   };
 
-  const handlerTerminosYCondicionesButton = (e: any) => {
-    e.preventDefault();
-    history.push("/terminosYCondiciones");
+  const rulesEmail = {
+    required: textos["campo_requerido"],
+    pattern: {
+      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+      message: textos["campo_correo_invalido"],
+    },
   };
 
-  const handlerPoliticaDePrivacidadButton = (e: any) => {
-    e.preventDefault();
-    history.push("/politicaDePrivacidad");
+  const rulesPassword = {
+    required: textos["campo_requerido"],
+    minLength: {
+      value: 8,
+      message: textos["campo_contrasena_min"],
+    },
   };
 
   console.log("soy la page registro");
 
-  if(auth.loggedIn) {
+  if (auth.loggedIn) {
     return <Redirect to="/home" />;
-  }else{
+  } else {
     return (
-      <Scaffold
-        tituloHeader="Crear Cuenta"
-        footer={
-          <div className="p-2 max-w-screen-md mx-auto">
-            <Button
-              handler={handleSubmit(handlerSignUpButton)}
-              label={"Crear cuenta"}
-              disable={!isValid || isSubmitting}
-            />
-            <div className="flex justify-center py-2">
-              <p className="mr-1 text-base inline">¿Ya tienes una cuenta? </p>
-              <Button
-                handler={handlerSignInButton}
-                label={"Inicia sesión."}
-                type={"Link"}
-              />
-            </div>
-          </div>
-        }
-      >
-        <IonLoading isOpen={loading} translucent />
-        <div className="max-w-screen-md mx-auto p-4 h-full">
+      <Scaffold>
+        <Scaffold.Header title={textos["signup_crear_cuenta"]}>
+          <Scaffold.Header.BackAction />
+        </Scaffold.Header>
+        <Scaffold.Content margin="md">
+          <IonLoading isOpen={loading} translucent />
           {hasErrors != "" && (
-            <p className="text-red-600 bg-red-100 px-6 py-3 my-2">{hasErrors}</p>
+            <p className="text-red-600 bg-red-100 px-6 py-3 my-2">
+              {hasErrors}
+            </p>
           )}
           <Input
             control={control}
@@ -125,7 +98,7 @@ const SignUp: React.FC = () => {
             defaultValue={defaultValues.name}
             name="name"
             type="name"
-            label="Nombre"
+            label={textos["campo_nombre"]}
             rules={rulesNombre}
           />
           <Input
@@ -134,7 +107,7 @@ const SignUp: React.FC = () => {
             defaultValue={defaultValues.email}
             name="email"
             type="email"
-            label="Correo Electrónico"
+            label={textos["campo_correo"]}
             rules={rulesEmail}
           />
           <Input
@@ -143,31 +116,37 @@ const SignUp: React.FC = () => {
             defaultValue={defaultValues.password}
             name="password"
             type="password"
-            label="Contraseña"
+            label={textos["campo_contrasena"]}
             rules={rulesPassword}
           />
-          <div className="flex justify-center">
-            <div className="mt-8 mb-4 text-center">
-              <p className="mr-1 text-base inline">
-                Al registrarte, aceptas nuestros
-              </p>
-              <Button
-                handler={handlerTerminosYCondicionesButton}
-                label={"Terminos y condiciones"}
-                type={"Link"}
-              />
-              <p className="mx-1 text-base inline">y</p>
-              <Button
-                handler={handlerPoliticaDePrivacidadButton}
-                label={"Política de Privacidad."}
-                type={"Link"}
-              />
-            </div>
-          </div>
-        </div>
+          <Center direction="col" className="mt-8">
+            <Text>{textos["signup_acepta_nuestros"]}</Text>
+            <ButtonLink routerLink="/terminosYCondiciones">
+              {textos["terminos_condiciones"]}
+            </ButtonLink>
+            <Text>{textos["y"]}</Text>
+            <ButtonLink routerLink="/politicaDePrivacidad">
+              {textos["politica_privacidad"]}
+            </ButtonLink>
+          </Center>
+        </Scaffold.Content>
+        <Scaffold.Footer>
+          <Button
+            onClick={handleSubmit(handlerSignUpButton)}
+            disabled={!isValid || isSubmitting}
+          >
+            {textos["signup_crear_cuenta"]}
+          </Button>
+          <Center className="py-2">
+            <Text className="mr-1">{textos["signup_tiene_cuenta"]}</Text>
+            <ButtonLink routerLink="/signIn">
+              {textos["signin_iniciar_sesion"]}
+            </ButtonLink>
+          </Center>
+        </Scaffold.Footer>
       </Scaffold>
     );
   }
 };
 
-export default React.memo(SignUp);
+export default SignUp;
