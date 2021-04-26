@@ -7,6 +7,7 @@ import Text from "components/Text/Text";
 import { useSettingsUser } from "context/settingsUser";
 import SubTitle from "components/Text/SubTitle";
 import Center from "components/Center/Center";
+import React from "react";
 
 interface Props {
   slidesPerView: number;

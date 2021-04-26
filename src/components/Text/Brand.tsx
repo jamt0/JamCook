@@ -1,6 +1,7 @@
 import { IonText } from "@ionic/react";
 import { useSettingsUser } from "context/settingsUser";
 import { FunctionComponent } from "react";
+import React from "react";
 
 type Props = {
 }

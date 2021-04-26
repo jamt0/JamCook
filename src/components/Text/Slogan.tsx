@@ -1,5 +1,6 @@
 import { IonText } from "@ionic/react";
 import { FunctionComponent } from "react";
+import React from "react";
 
 interface Props {
   color?: string;

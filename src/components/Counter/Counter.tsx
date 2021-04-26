@@ -3,6 +3,7 @@ import { FunctionComponent, useEffect, useState } from "react";
 import Center from "../Center/Center";
 import Text from "components/Text/Text";
 import Button from "components/Button/Button";
+import React from "react";
 
 interface Props {
   porciones: number;

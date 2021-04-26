@@ -1,6 +1,7 @@
 import { IonButton, IonButtons, IonIcon } from "@ionic/react";
 import { star, starOutline } from "ionicons/icons";
 import { FunctionComponent } from "react";
+import React from "react";
 
 type Props = {
   stars: boolean[];

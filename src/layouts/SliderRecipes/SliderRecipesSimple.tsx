@@ -5,6 +5,7 @@ import Slides from "components/Slides/Slides";
 import Slide from "components/Slide/Slide";
 import Text from "components/Text/Text";
 import Rating from "components/Rating/Rating";
+import React from "react";
 
 interface Props {
   slidesPerView: number;

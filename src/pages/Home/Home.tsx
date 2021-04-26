@@ -8,60 +8,41 @@ import {
   IonTabButton,
   IonTabs,
 } from "@ionic/react";
-import {
-  searchOutline,
-  navigateOutline,
-  basketOutline,
-  personOutline,
-} from "ionicons/icons";
-import { FoodBasket } from "pages/FoodBasket/Index";
-import { Perfil } from "pages/Perfil/Index";
-import Explore from "pages/Explore/Explore";
+import { ellipse, square, triangle } from "ionicons/icons";
 import Search from "pages/Search/Search";
-import { useSettingsUser } from "context/settingsUser";
+import Explore from "pages/Explore/Explore";
 
-const Home: React.FC = () => {
-  const { textos } = useSettingsUser()!;
+const TabRoot: React.FC = () => (
+  <IonTabs>
+    <IonRouterOutlet>
+      <Route path="/home/search" component={Search} exact={true} />
+      <Route path="/home/explore" component={Explore} exact={true} />
+      <Route
+        path="/home"
+        render={() => <Redirect to="/home/search" />}
+        exact={true}
+      />
+      <Route
+        path="/"
+        render={() => <Redirect to="/home/search" />}
+        exact={true}
+      />
+    </IonRouterOutlet>
+    <IonTabBar slot="bottom">
+      <IonTabButton tab="tab1" href="/tabs/tab1">
+        <IonIcon icon={triangle} />
+        <IonLabel>Tab 1</IonLabel>
+      </IonTabButton>
+      <IonTabButton tab="tab2" href="/tabs/tab2">
+        <IonIcon icon={ellipse} />
+        <IonLabel>Tab 2</IonLabel>
+      </IonTabButton>
+      <IonTabButton tab="tab3" href="/tabs/tab3">
+        <IonIcon icon={square} />
+        <IonLabel>Tab 3</IonLabel>
+      </IonTabButton>
+    </IonTabBar>
+  </IonTabs>
+);
 
-  console.log("soy tabs");
-
-  return (
-    <IonTabs>
-      <IonRouterOutlet>
-        <Route path="/home/search" exact>
-          <Search />
-        </Route>
-        <Route path="/home/explore" exact>
-          <Explore />
-        </Route>
-        <Route path="/home/foodBasket" exact>
-          <FoodBasket />
-        </Route>
-        <Route path="/home/perfil" exact>
-          <Perfil />
-        </Route>
-        <Redirect exact path="/home" to="/home/search" />
-      </IonRouterOutlet>
-      <IonTabBar slot="bottom" className="py-1">
-        <IonTabButton tab="search" href="/home/search">
-          <IonIcon icon={searchOutline} />
-          <IonLabel>{textos["page_buscar"]}</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="explore" href="/home/explore">
-          <IonIcon icon={navigateOutline} />
-          <IonLabel>{textos["page_explorar"]}</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="foodBasket" href="/home/foodBasket">
-          <IonIcon icon={basketOutline} />
-          <IonLabel>{textos["page_almacen"]}</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="perfil" href="/home/perfil">
-          <IonIcon icon={personOutline} />
-          <IonLabel>{textos["page_perfil"]}</IonLabel>
-        </IonTabButton>
-      </IonTabBar>
-    </IonTabs>
-  );
-};
-
-export default Home;
+export default TabRoot;

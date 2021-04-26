@@ -1,5 +1,6 @@
 import { IonContent } from "@ionic/react";
 import { Fragment, FunctionComponent } from "react";
+import React from "react";
 
 type Props = {
   fabButton?: React.ReactNode;

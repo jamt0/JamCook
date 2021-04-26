@@ -1,5 +1,6 @@
 import { IonItem, IonRadio, IonRadioGroup } from "@ionic/react";
 import { useState, FunctionComponent } from "react";
+import React from "react";
 
 type Option = {
   descripcion: string;

@@ -1,6 +1,7 @@
 import { IonItem } from "@ionic/react";
 import CardHeaderExpanded from "components/Card/CardHeader/CardHeaderExpanded";
 import CardHeaderCompact from "components/Card/CardHeader/CardHeaderCompact";
+import React from "react";
 
 type Props = {
   routerLink?: string;

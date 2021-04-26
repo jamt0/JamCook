@@ -1,5 +1,6 @@
 import { IonButtons } from "@ionic/react";
 import { FunctionComponent } from "react";
+import React from "react";
 
 type Props = {};
 
