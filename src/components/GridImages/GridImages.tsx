@@ -4,7 +4,6 @@ import { fastFoodOutline } from "ionicons/icons";
 import { Link } from "react-router-dom";
 import ImageRecipe from "components/ImageRecipe/ImageRecipe";
 import Text from "components/Text/Text";
-import React from "react";
 
 type Props = {
   imagenes: {

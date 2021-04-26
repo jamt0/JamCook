@@ -1,7 +1,6 @@
 import { IonItemDivider, IonSearchbar, IonToolbar } from '@ionic/react';
 import Item from 'components/Item/Item';
 import { FunctionComponent } from 'react';
-import React from "react";
 
 interface Props {
     placeHolder: string;

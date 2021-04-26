@@ -1,7 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import Spanish from 'lang/es/textos'
 import English from 'lang/en/textos'
-import React from "react";
 
 type DataSettings = {
   language: string;

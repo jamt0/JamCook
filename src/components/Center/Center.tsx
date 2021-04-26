@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react';
-import React from "react";
 
 interface Props {
     justify?: "start" | "center" | "end" | undefined;

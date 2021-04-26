@@ -3,7 +3,6 @@ import { FunctionComponent, useState } from "react";
 import Item from "components/Item/Item";
 import Counter from "components/Counter/Counter";
 import Image from "components/Image/Image";
-import React from "react";
 
 interface Props {
   amount: string;

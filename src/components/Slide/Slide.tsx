@@ -1,6 +1,5 @@
 import { FunctionComponent } from "react";
 import { IonSlide } from "@ionic/react";
-import React from "react";
 
 type Props = {}
 

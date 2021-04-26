@@ -2,7 +2,6 @@ import { IonButtons, IonButton, IonIcon } from "@ionic/react";
 import { chevronBackOutline } from "ionicons/icons";
 import { FunctionComponent } from "react";
 import { useHistory } from "react-router";
-import React from "react";
 
 type Props = {};
 

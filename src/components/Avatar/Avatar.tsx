@@ -1,6 +1,5 @@
 import { IonAvatar, IonImg } from "@ionic/react";
 import { FunctionComponent } from "react";
-import React from "react";
 
 interface Props {
   size: number;

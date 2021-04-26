@@ -1,6 +1,5 @@
 import { FunctionComponent } from "react";
 import Response from "../Response/Response";
-import React from "react";
 
 interface Props {
   respuestas: {

@@ -1,11 +1,17 @@
-import React from "react";
+import { defineCustomElements } from "@ionic/pwa-elements/loader";
 import ReactDOM from "react-dom";
-import App from "App";
-import * as serviceWorker from './serviceWorker';
+import App from "./App";
+import "assets/main.css";
+import { AuthProvider } from "auth";
+import { SettingsProvider } from "context/settingsUser";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+defineCustomElements(window);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(
+  <AuthProvider>
+    <SettingsProvider>
+      <App />
+    </SettingsProvider>
+  </AuthProvider>,
+  document.getElementById("root")
+);

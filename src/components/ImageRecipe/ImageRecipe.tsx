@@ -1,7 +1,6 @@
 import { FunctionComponent } from "react";
 import Image from "components/Image/Image";
 import { IonItemDivider } from "@ionic/react";
-import React from "react";
 
 type Props = {
   rounded?: boolean;

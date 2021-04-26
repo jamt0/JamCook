@@ -2,7 +2,6 @@ import { IonIcon } from "@ionic/react";
 import Item from "components/Item/Item";
 import SubTitle from "components/Text/SubTitle";
 import { FunctionComponent } from "react";
-import React from "react";
 
 interface Props {
   icon?: string;

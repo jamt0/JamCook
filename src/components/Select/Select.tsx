@@ -1,0 +1,69 @@
+import { ErrorMessage } from "@hookform/error-message";
+import { IonItem, IonLabel, IonSelect, IonSelectOption } from "@ionic/react";
+import { FunctionComponent } from "react";
+import { Controller } from "react-hook-form";
+
+type Option = {
+  label: string;
+  value: string;
+};
+
+interface Props {
+  control: any;
+  errors: any;
+  defaultValue: any;
+  name: string;
+  label: string;
+  rules: any;
+  options: Option[] | undefined;
+}
+
+const Select: FunctionComponent<Props> = ({
+  options,
+  control,
+  errors,
+  defaultValue,
+  name,
+  label,
+  rules
+}) => {
+  return (
+    <>
+      <IonItem className="mb-4">
+        <IonLabel position="floating" color="primary">
+          {label}
+        </IonLabel>
+        <Controller
+          render={({ field: { onChange, onBlur, value } }) => (
+            <IonSelect
+              value={value}
+              onIonChange={onChange}
+              onIonBlur={onBlur}
+              interface="action-sheet"
+              className="mt-2"
+            >
+              {options ? options.map((opcion) => {
+                return (
+                  <IonSelectOption value={opcion.value} key={opcion.value}>
+                    {opcion.label}
+                  </IonSelectOption>
+                );
+              }):""}
+            </IonSelect>
+          )}
+          control={control}
+          name={name}
+          defaultValue={defaultValue}
+          rules={rules}
+        />
+      </IonItem>
+      <ErrorMessage
+        errors={errors}
+        name={name}
+        as={<div className="text-red-600 px-6" />}
+      />
+    </>
+  );
+};
+
+export default Select;
