@@ -3,10 +3,17 @@ import React, { useEffect, useState } from "react";
 import Button from "components/Button/Button";
 import RadioGroup from "components/RadioGroup/RadioGroup";
 import Scaffold from "components/Scaffold/Scaffold";
+import Title from "components/Text/Title";
+import SubTitle from "components/Text/SubTitle";
 import { useHistory } from "react-router";
 import { useAuth } from "auth";
 import { useSettingsUser } from "context/settingsUser";
+import { useForm } from "react-hook-form";
 import Server from "server";
+
+type Radio = {
+  radio: string;
+};
 
 const CookingLevel: React.FC = () => {
   const history = useHistory();
@@ -14,13 +21,16 @@ const CookingLevel: React.FC = () => {
   const { textos } = useSettingsUser()!;
 
   const [options, setOptions] = useState();
-  const [optionUser, setOptionUser] = useState();
+  const [optionUser, setOptionUser] = useState("1");
   const [loading, setLoading] = useState<boolean>(false);
   const [hasErrors, setHasErrors] = useState<string>("");
 
-  const handlerSaveEditButton = (e: any) => {
-    e.preventDefault();
-    history.push("/perfil/preferences");
+  const { control, handleSubmit, watch } = useForm({
+    mode: "onChange",
+  });
+
+  const handlerSaveEditButton = (data: Radio) => {
+    history.goBack();
   };
 
   useEffect(() => {
@@ -58,6 +68,8 @@ const CookingLevel: React.FC = () => {
     }
   }, []);
 
+  console.log("soy la page nivel cocina")
+
   return (
     <Scaffold>
       <Scaffold.Header title={textos["preferencias_mi_nivel_cocina"]}>
@@ -68,16 +80,20 @@ const CookingLevel: React.FC = () => {
         {hasErrors != "" && (
           <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
         )}
-        <h6 className="text-2xl font-bold text-center">
-          {textos["nivel_cocina_header"]}
-        </h6>
-        <p className=" mb-8 text-xl mt-2 text-gray-600 text-center">
+        <Title>{textos["nivel_cocina_header"]}</Title>
+        <SubTitle className="mb-8 mt-2" color="medium">
           {textos["nivel_cocina_sub_header"]}
-        </p>
-        <RadioGroup optionsGroup={options} defaultOption={optionUser} />
+        </SubTitle>
+        <RadioGroup
+          control={control}
+          options={options}
+          defaultOption={optionUser}
+        />
       </Scaffold.Content>
       <Scaffold.Footer>
-        <Button onClick={handlerSaveEditButton}>{textos["guardar"]}</Button>
+        <Button onClick={handleSubmit(handlerSaveEditButton)}>
+          {textos["guardar"]}
+        </Button>
       </Scaffold.Footer>
     </Scaffold>
   );

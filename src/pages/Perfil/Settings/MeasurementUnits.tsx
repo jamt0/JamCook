@@ -2,30 +2,42 @@ import React from "react";
 import Button from "components/Button/Button";
 import RadioGroup from "components/RadioGroup/RadioGroup";
 import Scaffold from "components/Scaffold/Scaffold";
+import SubTitle from "components/Text/SubTitle";
 import { useHistory } from "react-router";
 import { useSettingsUser } from "context/settingsUser";
+import { useForm } from "react-hook-form";
+
+type Radio = {
+  radio: string;
+};
 
 const MeasurementUnits: React.FC = () => {
   const history = useHistory();
   const { textos } = useSettingsUser()!;
 
-  const handlerSaveEditButton = (e: any) => {
-    e.preventDefault();
-    history.replace("/perfil/settings");
+  const defaultValue = "2";
+
+  const { control, handleSubmit } = useForm({
+    mode: "onSubmit",
+  });
+
+  const handlerSaveEditButton = (data: Radio) => {
+    console.log(data);
+    history.goBack();
   };
 
   const options = [
     {
-      descripcion: textos["unidades_medida_gramos"],
+      description: textos["unidades_medida_gramos"],
       value: "1",
     },
     {
-      descripcion: textos["unidades_medida_onzas"],
+      description: textos["unidades_medida_onzas"],
       value: "2",
     },
   ];
 
-  console.log("soy la page unidades de medida")
+  console.log("soy la page unidades de medida");
 
   return (
     <Scaffold>
@@ -33,13 +45,19 @@ const MeasurementUnits: React.FC = () => {
         <Scaffold.Header.BackAction />
       </Scaffold.Header>
       <Scaffold.Content>
-        <p className=" mb-8 text-xl mt-2 text-gray-600 text-center">
+        <SubTitle className="mb-8 mt-2" color="medium">
           {textos["unidades_medida_escoge"]}
-        </p>
-        <RadioGroup optionsGroup={options} defaultOption="1" />
+        </SubTitle>
+        <RadioGroup
+          control={control}
+          options={options}
+          defaultOption={defaultValue}
+        />
       </Scaffold.Content>
       <Scaffold.Footer>
-        <Button onClick={handlerSaveEditButton}>{textos["guardar"]}</Button>
+        <Button onClick={handleSubmit(handlerSaveEditButton)}>
+          {textos["guardar"]}
+        </Button>
       </Scaffold.Footer>
     </Scaffold>
   );

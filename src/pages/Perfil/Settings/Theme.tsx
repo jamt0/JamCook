@@ -2,35 +2,46 @@ import React from "react";
 import Button from "components/Button/Button";
 import RadioGroup from "components/RadioGroup/RadioGroup";
 import Scaffold from "components/Scaffold/Scaffold";
+import SubTitle from "components/Text/SubTitle";
 import { useHistory } from "react-router";
 import { useSettingsUser } from "context/settingsUser";
-import { IonIcon, IonItem, IonLabel, IonToggle } from "@ionic/react";
-import { moon } from "ionicons/icons";
+import { useForm } from "react-hook-form";
+
+type Radio = {
+  radio: string;
+}
 
 const Theme: React.FC = () => {
   const history = useHistory();
-  const { textos, setTheme } = useSettingsUser()!;
+  const { textos, setTheme, theme } = useSettingsUser()!;
+
+  const defaultValue = theme == "dark" ? "2" : "1";
+
+  const { control, handleSubmit } = useForm({
+    mode: "onSubmit",
+  });
 
   const options = [
     {
-      descripcion: textos["tema_claro"],
+      description: textos["tema_claro"],
       value: "1",
     },
     {
-      descripcion: textos["tema_oscuro"],
+      description: textos["tema_oscuro"],
       value: "2",
     },
   ];
 
-  const handlerSaveEditButton = (e: any) => {
-    e.preventDefault();
-    setTheme("2");
-    history.replace("/perfil/settings");
+  const handlerSaveEditButton = (data: Radio) => {
+    if (data.radio == "2") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+    history.goBack();
   };
 
-  const toggleDarkModeHandler = () => {
-    document.body.classList.toggle("dark");
-  };
+  console.log("soy la page tema")
 
   return (
     <Scaffold>
@@ -38,18 +49,19 @@ const Theme: React.FC = () => {
         <Scaffold.Header.BackAction />
       </Scaffold.Header>
       <Scaffold.Content>
-        <p className=" mb-8 text-xl mt-2 text-gray-600 text-center">
+        <SubTitle className="mb-8 mt-2" color="medium">
           {textos["tema_escoge"]}
-        </p>
-        <RadioGroup optionsGroup={options} defaultOption="1" />
-        <IonItem>
-            <IonIcon slot="start" icon={moon} />
-            <IonLabel>Dark Mode</IonLabel>
-            <IonToggle slot="end" name="darkMode" onIonChange={toggleDarkModeHandler} />
-          </IonItem>
+        </SubTitle>
+        <RadioGroup
+          control={control}
+          options={options}
+          defaultOption={defaultValue}
+        />
       </Scaffold.Content>
       <Scaffold.Footer>
-        <Button onClick={handlerSaveEditButton}>{textos["guardar"]}</Button>
+        <Button onClick={handleSubmit(handlerSaveEditButton)}>
+          {textos["guardar"]}
+        </Button>
       </Scaffold.Footer>
     </Scaffold>
   );

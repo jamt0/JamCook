@@ -1,32 +1,50 @@
-import { IonItem, IonRadio, IonRadioGroup } from "@ionic/react";
-import { useState, FunctionComponent } from "react";
+import { IonRadioGroup } from "@ionic/react";
+import React, { FunctionComponent, Fragment } from "react";
+import Radio from "components/Radio/Radio";
+import { Controller } from "react-hook-form";
 
 type Option = {
-  descripcion: string;
+  description: string;
   value: string;
-}
-interface Props {
-  optionsGroup: undefined | Option[];
+};
+type Props = {
+  options: undefined | Option[];
   defaultOption: undefined | string;
-}
+  control?: any;
+  name?: string;
+};
 
-const RadioGroup: FunctionComponent<Props> = ({ optionsGroup, defaultOption }) => {
-  const [selected, setSelected] = useState(defaultOption);
+const RadioGroup: FunctionComponent<Props> = ({
+  options,
+  defaultOption,
+  control,
+  name="radio",
+}) => {
 
   return (
-    <IonRadioGroup
-      value={selected}
-      onIonChange={(e) => setSelected(e.detail.value)}
-    >
-      {optionsGroup ? optionsGroup.map((opcion) => {
-        return (
-          <IonItem lines="none" className="mb-4 rounded-md" color="light" key={opcion.value}>
-            <p className="text-lg">{opcion.descripcion}</p>
-            <IonRadio slot="start" color="primary" value={opcion.value}></IonRadio>
-          </IonItem>
-        );
-      }):""}
-    </IonRadioGroup>
+    <Controller
+      render={({ field: { onChange, value } }) => (
+        <IonRadioGroup
+          value={value}
+          onIonChange={onChange}
+        >
+          {options ? (
+            options.map((option) => {
+              return (
+                <Radio value={option.value} key={option.value}>
+                  {option.description}
+                </Radio>
+              );
+            })
+          ) : (
+            <Fragment />
+          )}
+        </IonRadioGroup>
+      )}
+      control={control}
+      name={name}
+      defaultValue={defaultOption}
+    />
   );
 };
 

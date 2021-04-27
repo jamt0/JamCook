@@ -2,11 +2,18 @@ import React, { useEffect, useState } from "react";
 import Button from "components/Button/Button";
 import RadioGroup from "components/RadioGroup/RadioGroup";
 import Scaffold from "components/Scaffold/Scaffold";
+import SubTitle from "components/Text/SubTitle";
+import Title from "components/Text/Title";
 import { useHistory } from "react-router";
 import { IonLoading } from "@ionic/react";
 import { useAuth } from "auth";
 import { useSettingsUser } from "context/settingsUser";
+import { useForm } from "react-hook-form";
 import Server from "server";
+
+type Radio = {
+  radio: string;
+};
 
 const MyObjectives: React.FC = () => {
   const history = useHistory();
@@ -18,9 +25,12 @@ const MyObjectives: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [hasErrors, setHasErrors] = useState<string>("");
 
-  const handlerSaveEditButton = (e: any) => {
-    e.preventDefault();
-    history.push("/perfil/preferences");
+  const { control, handleSubmit, watch } = useForm({
+    mode: "onChange",
+  });
+
+  const handlerSaveEditButton = (data: Radio) => {
+    history.goBack();
   };
 
   useEffect(() => {
@@ -67,16 +77,20 @@ const MyObjectives: React.FC = () => {
         {hasErrors != "" && (
           <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
         )}
-        <h6 className="text-2xl font-bold text-center">
-          {textos["objetivos_header"]}
-        </h6>
-        <p className=" mb-8 text-xl mt-2 text-gray-600 text-center">
+        <Title>{textos["objetivos_header"]}</Title>
+        <SubTitle className="mb-8 mt-2" color="medium">
           {textos["objetivos_sub_header"]}
-        </p>
-        <RadioGroup optionsGroup={options} defaultOption={optionUser} />
+        </SubTitle>
+        <RadioGroup
+          control={control}
+          options={options}
+          defaultOption={optionUser}
+        />
       </Scaffold.Content>
       <Scaffold.Footer>
-        <Button onClick={handlerSaveEditButton}>{textos["guardar"]}</Button>
+        <Button onClick={handleSubmit(handlerSaveEditButton)}>
+          {textos["guardar"]}
+        </Button>
       </Scaffold.Footer>
     </Scaffold>
   );

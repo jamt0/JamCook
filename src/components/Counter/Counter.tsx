@@ -1,6 +1,6 @@
 import { IonItemDivider } from "@ionic/react";
-import { FunctionComponent, useEffect, useState } from "react";
-import Center from "../Center/Center";
+import React, { FunctionComponent, useEffect, useState } from "react";
+import Center from "components/Center/Center";
 import Text from "components/Text/Text";
 import Button from "components/Button/Button";
 

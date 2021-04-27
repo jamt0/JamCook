@@ -83,13 +83,7 @@ const App: React.FC = () => {
       <IonApp>
         <IonReactRouter>
           <IonContent>
-            <IonRouterOutlet>
-              <Route path="/home">
-                <Home />
-              </Route>
-              <Route path="/" exact>
-                <Welcome />
-              </Route>
+            <IonRouterOutlet animated={false}>
               <Route path="/signUp" exact>
                 <SignUp />
               </Route>
@@ -173,6 +167,12 @@ const App: React.FC = () => {
               </Route>
               <Route path="/perfil/preferences/comensals" exact>
                 <Comensals />
+              </Route>
+              <Route path="/home">
+                <Home />
+              </Route>
+              <Route path="/" exact>
+                <Welcome />
               </Route>
               <Route>
                 <NoFound />

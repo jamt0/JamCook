@@ -53,7 +53,7 @@ const ContactUs: React.FC = () => {
       setHasErrors(errorMessage.data.error);
       setLoading(false);
     } else {
-      history.replace("/home/perfil");
+      history.goBack();
       setLoading(false);
     }
   };

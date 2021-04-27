@@ -3,20 +3,20 @@ import Button from "components/Button/Button";
 import Scaffold from "components/Scaffold/Scaffold";
 import Input from "components/Input/Input";
 import Text from "components/Text/Text";
+import ButtonLink from "components/ButtonLink/ButtonLink";
+import Center from "components/Center/Center";
 import { IonLoading } from "@ionic/react";
 import { Redirect } from "react-router";
 import { useForm } from "react-hook-form";
 import { useAuth } from "auth";
 import { useSettingsUser } from "context/settingsUser";
-import ButtonLink from "components/ButtonLink/ButtonLink";
-import Center from "components/Center/Center";
 
 let defaultValues = {
   email: "",
   password: "",
 };
 
-interface IUser {
+type User = {
   email: string;
   password: string;
 }
@@ -31,16 +31,12 @@ const SignIn: React.FC = () => {
     control,
     handleSubmit,
     formState: { isSubmitting, isValid, errors },
-  } = useForm<IUser>({
+  } = useForm<User>({
     defaultValues: defaultValues,
     mode: "onChange",
   });
 
-  /**
-   *
-   * @param data
-   */
-  const handlerSignInButton = async (user: IUser) => {
+  const handlerSignInButton = async (user: User) => {
     const errorSignIn = await signIn(user);
     if (errorSignIn != null) {
       setHasErrors(errorSignIn);

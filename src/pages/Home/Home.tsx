@@ -27,7 +27,7 @@ const Home: React.FC = () => {
 
   return (
     <IonTabs>
-      <IonRouterOutlet>
+      <IonRouterOutlet animated={false}>
         <Route path="/home/search" exact>
           <Search />
         </Route>
@@ -40,7 +40,9 @@ const Home: React.FC = () => {
         <Route path="/home/perfil" exact>
           <Perfil />
         </Route>
-        <Redirect exact path="/home" to="/home/search" />
+        <Route path="/home" exact>
+          <Redirect to="/home/search" />
+        </Route>
       </IonRouterOutlet>
       <IonTabBar slot="bottom" className="py-1">
         <IonTabButton tab="search" href="/home/search">
