@@ -27,6 +27,9 @@ const textos = {
   guardar: "Guardar",
   ver_mas: "Ver más",
   cerrar: "Cerrar",
+  respuesta: "Respuesta",
+  responder: "Responder",
+  ver_todos_comentarios: "Ver todos los comentarios",
   y: "y",
 
   //campos

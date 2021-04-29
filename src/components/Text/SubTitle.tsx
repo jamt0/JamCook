@@ -1,25 +1,25 @@
+import React, { FunctionComponent } from "react";
 import { IonText } from "@ionic/react";
-import { FunctionComponent } from "react";
 
-interface Props {
-  centerAlways?: boolean;
+type Props = {
   color?: string;
   className?: string;
   align?: "right" | "center" | "left" | undefined;
-}
+};
 
 const SubTitle: FunctionComponent<Props> = ({
   color,
-  children,
   className,
-  align="center"
+  align = "center",
+  children,
 }) => {
   return (
-    <IonText color={color} className={`text-${align} text-xl flex flex-col justify-center ${className}`}>
-    <h3>
-      {children}
-    </h3>
-  </IonText>
+    <IonText
+      color={color}
+      className={`text-${align} text-xl flex flex-col justify-center ${className}`}
+    >
+      <h3>{children}</h3>
+    </IonText>
   );
 };
 

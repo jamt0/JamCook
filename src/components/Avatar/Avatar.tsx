@@ -1,11 +1,12 @@
-import { IonAvatar, IonImg } from "@ionic/react";
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
+import { IonAvatar } from "@ionic/react";
+import Image from "components/Image/Image";
 
-interface Props {
+type Props = {
   size: number;
   sizeResponsive?: number;
   src: any;
-}
+};
 
 const Avatar: FunctionComponent<Props> = ({
   src,
@@ -16,7 +17,7 @@ const Avatar: FunctionComponent<Props> = ({
     <IonAvatar
       className={`w-${size} h-${size} md:h-${sizeResponsive} md:w-${sizeResponsive}`}
     >
-      <IonImg src={src} />
+      <Image src={src} rounded="full"/>
     </IonAvatar>
   );
 };

@@ -1,5 +1,6 @@
-import { IonChip, IonLabel } from "@ionic/react";
 import React, { FunctionComponent } from "react";
+import Label from "components/Label/Label";
+import Chip from "components/Chip/Chip";
 
 interface Props {
   ingredientes: {
@@ -14,13 +15,13 @@ const ChipGroup: FunctionComponent<Props> = ({ ingredientes }) => {
     <>
       {ingredientes.map((ingrediente) => {
         return (
-          <IonChip
+          <Chip
             color="secondary"
-            key={ingrediente.id}
             outline={ingrediente.outline}
+            key={ingrediente.id}
           >
-            <IonLabel>{ingrediente.ingrediente}</IonLabel>
-          </IonChip>
+            <Label>{ingrediente.ingrediente}</Label>
+          </Chip>
         );
       })}
     </>

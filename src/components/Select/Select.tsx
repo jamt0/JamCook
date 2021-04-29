@@ -1,6 +1,8 @@
+import React, { Fragment, FunctionComponent } from "react";
+import Item from "components/Item/Item";
+import Label from "components/Label/Label";
+import { IonSelect, IonSelectOption } from "@ionic/react";
 import { ErrorMessage } from "@hookform/error-message";
-import { IonItem, IonLabel, IonSelect, IonSelectOption } from "@ionic/react";
-import { FunctionComponent } from "react";
 import { Controller } from "react-hook-form";
 
 type Option = {
@@ -8,10 +10,10 @@ type Option = {
   value: string;
 };
 
-interface Props {
+type Props = {
+  defaultValue: any;
   control: any;
   errors: any;
-  defaultValue: any;
   name: string;
   label: string;
   rules: any;
@@ -19,20 +21,20 @@ interface Props {
 }
 
 const Select: FunctionComponent<Props> = ({
-  options,
+  defaultValue,
   control,
   errors,
-  defaultValue,
   name,
   label,
-  rules
+  rules,
+  options,
 }) => {
   return (
-    <>
-      <IonItem className="mb-4">
-        <IonLabel position="floating" color="primary">
+    <Fragment>
+      <Item className="mb-4">
+        <Label position="floating" color="primary">
           {label}
-        </IonLabel>
+        </Label>
         <Controller
           render={({ field: { onChange, onBlur, value } }) => (
             <IonSelect
@@ -42,13 +44,17 @@ const Select: FunctionComponent<Props> = ({
               interface="action-sheet"
               className="mt-2"
             >
-              {options ? options.map((opcion) => {
-                return (
-                  <IonSelectOption value={opcion.value} key={opcion.value}>
-                    {opcion.label}
-                  </IonSelectOption>
-                );
-              }):""}
+              {options ? (
+                options.map((opcion) => {
+                  return (
+                    <IonSelectOption value={opcion.value} key={opcion.value}>
+                      {opcion.label}
+                    </IonSelectOption>
+                  );
+                })
+              ) : (
+                <Fragment />
+              )}
             </IonSelect>
           )}
           control={control}
@@ -56,13 +62,13 @@ const Select: FunctionComponent<Props> = ({
           defaultValue={defaultValue}
           rules={rules}
         />
-      </IonItem>
+      </Item>
       <ErrorMessage
         errors={errors}
         name={name}
         as={<div className="text-red-600 px-6" />}
       />
-    </>
+    </Fragment>
   );
 };
 

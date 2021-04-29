@@ -1,10 +1,10 @@
+import React, { FunctionComponent } from "react";
 import { IonText } from "@ionic/react";
-import { FunctionComponent } from "react";
 
-interface Props {
+type Props = {
   color?: string;
   align?: "rigth" | "center" | "left" | undefined;
-}
+};
 
 const Title: FunctionComponent<Props> = ({
   color,

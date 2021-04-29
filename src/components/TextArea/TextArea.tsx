@@ -1,9 +1,11 @@
+import React, { Fragment, FunctionComponent } from "react";
+import Label from "components/Label/Label";
+import Item from "components/Item/Item";
 import { ErrorMessage } from "@hookform/error-message";
-import { IonItem, IonLabel, IonTextarea } from "@ionic/react";
-import { FunctionComponent } from "react";
+import { IonTextarea } from "@ionic/react";
 import { Controller } from "react-hook-form";
 
-interface Props {
+type Props = {
   defaultValue: any;
   control: any;
   errors: any;
@@ -13,25 +15,23 @@ interface Props {
   placeHolder: string;
 }
 
-const TextArea : FunctionComponent<Props> = ({
+const TextArea: FunctionComponent<Props> = ({
+  defaultValue,
   control,
   errors,
-  defaultValue,
+  rules,
   name,
   label,
-  rules,
-  placeHolder
+  placeHolder,
 }) => {
   return (
-    <>
-      <IonItem className="mb-4">
-        <IonLabel position="floating" color="primary">
+    <Fragment>
+      <Item className="mb-4">
+        <Label position="floating" color="primary">
           {label}
-        </IonLabel>
+        </Label>
         <Controller
-          render={({
-            field: { onChange, onBlur, value, ref }
-          }) => (
+          render={({ field: { onChange, onBlur, value, ref } }) => (
             <IonTextarea
               placeholder={placeHolder}
               rows={4}
@@ -45,14 +45,14 @@ const TextArea : FunctionComponent<Props> = ({
           name={name}
           defaultValue={defaultValue}
           rules={rules}
-          />
-      </IonItem>
+        />
+      </Item>
       <ErrorMessage
         errors={errors}
         name={name}
         as={<div className="text-red-600 px-6" />}
       />
-    </>
+    </Fragment>
   );
 };
 

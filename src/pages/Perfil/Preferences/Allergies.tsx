@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IonLoading } from "@ionic/react";
 import Button from "components/Button/Button";
-import ChipGroup from "components/ChipGroup/ChipGroup";
+import ChipGroup from "layouts/ChipGroup/ChipGroup";
 import Scaffold from "components/Scaffold/Scaffold";
 import { useHistory } from "react-router";
 import { useAuth } from "auth";

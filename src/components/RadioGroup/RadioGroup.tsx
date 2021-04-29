@@ -1,6 +1,6 @@
-import { IonRadioGroup } from "@ionic/react";
 import React, { FunctionComponent, Fragment } from "react";
 import Radio from "components/Radio/Radio";
+import { IonRadioGroup } from "@ionic/react";
 import { Controller } from "react-hook-form";
 
 type Option = {

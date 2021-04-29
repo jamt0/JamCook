@@ -1,10 +1,10 @@
 import React from "react";
-import { IonPage } from "@ionic/react";
 import ScaffoldContent from "components/Scaffold/ScaffoldContent";
 import ScaffoldFooter from "components/Scaffold/ScaffoldFooter";
 import ScaffoldHeader from "components/Scaffold/ScaffoldHeader/ScaffoldHeader";
+import { IonPage } from "@ionic/react";
 
-interface Props {
+type Props = {
   children: React.ReactNode;
 }
 

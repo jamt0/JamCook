@@ -1,5 +1,5 @@
+import React, { Fragment, FunctionComponent } from "react";
 import { IonContent } from "@ionic/react";
-import { Fragment, FunctionComponent } from "react";
 
 type Props = {
   fabButton?: React.ReactNode;
@@ -9,13 +9,19 @@ type Props = {
 };
 
 const ScaffoldContent: FunctionComponent<Props> = ({
-  children, fabButton, banner, height="auto", margin="lg"
+  fabButton,
+  height = "auto",
+  margin = "lg",
+  banner,
+  children,
 }) => {
   return (
     <IonContent>
-      {banner ? banner: <Fragment/>}
-      <div className={`max-w-screen-${margin} mx-auto p-2 h-${height}`}>{children}</div>
-      {fabButton ? fabButton: <Fragment/>}
+      {banner ? banner : <Fragment />}
+      <div className={`max-w-screen-${margin} mx-auto p-2 h-${height}`}>
+        {children}
+      </div>
+      {fabButton ? fabButton : <Fragment />}
     </IonContent>
   );
 };

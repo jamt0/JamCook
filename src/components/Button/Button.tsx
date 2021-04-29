@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import { IonButton } from "@ionic/react";
 
 type Props = {
@@ -10,6 +10,7 @@ type Props = {
   onClick?: (e: any) => void;
   routerDirection?: "none" | "forward" | "back" | "root" | undefined;
   className?: string;
+  routerLink?: string;
 };
 
 const Button: FunctionComponent<Props> = ({
@@ -20,8 +21,9 @@ const Button: FunctionComponent<Props> = ({
   disabled,
   onClick,
   routerDirection,
-  children,
   className,
+  routerLink,
+  children,
 }) => {
   return (
     <IonButton
@@ -31,6 +33,7 @@ const Button: FunctionComponent<Props> = ({
       size={size}
       disabled={disabled}
       onClick={onClick}
+      routerLink={routerLink}
       routerDirection={routerDirection}
       className={className}
     >

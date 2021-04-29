@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import React, { Fragment, FunctionComponent } from "react";
 
 type Props = {
 };
@@ -7,7 +7,7 @@ const CardHeaderCompact: FunctionComponent<Props> = ({
   children
 }) => {
   return (
-      <>{children}</>
+      <Fragment>{children}</Fragment>
   );
 };
 

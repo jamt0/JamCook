@@ -1,7 +1,7 @@
 import React from "react";
-import { IonCard } from "@ionic/react";
 import CardHeader from "components/Card/CardHeader/CardHeader";
 import CardContent from "components/Card/CardContent";
+import { IonCard } from "@ionic/react";
 
 type Props = React.ComponentProps<any> & {
   routerLink?: string;

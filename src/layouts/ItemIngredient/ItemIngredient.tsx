@@ -1,71 +1,50 @@
-import { IonCheckbox, IonLabel, IonText } from "@ionic/react";
-import { FunctionComponent, useState } from "react";
-import Item from "components/Item/Item";
-import Counter from "components/Counter/Counter";
-import Image from "components/Image/Image";
+import React, { FunctionComponent, useState } from "react";
+import ItemIngredientView from "layouts/ItemIngredient/ItemIngredientView";
 
-interface Props {
+type TIngredient = {
   amount: string;
   name: string;
   src: string;
+};
+
+interface Props {
+  ingredient: TIngredient;
   check?: boolean;
   counter?: boolean;
 }
 
 const ItemIngredient: FunctionComponent<Props> = ({
-  amount,
-  name,
-  src,
+  ingredient,
   check = false,
   counter = false,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isSelect, setIsSelect] = useState(false);
-  const [porciones, setPorciones] = useState(1);
+  const [open, setOpen] = useState(false);
+  const [select, setSelect] = useState(false);
+  const [portions, setPortions] = useState(1);
 
   const handlerClickItem = (e: any) => {
     e.preventDefault();
-    setIsOpen(!isOpen);
-    setIsSelect(true);
+    setOpen(!open);
+    setSelect(true);
   };
 
   const handlerClickCheck = (e: any) => {
     e.preventDefault();
-    setIsSelect(!isSelect);
+    setSelect(!select);
   };
 
   return (
-    <div className="flex flex-col my-2">
-      <div className="relative flex flex-row">
-        <Item color="light" onClick={handlerClickItem} className="w-full rounded-md">
-          <Image src={src} height={12} width={12} rounded/>
-          <IonLabel className="ion-text-wrap ml-2 my-4">
-            <IonText color="dark">
-              <p>{name}</p>
-            </IonText>
-            <IonText color="medium">
-              <p>{amount + " Unidades"}</p>
-            </IonText>
-          </IonLabel>
-        </Item>
-        {check && (
-          <div className="flex h-full w-full absolute items-center justify-end pr-3">
-            <IonCheckbox
-              mode="md"
-              color="primary"
-              checked={isSelect}
-              slot="end"
-              onClick={handlerClickCheck}
-            />
-          </div>
-        )}
-      </div>
-      {isOpen && counter && (
-        <Item color="light" className="pb-2">
-          <Counter porciones={porciones} setPorciones={setPorciones} />
-        </Item>
-      )}
-    </div>
+    <ItemIngredientView
+      ingredient={ingredient}
+      check={check}
+      counter={counter}
+      open={open}
+      select={select}
+      portions={portions}
+      setPortions={setPortions}
+      handlerClickCheck={handlerClickCheck}
+      handlerClickItem={handlerClickItem}
+    />
   );
 };
 

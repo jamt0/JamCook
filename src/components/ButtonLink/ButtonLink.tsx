@@ -1,4 +1,4 @@
-import { Fragment, FunctionComponent } from "react";
+import React, { Fragment, FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import Text from "components/Text/Text";
 
@@ -10,17 +10,19 @@ type Props = {
 };
 
 const ButtonLink: FunctionComponent<Props> = ({
-  color="primary",
+  color = "primary",
   align,
   routerLink,
-  children,
   onClick,
+  children,
 }) => {
-
-  //Falta añadir una forma de hacer replace, ademas añadir que pueda ser un boton, asi reducir funciones 
   return (
     <Text color={color} align={align} onClick={onClick}>
-      {routerLink ? <Link to={routerLink}>{children}</Link>: <Fragment>{children}</Fragment>}
+      {routerLink ? (
+        <Link to={routerLink}>{children}</Link>
+      ) : (
+        <Fragment>{children}</Fragment>
+      )}
     </Text>
   );
 };

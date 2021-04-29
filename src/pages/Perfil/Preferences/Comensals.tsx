@@ -5,7 +5,7 @@ import RadioGroup from "components/RadioGroup/RadioGroup";
 import Scaffold from "components/Scaffold/Scaffold";
 import Title from "components/Text/Title";
 import SubTitle from "components/Text/SubTitle";
-import Counter from "components/Counter/Counter";
+import Counter from "layouts/Counter/Counter";
 import { useHistory } from "react-router";
 import { useAuth } from "auth";
 import { useSettingsUser } from "context/settingsUser";
@@ -90,7 +90,7 @@ const Comensals: React.FC = () => {
           options={options}
           defaultOption={defaultValue}
         />
-        { watchRadio== "2" && <Counter porciones={amountUser} setPorciones={setAmountUser} />}
+        { watchRadio== "2" && <Counter portions={amountUser} setPortions={setAmountUser} />}
       </Scaffold.Content>
       <Scaffold.Footer>
         <Button onClick={handleSubmit(handlerSaveEditButton)}>

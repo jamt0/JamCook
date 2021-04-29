@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import { IonSlides } from "@ionic/react";
 
 type Props = {
@@ -6,22 +6,18 @@ type Props = {
     slidesPerView: number;
     spaceBetween: number;
   };
-}
+};
 
-const Slides: FunctionComponent<Props> = ({
-  options,
-  children
-}) => {
+const Slides: FunctionComponent<Props> = ({ options, children }) => {
+  const { slidesPerView, spaceBetween } = options;
 
-  const {slidesPerView, spaceBetween } = options;
-
-  const slideOpts = {
+  const slideOptions = {
     slidesPerView,
     spaceBetween,
   };
 
   return (
-    <IonSlides options={slideOpts} className="z-0 my-4">
+    <IonSlides options={slideOptions} className="z-0 my-4">
       {children}
     </IonSlides>
   );

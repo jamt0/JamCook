@@ -1,6 +1,7 @@
-import { IonItem } from "@ionic/react";
+import React from "react";
 import CardHeaderExpanded from "components/Card/CardHeader/CardHeaderExpanded";
 import CardHeaderCompact from "components/Card/CardHeader/CardHeaderCompact";
+import Item from "components/Item/Item";
 
 type Props = {
   routerLink?: string;
@@ -8,15 +9,11 @@ type Props = {
   children: React.ReactNode;
 };
 
-const CardHeader = ({
-  routerLink,
-  children,
-  color,
-}: Props) => {
+const CardHeader = ({ routerLink, children, color }: Props) => {
   return (
-    <IonItem lines="none" routerLink={routerLink} color={color} className="ion-no-padding ml-2">
+    <Item routerLink={routerLink} color={color} className="ion-no-padding ml-2">
       {children}
-    </IonItem>
+    </Item>
   );
 };
 

@@ -1,7 +1,7 @@
 import SubTitle from "components/Text/SubTitle";
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 
-interface Props {}
+type Props = {}
 
 const TitleRecipe: FunctionComponent<Props> = ({ children }) => {
   return (

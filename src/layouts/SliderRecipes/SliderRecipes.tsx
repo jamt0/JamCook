@@ -1,6 +1,6 @@
-import { FunctionComponent } from "react";
+import React, { Fragment, FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import ImageRecipe from "components/ImageRecipe/ImageRecipe";
+import ImageCover from "components/ImageCover/ImageCover";
 import Slides from "components/Slides/Slides";
 import Slide from "components/Slide/Slide";
 import Text from "components/Text/Text";
@@ -31,7 +31,7 @@ const SliderRecipes: FunctionComponent<Props> = ({
   };
 
   return (
-    <>
+    <Fragment>
       <div className="grid grid-flow-col gap-8">
         <SubTitle
           color="dark"
@@ -52,7 +52,7 @@ const SliderRecipes: FunctionComponent<Props> = ({
             <Slide key={index}>
               <Link to={recipe.path} className="w-full">
                 <div className="flex flex-col">
-                  <ImageRecipe src={recipe.src} height={44} rounded />
+                  <ImageCover src={recipe.src} height={44} rounded />
                   <Text color="dark" align="left" className="mt-2 text-base">
                     {recipe.name}
                   </Text>
@@ -62,7 +62,7 @@ const SliderRecipes: FunctionComponent<Props> = ({
           );
         })}
       </Slides>
-    </>
+    </Fragment>
   );
 };
 

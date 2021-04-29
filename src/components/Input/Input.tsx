@@ -1,14 +1,16 @@
+import React, { Fragment, FunctionComponent } from "react";
+import { IonInput } from "@ionic/react";
 import { ErrorMessage } from "@hookform/error-message";
-import { IonInput, IonItem, IonLabel } from "@ionic/react";
-import { FunctionComponent } from "react";
 import { Controller } from "react-hook-form";
+import Item from "components/Item/Item";
+import Label from "components/Label/Label";
 
 interface Props {
-  defaultValue: any;
   control: any;
   errors: any;
-  rules: any;
+  defaultValue: any;
   name: string;
+  rules: any;
   label: string;
   type: any;
 }
@@ -23,11 +25,11 @@ const Input: FunctionComponent<Props> = ({
   type
 }) => {
   return (
-    <>
-      <IonItem className="mb-4">
-        <IonLabel position="floating" color="primary">
+    <Fragment>
+      <Item className="mb-4" lines="full">
+        <Label position="floating" color="primary">
           {label}
-        </IonLabel>
+        </Label>
         <Controller
           render={({
             field: { onChange, onBlur, value, ref }
@@ -46,13 +48,13 @@ const Input: FunctionComponent<Props> = ({
           defaultValue={defaultValue}
           rules={rules}
           />
-      </IonItem>
+      </Item>
       <ErrorMessage
         errors={errors}
         name={name}
         as={<div className="text-red-600 px-6" />}
       />
-    </>
+    </Fragment>
   );
 };
 

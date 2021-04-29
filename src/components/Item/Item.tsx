@@ -1,27 +1,34 @@
+import React, { FunctionComponent } from "react";
 import { IonItem } from "@ionic/react";
-import { FunctionComponent } from "react";
 
 interface Props {
   color?: string;
   routerLink?: string;
   lines?: "none" | "full" | "inset" | undefined;
   detail?: boolean;
-  onClick?: (e: any) => void;
   className?: string;
+  onClick?: (e: any) => void;
 }
 
 const Item: FunctionComponent<Props> = ({
   color,
-  children,
-  className,
   routerLink,
+  lines = "none",
+  detail = false,
+  className,
   onClick,
-  lines="none",
-  detail=false
+  children,
 }) => {
   return (
-    <IonItem color={color} lines={lines} onClick={onClick} className={className} detail={detail} routerLink={routerLink}>
-        {children}
+    <IonItem
+      color={color}
+      routerLink={routerLink}
+      lines={lines}
+      detail={detail}
+      onClick={onClick}
+      className={className}
+    >
+      {children}
     </IonItem>
   );
 };

@@ -1,10 +1,10 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import ImageRecipe from "components/ImageRecipe/ImageRecipe";
+import ImageCover from "components/ImageCover/ImageCover";
 import Slides from "components/Slides/Slides";
 import Slide from "components/Slide/Slide";
 import Text from "components/Text/Text";
-import Rating from "components/Rating/Rating";
+import Rating from "layouts/Rating/Rating";
 
 interface Props {
   slidesPerView: number;
@@ -30,10 +30,10 @@ const SliderRecipesSimple: FunctionComponent<Props> = ({ slidesPerView, recipes 
         return (
           <Slide key={index}>
             <Link to={recipe.path} className="w-full">
-            <ImageRecipe src={recipe.src} height={40} rounded >
+            <ImageCover src={recipe.src} height={40} rounded >
               <Rating stars={recipe.valoration} size={6} color="light" />
               <Text color="light" align="left" className="font-extrabold">{recipe.name}</Text>
-            </ImageRecipe>
+            </ImageCover>
             </Link>
           </Slide>
         );

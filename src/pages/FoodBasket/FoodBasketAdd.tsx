@@ -7,106 +7,106 @@ import { useHistory } from "react-router";
 import { useSettingsUser } from "context/settingsUser";
 import { IonFab, IonFabButton, IonIcon } from "@ionic/react";
 
-const imagenes = [
+const ingredients = [
   {
-    pathImg: "https://picsum.photos/200/300?random=1",
+    src: "https://picsum.photos/200/300?random=1",
     name: "Tomate",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=2",
+    src: "https://picsum.photos/200/300?random=2",
     name: "Cebolla",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=3",
+    src: "https://picsum.photos/200/300?random=3",
     name: "Znahoria",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=4",
+    src: "https://picsum.photos/200/300?random=4",
     name: "TomLechugaate",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=1",
+    src: "https://picsum.photos/200/300?random=1",
     name: "Tomate",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=2",
+    src: "https://picsum.photos/200/300?random=2",
     name: "Cebolla",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=3",
+    src: "https://picsum.photos/200/300?random=3",
     name: "Znahoria",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=4",
+    src: "https://picsum.photos/200/300?random=4",
     name: "TomLechugaate",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=1",
+    src: "https://picsum.photos/200/300?random=1",
     name: "Tomate",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=2",
+    src: "https://picsum.photos/200/300?random=2",
     name: "Cebolla",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=3",
+    src: "https://picsum.photos/200/300?random=3",
     name: "Znahoria",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=4",
+    src: "https://picsum.photos/200/300?random=4",
     name: "TomLechugaate",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=1",
+    src: "https://picsum.photos/200/300?random=1",
     name: "Tomate",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=2",
+    src: "https://picsum.photos/200/300?random=2",
     name: "Cebolla",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=3",
+    src: "https://picsum.photos/200/300?random=3",
     name: "Znahoria",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=4",
+    src: "https://picsum.photos/200/300?random=4",
     name: "TomLechugaate",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=1",
+    src: "https://picsum.photos/200/300?random=1",
     name: "Tomate",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=2",
+    src: "https://picsum.photos/200/300?random=2",
     name: "Cebolla",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=3",
+    src: "https://picsum.photos/200/300?random=3",
     name: "Znahoria",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
   {
-    pathImg: "https://picsum.photos/200/300?random=4",
+    src: "https://picsum.photos/200/300?random=4",
     name: "TomLechugaate",
-    canridadPorcion: "1 Unidad",
+    amount: "1 Unidad",
   },
 ];
 
@@ -128,11 +128,7 @@ const FoodBasketAdd: React.FC = () => {
       </Scaffold.Header>
       <Scaffold.Content
         fabButton={
-          <IonFab
-            vertical="bottom"
-            horizontal="end"
-            slot="fixed"
-          >
+          <IonFab vertical="bottom" horizontal="end" slot="fixed">
             <IonFabButton onClick={handlerAddIngredient}>
               <IonIcon icon={checkmarkSharp} />
             </IonFabButton>
@@ -141,12 +137,10 @@ const FoodBasketAdd: React.FC = () => {
       >
         <Searcher placeHolder={textos["ingredientes_buscas"]} />
         <div className="pb-14">
-          {imagenes.map((imagen, index) => {
+          {ingredients.map((ingredient, index) => {
             return (
               <ItemIngredient
-                src={imagen.pathImg}
-                amount={imagen.canridadPorcion}
-                name={imagen.name}
+                ingredient={ingredient}
                 counter
                 check
                 key={index}

@@ -1,7 +1,7 @@
 import { IonButton, IonLoading, IonModal } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import Button from "components/Button/Button";
-import ChipGroup from "components/ChipGroup/ChipGroup";
+import ChipGroup from "layouts/ChipGroup/ChipGroup";
 import Searcher from "components/Searcher/Searcher";
 import Scaffold from "components/Scaffold/Scaffold";
 import { useHistory } from "react-router";

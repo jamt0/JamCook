@@ -1,17 +1,18 @@
+import React, { FunctionComponent } from "react";
 import { IonButtons, IonButton, IonIcon } from "@ionic/react";
 import { chevronBackOutline } from "ionicons/icons";
-import { FunctionComponent } from "react";
 import { useHistory } from "react-router";
 
 type Props = {};
 
-const ScaffoldHeaderBackAction: FunctionComponent<Props> = ({ children }) => {
+const ScaffoldHeaderBackAction: FunctionComponent<Props> = ({}) => {
   const history = useHistory();
 
   const handlerGoBackButton = (e: any) => {
     e.preventDefault();
     history.goBack();
   };
+
   return (
     <IonButtons slot="start">
       <IonButton onClick={handlerGoBackButton}>

@@ -1,5 +1,5 @@
+import React, { FunctionComponent } from "react";
 import { IonButtons } from "@ionic/react";
-import { FunctionComponent } from "react";
 
 type Props = {};
 

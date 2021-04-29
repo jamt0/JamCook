@@ -1,11 +1,11 @@
+import React, { FunctionComponent } from "react";
 import { IonText } from "@ionic/react";
-import { FunctionComponent } from "react";
 
-interface Props {
+type Props = {
   centerAlways?: boolean;
   color?: string;
   className?: string;
-  align?: "right" | "center" | "left" | undefined;
+  align?: "justify" |"right" | "center" | "left" | undefined;
   onClick?: (e: any) => void;
 }
 
