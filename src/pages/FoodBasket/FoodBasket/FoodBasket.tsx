@@ -1,0 +1,168 @@
+import React from "react";
+import { IonFab, IonFabButton, IonIcon } from "@ionic/react";
+import { addOutline } from "ionicons/icons";
+import { useHistory } from "react-router-dom";
+import ItemIngredient from "layouts/ItemIngredient/ItemIngredient";
+import Searcher from "components/Searcher/Searcher";
+import { useSettingsUser } from "context/settingsUser";
+import Scaffold from "components/Scaffold/Scaffold";
+import Title from "components/Text/Title";
+
+const ingredients = [
+  {
+    id:"1",
+    pathIngredientImage: "https://picsum.photos/200/300?random=1",
+    name: "Tomate",
+    amount: "1 Unidad",
+  },
+  {
+    id:"2",
+    pathIngredientImage: "https://picsum.photos/200/300?random=2",
+    name: "Cebolla",
+    amount: "1 Unidad",
+  },
+  {
+    id:"3",
+    pathIngredientImage: "https://picsum.photos/200/300?random=3",
+    name: "Znahoria",
+    amount: "1 Unidad",
+  },
+  {
+    id:"4",
+    pathIngredientImage: "https://picsum.photos/200/300?random=4",
+    name: "TomLechugaate",
+    amount: "1 Unidad",
+  },
+  {
+    id:"5",
+    pathIngredientImage: "https://picsum.photos/200/300?random=1",
+    name: "Tomate",
+    amount: "1 Unidad",
+  },
+  {
+    id:"6",
+    pathIngredientImage: "https://picsum.photos/200/300?random=2",
+    name: "Cebolla",
+    amount: "1 Unidad",
+  },
+  {
+    id:"7",
+    pathIngredientImage: "https://picsum.photos/200/300?random=3",
+    name: "Znahoria",
+    amount: "1 Unidad",
+  },
+  {
+    id:"8",
+    pathIngredientImage: "https://picsum.photos/200/300?random=4",
+    name: "TomLechugaate",
+    amount: "1 Unidad",
+  },
+  {
+    id:"9",
+    pathIngredientImage: "https://picsum.photos/200/300?random=1",
+    name: "Tomate",
+    amount: "1 Unidad",
+  },
+  {
+    id:"10",
+    pathIngredientImage: "https://picsum.photos/200/300?random=2",
+    name: "Cebolla",
+    amount: "1 Unidad",
+  },
+  {
+    id:"11",
+    pathIngredientImage: "https://picsum.photos/200/300?random=3",
+    name: "Znahoria",
+    amount: "1 Unidad",
+  },
+  {
+    id:"12",
+    pathIngredientImage: "https://picsum.photos/200/300?random=4",
+    name: "TomLechugaate",
+    amount: "1 Unidad",
+  },
+  {
+    id:"13",
+    pathIngredientImage: "https://picsum.photos/200/300?random=1",
+    name: "Tomate",
+    amount: "1 Unidad",
+  },
+  {
+    id:"14",
+    pathIngredientImage: "https://picsum.photos/200/300?random=2",
+    name: "Cebolla",
+    amount: "1 Unidad",
+  },
+  {
+    id:"15",
+    pathIngredientImage: "https://picsum.photos/200/300?random=3",
+    name: "Znahoria",
+    amount: "1 Unidad",
+  },
+  {
+    id:"16",
+    pathIngredientImage: "https://picsum.photos/200/300?random=4",
+    name: "TomLechugaate",
+    amount: "1 Unidad",
+  },
+  {
+    id:"17",
+    pathIngredientImage: "https://picsum.photos/200/300?random=1",
+    name: "Tomate",
+    amount: "1 Unidad",
+  },
+  {
+    id:"18",
+    pathIngredientImage: "https://picsum.photos/200/300?random=2",
+    name: "Cebolla",
+    amount: "1 Unidad",
+  },
+  {
+    id:"19",
+    pathIngredientImage: "https://picsum.photos/200/300?random=3",
+    name: "Znahoria",
+    amount: "1 Unidad",
+  },
+  {
+    id:"20",
+    pathIngredientImage: "https://picsum.photos/200/300?random=4",
+    name: "TomLechugaate",
+    amount: "1 Unidad",
+  },
+];
+
+const FoodBasket: React.FC = () => {
+  const history = useHistory();
+  const { textos } = useSettingsUser()!;
+
+  const handlerAddIngredient = (e: any) => {
+    e.preventDefault();
+    history.push("/foodBasket/add");
+  };
+
+  console.log("soy page foodbasket");
+
+  return (
+    <Scaffold>
+      <Scaffold.Content
+        fabButton={
+          <IonFab vertical="bottom" horizontal="end" slot="fixed">
+            <IonFabButton onClick={handlerAddIngredient}>
+              <IonIcon icon={addOutline} />
+            </IonFabButton>
+          </IonFab>
+        }
+      >
+        <Title color="medium">{textos["page_almacen"]}</Title>
+        <Searcher placeHolder={textos["ingredientes_buscas"]} />
+        <div className="pb-14">
+          {ingredients.map((ingredient, index) => {
+            return <ItemIngredient ingredient={ingredient} key={index} />;
+          })}
+        </div>
+      </Scaffold.Content>
+    </Scaffold>
+  );
+};
+
+export default FoodBasket;

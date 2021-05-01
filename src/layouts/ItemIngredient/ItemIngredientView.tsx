@@ -3,12 +3,7 @@ import { FunctionComponent, useState } from "react";
 import Item from "components/Item/Item";
 import Counter from "layouts/Counter/Counter";
 import Image from "components/Image/Image";
-
-type TIngredient = {
-  amount: string;
-  name: string;
-  src: string;
-};
+import { TIngredient } from "utils/types";
 
 type Props = {
   ingredient: TIngredient;
@@ -41,7 +36,7 @@ const ItemIngredientView: FunctionComponent<Props> = ({
           onClick={handlerClickItem}
           className="w-full rounded-md"
         >
-          <Image src={ingredient.src} height={12} width={12} rounded="sm" />
+          <Image src={ingredient.pathIngredientImage} height={12} width={12} rounded="sm" />
           <IonLabel className="ion-text-wrap ml-2 my-4">
             <IonText color="dark">
               <p>{ingredient.name}</p>

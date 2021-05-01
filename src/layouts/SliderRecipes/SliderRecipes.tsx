@@ -7,15 +7,12 @@ import Text from "components/Text/Text";
 import { useSettingsUser } from "context/settingsUser";
 import SubTitle from "components/Text/SubTitle";
 import Center from "components/Center/Center";
+import { TRecipe } from "utils/types";
 
 interface Props {
   slidesPerView: number;
   nameListRecipes: string;
-  recipes: {
-    name: string;
-    src: string;
-    path: string;
-  }[];
+  recipes: TRecipe[];
 }
 
 const SliderRecipes: FunctionComponent<Props> = ({
@@ -50,9 +47,9 @@ const SliderRecipes: FunctionComponent<Props> = ({
         {recipes.map((recipe, index) => {
           return (
             <Slide key={index}>
-              <Link to={recipe.path} className="w-full">
+              <Link to={`recipe/${recipe.id}`} className="w-full">
                 <div className="flex flex-col">
-                  <ImageCover src={recipe.src} height={44} rounded />
+                  <ImageCover src={recipe.pathRecipeImage} height={44} rounded />
                   <Text color="dark" align="left" className="mt-2 text-base">
                     {recipe.name}
                   </Text>

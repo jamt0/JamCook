@@ -12,29 +12,20 @@ const SignUp: React.FC = () => {
   const { textos } = useSettingsUser()!;
   const [errores, setErrores] = useState<string>("");
 
-  let defaultValues = {
-    name: "",
-    email: "",
-    password: "",
-  };
+  const defaultValues = { name: "", email: "", password: "" };
 
   const {
     control,
     handleSubmit,
     formState: { isSubmitting, isValid, errors },
   } = useForm({
-    defaultValues: defaultValues,
     mode: "onChange",
   });
 
   const handlerSignUpButton = async (user: TUserSignUp) => {
-    console.log(user)
     const errorSignUp = await signUp(user);
-    if (errorSignUp != null) {
-      setErrores(errorSignUp);
-    } else {
-      return <Redirect to="/home" />;
-    }
+    if (errorSignUp != null) setErrores(errorSignUp);
+    else return <Redirect to="/home" />;
   };
 
   const rules = {
@@ -43,17 +34,15 @@ const SignUp: React.FC = () => {
     rulesPassword: rulesPassword(textos),
   };
 
-  console.log("soy la page registro");
-
   return (
     <SignUpView
       rules={rules}
-      handlerSignUpButton={handlerSignUpButton}
       textos={textos}
       errores={errores}
       loading={loading}
-      formHook={{ control, errors, isValid, isSubmitting, handleSubmit }}
       defaultValues={defaultValues}
+      handlerSignUpButton={handlerSignUpButton}
+      formHook={{ control, errors, isValid, isSubmitting, handleSubmit }}
     />
   );
 };

@@ -12,35 +12,26 @@ const SignIn: React.FC = () => {
   const { textos } = useSettingsUser()!;
   const [errores, setErrores] = useState<string>("");
 
-  let defaultValues = {
-    email: "",
-    password: "",
-  };
+  const defaultValues = { email: "", password: "" };
 
   const {
     control,
     handleSubmit,
     formState: { isSubmitting, isValid, errors },
   } = useForm({
-    defaultValues: defaultValues,
     mode: "onChange",
   });
 
   const handlerSignInButton = async (user: TUserSignIn) => {
     const errorSignIn = await signIn(user);
-    if (errorSignIn != null) {
-      setErrores(errorSignIn);
-    } else {
-      return <Redirect to="/home" />;
-    }
+    if (errorSignIn != null) setErrores(errorSignIn);
+    else return <Redirect to="/home" />;
   };
 
   const rules = {
     rulesEmail: rulesEmail(textos),
     rulesPassword: rulesPassword(textos),
   };
-
-  console.log("soy la page login");
 
   return (
     <SignInView

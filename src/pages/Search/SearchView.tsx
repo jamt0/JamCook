@@ -1,37 +1,36 @@
 import React, { FunctionComponent } from "react";
-import SliderRecipes from "layouts/SliderRecipes/SliderRecipes";
+import Title from "components/Text/Title";
 import Searcher from "components/Searcher/Searcher";
 import Scaffold from "components/Scaffold/Scaffold";
-import Title from "components/Text/Title";
+import SliderRecipes from "layouts/SliderRecipes/SliderRecipes";
+import { TRecipe } from "utils/types";
 
 type Props = {
   textos: any;
-  slidesPerView: any;
-  listRecipes: any;
+  slidesPerView: number;
+  listRecipes: {
+    title: string;
+    recipes: TRecipe[];
+  }[];
 };
 
-const Search: FunctionComponent<Props> = ({
-  textos,
-  slidesPerView,
-  listRecipes
-}) => {
-  return (
-    <Scaffold>
-      <Scaffold.Content>
-        <Title align="center" color="medium">
-          {textos["slogan_2_1"]}
-          <br />
-          {textos["slogan_2_2"]}
-        </Title>
-        <Searcher placeHolder={textos["search_buscar_recetas"]} />
-        {listRecipes.map(recipes => {
-          return(
-            <SliderRecipes recipes={recipes.recipes} slidesPerView={slidesPerView} nameListRecipes={recipes.nameList}/>
-          );
-        })}
-      </Scaffold.Content>
-    </Scaffold>
-  );
-};
-
+const Search: FunctionComponent<Props> = ({ ...props }) => (
+  <Scaffold>
+    <Scaffold.Content>
+      <Title align="center" color="medium">
+        {props.textos["slogan_2_1"]}
+        <br />
+        {props.textos["slogan_2_2"]}
+      </Title>
+      <Searcher placeHolder={props.textos["search_buscar_recetas"]} />
+      {props.listRecipes.map((recipes) => (
+        <SliderRecipes
+          recipes={recipes.recipes}
+          slidesPerView={props.slidesPerView}
+          nameListRecipes={recipes.title}
+        />
+      ))}
+    </Scaffold.Content>
+  </Scaffold>
+);
 export default Search;

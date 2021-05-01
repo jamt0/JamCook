@@ -1,13 +1,8 @@
 import React, { FunctionComponent, useState } from "react";
 import ItemIngredientView from "layouts/ItemIngredient/ItemIngredientView";
+import { TIngredient } from "utils/types";
 
-type TIngredient = {
-  amount: string;
-  name: string;
-  src: string;
-};
-
-interface Props {
+type Props = {
   ingredient: TIngredient;
   check?: boolean;
   counter?: boolean;

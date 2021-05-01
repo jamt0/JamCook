@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, useState } from "react";
+import React, { Fragment, FunctionComponent } from "react";
 import Commentary from "layouts/Commentary/Commentary";
 import ButtonLink from "components/ButtonLink/ButtonLink";
 import { TCommentary } from "utils/types";
@@ -13,7 +13,7 @@ const CommentaryBox: FunctionComponent<Props> = ({ comments }) => {
   return (
     <Fragment>
       {comments.map((comentary) => {
-        return <Commentary commentary={comentary} />;
+        return <Commentary commentary={comentary} key={comentary.id} />;
       })}
       <div className="mt-4">
         <ButtonLink>{textos["ver_todos_comentarios"]}</ButtonLink>
