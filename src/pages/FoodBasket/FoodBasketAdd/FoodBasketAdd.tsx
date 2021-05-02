@@ -2,6 +2,7 @@ import React from "react";
 import FoodBasketAddView from "pages/FoodBasket/FoodBasketAdd/FoodBasketAddView";
 import { useHistory } from "react-router";
 import { useSettingsUser } from "context/settingsUser";
+import RoutesPath from "utils/routesPath";
 
 const ingredients = [
   {
@@ -132,7 +133,7 @@ const FoodBasketAdd: React.FC = () => {
 
   const handlerAddIngredient = (e: any) => {
     e.preventDefault();
-    history.push("/home/foodBasket");
+    history.push(RoutesPath.foodBasket);
   };
 
   return (

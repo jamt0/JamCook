@@ -28,7 +28,7 @@ const SliderRecipesSimple: FunctionComponent<Props> = (props) => {
       {props.listRecipes.recipes.map((recipe, index) => {
         return (
           <Slide key={index}>
-            <Link to={`${RoutesPath.recipe + recipe.id}`} className="w-full">
+            <Link to={RoutesPath.recipe + recipe.id} className="w-full">
             <ImageCover src={recipe.pathRecipeImage} height={40} rounded >
               <Rating stars={recipe.valoration} size={6} color="light" />
               <Text color="light" align="left" className="font-extrabold">{recipe.name}</Text>

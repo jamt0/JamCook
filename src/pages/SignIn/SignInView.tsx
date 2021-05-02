@@ -8,6 +8,7 @@ import Loading from "components/Loading/Loading";
 import Scaffold from "components/Scaffold/Scaffold";
 import ButtonLink from "components/ButtonLink/ButtonLink";
 import { TUserSignIn } from "utils/types";
+import RoutesPath from "utils/routesPath";
 
 type Props = {
   textos: any;
@@ -46,7 +47,7 @@ const SignIn: FunctionComponent<Props> = (props) => (
         rules={props.rules.rulesPassword}
       />
       <Center justify="end" className="mt-6">
-        <ButtonLink routerLink="/forgetPassword">
+        <ButtonLink routerLink={RoutesPath.forgetPassword}>
           {props.textos.signin_olvido_contraseña}
         </ButtonLink>
       </Center>
@@ -60,7 +61,7 @@ const SignIn: FunctionComponent<Props> = (props) => (
       </Button>
       <Center className="py-2">
         <Text className="mr-1">{props.textos.signin_no_tiene_cuenta}</Text>
-        <ButtonLink routerLink="/signUp">
+        <ButtonLink routerLink={RoutesPath.signUp}>
           {props.textos.signup_registrate}
         </ButtonLink>
       </Center>

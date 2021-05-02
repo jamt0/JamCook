@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useSettingsUser } from "context/settingsUser";
 import { rulesVerificationCode } from "utils/rulesValidation";
 import Server from "server";
+import RoutesPath from "utils/routesPath";
 
 const ForgetPasswordValidate: React.FC = () => {
   const history = useHistory();
@@ -30,7 +31,7 @@ const ForgetPasswordValidate: React.FC = () => {
       setErrores(errorValidateVerificationCode.data.error);
       setLoading(false);
     } else {
-      history.replace("/forgetPassword/newPassword");
+      history.replace(RoutesPath.newPassword);
       setLoading(false);
     }
   };

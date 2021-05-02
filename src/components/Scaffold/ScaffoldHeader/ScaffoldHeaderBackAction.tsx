@@ -7,15 +7,9 @@ type Props = {};
 
 const ScaffoldHeaderBackAction: FunctionComponent<Props> = () => {
   const history = useHistory();
-
-  const handlerGoBackButton = (e: any) => {
-    e.preventDefault();
-    history.goBack();
-  };
-
   return (
     <IonButtons slot="start">
-      <IonButton onClick={handlerGoBackButton}>
+      <IonButton onClick={()=>history.goBack()}>
         <IonIcon slot="icon-only" icon={chevronBackOutline} color="dark" />
       </IonButton>
     </IonButtons>

@@ -1,6 +1,6 @@
 import React from "react";
-import { useSettingsUser } from "context/settingsUser";
 import HomeView from "pages/Home/HomeView";
+import { useSettingsUser } from "context/settingsUser";
 
 const Home: React.FC = () => {
   const { textos } = useSettingsUser()!;

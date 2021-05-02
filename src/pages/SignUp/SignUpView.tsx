@@ -8,6 +8,7 @@ import Center from "components/Center/Center";
 import Loading from "components/Loading/Loading";
 import ButtonLink from "components/ButtonLink/ButtonLink";
 import { TUserSignUp } from "utils/types";
+import RoutesPath from "utils/routesPath";
 
 type Props = {
   textos: any;
@@ -56,11 +57,11 @@ const SignUpView: FunctionComponent<Props> = (props) => (
       />
       <Center direction="col" className="mt-8">
         <Text>{props.textos.signup_acepta_nuestros}</Text>
-        <ButtonLink routerLink="/terminosYCondiciones">
+        <ButtonLink routerLink={RoutesPath.termsAndConditions}>
           {props.textos.terminos_condiciones}
         </ButtonLink>
         <Text>{props.textos.y}</Text>
-        <ButtonLink routerLink="/politicaDePrivacidad">
+        <ButtonLink routerLink={RoutesPath.privacyPolicy}>
           {props.textos.politica_privacidad}
         </ButtonLink>
       </Center>
@@ -74,7 +75,7 @@ const SignUpView: FunctionComponent<Props> = (props) => (
       </Button>
       <Center className="py-2">
         <Text className="mr-1">{props.textos.signup_tiene_cuenta}</Text>
-        <ButtonLink routerLink="/signIn">
+        <ButtonLink routerLink={RoutesPath.signIn}>
           {props.textos.signin_iniciar_sesion}
         </ButtonLink>
       </Center>

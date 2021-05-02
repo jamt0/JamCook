@@ -39,7 +39,7 @@ const SliderRecipes: FunctionComponent<Props> = (props) => {
         </SubTitle>
         <Center direction="row" justify="end">
           <Text color="primary" align="right">
-            <Link to={`${RoutesPath.listRecipes + props.listRecipes.id }`}>{textos.ver_mas}</Link>
+            <Link to={RoutesPath.listRecipes + props.listRecipes.id}>{textos.ver_mas}</Link>
           </Text>
         </Center>
       </div>
@@ -47,7 +47,7 @@ const SliderRecipes: FunctionComponent<Props> = (props) => {
         {props.listRecipes.recipes.map((recipe, index) => {
           return (
             <Slide key={index}>
-              <Link to={`${RoutesPath.recipe + recipe.id}`} className="w-full">
+              <Link to={RoutesPath.recipe + recipe.id} className="w-full">
                 <div className="flex flex-col">
                   <ImageCover src={recipe.pathRecipeImage} height={44} rounded />
                   <Text color="dark" align="left" className="mt-2 text-base">

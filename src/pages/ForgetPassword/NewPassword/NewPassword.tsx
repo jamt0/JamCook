@@ -5,6 +5,7 @@ import { useSettingsUser } from "context/settingsUser";
 import { rulesNewPassword, rulesConfirmPassword } from "utils/rulesValidation";
 import { useForm } from "react-hook-form";
 import Server from "server";
+import RoutesPath from "utils/routesPath";
 
 const NewPassword: React.FC = () => {
   const history = useHistory();
@@ -30,7 +31,7 @@ const NewPassword: React.FC = () => {
       setErrores(errorChangePassword.data.error);
       setLoading(false);
     } else {
-      history.replace("/home/perfil");
+      history.replace(RoutesPath.home);
       setLoading(false);
     }
   };

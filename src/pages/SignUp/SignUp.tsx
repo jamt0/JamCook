@@ -6,6 +6,7 @@ import { useAuth } from "auth";
 import { useSettingsUser } from "context/settingsUser";
 import { rulesEmail, rulesPassword, rulesName } from "utils/rulesValidation";
 import { TUserSignUp } from "utils/types";
+import RoutesPath from "utils/routesPath";
 
 const SignUp: React.FC = () => {
   const { signUp, loading, auth } = useAuth()!;
@@ -25,7 +26,7 @@ const SignUp: React.FC = () => {
   const handlerSignUpButton = async (user: TUserSignUp) => {
     const errorSignUp = await signUp(user);
     if (errorSignUp != null) setErrores(errorSignUp);
-    else return <Redirect to="/home" />;
+    else return <Redirect to={RoutesPath.home} />;
   };
 
   const rules = {
