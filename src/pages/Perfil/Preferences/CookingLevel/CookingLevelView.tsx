@@ -20,15 +20,15 @@ type Props = {
 
 const CookingLevelView: FunctionComponent<Props> = ({ ...props }) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos["preferencias_mi_nivel_cocina"]}>
+    <Scaffold.Header title={props.textos.preferencias_mi_nivel_cocina}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
       {props.errores != "" && <Error>{props.errores}</Error>}
-      <Title>{props.textos["nivel_cocina_header"]}</Title>
+      <Title>{props.textos.nivel_cocina_header}</Title>
       <SubTitle className="mb-8 mt-2" color="medium">
-        {props.textos["nivel_cocina_sub_header"]}
+        {props.textos.nivel_cocina_sub_header}
       </SubTitle>
       <RadioGroup
         control={props.formHook.control}
@@ -40,7 +40,7 @@ const CookingLevelView: FunctionComponent<Props> = ({ ...props }) => (
       <Button
         onClick={props.formHook.handleSubmit(props.handlerSaveEditButton)}
       >
-        {props.textos["guardar"]}
+        {props.textos.guardar}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

@@ -15,12 +15,12 @@ type Props = {
 
 const ThemeView: FunctionComponent<Props> = ({ ...props }) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos["tema"]}>
+    <Scaffold.Header title={props.textos.tema}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <SubTitle className="mb-8 mt-2" color="medium">
-        {props.textos["tema_escoge"]}
+        {props.textos.tema_escoge}
       </SubTitle>
       <RadioGroup
         control={props.formHook.control}
@@ -32,7 +32,7 @@ const ThemeView: FunctionComponent<Props> = ({ ...props }) => (
       <Button
         onClick={props.formHook.handleSubmit(props.handlerSaveEditButton)}
       >
-        {props.textos["guardar"]}
+        {props.textos.guardar}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

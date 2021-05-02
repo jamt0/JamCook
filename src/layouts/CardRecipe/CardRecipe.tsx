@@ -1,20 +1,9 @@
 import React, { FunctionComponent, useState } from "react";
 import CardRecipeView from "layouts/CardRecipe/CardRecipeView";
-
-type Recipe = {
-  id: string;
-  name: string;
-  likes: number;
-  ingredients: number;
-  time: number;
-  valoration: boolean[];
-  pathRecipeImage: string;
-  pathAvatarImage: string;
-  nameUser: string;
-};
+import { TRecipeCard } from "utils/types";
 
 type Props = {
-  recipe: Recipe;
+  recipe: TRecipeCard;
 };
 
 const CardRecipe: FunctionComponent<Props> = ({ recipe }) => {

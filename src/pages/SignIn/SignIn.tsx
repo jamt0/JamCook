@@ -12,8 +12,6 @@ const SignIn: React.FC = () => {
   const { textos } = useSettingsUser()!;
   const [errores, setErrores] = useState<string>("");
 
-  const defaultValues = { email: "", password: "" };
-
   const {
     control,
     handleSubmit,
@@ -27,6 +25,8 @@ const SignIn: React.FC = () => {
     if (errorSignIn != null) setErrores(errorSignIn);
     else return <Redirect to="/home" />;
   };
+
+  const defaultValues = { email: "", password: "" };
 
   const rules = {
     rulesEmail: rulesEmail(textos),

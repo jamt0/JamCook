@@ -1,12 +1,7 @@
 import React from "react";
-import { IonFab, IonFabButton, IonIcon } from "@ionic/react";
-import { addOutline } from "ionicons/icons";
+import FoodBasketView from "pages/FoodBasket/FoodBasket/FoodBasketView";
 import { useHistory } from "react-router-dom";
-import ItemIngredient from "layouts/ItemIngredient/ItemIngredient";
-import Searcher from "components/Searcher/Searcher";
 import { useSettingsUser } from "context/settingsUser";
-import Scaffold from "components/Scaffold/Scaffold";
-import Title from "components/Text/Title";
 
 const ingredients = [
   {
@@ -140,28 +135,12 @@ const FoodBasket: React.FC = () => {
     history.push("/foodBasket/add");
   };
 
-  console.log("soy page foodbasket");
-
   return (
-    <Scaffold>
-      <Scaffold.Content
-        fabButton={
-          <IonFab vertical="bottom" horizontal="end" slot="fixed">
-            <IonFabButton onClick={handlerAddIngredient}>
-              <IonIcon icon={addOutline} />
-            </IonFabButton>
-          </IonFab>
-        }
-      >
-        <Title color="medium">{textos["page_almacen"]}</Title>
-        <Searcher placeHolder={textos["ingredientes_buscas"]} />
-        <div className="pb-14">
-          {ingredients.map((ingredient, index) => {
-            return <ItemIngredient ingredient={ingredient} key={index} />;
-          })}
-        </div>
-      </Scaffold.Content>
-    </Scaffold>
+    <FoodBasketView
+      textos={textos}
+      ingredients={ingredients}
+      handlerAddIngredient={handlerAddIngredient}
+    />
   );
 };
 

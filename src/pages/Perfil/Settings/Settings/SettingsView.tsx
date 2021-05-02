@@ -8,14 +8,14 @@ type Props = {
 
 const SettingsView: FunctionComponent<Props> = ({ ...props }) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos["configuraciones"]}>
+    <Scaffold.Header title={props.textos.configuraciones}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <ItemIcon routerLink="/perfil/settings/measurementUnits">
-        {props.textos["unidades_medida"]}
+        {props.textos.unidades_medida}
       </ItemIcon>
-      <ItemIcon routerLink="/perfil/settings/theme">{props.textos["tema"]}</ItemIcon>
+      <ItemIcon routerLink="/perfil/settings/theme">{props.textos.tema}</ItemIcon>
     </Scaffold.Content>
   </Scaffold>
 );

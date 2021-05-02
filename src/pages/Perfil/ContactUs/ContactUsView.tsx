@@ -73,24 +73,24 @@ const ContactUs: React.FC = () => {
   }, []);
 
   const rulesSubject = {
-    required: textos["campo_requerido"],
+    required: textos.campo_requerido,
   };
 
   const rulesMessage = {
-    required: textos["campo_requerido"],
+    required: textos.campo_requerido,
   };
 
   const rulesEmail = {
-    required: textos["campo_requerido"],
+    required: textos.campo_requerido,
     pattern: {
       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-      message: textos["campo_correo_invalido"],
+      message: textos.campo_correo_invalido,
     },
   };
 
   return (
     <Scaffold>
-      <Scaffold.Header title={textos["contacto"]}>
+      <Scaffold.Header title={textos.contacto}>
         <Scaffold.Header.BackAction />
       </Scaffold.Header>
       <Scaffold.Content>
@@ -99,7 +99,7 @@ const ContactUs: React.FC = () => {
           <p className="text-red-600 bg-red-100 px-6 py-3 my-2">{hasErrors}</p>
         )}
         <h6 className="text-2xl font-bold text-center">
-          {textos["contacto_header"]}
+          {textos.contacto_header}
         </h6>
         <Input
           control={control}
@@ -107,7 +107,7 @@ const ContactUs: React.FC = () => {
           defaultValue={defaultValues.email}
           name="email"
           type="email"
-          label={textos["campo_correo"]}
+          label={textos.campo_correo}
           rules={rulesEmail}
         />
         <Select
@@ -116,7 +116,7 @@ const ContactUs: React.FC = () => {
           defaultValue={defaultValues.subjectId}
           options={optionsSubjects}
           name="subjectId"
-          label={textos["campo_asunto"]}
+          label={textos.campo_asunto}
           rules={rulesSubject}
         />
         <TextArea
@@ -124,8 +124,8 @@ const ContactUs: React.FC = () => {
           errors={errors}
           defaultValue={defaultValues.message}
           name="message"
-          placeHolder={textos["contacto_placeholder"]}
-          label={textos["campo_mensaje"]}
+          placeHolder={textos.contacto_placeholder}
+          label={textos.campo_mensaje}
           rules={rulesMessage}
         />
       </Scaffold.Content>
@@ -134,7 +134,7 @@ const ContactUs: React.FC = () => {
           onClick={handleSubmit(handlerSendButton)}
           disabled={!isValid || isSubmitting}
         >
-          {textos["contacto_enviar"]}
+          {textos.contacto_enviar}
         </Button>
       </Scaffold.Footer>
     </Scaffold>

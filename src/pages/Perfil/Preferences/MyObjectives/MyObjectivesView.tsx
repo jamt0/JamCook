@@ -20,15 +20,15 @@ type Props = {
 
 const MyObjectivesView: FunctionComponent<Props> = ({ ...props }) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos["preferencias_mis_objetivos"]}>
+    <Scaffold.Header title={props.textos.preferencias_mis_objetivos}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
       {props.errores != "" && <Error>{props.errores}</Error>}
-      <Title>{props.textos["objetivos_header"]}</Title>
+      <Title>{props.textos.objetivos_header}</Title>
       <SubTitle className="mb-8 mt-2" color="medium">
-        {props.textos["objetivos_sub_header"]}
+        {props.textos.objetivos_sub_header}
       </SubTitle>
       <RadioGroup
         control={props.formHook.control}
@@ -40,7 +40,7 @@ const MyObjectivesView: FunctionComponent<Props> = ({ ...props }) => (
       <Button
         onClick={props.formHook.handleSubmit(props.handlerSaveEditButton)}
       >
-        {props.textos["guardar"]}
+        {props.textos.guardar}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Container: FunctionComponent<Props> = ({
-  color = "none",
+  color,
   sticky = false,
   className = "",
   children,

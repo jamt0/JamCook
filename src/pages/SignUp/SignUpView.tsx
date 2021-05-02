@@ -12,7 +12,7 @@ import { TUserSignUp } from "utils/types";
 type Props = {
   textos: any;
   loading: boolean;
-  errores: any;
+  errores: string;
   formHook: any;
   rules: any;
   defaultValues: TUserSignUp;
@@ -21,7 +21,7 @@ type Props = {
 
 const SignUpView: FunctionComponent<Props> = ({ ...props }) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos["signup_crear_cuenta"]}>
+    <Scaffold.Header title={props.textos.signup_crear_cuenta}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content margin="md">
@@ -33,7 +33,7 @@ const SignUpView: FunctionComponent<Props> = ({ ...props }) => (
         defaultValue={props.defaultValues.name}
         name="name"
         type="name"
-        label={props.textos["campo_nombre"]}
+        label={props.textos.campo_nombre}
         rules={props.rules.rulesName}
       />
       <Input
@@ -42,7 +42,7 @@ const SignUpView: FunctionComponent<Props> = ({ ...props }) => (
         defaultValue={props.defaultValues.email}
         name="email"
         type="email"
-        label={props.textos["campo_correo"]}
+        label={props.textos.campo_correo}
         rules={props.rules.rulesEmail}
       />
       <Input
@@ -51,17 +51,17 @@ const SignUpView: FunctionComponent<Props> = ({ ...props }) => (
         defaultValue={props.defaultValues.password}
         name="password"
         type="password"
-        label={props.textos["campo_contrasena"]}
+        label={props.textos.campo_contrasena}
         rules={props.rules.rulesPassword}
       />
       <Center direction="col" className="mt-8">
-        <Text>{props.textos["signup_acepta_nuestros"]}</Text>
+        <Text>{props.textos.signup_acepta_nuestros}</Text>
         <ButtonLink routerLink="/terminosYCondiciones">
-          {props.textos["terminos_condiciones"]}
+          {props.textos.terminos_condiciones}
         </ButtonLink>
-        <Text>{props.textos["y"]}</Text>
+        <Text>{props.textos.y}</Text>
         <ButtonLink routerLink="/politicaDePrivacidad">
-          {props.textos["politica_privacidad"]}
+          {props.textos.politica_privacidad}
         </ButtonLink>
       </Center>
     </Scaffold.Content>
@@ -70,12 +70,12 @@ const SignUpView: FunctionComponent<Props> = ({ ...props }) => (
         onClick={props.formHook.handleSubmit(props.handlerSignUpButton)}
         disabled={!props.formHook.isValid || props.formHook.isSubmitting}
       >
-        {props.textos["signup_crear_cuenta"]}
+        {props.textos.signup_crear_cuenta}
       </Button>
       <Center className="py-2">
-        <Text className="mr-1">{props.textos["signup_tiene_cuenta"]}</Text>
+        <Text className="mr-1">{props.textos.signup_tiene_cuenta}</Text>
         <ButtonLink routerLink="/signIn">
-          {props.textos["signin_iniciar_sesion"]}
+          {props.textos.signin_iniciar_sesion}
         </ButtonLink>
       </Center>
     </Scaffold.Footer>

@@ -8,22 +8,22 @@ import { useSettingsUser } from "context/settingsUser";
 import SubTitle from "components/Text/SubTitle";
 import Center from "components/Center/Center";
 import { TRecipe } from "utils/types";
+import RoutesPath from "utils/routesPath";
 
-interface Props {
+type Props = {
   slidesPerView: number;
-  nameListRecipes: string;
-  recipes: TRecipe[];
+  listRecipes: {
+    id: string;
+    nameListRecipes: string;
+    recipes: TRecipe[];
+  }
 }
 
-const SliderRecipes: FunctionComponent<Props> = ({
-  nameListRecipes,
-  slidesPerView,
-  recipes,
-}) => {
+const SliderRecipes: FunctionComponent<Props> = ({ ...props }) => {
   const { textos } = useSettingsUser()!;
 
   const slideOpts = {
-    slidesPerView: slidesPerView,
+    slidesPerView: props.slidesPerView,
     spaceBetween: 20,
   };
 
@@ -35,19 +35,19 @@ const SliderRecipes: FunctionComponent<Props> = ({
           align="left"
           className="truncate font-black mt-6"
         >
-          {nameListRecipes}
+          {props.listRecipes.nameListRecipes}
         </SubTitle>
         <Center direction="row" justify="end">
           <Text color="primary" align="right">
-            <Link to="/recipes">{textos["ver_mas"]}</Link>
+            <Link to={`${RoutesPath.listRecipes + props.listRecipes.id }`}>{textos.ver_mas}</Link>
           </Text>
         </Center>
       </div>
       <Slides options={slideOpts}>
-        {recipes.map((recipe, index) => {
+        {props.listRecipes.recipes.map((recipe, index) => {
           return (
             <Slide key={index}>
-              <Link to={`recipe/${recipe.id}`} className="w-full">
+              <Link to={`${RoutesPath.recipe + recipe.id}`} className="w-full">
                 <div className="flex flex-col">
                   <ImageCover src={recipe.pathRecipeImage} height={44} rounded />
                   <Text color="dark" align="left" className="mt-2 text-base">

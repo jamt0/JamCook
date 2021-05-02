@@ -9,8 +9,8 @@ const Searcher: FunctionComponent<Props> = ({ }) => {
   const { textos } = useSettingsUser()!;
   return (
     <h1 className="text-center text-5xl md:text-7xl font-black mb-4">
-      <IonText color="secondary">{textos["jam"]}</IonText>
-      <IonText color="primary">{textos["cook"]}</IonText>
+      <IonText color="secondary">{textos.jam}</IonText>
+      <IonText color="primary">{textos.cook}</IonText>
     </h1>
   );
 };

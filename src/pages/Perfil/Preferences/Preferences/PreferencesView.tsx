@@ -16,8 +16,8 @@ const PreferencesView: FunctionComponent<Props> = ({ ...props }) => (
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
-      {props.items.map((item) => (
-        <ItemIcon routerLink={item.routerLink}>{item.name}</ItemIcon>
+      {props.items.map((item, index) => (
+        <ItemIcon routerLink={item.routerLink} key={index}>{item.name}</ItemIcon>
       ))}
     </Scaffold.Content>
   </Scaffold>

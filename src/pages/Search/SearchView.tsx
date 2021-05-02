@@ -9,7 +9,8 @@ type Props = {
   textos: any;
   slidesPerView: number;
   listRecipes: {
-    title: string;
+    id: string;
+    nameListRecipes: string;
     recipes: TRecipe[];
   }[];
 };
@@ -18,16 +19,16 @@ const Search: FunctionComponent<Props> = ({ ...props }) => (
   <Scaffold>
     <Scaffold.Content>
       <Title align="center" color="medium">
-        {props.textos["slogan_2_1"]}
+        {props.textos.slogan_2_1}
         <br />
-        {props.textos["slogan_2_2"]}
+        {props.textos.slogan_2_2}
       </Title>
-      <Searcher placeHolder={props.textos["search_buscar_recetas"]} />
+      <Searcher placeHolder={props.textos.search_buscar_recetas} />
       {props.listRecipes.map((recipes) => (
         <SliderRecipes
-          recipes={recipes.recipes}
+          listRecipes={recipes}
           slidesPerView={props.slidesPerView}
-          nameListRecipes={recipes.title}
+          key={recipes.id}
         />
       ))}
     </Scaffold.Content>

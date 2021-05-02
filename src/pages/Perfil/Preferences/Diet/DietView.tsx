@@ -20,15 +20,15 @@ type Props = {
 
 const DietView: FunctionComponent<Props> = ({ ...props }) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos["preferencias_dieta"]}>
+    <Scaffold.Header title={props.textos.preferencias_dieta}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       {props.errores != "" && <Error>{props.errores}</Error>}
       <Loading isOpen={props.loading} />
-      <Title>{props.textos["dieta_header"]}</Title>
+      <Title>{props.textos.dieta_header}</Title>
       <SubTitle className="mb-8 mt-2" color="medium">
-        {props.textos["dieta_sub_header"]}
+        {props.textos.dieta_sub_header}
       </SubTitle>
       <RadioGroup
         control={props.formHook.control}
@@ -40,7 +40,7 @@ const DietView: FunctionComponent<Props> = ({ ...props }) => (
       <Button
         onClick={props.formHook.handleSubmit(props.handlerSaveEditButton)}
       >
-        {props.textos["guardar"]}
+        {props.textos.guardar}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

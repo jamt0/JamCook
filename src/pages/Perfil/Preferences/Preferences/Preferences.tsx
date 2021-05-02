@@ -7,33 +7,33 @@ const Preferences: React.FC = () => {
 
   const items = [
     {
-      name: textos["preferencias_mis_objetivos"],
+      name: textos.preferencias_mis_objetivos,
       routerLink: "/perfil/preferences/myObjectives",
     },
     {
-      name: textos["preferencias_mi_nivel_cocina"],
+      name: textos.preferencias_mi_nivel_cocina,
       routerLink: "/perfil/preferences/cookingLevel",
     },
     {
-      name: textos["preferencias_dieta"],
+      name: textos.preferencias_dieta,
       routerLink: "/perfil/preferences/diet",
     },
     {
-      name: textos["preferencias_alergias_intolerancias"],
+      name: textos.preferencias_alergias_intolerancias,
       routerLink: "/perfil/preferences/allergies",
     },
     {
-      name: textos["preferencias_ingredientes_no_gustan"],
+      name: textos.preferencias_ingredientes_no_gustan,
       routerLink: "/perfil/preferences/dislikeIngredient",
     },
     {
-      name: textos["preferencias_numero_comensales"],
+      name: textos.preferencias_numero_comensales,
       routerLink: "/perfil/preferences/comensals",
     },
   ];
   
   return (
-    <PreferencesView title={textos["perfil_preferencias"]} items={items} />
+    <PreferencesView title={textos.perfil_preferencias} items={items} />
   );
 };
 

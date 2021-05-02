@@ -171,6 +171,7 @@ const recipe = {
   ],
   relatedRecipes: [
     {
+      id: "1",
       title: "Recetas relacionadas",
       recipes: [
         {
@@ -218,6 +219,7 @@ const recipe = {
       ]
     },
     {
+      id: "2",
       title: "Recetas parecidas",
       recipes: [
         {

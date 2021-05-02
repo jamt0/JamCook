@@ -1,121 +1,126 @@
 import React from "react";
-import Searcher from "components/Searcher/Searcher";
-import GridImages from "layouts/GridImages/GridImages";
+import ExploreView from "pages/Explore/ExploreView";
 import { useSettingsUser } from "context/settingsUser";
-import Scaffold from "components/Scaffold/Scaffold";
-import Title from "components/Text/Title";
 
-const imagenes = [
+const categories = [
   {
-    src: "https://picsum.photos/200/300?random=1",
+    id: "1",
+    pathCategoryImage: "https://picsum.photos/200/300?random=1",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos de Carnitas",
+    name: "Tacos Mexicanos de Carnitas",
   },
   {
-    src: "https://picsum.photos/200/300?random=2",
+    id: "2",
+    pathCategoryImage: "https://picsum.photos/200/300?random=2",
     icon: "Tacos Mexicanos",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=3",
+    id: "3",
+    pathCategoryImage: "https://picsum.photos/200/300?random=4",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=4",
+    id: "4",
+    pathCategoryImage: "https://picsum.photos/200/300?random=5",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=5",
+    id: "5",
+    pathCategoryImage: "https://picsum.photos/200/300?random=6",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=6",
+    id: "6",
+    pathCategoryImage: "https://picsum.photos/200/300?random=7",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=7",
+    id: "7",
+    pathCategoryImage: "https://picsum.photos/200/300?random=4",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=4",
+    id: "8",
+    pathCategoryImage: "https://picsum.photos/200/300?random=5",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=5",
+    id: "9",
+    pathCategoryImage: "https://picsum.photos/200/300?random=6",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=6",
+    id: "10",
+    pathCategoryImage: "https://picsum.photos/200/300?random=7",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=7",
+    id: "11",
+    pathCategoryImage: "https://picsum.photos/200/300?random=7",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=7",
+    id: "12",
+    pathCategoryImage: "https://picsum.photos/200/300?random=1",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=1",
-    icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
-  },
-  {
-    src: "https://picsum.photos/200/300?random=2",
+    id: "13",
+    pathCategoryImage: "https://picsum.photos/200/300?random=2",
     icon: "Tacos Mexicanos",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=3",
+    id: "14",
+    pathCategoryImage: "https://picsum.photos/200/300?random=3",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=4",
+    id: "15",
+    pathCategoryImage: "https://picsum.photos/200/300?random=4",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=5",
+    id: "16",
+    pathCategoryImage: "https://picsum.photos/200/300?random=5",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=6",
+    id: "17",
+    pathCategoryImage: "https://picsum.photos/200/300?random=6",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
   {
-    src: "https://picsum.photos/200/300?random=7",
+    id: "18",
+    pathCategoryImage: "https://picsum.photos/200/300?random=7",
     icon: "Tacos Mexicanos de Carnitas Asadas",
-    title: "Tacos Mexicanos",
+    name: "Tacos Mexicanos",
   },
 ];
 
 const Explore: React.FC = () => {
   const { textos } = useSettingsUser()!;
 
-  console.log("soy page explore");
-
   return (
-    <Scaffold>
-      <Scaffold.Content>
-        <Title color="medium">{textos["page_explorar"]}</Title>
-        <Searcher placeHolder={textos["plato_gustaria"]} />
-        <GridImages images={imagenes} />
-      </Scaffold.Content>
-    </Scaffold>
+    <ExploreView
+      textos={textos}
+      categories={categories}
+    />
   );
 };
 

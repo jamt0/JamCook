@@ -16,6 +16,13 @@ export type TCommentary = {
   responses: TResponse[];
 };
 
+export type TUserEdit = {
+  name: string;
+  ageId: string;
+  genderId: string;
+  email: string;
+};
+
 export type TUserSignUp = {
   name: string;
   email: string;
@@ -25,6 +32,15 @@ export type TUserSignUp = {
 export type TUserSignIn = {
   email: string;
   password: string;
+};
+
+export type TValoration = boolean[];
+
+export type TCategory = {
+  id: string;
+  pathCategoryImage: string;
+  name: string;
+  icon: string;
 };
 
 export type TRecipe = {
@@ -39,8 +55,6 @@ export type TRecipeStars = {
   name: string;
   valoration: TValoration;
 };
-
-export type TValoration = boolean[];
 
 export type TRecipeComplete = {
   id: string;
@@ -57,9 +71,22 @@ export type TRecipeComplete = {
   comments: TCommentary[];
   tags: any[];
   relatedRecipes: {
+    id: string;
     title: string;
     recipes: TRecipeStars[];
   }[];
+};
+
+export type TRecipeCard = {
+  id: string;
+  pathRecipeImage: string;
+  pathAvatarImage: string;
+  nameRecipe: string;
+  valoration: TValoration;
+  time: number;
+  nameUser: string;
+  likes: number;
+  ingredientsNumber: number;
 };
 
 export type TIngredient = {

@@ -79,14 +79,14 @@ const Recipe: FunctionComponent<Props> = ({ ...props }) => (
           align="center"
         />
         <Text color="primary" align="center" className="mt-2">
-          {props.recipe.valorationNumber + " " + props.textos["valoraciones"]}
+          {props.recipe.valorationNumber + " " + props.textos.valoraciones}
         </Text>
       </ContainerSection>
 
       {/* Introduccion recipe*/}
       <ContainerSection>
         <Center direction="col">
-          <TitleRecipe>{props.textos["introduccion"]}</TitleRecipe>
+          <TitleRecipe>{props.textos.introduccion}</TitleRecipe>
           <Text align="center">{props.recipe.introduction}</Text>
         </Center>
       </ContainerSection>
@@ -101,7 +101,7 @@ const Recipe: FunctionComponent<Props> = ({ ...props }) => (
               className="text-lg mr-1"
             />
             <Text color="medium" align="center" className="mr-2">
-              {"8" + " " + props.textos["ingredientes"]}
+              {"8" + " " + props.textos.ingredientes}
             </Text>
           </Center>
           <Center direction="row" justify="center">
@@ -111,7 +111,7 @@ const Recipe: FunctionComponent<Props> = ({ ...props }) => (
               className="text-lg mr-1"
             />
             <Text color="medium" align="center" className="mr-2">
-              {props.textos["dificultad"]}
+              {props.textos.dificultad}
             </Text>
           </Center>
           <Center direction="row" justify="center">
@@ -129,14 +129,14 @@ const Recipe: FunctionComponent<Props> = ({ ...props }) => (
 
       {/* Porciones recipe*/}
       <ContainerSection>
-        <TitleRecipe>{props.textos["recipe_porciones_preparar"]}</TitleRecipe>
+        <TitleRecipe>{props.textos.recipe_porciones_preparar}</TitleRecipe>
         <Counter portions={props.portions} setPortions={props.setPortions} />
       </ContainerSection>
 
       {/* Ingredientes recipe*/}
 
       <ContainerSection>
-        <TitleRecipe>{props.textos["ingredientes"]}</TitleRecipe>
+        <TitleRecipe>{props.textos.ingredientes}</TitleRecipe>
         {props.recipe.ingredients.map((ingredient) => (
           <ItemIngredient ingredient={ingredient} key={ingredient.id} />
         ))}
@@ -144,7 +144,7 @@ const Recipe: FunctionComponent<Props> = ({ ...props }) => (
 
       {/* Pasos recipe*/}
       <ContainerSection>
-        <TitleRecipe>{props.textos["pasos"]}</TitleRecipe>
+        <TitleRecipe>{props.textos.pasos}</TitleRecipe>
         {props.recipe.steps.map((step) => (
           <ItemStep key={step.id}>{step.step}</ItemStep>
         ))}
@@ -152,7 +152,7 @@ const Recipe: FunctionComponent<Props> = ({ ...props }) => (
 
       {/* Trucos recipe*/}
       <ContainerSection>
-        <TitleRecipe>{props.textos["recipe_trucos_consejos"]}</TitleRecipe>
+        <TitleRecipe>{props.textos.recipe_trucos_consejos}</TitleRecipe>
         {props.recipe.tricks.map((trick) => (
           <ItemStep key={trick.id}>{trick.trick}</ItemStep>
         ))}
@@ -160,15 +160,15 @@ const Recipe: FunctionComponent<Props> = ({ ...props }) => (
 
       {/* recipe Hecha*/}
       <ContainerSection>
-        <TitleRecipe>{props.textos["recipe_hiciste_receta"]}</TitleRecipe>
+        <TitleRecipe>{props.textos.recipe_hiciste_receta}</TitleRecipe>
         <Button onClick={props.handlerRecipeMade} color="secondary">
-          {props.textos["recipe_receta_hecha"]}
+          {props.textos.recipe_receta_hecha}
         </Button>
       </ContainerSection>
 
       {/* Valoración Hecha*/}
       <ContainerSection>
-        <TitleRecipe>{props.textos["recipe_gusto_receta"]}</TitleRecipe>
+        <TitleRecipe>{props.textos.recipe_gusto_receta}</TitleRecipe>
         <Rating
           stars={props.stars}
           handlerValoracion={props.handlerValoration}
@@ -179,13 +179,13 @@ const Recipe: FunctionComponent<Props> = ({ ...props }) => (
 
       {/* Comentarios Receta*/}
       <ContainerSection>
-        <TitleRecipe>{props.textos["comentarios"]}</TitleRecipe>
+        <TitleRecipe>{props.textos.comentarios}</TitleRecipe>
         <CommentaryBox comments={props.recipe.comments} />
       </ContainerSection>
 
       {/* Tags Receta*/}
       <ContainerSection>
-        <TitleRecipe>{props.textos["recipe_temas_relacionados"]}</TitleRecipe>
+        <TitleRecipe>{props.textos.recipe_temas_relacionados}</TitleRecipe>
         <div className="flex flex-wrap place-content-center">
           <ChipGroup ingredientes={props.recipe.tags} />
         </div>
@@ -196,16 +196,15 @@ const Recipe: FunctionComponent<Props> = ({ ...props }) => (
         <ContainerSection key={index}>
           <TitleRecipe>{relateRecipe.title}</TitleRecipe>
           <SliderRecipesSimple
-            recipes={relateRecipe.recipes}
+            listRecipes={relateRecipe}
             slidesPerView={1.5}
-            nameListRecipes="Recetas relacionadas"
           />
         </ContainerSection>
       ))}
 
       {/* Guardar Receta*/}
       <ContainerSection>
-        <Button>{props.textos["recipe_guardar_receta"]}</Button>
+        <Button>{props.textos.recipe_guardar_receta}</Button>
       </ContainerSection>
     </Scaffold.Content>
   </Scaffold>

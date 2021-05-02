@@ -1,38 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { IonLoading } from "@ionic/react";
-import Avatar from "components/Avatar/Avatar";
-import Button from "components/Button/Button";
-import Center from "components/Center/Center";
-import Scaffold from "components/Scaffold/Scaffold";
-import Input from "components/Input/Input";
-import Select from "components/Select/Select";
 import { useHistory } from "react-router";
 import { useAuth } from "auth";
 import { useForm } from "react-hook-form";
 import { useSettingsUser } from "context/settingsUser";
 import Server from "server";
 import config from "config/general";
-
-let defaultValues = {
-  name: "",
-  ageId: "",
-  genderId: "",
-  email: "",
-};
-
-interface IUser {
-  name: string;
-  ageId: string;
-  genderId: string;
-  email: string;
-}
+import {
+  rulesEmail,
+  rulesPassword,
+  rulesGender,
+  rulesAge,
+} from "utils/rulesValidation";
+import EditPerfilView from "./EditPerfilView";
+import { TUserEdit } from "utils/types";
 
 const EditPerfil: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
 
-  const [hasErrors, setHasErrors] = useState<string>("");
+  const [errores, setErrores] = useState<string>("");
   const [avatarImageUrl, setAvatarImageUrl] = useState<any>(
     `${config.baseURL}/images/avatars/default.png`
   );
@@ -45,21 +32,16 @@ const EditPerfil: React.FC = () => {
     handleSubmit,
     reset,
     formState: { isSubmitting, isValid, errors },
-  } = useForm<IUser>({
-    defaultValues: defaultValues,
+  } = useForm({
     mode: "onChange",
   });
 
-  /**
-   *
-   * @param data
-   */
-  const handlerSaveEditButton = async (user: IUser) => {
+  const handlerSaveEditButton = async (user: TUserEdit) => {
     if (auth.user?.id) {
       setLoading(true);
       const errorUpdate = await Server.putUser(auth.user.id, user);
       if (errorUpdate.data.error != null) {
-        setHasErrors(errorUpdate.data.error);
+        setErrores(errorUpdate.data.error);
         setLoading(false);
       } else {
         history.goBack();
@@ -70,16 +52,12 @@ const EditPerfil: React.FC = () => {
 
   const fileChangedHandler = async (e: any) => {
     const reader = new FileReader();
+    const imageAvatar = new FormData();
     reader.onload = (event) => {
-      if (reader.readyState === 2) {
-        setAvatarImageUrl(event?.target?.result);
-      }
+      if (reader.readyState === 2) setAvatarImageUrl(event?.target?.result);
     };
     reader.readAsDataURL(e.target.files[0]);
-
-    const imageAvatar = new FormData();
     imageAvatar.append("avatarImage", e.target.files[0]);
-
     if (auth.user?.id) {
       setLoading(true);
       const errorUpdateAvatar = await Server.putImageAvatar(
@@ -87,7 +65,7 @@ const EditPerfil: React.FC = () => {
         imageAvatar
       );
       if (errorUpdateAvatar.data.error) {
-        setHasErrors(errorUpdateAvatar.data.error);
+        setErrores(errorUpdateAvatar.data.error);
       }
       setLoading(false);
     }
@@ -98,26 +76,18 @@ const EditPerfil: React.FC = () => {
     //ADEMAS LO IDEAL ES QUE ESTEN LAS OPCIONES PARA PODER PONER LA DEL USER
     Server.getGenders()
       .then((response) => {
-        if (!response.data.error) {
-          setOptionsGenders(response.data.options);
-        } else {
-          setHasErrors(response.data.error);
-        }
+        if (!response.data.error) setOptionsGenders(response.data.options);
+        else setErrores(response.data.error);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => console.log(error));
+
     Server.getAges()
       .then((response) => {
-        if (!response.data.error) {
-          setOptionsAges(response.data.options);
-        } else {
-          setHasErrors(response.data.error);
-        }
+        if (!response.data.error) setOptionsAges(response.data.options);
+        else setErrores(response.data.error);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => console.log(error));
+
     if (auth.user?.id) {
       setLoading(true);
       Server.getUser(auth.user.id)
@@ -131,7 +101,7 @@ const EditPerfil: React.FC = () => {
             });
             setLoading(false);
           } else {
-            setHasErrors(response.data.error);
+            setErrores(response.data.error);
             setLoading(false);
           }
         })
@@ -139,117 +109,40 @@ const EditPerfil: React.FC = () => {
           console.log(error);
           setLoading(false);
         });
+
       Server.getImageAvatar(auth.user.id)
         .then((response) => {
-          if (!response.data.error) {
+          if (!response.data.error)
             setAvatarImageUrl(`${config.baseURL}/${response.data.path}`);
-          } else {
-            setHasErrors(response.data.error);
-          }
+          else setErrores(response.data.error);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => console.log(error));
     }
   }, []);
 
-  const rulesAge = {
-    required: textos["campo_requerido"],
-  };
+  const defaultValues = { name: "", ageId: "", genderId: "", email: "" };
 
-  const rulesGender = {
-    required: textos["campo_requerido"],
+  const rules = {
+    rulesEmail: rulesEmail(textos),
+    rulesPassword: rulesPassword(textos),
+    rulesAge: rulesAge(textos),
+    rulesGender: rulesGender(textos),
   };
-
-  const rulesName = {
-    required: textos["campo_requerido"],
-    minLength: {
-      value: 3,
-      message: textos["campo_nombre_min"],
-    },
-  };
-
-  const rulesEmail = {
-    required: textos["campo_requerido"],
-    pattern: {
-      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-      message: textos["campo_correo_invalido"],
-    },
-  };
-
-  console.log("soy la page edit perfil");
 
   return (
-    <Scaffold>
-      <Scaffold.Header title={textos["perfil_editar"]}>
-        <Scaffold.Header.BackAction />
-      </Scaffold.Header>
-      <Scaffold.Content>
-        <IonLoading isOpen={loading} translucent />
-        {hasErrors != "" && (
-          <p className="text-red-600 bg-red-100 px-6 py-3">{hasErrors}</p>
-        )}
-        <Center direction="col" className="mt-8">
-          <Avatar src={avatarImageUrl} size={20} sizeResponsive={60} />
-          <div className="mt-4">
-            <label className="" htmlFor="inputAvatar">
-              {textos["perfil_edit_cambiar_avatar"]}
-            </label>
-          </div>
-        </Center>
-        <input
-          type="file"
-          accept=".jpg, .jpeg, .png"
-          id="inputAvatar"
-          onChange={fileChangedHandler}
-          className="hidden"
-        />
-        <Input
-          control={control}
-          errors={errors}
-          defaultValue={defaultValues.name}
-          name="name"
-          type="name"
-          label={textos["campo_nombre"]}
-          rules={rulesName}
-        />
-        <Input
-          control={control}
-          errors={errors}
-          defaultValue={defaultValues.email}
-          name="email"
-          type="email"
-          label={textos["campo_correo"]}
-          rules={rulesEmail}
-        />
-        <Select
-          control={control}
-          errors={errors}
-          defaultValue={defaultValues.ageId}
-          options={optionsAges}
-          name="ageId"
-          label={textos["campo_edad"]}
-          rules={rulesAge}
-        />
-        <Select
-          control={control}
-          errors={errors}
-          defaultValue={defaultValues.genderId}
-          options={optionsGenders}
-          name="genderId"
-          label={textos["campo_genero"]}
-          rules={rulesGender}
-        />
-      </Scaffold.Content>
-      <Scaffold.Footer>
-        <Button
-          onClick={handleSubmit(handlerSaveEditButton)}
-          disabled={!isValid || isSubmitting}
-        >
-          {textos["guardar"]}
-        </Button>
-      </Scaffold.Footer>
-    </Scaffold>
+    <EditPerfilView
+      avatarImageUrl={avatarImageUrl}
+      rules={rules}
+      handlerSaveEditButton={handlerSaveEditButton}
+      fileChangedHandler={fileChangedHandler}
+      textos={textos}
+      errores={errores}
+      loading={loading}
+      optionsAges={optionsAges}
+      optionsGenders={optionsGenders}
+      formHook={{ control, errors, isValid, isSubmitting, handleSubmit }}
+      defaultValues={defaultValues}
+    />
   );
 };
 

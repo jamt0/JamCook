@@ -15,12 +15,12 @@ type Props = {
 
 const MeasurementUnitsView: FunctionComponent<Props> = ({ ...props }) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos["unidades_medida"]}>
+    <Scaffold.Header title={props.textos.unidades_medida}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <SubTitle className="mb-8 mt-2" color="medium">
-        {props.textos["unidades_medida_escoge"]}
+        {props.textos.unidades_medida_escoge}
       </SubTitle>
       <RadioGroup
         control={props.formHook.control}
@@ -32,7 +32,7 @@ const MeasurementUnitsView: FunctionComponent<Props> = ({ ...props }) => (
       <Button
         onClick={props.formHook.handleSubmit(props.handlerSaveEditButton)}
       >
-        {props.textos["guardar"]}
+        {props.textos.guardar}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

@@ -17,11 +17,11 @@ const Theme: React.FC = () => {
 
   const options = [
     {
-      description: textos["tema_claro"],
+      description: textos.tema_claro,
       value: "1",
     },
     {
-      description: textos["tema_oscuro"],
+      description: textos.tema_oscuro,
       value: "2",
     },
   ];

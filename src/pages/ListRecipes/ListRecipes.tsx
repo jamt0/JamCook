@@ -1,7 +1,5 @@
 import React from "react";
-import CardRecipe from "layouts/CardRecipe/CardRecipe";
-import Scaffold from "components/Scaffold/Scaffold";
-import { useHistory } from "react-router";
+import ListRecipesView from "pages/ListRecipes/ListRecipesView";
 
 const listRecipes = {
   titleListRecipes: "Recetas Nuevas",
@@ -10,109 +8,109 @@ const listRecipes = {
       id: "1",
       pathRecipeImage: "https://d1kxxrc2vqy8oa.cloudfront.net/wp-content/uploads/2020/01/09214916/RFB-2312-2-tacos.jpg",
       pathAvatarImage: "https://picsum.photos/200/300?random=2",
-      name: "Tacos Mexicanos de Carnitas",
+      nameRecipe: "Tacos Mexicanos de Carnitas",
       valoration: [true, true, true, true, false],
       time: 20,
-      ingredients: 6,
+      ingredientsNumber: 6,
       nameUser: "Jonathan Mancera Tabarez Jimenez",
       likes: 600,
     },
     {
-      id: "1",
+      id: "2",
       pathRecipeImage: "https://picsum.photos/200/300?random=3",
       pathAvatarImage: "https://picsum.photos/200/300?random=4",
-      name: "Tacos Mexicanos de Carnitas",
+      nameRecipe: "Tacos Mexicanos de Carnitas",
       valoration: [true, true, true, true, false],
       time: 20,
-      ingredients: 6,
+      ingredientsNumber: 6,
       nameUser: "Jonathan Mancera",
       likes: 60,
     },
     {
-      id: "1",
+      id: "3",
       pathRecipeImage: "https://picsum.photos/200/300?random=5",
       pathAvatarImage: "https://picsum.photos/200/300?random=6",
-      name: "Tacos Mexicanos de Carnitas",
+      nameRecipe: "Tacos Mexicanos de Carnitas",
       valoration: [true, true, true, true, false],
       time: 20,
-      ingredients: 6,
+      ingredientsNumber: 6,
       nameUser: "Jonathan Mancera",
       likes: 60,
     },
     {
-      id: "1",
+      id: "4",
       pathRecipeImage: "https://picsum.photos/200/300?random=7",
       pathAvatarImage: "https://picsum.photos/200/300?random=8",
-      name: "Tacos Mexicanos de Carnitas",
+      nameRecipe: "Tacos Mexicanos de Carnitas",
       valoration: [true, true, true, true, false],
       time: 20,
-      ingredients: 6,
+      ingredientsNumber: 6,
       nameUser: "Jonathan Mancera",
       likes: 60,
     },
     {
-      id: "1",
+      id: "5",
       pathRecipeImage: "https://picsum.photos/200/300?random=9",
       pathAvatarImage: "https://picsum.photos/200/300?random=2",
-      name: "Tacos Mexicanos de Carnitas",
+      nameRecipe: "Tacos Mexicanos de Carnitas",
       valoration: [true, true, true, true, false],
       time: 20,
-      ingredients: 6,
+      ingredientsNumber: 6,
       nameUser: "Jonathan Mancera",
       likes: 60,
     },
     {
-      id: "1",
+      id: "6",
       pathRecipeImage: "https://picsum.photos/200/300?random=1",
       pathAvatarImage: "https://picsum.photos/200/300?random=2",
-      name: "Tacos Mexicanos de Carnitas",
+      nameRecipe: "Tacos Mexicanos de Carnitas",
       valoration: [true, true, true, true, false],
       time: 20,
-      ingredients: 6,
+      ingredientsNumber: 6,
       nameUser: "Jonathan Mancera",
       likes: 60,
     },
     {
-      id: "1",
+      id: "7",
       pathRecipeImage: "https://picsum.photos/200/300?random=1",
       pathAvatarImage: "https://picsum.photos/200/300?random=2",
-      name: "Tacos Mexicanos de Carnitas",
+      nameRecipe: "Tacos Mexicanos de Carnitas",
       valoration: [true, true, true, true, false],
       time: 20,
-      ingredients: 6,
+      ingredientsNumber: 6,
       nameUser: "Jonathan Mancera",
       likes: 60,
     },
     {
-      id: "1",
+      id: "8",
       pathRecipeImage: "https://picsum.photos/200/300?random=1",
       pathAvatarImage: "https://picsum.photos/200/300?random=2",
-      name: "Tacos Mexicanos de Carnitas",
+      nameRecipe: "Tacos Mexicanos de Carnitas",
       valoration: [true, true, true, true, false],
       time: 20,
-      ingredients: 6,
+      ingredientsNumber: 6,
       nameUser: "Jonathan Mancera",
       likes: 60,
     },
     {
-      id: "1",
+      id: "9",
       pathRecipeImage: "https://picsum.photos/200/300?random=1",
       pathAvatarImage: "https://picsum.photos/200/300?random=2",
-      name: "Tacos Mexicanos de Carnitas",
+      nameRecipe: "Tacos Mexicanos de Carnitas",
       valoration: [true, true, true, true, false],
       time: 20,
-      ingredients: 6,
+      ingredientsNumber: 6,
       nameUser: "Jonathan Mancera",
       likes: 60,
     },
     {
-      id: "1",
+      id: "10",
       pathRecipeImage: "https://picsum.photos/200/300?random=1",
       pathAvatarImage: "https://picsum.photos/200/300?random=2",
-      name: "Tacos Mexicanos de Carnitas",
+      nameRecipe: "Tacos Mexicanos de Carnitas",
       valoration: [true, true, true, true, false],
       time: 20,
-      ingredients: 6,
+      ingredientsNumber: 6,
       nameUser: "Jonathan Mancera",
       likes: 60,
     },
@@ -120,19 +118,9 @@ const listRecipes = {
 };
 
 const ListRecipes: React.FC = () => {
-  const history = useHistory();
 
   return (
-    <Scaffold>
-      <Scaffold.Header title={listRecipes.titleListRecipes}>
-        <Scaffold.Header.BackAction />
-      </Scaffold.Header>
-      <Scaffold.Content>
-        {listRecipes.recipes.map((recipe, index) => {
-          return <CardRecipe key={index} recipe={recipe} />;
-        })}
-      </Scaffold.Content>
-    </Scaffold>
+    <ListRecipesView listRecipes={listRecipes} />
   );
 };
 

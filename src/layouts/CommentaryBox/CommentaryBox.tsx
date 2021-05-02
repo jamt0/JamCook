@@ -16,7 +16,7 @@ const CommentaryBox: FunctionComponent<Props> = ({ comments }) => {
         return <Commentary commentary={comentary} key={comentary.id} />;
       })}
       <div className="mt-4">
-        <ButtonLink>{textos["ver_todos_comentarios"]}</ButtonLink>
+        <ButtonLink>{textos.ver_todos_comentarios}</ButtonLink>
       </div>
     </Fragment>
   );

@@ -4,7 +4,8 @@ import SearchView from "pages/Search/SearchView";
 
 const ListRecipes = [
   {
-    title: "Nuevas Recetas",
+    id: "1",
+    nameListRecipes: "Nuevas Recetas",
     recipes: [
       {
         id: "1",

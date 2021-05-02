@@ -30,7 +30,7 @@ const PerfilView: FunctionComponent<Props> = ({ ...props }) => (
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
       {props.errores != "" && <Error>{props.errores}</Error>}
-      <Title color="medium">{props.textos["page_perfil"]}</Title>
+      <Title color="medium">{props.textos.page_perfil}</Title>
       {props.auth.loggedIn ? (
         <Item className="my-4 px-4">
           <Avatar src={props.avatarImageUrl} size={16} />
@@ -38,7 +38,7 @@ const PerfilView: FunctionComponent<Props> = ({ ...props }) => (
             <Text className="mb-2">{props.user.name}</Text>
             <Text className="mb-2">{props.user.email}</Text>
             <ButtonLink routerLink="/perfil/edit">
-              {props.textos["perfil_editar"]}
+              {props.textos.perfil_editar}
             </ButtonLink>
           </Label>
         </Item>
@@ -46,24 +46,24 @@ const PerfilView: FunctionComponent<Props> = ({ ...props }) => (
         <Item color="light" className="py-4 rounded-md">
           <Center direction="col" className="mt-2" justify="center">
             <SubTitle className="mb-4">
-              {props.textos["perfil_inicie_sesion"]}
+              {props.textos.perfil_inicie_sesion}
             </SubTitle>
             <Link to="/signIn" className="w-full pr-2">
-              <Button>{props.textos["signin_iniciar_sesion"]}</Button>
+              <Button>{props.textos.signin_iniciar_sesion}</Button>
             </Link>
             <Center className="mb-2">
               <Text className="mr-1">
-                {props.textos["signin_no_tiene_cuenta"]}
+                {props.textos.signin_no_tiene_cuenta}
               </Text>
               <ButtonLink routerLink="/signUp">
-                {props.textos["signup_registrate"]}
+                {props.textos.signup_registrate}
               </ButtonLink>
             </Center>
           </Center>
         </Item>
       )}
       <div className="mt-4">
-        {props.items.map((item) => {
+        {props.items.map((item, index) => {
           if (item.auth ? props.auth.loggedIn : true) {
             if (item.routerLink) {
               return (
@@ -71,6 +71,7 @@ const PerfilView: FunctionComponent<Props> = ({ ...props }) => (
                   routerLink={item.routerLink}
                   icon={item.icon}
                   lines={item.lines}
+                  key={index}
                 >
                   {item.name}
                 </ItemIcon>
@@ -81,6 +82,7 @@ const PerfilView: FunctionComponent<Props> = ({ ...props }) => (
                 onClick={props.handlerLogOutButton}
                 icon={item.icon}
                 lines={item.lines}
+                key={index}
               >
                 {item.name}
               </ItemIcon>

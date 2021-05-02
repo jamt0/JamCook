@@ -21,7 +21,7 @@ type Props = {
 
 const SignIn: FunctionComponent<Props> = ({ ...props }) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos["signin_iniciar_sesion"]}>
+    <Scaffold.Header title={props.textos.signin_iniciar_sesion}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
@@ -33,7 +33,7 @@ const SignIn: FunctionComponent<Props> = ({ ...props }) => (
         defaultValue={props.defaultValues.email}
         name="email"
         type="email"
-        label={props.textos["campo_correo"]}
+        label={props.textos.campo_correo}
         rules={props.rules.rulesEmail}
       />
       <Input
@@ -42,12 +42,12 @@ const SignIn: FunctionComponent<Props> = ({ ...props }) => (
         defaultValue={props.defaultValues.password}
         name="password"
         type="password"
-        label={props.textos["campo_contrasena"]}
+        label={props.textos.campo_contrasena}
         rules={props.rules.rulesPassword}
       />
       <Center justify="end" className="mt-6">
         <ButtonLink routerLink="/forgetPassword">
-          {props.textos["signin_olvido_contraseña"]}
+          {props.textos.signin_olvido_contraseña}
         </ButtonLink>
       </Center>
     </Scaffold.Content>
@@ -56,12 +56,12 @@ const SignIn: FunctionComponent<Props> = ({ ...props }) => (
         onClick={props.formHook.handleSubmit(props.handlerSignInButton)}
         disabled={!props.formHook.isValid || props.formHook.isSubmitting}
       >
-        {props.textos["signin_iniciar_sesion"]}
+        {props.textos.signin_iniciar_sesion}
       </Button>
       <Center className="py-2">
-        <Text className="mr-1">{props.textos["signin_no_tiene_cuenta"]}</Text>
+        <Text className="mr-1">{props.textos.signin_no_tiene_cuenta}</Text>
         <ButtonLink routerLink="/signUp">
-          {props.textos["signup_registrate"]}
+          {props.textos.signup_registrate}
         </ButtonLink>
       </Center>
     </Scaffold.Footer>

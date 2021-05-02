@@ -62,13 +62,13 @@ const CommentaryView: FunctionComponent<Props> = ({
               />
             </IonButton>
           </IonButtons>
-          <ButtonLink onClick={handlerShowAnswerButton}>{textos["responder"]} </ButtonLink>
+          <ButtonLink onClick={handlerShowAnswerButton}>{textos.responder} </ButtonLink>
         </Center>
         {commentary.responses.length > 0 && (
           <div className="ml-14">
             <div className="mb-4">
               <ButtonLink onClick={handlerShowAnswerButton}>
-                {commentary.responses.length} {textos["respuesta"]}{commentary.responses.length>1 ? "s" : ""}
+                {commentary.responses.length} {textos.respuesta}{commentary.responses.length>1 ? "s" : ""}
               </ButtonLink>
             </div>
             {showResponses && (

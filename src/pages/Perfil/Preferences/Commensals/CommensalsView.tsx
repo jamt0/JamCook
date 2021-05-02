@@ -24,15 +24,15 @@ type Props = {
 
 const CommensalsView: FunctionComponent<Props> = ({ ...props }) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos["preferencias_numero_comensales"]}>
+    <Scaffold.Header title={props.textos.preferencias_numero_comensales}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
       {props.errores != "" && <Error>{props.errores}</Error>}
-      <Title>{props.textos["comensales_header"]}</Title>
+      <Title>{props.textos.comensales_header}</Title>
       <SubTitle className="mb-8 mt-2" color="medium">
-        {props.textos["comensales_sub_header"]}
+        {props.textos.comensales_sub_header}
       </SubTitle>
       <RadioGroup
         control={props.formHook.control}
@@ -50,7 +50,7 @@ const CommensalsView: FunctionComponent<Props> = ({ ...props }) => (
       <Button
         onClick={props.formHook.handleSubmit(props.handlerSaveEditButton)}
       >
-        {props.textos["guardar"]}
+        {props.textos.guardar}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

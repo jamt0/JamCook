@@ -19,11 +19,11 @@ const MeasurementUnits: React.FC = () => {
 
   const options = [
     {
-      description: textos["unidades_medida_gramos"],
+      description: textos.unidades_medida_gramos,
       value: "1",
     },
     {
-      description: textos["unidades_medida_onzas"],
+      description: textos.unidades_medida_onzas,
       value: "2",
     },
   ];
