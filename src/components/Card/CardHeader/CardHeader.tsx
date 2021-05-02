@@ -9,13 +9,15 @@ type Props = {
   children: React.ReactNode;
 };
 
-const CardHeader = ({ routerLink, children, color }: Props) => {
-  return (
-    <Item routerLink={routerLink} color={color} className="ion-no-padding ml-2">
-      {children}
-    </Item>
-  );
-};
+const CardHeader = (props: Props) => (
+  <Item
+    routerLink={props.routerLink}
+    color={props.color}
+    className="ion-no-padding ml-2"
+  >
+    {props.children}
+  </Item>
+);
 
 CardHeader.Expanded = CardHeaderExpanded;
 CardHeader.Compact = CardHeaderCompact;

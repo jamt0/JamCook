@@ -6,7 +6,7 @@ type Props = {
   textos: any;
 };
 
-const SettingsView: FunctionComponent<Props> = ({ ...props }) => (
+const SettingsView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.configuraciones}>
       <Scaffold.Header.BackAction />

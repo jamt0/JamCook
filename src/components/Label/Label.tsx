@@ -8,16 +8,12 @@ type Props = {
 };
 
 const Label: FunctionComponent<Props> = ({
-  position,
   color = "dark",
   className = "",
-  children,
-}) => {
-  return (
-    <IonLabel position={position} color={color} className={className}>
-      {children}
-    </IonLabel>
-  );
-};
-
+  ...props
+}) => (
+  <IonLabel position={props.position} color={color} className={className}>
+    {props.children}
+  </IonLabel>
+);
 export default Label;

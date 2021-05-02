@@ -10,12 +10,12 @@ type Props = {
   animationOptions: any;
 };
 
-const WelcomeView: FunctionComponent<Props> = ({ ...props }) => (
+const WelcomeView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Content height="full">
       <div className="flex flex-col justify-between h-full">
         <div>
-          <Brand />
+          <Brand textos={props.textos}/>
           <Slogan color="medium">{props.textos.slogan}</Slogan>
         </div>
         <Lottie options={props.animationOptions} height={350} width={350} />

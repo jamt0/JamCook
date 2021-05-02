@@ -7,7 +7,7 @@ type Props = {
   items: any[];
 };
 
-const LegalInformationView: FunctionComponent<Props> = ({ ...props }) => (
+const LegalInformationView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.informacion_legal}>
       <Scaffold.Header.BackAction />

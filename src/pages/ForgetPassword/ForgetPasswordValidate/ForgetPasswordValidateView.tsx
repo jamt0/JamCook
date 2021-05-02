@@ -20,7 +20,7 @@ type Props = {
   handlerForgetPasswordValidateButton: (code: any) => void;
 };
 
-const ForgetPasswordValidateView: FunctionComponent<Props> = ({ ...props }) => (
+const ForgetPasswordValidateView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.contrasena_restablecer}>
       <Scaffold.Header.BackAction />

@@ -8,17 +8,14 @@ type Props = {
 };
 
 const Image: FunctionComponent<Props> = ({
-  src,
-  height="full",
+  height = "full",
   width = "full",
   rounded = "none",
-}) => {
-  return (
-    <div
-      className={`w-${width} h-${height} rounded-${rounded} bg-gray-500 bg-opacity-50 bg-cover bg-center z-10`}
-      style={{ backgroundImage: `url( ${src} )` }}
-    />
-  );
-};
-
+  ...props
+}) => (
+  <div
+    className={`w-${width} h-${height} rounded-${rounded} bg-gray-500 bg-opacity-50 bg-cover bg-center z-10`}
+    style={{ backgroundImage: `url( ${props.src} )` }}
+  />
+);
 export default Image;

@@ -12,13 +12,13 @@ const Center: FunctionComponent<Props> = ({
   content = "center",
   direction = "row",
   className = "",
-  children,
+  ...props
 }) => {
   return (
     <div
       className={`flex flex-${direction} justify-${justify} content-${content} items-${content} ${className}`}
     >
-      {children}
+      {props.children}
     </div>
   );
 };

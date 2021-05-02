@@ -18,7 +18,7 @@ type Props = {
   handlerSaveEditButton: (radio: TRadio) => void;
 };
 
-const MyObjectivesView: FunctionComponent<Props> = ({ ...props }) => (
+const MyObjectivesView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.preferencias_mis_objetivos}>
       <Scaffold.Header.BackAction />

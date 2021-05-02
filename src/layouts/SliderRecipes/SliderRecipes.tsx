@@ -19,7 +19,7 @@ type Props = {
   }
 }
 
-const SliderRecipes: FunctionComponent<Props> = ({ ...props }) => {
+const SliderRecipes: FunctionComponent<Props> = (props) => {
   const { textos } = useSettingsUser()!;
 
   const slideOpts = {

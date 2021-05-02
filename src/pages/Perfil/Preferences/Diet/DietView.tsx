@@ -18,7 +18,7 @@ type Props = {
   handlerSaveEditButton: (radio: TRadio) => void;
 };
 
-const DietView: FunctionComponent<Props> = ({ ...props }) => (
+const DietView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.preferencias_dieta}>
       <Scaffold.Header.BackAction />

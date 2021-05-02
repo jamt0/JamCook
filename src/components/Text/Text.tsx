@@ -5,22 +5,18 @@ type Props = {
   centerAlways?: boolean;
   color?: string;
   className?: string;
-  align?: "justify" |"right" | "center" | "left" | undefined;
+  align?: "justify" | "right" | "center" | "left" | undefined;
   onClick?: (e: any) => void;
-}
+};
 
-const Text: FunctionComponent<Props> = ({
-  color,
-  children,
-  align,
-  className,
-  onClick,
-}) => {
+const Text: FunctionComponent<Props> = ({ className = "", ...props }) => {
   return (
-    <IonText color={color} onClick={onClick} className={`text-${align} text-sm flex flex-col justify-center ${className}`}>
-      <p>
-        {children}
-      </p>
+    <IonText
+      color={props.color}
+      onClick={props.onClick}
+      className={`text-${props.align} text-sm flex flex-col justify-center ${className}`}
+    >
+      <p>{props.children}</p>
     </IonText>
   );
 };

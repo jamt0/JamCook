@@ -22,7 +22,7 @@ type Props = {
   fileChangedHandler: (e: any) => void;
 };
 
-const EditPerfilView: FunctionComponent<Props> = ({ ...props }) => (
+const EditPerfilView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.perfil_editar}>
       <Scaffold.Header.BackAction />

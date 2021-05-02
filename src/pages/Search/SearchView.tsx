@@ -15,7 +15,7 @@ type Props = {
   }[];
 };
 
-const Search: FunctionComponent<Props> = ({ ...props }) => (
+const Search: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Content>
       <Title align="center" color="medium">

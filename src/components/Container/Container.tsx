@@ -8,21 +8,18 @@ type Props = {
 };
 
 const Container: FunctionComponent<Props> = ({
-  color,
   sticky = false,
   className = "",
-  children,
-}) => {
-  return (
-    <IonItemDivider
-      color={color}
-      sticky={sticky}
-      className={`ion-no-padding ${className}`}
-      mode="md"
-    >
-      {children}
-    </IonItemDivider>
-  );
-};
+  ...props
+}) => (
+  <IonItemDivider
+    color={props.color}
+    sticky={sticky}
+    className={`ion-no-padding ${className}`}
+    mode="md"
+  >
+    {props.children}
+  </IonItemDivider>
+);
 
 export default Container;

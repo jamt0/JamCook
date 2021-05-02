@@ -8,19 +8,15 @@ type Props = {
 };
 
 const SubTitle: FunctionComponent<Props> = ({
-  color,
-  className,
   align = "center",
-  children,
-}) => {
-  return (
-    <IonText
-      color={color}
-      className={`text-${align} text-xl flex flex-col justify-center ${className}`}
-    >
-      <h3>{children}</h3>
-    </IonText>
-  );
-};
-
+  className = "",
+  ...props
+}) => (
+  <IonText
+    color={props.color}
+    className={`text-${align} text-xl flex flex-col justify-center ${className}`}
+  >
+    <h3>{props.children}</h3>
+  </IonText>
+);
 export default SubTitle;

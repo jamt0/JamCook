@@ -16,7 +16,7 @@ type Props = {
   handlerSaveEditButton: (e: any) => void;
 };
 
-const AllergiesView: FunctionComponent<Props> = ({ ...props }) => (
+const AllergiesView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header
       title={props.textos.preferencias_alergias_intolerancias}

@@ -15,7 +15,7 @@ type Props = {
   handlerNewPasswordButton: (password: any) => void;
 };
 
-const NewPasswordView: FunctionComponent<Props> = ({ ...props }) => (
+const NewPasswordView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.contrasena_restablecer}>
       <Scaffold.Header.BackAction />

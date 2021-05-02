@@ -22,7 +22,7 @@ type Props = {
   setAmountUser: (amount: number) => void;
 };
 
-const CommensalsView: FunctionComponent<Props> = ({ ...props }) => (
+const CommensalsView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.preferencias_numero_comensales}>
       <Scaffold.Header.BackAction />

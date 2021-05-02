@@ -18,7 +18,7 @@ type Props = {
   handlerSaveEditButton: (radio: TRadio) => void;
 };
 
-const CookingLevelView: FunctionComponent<Props> = ({ ...props }) => (
+const CookingLevelView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.preferencias_mi_nivel_cocina}>
       <Scaffold.Header.BackAction />

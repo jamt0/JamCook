@@ -16,7 +16,7 @@ type Props = {
   }
 }
 
-const SliderRecipesSimple: FunctionComponent<Props> = ({ ...props }) => {
+const SliderRecipesSimple: FunctionComponent<Props> = (props) => {
 
   const slideOpts = {
     slidesPerView: props.slidesPerView,

@@ -13,7 +13,7 @@ type Props = {
   handlerSaveEditButton: (radio: TRadio) => void;
 };
 
-const ThemeView: FunctionComponent<Props> = ({ ...props }) => (
+const ThemeView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.tema}>
       <Scaffold.Header.BackAction />

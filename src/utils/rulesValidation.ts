@@ -30,6 +30,14 @@ export const rulesGender = (textos: any) => ({
   required: textos.campo_requerido,
 });
 
+export const rulesSubject = (textos: any) => ({
+  required: textos.campo_requerido,
+});
+
+export const rulesMessage = (textos: any) => ({
+  required: textos.campo_requerido,
+});
+
 export const rulesNewPassword = (textos: any) => ({
   required: textos.campo_requerido,
     minLength: {

@@ -14,32 +14,23 @@ type Props = {
 };
 
 const Button: FunctionComponent<Props> = ({
-  color,
   expand = "block",
-  fill,
   size = "large",
-  disabled,
-  onClick,
-  routerDirection,
-  className,
-  routerLink,
-  children,
-}) => {
-  return (
-    <IonButton
-      color={color}
-      expand={expand}
-      fill={fill}
-      size={size}
-      disabled={disabled}
-      onClick={onClick}
-      routerLink={routerLink}
-      routerDirection={routerDirection}
-      className={className}
-    >
-      {children}
-    </IonButton>
-  );
-};
-
+  className = "",
+  ...props
+}) => (
+  <IonButton
+    color={props.color}
+    expand={expand}
+    fill={props.fill}
+    size={size}
+    disabled={props.disabled}
+    onClick={props.onClick}
+    routerLink={props.routerLink}
+    routerDirection={props.routerDirection}
+    className={className}
+  >
+    {props.children}
+  </IonButton>
+);
 export default Button;

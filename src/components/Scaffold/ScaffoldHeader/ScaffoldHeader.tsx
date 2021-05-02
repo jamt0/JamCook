@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { IonHeader, IonToolbar, IonTitle } from "@ionic/react";
 import ScaffoldHeaderActions from "components/Scaffold/ScaffoldHeader/ScaffoldHeaderActions";
 import ScaffoldHeaderBackAction from "components/Scaffold/ScaffoldHeader/ScaffoldHeaderBackAction";
@@ -8,18 +8,16 @@ type Props = {
   title?: string;
 };
 
-const ScaffoldHeader = ({ children, title }: Props) => {
-  return (
-    <IonHeader>
-      <IonToolbar>
-        <IonTitle>
-          <div className="md:flex md:justify-center">{title}</div>
-        </IonTitle>
-        {children}
-      </IonToolbar>
-    </IonHeader>
-  );
-};
+const ScaffoldHeader = (props: Props) => (
+  <IonHeader>
+    <IonToolbar>
+      <IonTitle>
+        <div className="md:flex md:justify-center">{props.title}</div>
+      </IonTitle>
+      {props.children}
+    </IonToolbar>
+  </IonHeader>
+);
 
 ScaffoldHeader.Actions = ScaffoldHeaderActions;
 ScaffoldHeader.BackAction = ScaffoldHeaderBackAction;

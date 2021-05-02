@@ -16,7 +16,7 @@ type Props = {
   handlerSaveEditButton: (e: any) => void;
 };
 
-const DislikeIngredientView: FunctionComponent<Props> = ({ ...props }) => (
+const DislikeIngredientView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header
       title={props.textos.preferencias_ingredientes_no_gustan}

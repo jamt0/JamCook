@@ -1,6 +1,6 @@
 import React, { Fragment, FunctionComponent } from "react";
 import Image from "components/Image/Image";
-import { IonItemDivider } from "@ionic/react";
+import Container from "components/Container/Container";
 
 type Props = {
   src: string;
@@ -10,32 +10,32 @@ type Props = {
 };
 
 const ImageCover: FunctionComponent<Props> = ({
-  src,
-  height,
   rounded = false,
-  fullCover,
-  children,
+  ...props
 }) => {
-  const heightCover = fullCover ? "full" : "20";
-  const alignCover = fullCover ? "center" : "start";
-  const opacityCover = fullCover ? "25" : "50";
+  const heightCover = props.fullCover ? "full" : "20";
+  const alignCover = props.fullCover ? "center" : "start";
+  const opacityCover = props.fullCover ? "25" : "50";
   return (
     <div className="relative flex">
-      {children != null && (
+      {props.children != null && (
         <Fragment>
-          <IonItemDivider
+          <Container
             color="dark"
             className={`ion-no-padding self-end absolute z-20 opacity-${opacityCover} h-${heightCover} w-full`}
-            mode="md"
           />
           <div
             className={`self-end absolute z-30 flex flex-col h-${heightCover} w-full justify-${alignCover} px-2 pt-2`}
           >
-            {children}
+            {props.children}
           </div>
         </Fragment>
       )}
-      <Image src={src} height={height} rounded={rounded? "md" : "none"} />
+      <Image
+        src={props.src}
+        height={props.height}
+        rounded={rounded ? "md" : "none"}
+      />
     </div>
   );
 };

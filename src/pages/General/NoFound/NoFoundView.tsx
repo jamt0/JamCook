@@ -12,12 +12,12 @@ type Props = {
   animationOptions: any;
 };
 
-const NoFoundView: FunctionComponent<Props> = ({ ...props }) => (
+const NoFoundView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Content height="full">
       <div className="flex flex-col justify-between h-full">
         <div>
-          <Brand />
+          <Brand textos={props.textos} />
           <Slogan color="medium">{props.textos.slogan}</Slogan>
         </div>
         <div className="flex flex-col justify-center h-full">

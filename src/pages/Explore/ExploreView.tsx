@@ -10,7 +10,7 @@ type Props = {
   categories: TCategory[];
 };
 
-const ExploreView: FunctionComponent<Props> = ({ ...props }) => (
+const ExploreView: FunctionComponent<Props> = (props) => (
     <Scaffold>
       <Scaffold.Content>
         <Title color="medium">{props.textos.page_explorar}</Title>

@@ -8,18 +8,15 @@ type Props = {
 };
 
 const Loading: FunctionComponent<Props> = ({
-  isOpen,
   translucent = true,
   spinner = "circles",
-}) => {
-  return (
-    <IonLoading
-      isOpen={isOpen}
-      mode="ios"
-      translucent={translucent}
-      spinner={spinner}
-    />
-  );
-};
-
+  ...props
+}) => (
+  <IonLoading
+    isOpen={props.isOpen}
+    mode="ios"
+    translucent={translucent}
+    spinner={spinner}
+  />
+);
 export default Loading;

@@ -26,7 +26,7 @@ type Props = {
   handlerMarkButton: (e: any) => void;
 };
 
-const CardRecipeView: FunctionComponent<Props> = ({ ...props }) => (
+const CardRecipeView: FunctionComponent<Props> = (props) => (
   <Card color="light">
     <Card.Header color="light">
       <Card.Header.Compact>

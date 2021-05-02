@@ -10,7 +10,7 @@ type Props = {
   categories: TCategory[];
 };
 
-const GridImages: FunctionComponent<Props> = ({ ...props }) => {
+const GridImages: FunctionComponent<Props> = (props) => {
   return (
     <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 mt-6">
       {props.categories.map((category) => {

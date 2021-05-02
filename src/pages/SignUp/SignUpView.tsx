@@ -19,7 +19,7 @@ type Props = {
   handlerSignUpButton: (user: TUserSignUp) => void;
 };
 
-const SignUpView: FunctionComponent<Props> = ({ ...props }) => (
+const SignUpView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.signup_crear_cuenta}>
       <Scaffold.Header.BackAction />

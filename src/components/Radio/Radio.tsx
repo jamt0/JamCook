@@ -8,17 +8,10 @@ type Props = {
   value: string;
 };
 
-const Radio: FunctionComponent<Props> = ({
-  color = "primary",
-  value,
-  children,
-}) => {
-  return (
-    <Item lines="none" className="mb-4 rounded-md" color="light">
-      <Text className="text-lg">{children}</Text>
-      <IonRadio slot="start" color={color} value={value} />
-    </Item>
-  );
-};
-
+const Radio: FunctionComponent<Props> = ({ color = "primary", ...props }) => (
+  <Item lines="none" className="mb-4 rounded-md" color="light">
+    <Text className="text-lg">{props.children}</Text>
+    <IonRadio slot="start" color={color} value={props.value} />
+  </Item>
+);
 export default Radio;

@@ -3,7 +3,7 @@ import Scaffold from "components/Scaffold/Scaffold";
 
 type Props = {};
 
-const AboutUsView: FunctionComponent<Props> = ({ ...props }) => (
+const AboutUsView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={"sobre"}>
       <Scaffold.Header.BackAction />

@@ -5,7 +5,7 @@ import { useHistory } from "react-router";
 
 type Props = {};
 
-const ScaffoldHeaderBackAction: FunctionComponent<Props> = ({}) => {
+const ScaffoldHeaderBackAction: FunctionComponent<Props> = () => {
   const history = useHistory();
 
   const handlerGoBackButton = (e: any) => {

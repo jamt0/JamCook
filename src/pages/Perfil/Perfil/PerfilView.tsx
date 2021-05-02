@@ -25,7 +25,7 @@ type Props = {
   handlerLogOutButton: (e: any) => void;
 };
 
-const PerfilView: FunctionComponent<Props> = ({ ...props }) => (
+const PerfilView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />

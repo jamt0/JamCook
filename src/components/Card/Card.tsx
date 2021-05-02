@@ -9,13 +9,11 @@ type Props = React.ComponentProps<any> & {
   children: React.ReactNode;
 };
 
-const Card = ({ routerLink, color, children }: Props) => {
-  return (
-    <IonCard routerLink={routerLink} color={color}>
-      {children}
-    </IonCard>
-  );
-};
+const Card = (props: Props) => (
+  <IonCard routerLink={props.routerLink} color={props.color}>
+    {props.children}
+  </IonCard>
+);
 
 Card.Header = CardHeader;
 Card.Content = CardContent;

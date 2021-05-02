@@ -13,7 +13,7 @@ type Props = {
   handlerAddIngredient: (e: any) => void;
 };
 
-const FoodBasketView: FunctionComponent<Props> = ({ ...props }) => (
+const FoodBasketView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Content
       fabButton={

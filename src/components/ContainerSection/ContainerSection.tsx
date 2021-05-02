@@ -1,16 +1,8 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent } from "react";
 
-interface Props {
-}
+interface Props {}
 
-const ContainerSection: FunctionComponent<Props> = ({ children }) => {
-
-    return (
-        <div className="px-3 mb-8 mt-2">
-            {children}
-        </div>
-    );
-
-};
-
+const ContainerSection: FunctionComponent<Props> = (props) => (
+  <div className="px-3 mb-8 mt-2">{props.children}</div>
+);
 export default ContainerSection;

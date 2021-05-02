@@ -12,7 +12,7 @@ type Props = {
   handlerAddIngredient: (e: any) => void;
 };
 
-const FoodBasketAddView: FunctionComponent<Props> = ({ ...props }) => (
+const FoodBasketAddView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.agregar_ingredientes}>
       <Scaffold.Header.BackAction />

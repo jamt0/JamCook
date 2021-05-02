@@ -39,7 +39,7 @@ type Props = {
   handlerValoration: (e: any, index: number) => void;
 };
 
-const Recipe: FunctionComponent<Props> = ({ ...props }) => (
+const Recipe: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header>
       <Scaffold.Header.BackAction />

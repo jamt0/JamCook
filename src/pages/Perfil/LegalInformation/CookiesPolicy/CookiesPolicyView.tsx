@@ -5,7 +5,7 @@ type Props = {
   textos: any;
 };
 
-const CookiesPolicyView: FunctionComponent<Props> = ({ ...props }) => (
+const CookiesPolicyView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.politica_cookies}>
       <Scaffold.Header.BackAction />

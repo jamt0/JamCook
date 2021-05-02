@@ -10,7 +10,7 @@ type Props = {
   };
 }
 
-const ListRecipesView: FunctionComponent<Props> = ({ ...props }) => (
+const ListRecipesView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.listRecipes.titleListRecipes}>
       <Scaffold.Header.BackAction />

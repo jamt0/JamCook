@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { IonItem } from "@ionic/react";
 
-interface Props {
+type Props = {
   color?: string;
   routerLink?: string;
   lines?: "none" | "full" | "inset" | undefined;
@@ -11,26 +11,20 @@ interface Props {
 }
 
 const Item: FunctionComponent<Props> = ({
-  color,
-  routerLink,
   lines = "none",
   detail = false,
-  className,
-  onClick,
-  children,
-}) => {
-  return (
-    <IonItem
-      color={color}
-      routerLink={routerLink}
-      lines={lines}
-      detail={detail}
-      onClick={onClick}
-      className={className}
-    >
-      {children}
-    </IonItem>
-  );
-};
-
+  className = "",
+  ...props
+}) => (
+  <IonItem
+    color={props.color}
+    routerLink={props.routerLink}
+    lines={lines}
+    detail={detail}
+    onClick={props.onClick}
+    className={className}
+  >
+    {props.children}
+  </IonItem>
+);
 export default Item;

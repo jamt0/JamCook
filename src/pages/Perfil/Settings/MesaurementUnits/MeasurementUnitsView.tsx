@@ -13,7 +13,7 @@ type Props = {
   handlerSaveEditButton: (radio: TRadio) => void;
 };
 
-const MeasurementUnitsView: FunctionComponent<Props> = ({ ...props }) => (
+const MeasurementUnitsView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.unidades_medida}>
       <Scaffold.Header.BackAction />

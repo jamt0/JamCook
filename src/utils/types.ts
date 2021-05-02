@@ -109,3 +109,9 @@ export type TTrick = {
 export type TRadio = {
   radio: string;
 }
+
+export type TMessage = {
+  email: string;
+  subjectId: string;
+  message: string;
+}

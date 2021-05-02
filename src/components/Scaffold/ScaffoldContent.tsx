@@ -9,21 +9,16 @@ type Props = {
 };
 
 const ScaffoldContent: FunctionComponent<Props> = ({
-  fabButton,
   height = "auto",
   margin = "lg",
-  banner,
-  children,
-}) => {
-  return (
-    <IonContent>
-      {banner ? banner : <Fragment />}
-      <div className={`max-w-screen-${margin} mx-auto p-2 h-${height}`}>
-        {children}
-      </div>
-      {fabButton ? fabButton : <Fragment />}
-    </IonContent>
-  );
-};
-
+  ...props
+}) => (
+  <IonContent>
+    {props.banner ? props.banner : <Fragment />}
+    <div className={`max-w-screen-${margin} mx-auto p-2 h-${height}`}>
+      {props.children}
+    </div>
+    {props.fabButton ? props.fabButton : <Fragment />}
+  </IonContent>
+);
 export default ScaffoldContent;

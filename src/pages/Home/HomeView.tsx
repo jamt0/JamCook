@@ -23,7 +23,7 @@ type Props = {
   textos: any;
 };
 
-const HomeView: FunctionComponent<Props> = ({ ...props }) => (
+const HomeView: FunctionComponent<Props> = (props) => (
   <IonTabs>
     <IonRouterOutlet>
       <Redirect exact path="/home" to="/home/search" />

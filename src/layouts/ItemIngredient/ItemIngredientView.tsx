@@ -17,7 +17,7 @@ type Props = {
   setPortions: (e: any) => void;
 };
 
-const ItemIngredientView: FunctionComponent<Props> = ({ ...props }) => (
+const ItemIngredientView: FunctionComponent<Props> = (props) => (
   <div className="flex flex-col my-2">
     <div className="relative flex flex-row">
       <Item

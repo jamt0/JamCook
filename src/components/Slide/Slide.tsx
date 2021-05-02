@@ -3,8 +3,7 @@ import { IonSlide } from "@ionic/react";
 
 type Props = {};
 
-const Slide: FunctionComponent<Props> = ({ children }) => {
-  return <IonSlide>{children}</IonSlide>;
-};
-
+const Slide: FunctionComponent<Props> = (props) => (
+  <IonSlide>{props.children}</IonSlide>
+);
 export default Slide;

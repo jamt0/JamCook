@@ -5,7 +5,7 @@ type Props = {
   textos: any;
 };
 
-const PrivacyPolicyView: FunctionComponent<Props> = ({ ...props }) => (
+const PrivacyPolicyView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.politica_privacidad}>
       <Scaffold.Header.BackAction />

@@ -6,12 +6,9 @@ type Props = React.ComponentProps<any> & {
   children: React.ReactNode;
 };
 
-const CardContent: FunctionComponent<Props> = ({ routerLink, children }: Props) => {
-  return (
-    <Link to={routerLink} className="w-full">
-        {children}
-    </Link>
-  );
-};
-
+const CardContent: FunctionComponent<Props> = (props: Props) => (
+  <Link to={props.routerLink} className="w-full">
+    {props.children}
+  </Link>
+);
 export default CardContent;

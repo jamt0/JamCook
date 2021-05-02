@@ -19,7 +19,7 @@ type Props = {
   handlerSignInButton: (user: TUserSignIn) => void;
 };
 
-const SignIn: FunctionComponent<Props> = ({ ...props }) => (
+const SignIn: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.signin_iniciar_sesion}>
       <Scaffold.Header.BackAction />

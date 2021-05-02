@@ -11,20 +11,14 @@ type Props = {
 
 const ButtonLink: FunctionComponent<Props> = ({
   color = "primary",
-  align,
-  routerLink,
-  onClick,
-  children,
-}) => {
-  return (
-    <Text color={color} align={align} onClick={onClick}>
-      {routerLink ? (
-        <Link to={routerLink}>{children}</Link>
-      ) : (
-        <Fragment>{children}</Fragment>
-      )}
-    </Text>
-  );
-};
-
+  ...props
+}) => (
+  <Text color={color} align={props.align} onClick={props.onClick}>
+    {props.routerLink ? (
+      <Link to={props.routerLink}>{props.children}</Link>
+    ) : (
+      <Fragment>{props.children}</Fragment>
+    )}
+  </Text>
+);
 export default ButtonLink;

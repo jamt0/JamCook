@@ -8,8 +8,8 @@ type Props = {
   };
 };
 
-const Slides: FunctionComponent<Props> = ({ options, children }) => {
-  const { slidesPerView, spaceBetween } = options;
+const Slides: FunctionComponent<Props> = (props) => {
+  const { slidesPerView, spaceBetween } = props.options;
 
   const slideOptions = {
     slidesPerView,
@@ -18,7 +18,7 @@ const Slides: FunctionComponent<Props> = ({ options, children }) => {
 
   return (
     <IonSlides options={slideOptions} className="z-0 my-4">
-      {children}
+      {props.children}
     </IonSlides>
   );
 };

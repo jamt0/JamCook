@@ -6,11 +6,9 @@ import { IonPage } from "@ionic/react";
 
 type Props = {
   children: React.ReactNode;
-}
-
-const Scaffold = ({ children }: Props) => {
-  return <IonPage>{children}</IonPage>;
 };
+
+const Scaffold = (props: Props) => <IonPage>{props.children}</IonPage>;
 
 Scaffold.Content = ScaffoldContent;
 Scaffold.Footer = ScaffoldFooter;

@@ -6,12 +6,9 @@ type Props = {
   color: string;
 };
 
-const Chip: FunctionComponent<Props> = ({ outline, color="secondary", children }) => {
-  return (
-    <IonChip outline={outline} color={color}>
-      {children}
-    </IonChip>
-  );
-};
-
+const Chip: FunctionComponent<Props> = ({ color = "secondary", ...props }) => (
+  <IonChip outline={props.outline} color={color}>
+    {props.children}
+  </IonChip>
+);
 export default Chip;

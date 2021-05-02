@@ -13,7 +13,7 @@ type Props = {
   handlerSaveEditButton: (radio: TRadio) => void;
 };
 
-const LanguageView: FunctionComponent<Props> = ({ ...props }) => (
+const LanguageView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.idioma}>
       <Scaffold.Header.BackAction />

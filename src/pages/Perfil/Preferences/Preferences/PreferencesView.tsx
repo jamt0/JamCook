@@ -10,7 +10,7 @@ type Props = {
   }[];
 };
 
-const PreferencesView: FunctionComponent<Props> = ({ ...props }) => (
+const PreferencesView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.title}>
       <Scaffold.Header.BackAction />

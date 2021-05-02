@@ -5,7 +5,7 @@ type Props = {
   textos: any;
 };
 
-const TermsAndConditionsView: FunctionComponent<Props> = ({ ...props }) => (
+const TermsAndConditionsView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header title={props.textos.terminos_condiciones}>
       <Scaffold.Header.BackAction />
