@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
 import CommensalsView from "pages/Profile/Preferences/Commensals/CommensalsView";
 import { useHistory } from "react-router";
-import { useAuth } from "auth";
+import { useAuth } from "context/auth";
 import { useSettingsUser } from "context/settingsUser";
 import { useForm } from "react-hook-form";
 import { TRadio } from "utils/types";
 import Server from "server";
+import useShowTabs from "hooks/useShowTabs";
 
 const Commensals: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
-
   const [amountUser, setAmountUser] = useState<number>(2);
   const [loading, setLoading] = useState<boolean>(false);
   const [errores, setErrores] = useState<string>("");
+
+  useShowTabs(false);
 
   const defaultValues = amountUser > 1 ? "2" : "1";
 

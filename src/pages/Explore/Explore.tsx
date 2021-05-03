@@ -1,6 +1,7 @@
 import React from "react";
 import ExploreView from "pages/Explore/ExploreView";
 import { useSettingsUser } from "context/settingsUser";
+import useShowTabs from "hooks/useShowTabs";
 
 const categories = [
   {
@@ -115,6 +116,8 @@ const categories = [
 
 const Explore: React.FC = () => {
   const { textos } = useSettingsUser()!;
+
+  useShowTabs(true);
 
   return (
     <ExploreView

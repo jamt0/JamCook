@@ -6,12 +6,15 @@ import { useForm } from "react-hook-form";
 import { rulesEmail } from "utils/rulesValidation";
 import Server from "server";
 import RoutesPath from "utils/routesPath";
+import useShowTabs from "hooks/useShowTabs";
 
 const ForgetPassword: React.FC = () => {
   const history = useHistory();
   const { textos } = useSettingsUser()!;
   const [errores, setErrores] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+
+  useShowTabs(false);
 
   const defaultValues = { email: "" };
 

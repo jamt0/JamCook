@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { useAuth } from "auth";
+import { useAuth } from "context/auth";
 import { useForm } from "react-hook-form";
 import { useSettingsUser } from "context/settingsUser";
 import Server from "server";
@@ -13,19 +13,19 @@ import {
 } from "utils/rulesValidation";
 import EditProfileView from "pages/Profile/EditProfile/EditProfileView";
 import { TUserEdit } from "utils/types";
+import useShowTabs from "hooks/useShowTabs";
 
 const EditProfile: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
-
   const [errores, setErrores] = useState<string>("");
-  const [avatarImageUrl, setAvatarImageUrl] = useState<any>(
-    `${config.baseURL}/images/avatars/default.png`
-  );
+  const [avatarImageUrl, setAvatarImageUrl] = useState<any>(`${config.baseURL}/images/avatars/default.png`);
   const [loading, setLoading] = useState<boolean>(false);
   const [optionsAges, setOptionsAges] = useState();
   const [optionsGenders, setOptionsGenders] = useState();
+
+  useShowTabs(false);
 
   const {
     control,

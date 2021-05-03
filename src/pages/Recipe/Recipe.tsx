@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import RecipeView from "pages/Recipe/RecipeView";
 import { useSettingsUser } from "context/settingsUser";
+import useShowTabs from "hooks/useShowTabs";
 
 const recipe = {
   id:"1",
@@ -271,24 +272,19 @@ const recipe = {
 
 const Recipe: React.FC = () => {
   const [portions, setPortions] = useState(1);
-  const [stars, setStars] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
-
+  const [stars, setStars] = useState([ false, false, false, false, false ]);
   const { textos } = useSettingsUser()!;
 
+  useShowTabs(false);
+  
   const handlerShare = (e: any) => {};
-
+  
   const handlerLike = (e: any) => {};
-
+  
   const handlerMark = (e: any) => {};
-
+  
   const handlerRecipeMade = (e: any) => {};
-
+  
   const handlerValoration = (e: any, index: number) => {
     e.preventDefault();
     var newEstrellas = [...stars];
@@ -302,7 +298,7 @@ const Recipe: React.FC = () => {
     setStars(newEstrellas);
     return undefined;
   };
-
+  
   return (
     <RecipeView
       textos={textos}

@@ -3,6 +3,7 @@ import FoodBasketView from "pages/FoodBasket/FoodBasket/FoodBasketView";
 import { useHistory } from "react-router-dom";
 import { useSettingsUser } from "context/settingsUser";
 import RoutesPath from "utils/routesPath";
+import useShowTabs from "hooks/useShowTabs";
 
 const ingredients = [
   {
@@ -130,6 +131,8 @@ const ingredients = [
 const FoodBasket: React.FC = () => {
   const history = useHistory();
   const { textos } = useSettingsUser()!;
+
+  useShowTabs(true);
 
   const handlerAddIngredient = (e: any) => {
     e.preventDefault();

@@ -6,12 +6,15 @@ import { useSettingsUser } from "context/settingsUser";
 import { rulesVerificationCode } from "utils/rulesValidation";
 import Server from "server";
 import RoutesPath from "utils/routesPath";
+import useShowTabs from "hooks/useShowTabs";
 
 const ForgetPasswordValidate: React.FC = () => {
   const history = useHistory();
   const { textos } = useSettingsUser()!;
   const [errores, setErrores] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+
+  useShowTabs(false);
 
   const defaultValues = { VerificationCode: "" };
 

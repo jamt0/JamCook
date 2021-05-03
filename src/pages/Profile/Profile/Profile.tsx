@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PerfilView from "pages/Profile/Profile/ProfilelView";
-import { useAuth } from "auth";
+import { useAuth } from "context/auth";
 import Server from "server";
 import config from "config/general";
 import { useSettingsUser } from "context/settingsUser";
@@ -16,17 +16,17 @@ import {
   logOutOutline,
 } from "ionicons/icons";
 import RoutesPath from "utils/routesPath";
+import useShowTabs from "hooks/useShowTabs";
 
 const Perfil: React.FC = () => {
   const { auth, logOut } = useAuth()!;
   const { textos } = useSettingsUser()!;
-
   const [user, setUser] = useState({ name: "", email: "" });
-  const [avatarImageUrl, setAvatarImageUrl] = useState<any>(
-    `${config.baseURL}/images/avatars/default.png`
-  );
+  const [avatarImageUrl, setAvatarImageUrl] = useState<any>(`${config.baseURL}/images/avatars/default.png`);
   const [errores, setErrores] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+
+  useShowTabs(true);
 
   const handlerLogOutButton = async (e: any) => {
     e.preventDefault();
@@ -81,7 +81,7 @@ const Perfil: React.FC = () => {
     {
       name: textos.configuraciones,
       auth: false,
-      routerLink: RoutesPath.language,
+      routerLink: RoutesPath.settings,
       lines: "full",
       icon: buildOutline,
     },

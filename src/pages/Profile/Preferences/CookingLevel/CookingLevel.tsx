@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import CookingLevelView from "pages/Profile/Preferences/CookingLevel/CookingLevelView";
 import { useHistory } from "react-router";
-import { useAuth } from "auth";
+import { useAuth } from "context/auth";
 import { useSettingsUser } from "context/settingsUser";
 import { useForm } from "react-hook-form";
 import { TRadio } from "utils/types";
 import Server from "server";
+import useShowTabs from "hooks/useShowTabs";
 
 const CookingLevel: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
-
   const [options, setOptions] = useState();
   const [optionUser, setOptionUser] = useState("1");
   const [loading, setLoading] = useState<boolean>(false);
   const [errores, setErrores] = useState<string>("");
+
+  useShowTabs(false);
 
   const { control, handleSubmit, watch } = useForm({
     mode: "onChange",

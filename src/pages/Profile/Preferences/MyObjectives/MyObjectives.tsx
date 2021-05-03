@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import MyObjectivesView from "pages/Profile/Preferences/MyObjectives/MyObjectivesView";
 import { useHistory } from "react-router";
-import { useAuth } from "auth";
+import { useAuth } from "context/auth";
 import { useSettingsUser } from "context/settingsUser";
 import { useForm } from "react-hook-form";
 import { TRadio } from "utils/types";
 import Server from "server";
+import useShowTabs from "hooks/useShowTabs";
 
 const MyObjectives: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
-
   const [options, setOptions] = useState();
   const [optionUser, setOptionUser] = useState();
   const [loading, setLoading] = useState<boolean>(false);
   const [errores, setErrores] = useState<string>("");
+
+  useShowTabs(false);
 
   const { control, handleSubmit } = useForm({
     mode: "onChange",

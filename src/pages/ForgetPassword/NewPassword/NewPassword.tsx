@@ -6,12 +6,15 @@ import { rulesNewPassword, rulesConfirmPassword } from "utils/rulesValidation";
 import { useForm } from "react-hook-form";
 import Server from "server";
 import RoutesPath from "utils/routesPath";
+import useShowTabs from "hooks/useShowTabs";
 
 const NewPassword: React.FC = () => {
   const history = useHistory();
   const { textos } = useSettingsUser()!;
   const [errores, setErrores] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+
+  useShowTabs(false);
 
   const defaultValues = { newPassword: "", confirmPassword: "" };
 

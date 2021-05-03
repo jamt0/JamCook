@@ -4,11 +4,14 @@ import { useHistory } from "react-router";
 import { useSettingsUser } from "context/settingsUser";
 import { useForm } from "react-hook-form";
 import { TRadio } from "utils/types";
+import useShowTabs from "hooks/useShowTabs";
 
 const MeasurementUnits: React.FC = () => {
   const history = useHistory();
   const { textos } = useSettingsUser()!;
 
+  useShowTabs(false);
+  
   const defaultValues = "2";
 
   const { control, handleSubmit } = useForm({ mode: "onSubmit" });

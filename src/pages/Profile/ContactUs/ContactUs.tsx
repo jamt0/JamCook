@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import ContactUsView from "pages/Profile/ContactUs/ContactUsView";
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
-import { useAuth } from "auth";
+import { useAuth } from "context/auth";
 import { useSettingsUser } from "context/settingsUser";
 import Server from "server";
 import { rulesEmail, rulesSubject, rulesMessage } from "utils/rulesValidation";
 import { TMessage } from "utils/types";
+import useShowTabs from "hooks/useShowTabs";
 
 const ContactUs: React.FC = () => {
   const history = useHistory();
@@ -16,6 +17,8 @@ const ContactUs: React.FC = () => {
   const [errores, setErrores] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [optionsSubjects, setoptionsSubjects] = useState();
+
+  useShowTabs(false);
 
   const defaultValues = { email: "", subjectId: "", message: "" };
 

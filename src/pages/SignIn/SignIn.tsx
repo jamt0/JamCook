@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import SignInView from "pages/SignIn/SignInView";
 import { Redirect } from "react-router";
 import { useForm } from "react-hook-form";
-import { useAuth } from "auth";
+import { useAuth } from "context/auth";
 import { useSettingsUser } from "context/settingsUser";
 import { rulesEmail, rulesPassword } from "utils/rulesValidation";
 import { TUserSignIn } from "utils/types";
 import RoutesPath from "utils/routesPath";
+import useShowTabs from "hooks/useShowTabs";
 
 const SignIn: React.FC = () => {
   const { signIn, loading, auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
   const [errores, setErrores] = useState<string>("");
 
+  useShowTabs(false);
+  
   const {
     control,
     handleSubmit,

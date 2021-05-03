@@ -4,10 +4,13 @@ import { useHistory } from "react-router";
 import { useSettingsUser } from "context/settingsUser";
 import { useForm } from "react-hook-form";
 import { TRadio } from "utils/types";
+import useShowTabs from "hooks/useShowTabs";
 
 const Theme: React.FC = () => {
   const history = useHistory();
   const { textos, setTheme, theme } = useSettingsUser()!;
+
+  useShowTabs(false);
 
   const defaultValues = theme == "dark" ? "2" : "1";
 

@@ -56,6 +56,7 @@ import {
 
 type Props = {
   textos: any;
+  tabBarStyle: any;
 };
 
 const HomeView: FunctionComponent<Props> = (props) => (
@@ -161,7 +162,7 @@ const HomeView: FunctionComponent<Props> = (props) => (
         <NoFound />
       </Route>
     </IonRouterOutlet>
-    <IonTabBar slot="bottom" className="py-1">
+    <IonTabBar slot="bottom" className="py-1" style={props.tabBarStyle}>
       <IonTabButton tab="search" href={RoutesPath.search}>
         <IonIcon icon={searchOutline} />
         <IonLabel>{props.textos.page_buscar}</IonLabel>

@@ -2,9 +2,12 @@ import React from "react";
 import RoutesPath from "utils/routesPath";
 import PreferencesView from "pages/Profile/Preferences/Preferences/PreferencesView";
 import { useSettingsUser } from "context/settingsUser";
+import useShowTabs from "hooks/useShowTabs";
 
 const Preferences: React.FC = () => {
   const { textos } = useSettingsUser()!;
+
+  useShowTabs(false);
 
   const items = [
     {

@@ -1,5 +1,6 @@
 import React from "react";
 import ListRecipesView from "pages/ListRecipes/ListRecipesView";
+import useShowTabs from "hooks/useShowTabs";
 
 const listRecipes = {
   titleListRecipes: "Recetas Nuevas",
@@ -119,6 +120,8 @@ const listRecipes = {
 
 const ListRecipes: React.FC = () => {
 
+  useShowTabs(false);
+  
   return (
     <ListRecipesView listRecipes={listRecipes} />
   );

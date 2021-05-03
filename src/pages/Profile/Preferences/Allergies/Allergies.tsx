@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import AllergiesView from "pages/Profile/Preferences/Allergies/AllergiesView";
 import { useHistory } from "react-router";
-import { useAuth } from "auth";
+import { useAuth } from "context/auth";
 import { useSettingsUser } from "context/settingsUser";
 import Server from "server";
 import RoutesPath from "utils/routesPath";
+import useShowTabs from "hooks/useShowTabs";
 
 const ingredientes = [
   {
@@ -38,11 +39,12 @@ const Allergies: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
   const { textos } = useSettingsUser()!;
-
   const [ingredients, setIngredients] = useState(ingredientes);
   const [ingredientsUser, setIngredientsUser] = useState();
   const [loading, setLoading] = useState<boolean>(false);
   const [errores, setErrors] = useState<string>("");
+
+  useShowTabs(false);
 
   const handlerSaveEditButton = (e: any) => {
     e.preventDefault();

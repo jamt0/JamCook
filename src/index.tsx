@@ -1,16 +1,17 @@
-import { defineCustomElements } from "@ionic/pwa-elements/loader";
+import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "App";
 import "assets/main.css";
-import { AuthProvider } from "auth";
+import { AuthProvider } from "context/auth";
 import { SettingsProvider } from "context/settingsUser";
-
-defineCustomElements(window);
+import { UIProvider } from "context/UI";
 
 ReactDOM.render(
   <AuthProvider>
     <SettingsProvider>
-      <App />
+      <UIProvider>
+        <App />
+      </UIProvider>
     </SettingsProvider>
   </AuthProvider>,
   document.getElementById("root")
