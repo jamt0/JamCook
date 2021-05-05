@@ -14,9 +14,7 @@ const Theme: React.FC = () => {
 
   const defaultValues = theme == "dark" ? "2" : "1";
 
-  const { control, handleSubmit } = useForm({
-    mode: "onSubmit",
-  });
+  const { control, handleSubmit } = useForm({ mode: "onSubmit" });
 
   const options = [
     {

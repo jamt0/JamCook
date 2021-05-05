@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import PerfilView from "pages/Profile/Profile/ProfilelView";
+import React, {useEffect, useState } from "react";
+import ProfileView from "pages/Profile/Profile/ProfileView";
 import { useAuth } from "context/auth";
 import Server from "server";
 import config from "config/general";
@@ -17,14 +17,13 @@ import {
 } from "ionicons/icons";
 import RoutesPath from "utils/routesPath";
 import useShowTabs from "hooks/useShowTabs";
+import useFetch from "hooks/useFetch";
 
-const Perfil: React.FC = () => {
+const Profile: React.FC = () => {
   const { auth, logOut } = useAuth()!;
   const { textos } = useSettingsUser()!;
   const [user, setUser] = useState({ name: "", email: "" });
   const [avatarImageUrl, setAvatarImageUrl] = useState<any>(`${config.baseURL}/images/avatars/default.png`);
-  const [errores, setErrores] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
 
   useShowTabs(true);
 
@@ -33,35 +32,7 @@ const Perfil: React.FC = () => {
     await logOut();
   };
 
-  useEffect(() => {
-    if (auth.user?.id) {
-      Server.getUser(auth.user.id)
-        .then((response) => {
-          if (!response.data.error) {
-            setUser({
-              name: String(response.data.user.name),
-              email: String(response.data.user.email),
-            });
-          } else {
-            setErrores(response.data.error);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      Server.getImageAvatar(auth.user.id)
-        .then((response) => {
-          if (!response.data.error) {
-            setAvatarImageUrl(`${config.baseURL}/${response.data.path}`);
-          } else {
-            setErrores(response.data.error);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, []);
+  var { error, loading, data } = useFetch({ fetch: Server.getUser, req: 24});
 
   const items = [
     {
@@ -121,23 +92,23 @@ const Perfil: React.FC = () => {
     {
       name: textos.logout,
       auth: true,
-      lines: auth.loggedIn ? "full" : "none",
+      lines: "none",
       icon: logOutOutline,
     },
   ];
 
   return (
-    <PerfilView
+    <ProfileView
       textos={textos}
-      loading={loading}
+      loading={loading || false}
       items={items}
       auth={auth}
       handlerLogOutButton={handlerLogOutButton}
-      errores={errores}
+      errores={error || ""}
       avatarImageUrl={avatarImageUrl}
-      user={user}
+      user={data.user}
     />
   );
 };
 
-export default Perfil;
+export default Profile;

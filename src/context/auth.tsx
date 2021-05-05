@@ -62,12 +62,8 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
   const [loading, setLoading] = useState(false);
 
   const signIn = async (user: UserSignInData) => {
-    setLoading(true);
     const response = await Server.signIn(user);
-    console.log("funcion logearse en el auth");
-
     console.log(response.data);
-
     if (!response.data.error) {
       localStorage.setItem("accessToken", response.data.accessToken);
       setAuth({
@@ -78,25 +74,19 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
           id: response.data.user.id,
         },
       });
-      setLoading(false);
       return null;
     } else {
       setAuth({
         loggedIn: false,
         initialized: true,
       });
-      setLoading(false);
       return response.data.error;
     }
   };
 
   const signUp = async (user: UserSignUpData) => {
-    setLoading(true);
-
     const response = await Server.signUp(user);
-
     console.log(response.data);
-
     if (!response.data.error) {
       localStorage.setItem("accessToken", response.data.accessToken);
       setAuth({
@@ -107,26 +97,22 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
           id: response.data.user.id,
         },
       });
-      setLoading(false);
       return null;
     } else {
       setAuth({
         loggedIn: false,
         initialized: true,
       });
-      setLoading(false);
       return response.data.error;
     }
   };
 
   const logOut = async () => {
-    setLoading(true);
     localStorage.removeItem("accessToken");
     setAuth({
       loggedIn: false,
       initialized: true,
     });
-    setLoading(false);
     return null;
   };
 

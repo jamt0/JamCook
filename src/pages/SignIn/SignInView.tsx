@@ -7,8 +7,8 @@ import Button from "components/Button/Button";
 import Loading from "components/Loading/Loading";
 import Scaffold from "components/Scaffold/Scaffold";
 import ButtonLink from "components/ButtonLink/ButtonLink";
-import { TUserSignIn } from "utils/types";
 import RoutesPath from "utils/routesPath";
+import { TUserSignIn } from "utils/types";
 
 type Props = {
   textos: any;

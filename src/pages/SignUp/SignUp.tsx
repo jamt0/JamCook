@@ -1,36 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import SignUpView from "pages/SignUp/SignUpView";
-import { Redirect } from "react-router";
-import { useForm } from "react-hook-form";
 import { useAuth } from "context/auth";
 import { useSettingsUser } from "context/settingsUser";
 import { rulesEmail, rulesPassword, rulesName } from "utils/rulesValidation";
 import { TUserSignUp } from "utils/types";
 import RoutesPath from "utils/routesPath";
 import useShowTabs from "hooks/useShowTabs";
+import useForm from "hooks/useForm";
 
 const SignUp: React.FC = () => {
-  const { signUp, loading, auth } = useAuth()!;
+  const { signUp } = useAuth()!;
   const { textos } = useSettingsUser()!;
-  const [errores, setErrores] = useState<string>("");
 
   useShowTabs(false);
 
-  const defaultValues = { name: "", email: "", password: "" };
-
-  const {
-    control,
-    handleSubmit,
-    formState: { isSubmitting, isValid, errors },
-  } = useForm({
-    mode: "onChange",
+  const { formHook, errores, loading, handler } = useForm<TUserSignUp>({
+    dataFech: signUp,
+    route: RoutesPath.home,
   });
 
-  const handlerSignUpButton = async (user: TUserSignUp) => {
-    const errorSignUp = await signUp(user);
-    if (errorSignUp != null) setErrores(errorSignUp);
-    else return <Redirect to={RoutesPath.home} />;
-  };
+  const defaultValues = { name: "", email: "", password: "" };
 
   const rules = {
     rulesName: rulesName(textos),
@@ -45,8 +34,8 @@ const SignUp: React.FC = () => {
       errores={errores}
       loading={loading}
       defaultValues={defaultValues}
-      handlerSignUpButton={handlerSignUpButton}
-      formHook={{ control, errors, isValid, isSubmitting, handleSubmit }}
+      handlerSignUpButton={handler}
+      formHook={formHook}
     />
   );
 };
