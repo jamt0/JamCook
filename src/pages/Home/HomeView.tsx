@@ -55,7 +55,7 @@ import {
 } from "pages/Profile/Index";
 
 type Props = {
-  textos: any;
+  texts: any;
   tabBarStyle: any;
 };
 
@@ -165,19 +165,19 @@ const HomeView: FunctionComponent<Props> = (props) => (
     <IonTabBar slot="bottom" className="py-1" style={props.tabBarStyle}>
       <IonTabButton tab="search" href={RoutesPath.search}>
         <IonIcon icon={searchOutline} />
-        <IonLabel>{props.textos.page_buscar}</IonLabel>
+        <IonLabel>{props.texts.page_buscar}</IonLabel>
       </IonTabButton>
       <IonTabButton tab="explore" href={RoutesPath.explore}>
         <IonIcon icon={navigateOutline} />
-        <IonLabel>{props.textos.page_explorar}</IonLabel>
+        <IonLabel>{props.texts.page_explorar}</IonLabel>
       </IonTabButton>
       <IonTabButton tab="foodBasket" href={RoutesPath.foodBasket}>
         <IonIcon icon={basketOutline} />
-        <IonLabel>{props.textos.page_almacen}</IonLabel>
+        <IonLabel>{props.texts.page_almacen}</IonLabel>
       </IonTabButton>
       <IonTabButton tab="profile" href={RoutesPath.profile}>
         <IonIcon icon={personOutline} />
-        <IonLabel>{props.textos.page_perfil}</IonLabel>
+        <IonLabel>{props.texts.page_perfil}</IonLabel>
       </IonTabButton>
     </IonTabBar>
   </IonTabs>

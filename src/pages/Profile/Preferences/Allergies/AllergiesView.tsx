@@ -8,7 +8,7 @@ import Title from "components/Text/Title";
 import Error from "components/Error/Error";
 
 type Props = {
-  textos: any;
+  texts: any;
   loading: boolean;
   errores: any;
   formHook: any;
@@ -19,22 +19,22 @@ type Props = {
 const AllergiesView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Header
-      title={props.textos.preferencias_alergias_intolerancias}
+      title={props.texts.preferencias_alergias_intolerancias}
     >
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
       {props.errores != "" && <Error>{props.errores}</Error>}
-      <Title>{props.textos.alergias_intolerancias_header}</Title>
+      <Title>{props.texts.alergias_intolerancias_header}</Title>
       <SubTitle className="mb-8 mt-2" color="medium">
-        {props.textos.alergias_intolerancias_sub_header}
+        {props.texts.alergias_intolerancias_sub_header}
       </SubTitle>
       <ChipGroup ingredientes={props.ingredients} />
     </Scaffold.Content>
     <Scaffold.Footer>
       <Button onClick={props.handlerSaveEditButton}>
-        {props.textos.guardar}
+        {props.texts.guardar}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

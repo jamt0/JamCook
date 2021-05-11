@@ -11,7 +11,7 @@ import useShowTabs from "hooks/useShowTabs";
 const CookingLevel: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
   const [options, setOptions] = useState();
   const [optionUser, setOptionUser] = useState("1");
   const [loading, setLoading] = useState<boolean>(false);
@@ -64,7 +64,7 @@ const CookingLevel: React.FC = () => {
 
   return (
     <CookingLevelView
-      textos={textos}
+      texts={texts}
       formHook={{ control, handleSubmit }}
       defaultValues={optionUser}
       options={options}

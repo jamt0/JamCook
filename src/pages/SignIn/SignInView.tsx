@@ -11,7 +11,7 @@ import RoutesPath from "utils/routesPath";
 import { TUserSignIn } from "utils/types";
 
 type Props = {
-  textos: any;
+  texts: any;
   loading: boolean;
   errores: any;
   formHook: any;
@@ -22,7 +22,7 @@ type Props = {
 
 const SignIn: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos.signin_iniciar_sesion}>
+    <Scaffold.Header title={props.texts.signin_iniciar_sesion}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
@@ -34,7 +34,7 @@ const SignIn: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.email}
         name="email"
         type="email"
-        label={props.textos.campo_correo}
+        label={props.texts.campo_correo}
         rules={props.rules.rulesEmail}
       />
       <Input
@@ -43,12 +43,12 @@ const SignIn: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.password}
         name="password"
         type="password"
-        label={props.textos.campo_contrasena}
+        label={props.texts.campo_contrasena}
         rules={props.rules.rulesPassword}
       />
       <Center justify="end" className="mt-6">
         <ButtonLink routerLink={RoutesPath.forgetPassword}>
-          {props.textos.signin_olvido_contraseña}
+          {props.texts.signin_olvido_contraseña}
         </ButtonLink>
       </Center>
     </Scaffold.Content>
@@ -57,12 +57,12 @@ const SignIn: FunctionComponent<Props> = (props) => (
         onClick={props.formHook.handleSubmit(props.handlerSignInButton)}
         disabled={!props.formHook.isValid || props.formHook.isSubmitting}
       >
-        {props.textos.signin_iniciar_sesion}
+        {props.texts.signin_iniciar_sesion}
       </Button>
       <Center className="py-2">
-        <Text className="mr-1">{props.textos.signin_no_tiene_cuenta}</Text>
+        <Text className="mr-1">{props.texts.signin_no_tiene_cuenta}</Text>
         <ButtonLink routerLink={RoutesPath.signUp}>
-          {props.textos.signup_registrate}
+          {props.texts.signup_registrate}
         </ButtonLink>
       </Center>
     </Scaffold.Footer>

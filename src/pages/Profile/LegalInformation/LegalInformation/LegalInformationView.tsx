@@ -3,13 +3,13 @@ import Scaffold from "components/Scaffold/Scaffold";
 import ItemIcon from "layouts/ItemIcon/ItemIcon";
 
 type Props = {
-  textos: any;
+  texts: any;
   items: any[];
 };
 
 const LegalInformationView: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos.informacion_legal}>
+    <Scaffold.Header title={props.texts.informacion_legal}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>

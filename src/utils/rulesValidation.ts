@@ -1,63 +1,63 @@
-export const rulesName = (textos: any) => ({
-  required: textos.campo_requerido,
+export const rulesName = (texts: any) => ({
+  required: texts.campo_requerido,
   minLength: {
     value: 3,
-    message: textos.campo_nombre_min,
+    message: texts.campo_nombre_min,
   },
 });
 
-export const rulesEmail = (textos: any) => ({
-  required: textos.campo_requerido,
+export const rulesEmail = (texts: any) => ({
+  required: texts.campo_requerido,
   pattern: {
     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-    message: textos.campo_correo_invalido,
+    message: texts.campo_correo_invalido,
   },
 });
 
-export const rulesPassword = (textos: any) => ({
-  required: textos.campo_requerido,
+export const rulesPassword = (texts: any) => ({
+  required: texts.campo_requerido,
   minLength: {
     value: 8,
-    message: textos.campo_contrasena_min,
+    message: texts.campo_contrasena_min,
   },
 });
 
-export const rulesAge = (textos: any) => ({
-  required: textos.campo_requerido,
+export const rulesAge = (texts: any) => ({
+  required: texts.campo_requerido,
 });
 
-export const rulesGender = (textos: any) => ({
-  required: textos.campo_requerido,
+export const rulesGender = (texts: any) => ({
+  required: texts.campo_requerido,
 });
 
-export const rulesSubject = (textos: any) => ({
-  required: textos.campo_requerido,
+export const rulesSubject = (texts: any) => ({
+  required: texts.campo_requerido,
 });
 
-export const rulesMessage = (textos: any) => ({
-  required: textos.campo_requerido,
+export const rulesMessage = (texts: any) => ({
+  required: texts.campo_requerido,
 });
 
-export const rulesNewPassword = (textos: any) => ({
-  required: textos.campo_requerido,
+export const rulesNewPassword = (texts: any) => ({
+  required: texts.campo_requerido,
     minLength: {
       value: 8,
-      message: textos.campo_contrasena_min,
+      message: texts.campo_contrasena_min,
     },
 });
 
-export const rulesConfirmPassword = (textos: any) => ({
-  required: textos.campo_requerido,
+export const rulesConfirmPassword = (texts: any) => ({
+  required: texts.campo_requerido,
     minLength: {
       value: 8,
-      message: textos.campo_contrasena_min,
+      message: texts.campo_contrasena_min,
     },
 });
 
-export const rulesVerificationCode = (textos: any) => ({
-  required: textos.campo_requerido,
+export const rulesVerificationCode = (texts: any) => ({
+  required: texts.campo_requerido,
     minLength: {
       value: 6,
-      message: textos.campo_contrasena_min,
+      message: texts.campo_contrasena_min,
     },
 });

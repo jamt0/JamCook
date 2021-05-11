@@ -11,7 +11,7 @@ import useShowTabs from "hooks/useShowTabs";
 const MyObjectives: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
   const [options, setOptions] = useState();
   const [optionUser, setOptionUser] = useState();
   const [loading, setLoading] = useState<boolean>(false);
@@ -63,7 +63,7 @@ const MyObjectives: React.FC = () => {
 
   return (
     <MyObjectivesView
-      textos={textos}
+      texts={texts}
       formHook={{ control, handleSubmit }}
       defaultValues={optionUser}
       options={options}

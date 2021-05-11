@@ -10,7 +10,7 @@ import useShowTabs from "hooks/useShowTabs";
 
 const NewPassword: React.FC = () => {
   const history = useHistory();
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
   const [errores, setErrores] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -40,14 +40,14 @@ const NewPassword: React.FC = () => {
   };
 
   const rules = {
-    rulesNewPassword: rulesNewPassword(textos),
-    rulesConfirmPassword: rulesConfirmPassword(textos),
+    rulesNewPassword: rulesNewPassword(texts),
+    rulesConfirmPassword: rulesConfirmPassword(texts),
   };
 
   return (
     <NewPasswordView
       rules={rules}
-      textos={textos}
+      texts={texts}
       errores={errores}
       loading={loading}
       defaultValues={defaultValues}

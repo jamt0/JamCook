@@ -11,7 +11,7 @@ import useShowTabs from "hooks/useShowTabs";
 const Commensals: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
   const [amountUser, setAmountUser] = useState<number>(2);
   const [loading, setLoading] = useState<boolean>(false);
   const [errores, setErrores] = useState<string>("");
@@ -64,7 +64,7 @@ const Commensals: React.FC = () => {
 
   return (
     <CommensalsView
-      textos={textos}
+      texts={texts}
       formHook={{ control, handleSubmit }}
       defaultValues={defaultValues}
       options={options}

@@ -38,7 +38,7 @@ const ingredientes = [
 const Allergies: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
   const [ingredients, setIngredients] = useState(ingredientes);
   const [ingredientsUser, setIngredientsUser] = useState();
   const [loading, setLoading] = useState<boolean>(false);
@@ -87,7 +87,7 @@ const Allergies: React.FC = () => {
 
   return (
     <AllergiesView
-      textos={textos}
+      texts={texts}
       formHook={{}}
       ingredients={ingredients}
       handlerSaveEditButton={handlerSaveEditButton}

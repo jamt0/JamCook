@@ -9,14 +9,14 @@ type Props = {
 };
 
 const CommentaryBox: FunctionComponent<Props> = ({ comments }) => {
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
   return (
     <Fragment>
       {comments.map((comentary) => {
         return <Commentary commentary={comentary} key={comentary.id} />;
       })}
       <div className="mt-4">
-        <ButtonLink>{textos.ver_todos_comentarios}</ButtonLink>
+        <ButtonLink>{texts.ver_todos_comentarios}</ButtonLink>
       </div>
     </Fragment>
   );

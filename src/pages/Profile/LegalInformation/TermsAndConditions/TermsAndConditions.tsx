@@ -4,12 +4,12 @@ import { useSettingsUser } from "context/settingsUser";
 import useShowTabs from "hooks/useShowTabs";
 
 const TermsAndConditions: React.FC = () => {
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   useShowTabs(false);
 
   return (
-    <TermsAndConditionsView textos={textos}/>
+    <TermsAndConditionsView texts={texts}/>
   );
 };
 

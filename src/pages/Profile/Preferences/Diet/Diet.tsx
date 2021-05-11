@@ -11,7 +11,7 @@ import useShowTabs from "hooks/useShowTabs";
 const Diet: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
   const [options, setOptions] = useState();
   const [optionUser, setOptionUser] = useState();
   const [loading, setLoading] = useState<boolean>(false);
@@ -63,7 +63,7 @@ const Diet: React.FC = () => {
 
   return (
     <DietView
-      textos={textos}
+      texts={texts}
       formHook={{ control, handleSubmit }}
       defaultValues={optionUser}
       options={options}

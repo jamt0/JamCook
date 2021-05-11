@@ -5,7 +5,7 @@ import NoFoundView from "./NoFoundView";
 import useShowTabs from "hooks/useShowTabs";
 
 const NoFound: React.FC = () => {
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   useShowTabs(false);
 
@@ -18,7 +18,7 @@ const NoFound: React.FC = () => {
     },
   };
 
-  return <NoFoundView textos={textos} animationOptions={animationOptions} />;
+  return <NoFoundView texts={texts} animationOptions={animationOptions} />;
 };
 
 export default NoFound;

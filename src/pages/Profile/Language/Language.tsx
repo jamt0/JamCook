@@ -8,7 +8,7 @@ import useShowTabs from "hooks/useShowTabs";
 
 const Lenguage: React.FC = () => {
   const history = useHistory();
-  const { textos, setLanguage, language } = useSettingsUser()!;
+  const { texts, setLanguage, language } = useSettingsUser()!;
 
   useShowTabs(false);
 
@@ -20,11 +20,11 @@ const Lenguage: React.FC = () => {
 
   const options = [
     {
-      description: textos.idioma_espanol,
+      description: texts.idioma_espanol,
       value: "1",
     },
     {
-      description: textos.idioma_ingles,
+      description: texts.idioma_ingles,
       value: "2",
     },
   ];
@@ -37,7 +37,7 @@ const Lenguage: React.FC = () => {
 
   return (
     <LanguageView
-      textos={textos}
+      texts={texts}
       formHook={{ control, handleSubmit }}
       defaultValues={defaultValues}
       options={options}

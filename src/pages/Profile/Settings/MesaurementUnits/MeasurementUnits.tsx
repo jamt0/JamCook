@@ -8,7 +8,7 @@ import useShowTabs from "hooks/useShowTabs";
 
 const MeasurementUnits: React.FC = () => {
   const history = useHistory();
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   useShowTabs(false);
   
@@ -22,18 +22,18 @@ const MeasurementUnits: React.FC = () => {
 
   const options = [
     {
-      description: textos.unidades_medida_gramos,
+      description: texts.unidades_medida_gramos,
       value: "1",
     },
     {
-      description: textos.unidades_medida_onzas,
+      description: texts.unidades_medida_onzas,
       value: "2",
     },
   ];
 
   return (
     <MeasurementUnitsView
-      textos={textos}
+      texts={texts}
       formHook={{ control, handleSubmit }}
       defaultValues={defaultValues}
       options={options}

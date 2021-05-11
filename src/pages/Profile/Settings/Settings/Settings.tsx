@@ -4,12 +4,12 @@ import SettingsView from "pages/Profile/Settings/Settings/SettingsView";
 import useShowTabs from "hooks/useShowTabs";
 
 const Settings: React.FC = () => {
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   useShowTabs(false);
   
   return (
-    <SettingsView textos={textos} />
+    <SettingsView texts={texts} />
   );
 };
 

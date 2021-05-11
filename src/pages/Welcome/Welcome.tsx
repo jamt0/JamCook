@@ -5,7 +5,7 @@ import WelcomeView from "pages/Welcome/WelcomeView";
 import useShowTabs from "hooks/useShowTabs";
 
 const Welcome: React.FC = () => {
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   useShowTabs(false);
 
@@ -18,7 +18,7 @@ const Welcome: React.FC = () => {
     },
   };
 
-  return <WelcomeView textos={textos} animationOptions={animationOptions} />;
+  return <WelcomeView texts={texts} animationOptions={animationOptions} />;
 };
 
 export default Welcome;

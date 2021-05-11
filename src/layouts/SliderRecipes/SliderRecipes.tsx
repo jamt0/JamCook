@@ -20,7 +20,7 @@ type Props = {
 }
 
 const SliderRecipes: FunctionComponent<Props> = (props) => {
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   const slideOpts = {
     slidesPerView: props.slidesPerView,
@@ -39,7 +39,7 @@ const SliderRecipes: FunctionComponent<Props> = (props) => {
         </SubTitle>
         <Center direction="row" justify="end">
           <Text color="primary" align="right">
-            <Link to={RoutesPath.listRecipes + props.listRecipes.id}>{textos.ver_mas}</Link>
+            <Link to={RoutesPath.listRecipes + props.listRecipes.id}>{texts.ver_mas}</Link>
           </Text>
         </Center>
       </div>

@@ -8,7 +8,7 @@ import useShowTabs from "hooks/useShowTabs";
 
 const Theme: React.FC = () => {
   const history = useHistory();
-  const { textos, setTheme, theme } = useSettingsUser()!;
+  const { texts, setTheme, theme } = useSettingsUser()!;
 
   useShowTabs(false);
 
@@ -18,11 +18,11 @@ const Theme: React.FC = () => {
 
   const options = [
     {
-      description: textos.tema_claro,
+      description: texts.tema_claro,
       value: "1",
     },
     {
-      description: textos.tema_oscuro,
+      description: texts.tema_oscuro,
       value: "2",
     },
   ];
@@ -35,7 +35,7 @@ const Theme: React.FC = () => {
 
   return (
     <ThemeView
-      textos={textos}
+      texts={texts}
       formHook={{ control, handleSubmit }}
       defaultValues={defaultValues}
       options={options}

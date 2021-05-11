@@ -58,7 +58,7 @@ const ingredientes = [
 const DislikeIngredient: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
   const [ingredients, setIngredients] = useState(ingredientes);
   const [ingredientsUser, setIngredientsUser] = useState();
   const [loading, setLoading] = useState<boolean>(false);
@@ -107,7 +107,7 @@ const DislikeIngredient: React.FC = () => {
 
   return (
     <DislikeIngredientView
-      textos={textos}
+      texts={texts}
       formHook={{}}
       ingredients={ingredients}
       handlerSaveEditButton={handlerSaveEditButton}

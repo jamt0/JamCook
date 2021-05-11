@@ -18,7 +18,7 @@ import useShowTabs from "hooks/useShowTabs";
 const EditProfile: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
   const [errores, setErrores] = useState<string>("");
   const [avatarImageUrl, setAvatarImageUrl] = useState<any>(`${config.baseURL}/images/avatars/default.png`);
   const [loading, setLoading] = useState<boolean>(false);
@@ -123,10 +123,10 @@ const EditProfile: React.FC = () => {
   const defaultValues = { name: "", ageId: "", genderId: "", email: "" };
 
   const rules = {
-    rulesEmail: rulesEmail(textos),
-    rulesPassword: rulesPassword(textos),
-    rulesAge: rulesAge(textos),
-    rulesGender: rulesGender(textos),
+    rulesEmail: rulesEmail(texts),
+    rulesPassword: rulesPassword(texts),
+    rulesAge: rulesAge(texts),
+    rulesGender: rulesGender(texts),
   };
 
   return (
@@ -135,7 +135,7 @@ const EditProfile: React.FC = () => {
       rules={rules}
       handlerSaveEditButton={handlerSaveEditButton}
       fileChangedHandler={fileChangedHandler}
-      textos={textos}
+      texts={texts}
       errores={errores}
       loading={loading}
       optionsAges={optionsAges}

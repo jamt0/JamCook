@@ -130,7 +130,7 @@ const ingredients = [
 
 const FoodBasketAdd: React.FC = () => {
   const history = useHistory();
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   useShowTabs(false);
 
@@ -141,7 +141,7 @@ const FoodBasketAdd: React.FC = () => {
 
   return (
     <FoodBasketAddView
-      textos={textos}
+      texts={texts}
       ingredients={ingredients}
       handlerAddIngredient={handlerAddIngredient}
     />

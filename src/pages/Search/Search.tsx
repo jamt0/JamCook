@@ -214,7 +214,7 @@ const ListRecipes = [
 const Search: React.FC = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const [slidesPerView, setslidesPerView] = useState(1.5);
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   useShowTabs(true);
 
@@ -234,7 +234,7 @@ const Search: React.FC = () => {
     <SearchView
       slidesPerView={slidesPerView}
       listRecipes={ListRecipes}
-      textos={textos}
+      texts={texts}
     />
   );
 };

@@ -10,7 +10,7 @@ import useShowTabs from "hooks/useShowTabs";
 
 const ForgetPassword: React.FC = () => {
   const history = useHistory();
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
   const [errores, setErrores] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -39,13 +39,13 @@ const ForgetPassword: React.FC = () => {
   };
 
   const rules = {
-    rulesEmail: rulesEmail(textos),
+    rulesEmail: rulesEmail(texts),
   };
 
   return (
     <ForgetPasswordView
       rules={rules}
-      textos={textos}
+      texts={texts}
       errores={errores}
       loading={loading}
       defaultValues={defaultValues}

@@ -21,7 +21,7 @@ import useFetch from "hooks/useFetch";
 
 const Profile: React.FC = () => {
   const { auth, logOut } = useAuth()!;
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
   const [user, setUser] = useState({ name: "", email: "" });
   const [avatarImageUrl, setAvatarImageUrl] = useState<any>(`${config.baseURL}/images/avatars/default.png`);
 
@@ -36,61 +36,61 @@ const Profile: React.FC = () => {
 
   const items = [
     {
-      name: textos.perfil_preferencias_alimentarias,
+      name: texts.perfil_preferencias_alimentarias,
       auth: true,
       routerLink: RoutesPath.preferences,
       lines: "none",
       icon: personOutline,
     },
     {
-      name: textos.idioma,
+      name: texts.idioma,
       auth: false,
       routerLink: RoutesPath.language,
       lines: "none",
       icon: globeOutline,
     },
     {
-      name: textos.configuraciones,
+      name: texts.configuraciones,
       auth: false,
       routerLink: RoutesPath.settings,
       lines: "full",
       icon: buildOutline,
     },
     {
-      name: textos.valora + " " + textos.name_app,
+      name: texts.valora + " " + texts.name_app,
       auth: false,
       lines: "none",
       icon: starOutline,
     },
     {
-      name: textos.comparte + " " + textos.name_app,
+      name: texts.comparte + " " + texts.name_app,
       auth: false,
       lines: "full",
       icon: arrowRedoOutline,
     },
     {
-      name: textos.acerca + " " + textos.name_app,
+      name: texts.acerca + " " + texts.name_app,
       auth: false,
       routerLink: RoutesPath.aboutUs,
       lines: "none",
       icon: businessOutline,
     },
     {
-      name: textos.informacion_legal,
+      name: texts.informacion_legal,
       auth: false,
       routerLink: RoutesPath.legalInformation,
       lines: "none",
       icon: briefcaseOutline,
     },
     {
-      name: textos.contacto,
+      name: texts.contacto,
       auth: false,
       routerLink: RoutesPath.contactUs,
       lines: auth.loggedIn ? "full" : "none",
       icon: chatbubbleEllipsesOutline,
     },
     {
-      name: textos.logout,
+      name: texts.logout,
       auth: true,
       lines: "none",
       icon: logOutOutline,
@@ -99,7 +99,7 @@ const Profile: React.FC = () => {
 
   return (
     <ProfileView
-      textos={textos}
+      texts={texts}
       loading={loading || false}
       items={items}
       auth={auth}

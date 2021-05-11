@@ -10,7 +10,7 @@ import useForm from "hooks/useForm";
 
 const SignIn: React.FC = () => {
   const { signIn } = useAuth()!;
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   useShowTabs(false);
 
@@ -22,15 +22,15 @@ const SignIn: React.FC = () => {
   const defaultValues = { email: "", password: "" };
 
   const rules = {
-    rulesEmail: rulesEmail(textos),
-    rulesPassword: rulesPassword(textos),
+    rulesEmail: rulesEmail(texts),
+    rulesPassword: rulesPassword(texts),
   };
 
   return (
     <SignInView
       rules={rules}
       handlerSignInButton={handler}
-      textos={textos}
+      texts={texts}
       errores={errores}
       loading={loading}
       formHook={formHook}

@@ -115,13 +115,13 @@ const categories = [
 ];
 
 const Explore: React.FC = () => {
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   useShowTabs(true);
 
   return (
     <ExploreView
-      textos={textos}
+      texts={texts}
       categories={categories}
     />
   );

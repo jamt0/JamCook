@@ -273,7 +273,7 @@ const recipe = {
 const Recipe: React.FC = () => {
   const [portions, setPortions] = useState(1);
   const [stars, setStars] = useState([ false, false, false, false, false ]);
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   useShowTabs(false);
   
@@ -301,7 +301,7 @@ const Recipe: React.FC = () => {
   
   return (
     <RecipeView
-      textos={textos}
+      texts={texts}
       handlerShare={handlerShare}
       handlerLike={handlerLike}
       handlerMark={handlerMark}

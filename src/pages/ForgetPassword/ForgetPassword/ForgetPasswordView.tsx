@@ -8,7 +8,7 @@ import Loading from "components/Loading/Loading";
 import Error from "components/Error/Error";
 
 type Props = {
-  textos: any;
+  texts: any;
   loading: boolean;
   errores: string;
   formHook: any;
@@ -19,17 +19,17 @@ type Props = {
 
 const ForgetPasswordView: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos.contrasena_restablecer}>
+    <Scaffold.Header title={props.texts.contrasena_restablecer}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
       {props.errores != "" && <Error>{props.errores}</Error>}
       <SubTitle className="mt-6">
-        {props.textos.signin_olvido_contraseña}
+        {props.texts.signin_olvido_contraseña}
       </SubTitle>
       <Text align="center" color="medium" className="mb-4 mt-2">
-        {props.textos.introduce_contrasena}
+        {props.texts.introduce_contrasena}
       </Text>
       <Input
         control={props.formHook.control}
@@ -37,7 +37,7 @@ const ForgetPasswordView: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.email}
         name="email"
         type="email"
-        label={props.textos.campo_correo}
+        label={props.texts.campo_correo}
         rules={props.rules.rulesEmail}
       />
     </Scaffold.Content>
@@ -46,7 +46,7 @@ const ForgetPasswordView: FunctionComponent<Props> = (props) => (
         onClick={props.formHook.handleSubmit(props.handlerForgetPasswordButton)}
         disabled={!props.formHook.isValid || props.formHook.isSubmitting}
       >
-        {props.textos.contrasena_restablecer}
+        {props.texts.contrasena_restablecer}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

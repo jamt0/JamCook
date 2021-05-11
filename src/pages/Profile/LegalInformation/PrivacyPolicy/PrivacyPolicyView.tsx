@@ -2,12 +2,12 @@ import React, { FunctionComponent } from "react";
 import Scaffold from "components/Scaffold/Scaffold";
 
 type Props = {
-  textos: any;
+  texts: any;
 };
 
 const PrivacyPolicyView: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos.politica_privacidad}>
+    <Scaffold.Header title={props.texts.politica_privacidad}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>

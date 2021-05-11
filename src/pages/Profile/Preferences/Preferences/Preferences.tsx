@@ -5,39 +5,39 @@ import { useSettingsUser } from "context/settingsUser";
 import useShowTabs from "hooks/useShowTabs";
 
 const Preferences: React.FC = () => {
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   useShowTabs(false);
 
   const items = [
     {
-      name: textos.preferencias_mis_objetivos,
+      name: texts.preferencias_mis_objetivos,
       routerLink: RoutesPath.myObjectives,
     },
     {
-      name: textos.preferencias_mi_nivel_cocina,
+      name: texts.preferencias_mi_nivel_cocina,
       routerLink: RoutesPath.cookingLevel,
     },
     {
-      name: textos.preferencias_dieta,
+      name: texts.preferencias_dieta,
       routerLink: RoutesPath.diet,
     },
     {
-      name: textos.preferencias_alergias_intolerancias,
+      name: texts.preferencias_alergias_intolerancias,
       routerLink: RoutesPath.allergies,
     },
     {
-      name: textos.preferencias_ingredientes_no_gustan,
+      name: texts.preferencias_ingredientes_no_gustan,
       routerLink: RoutesPath.dislikeIngredient,
     },
     {
-      name: textos.preferencias_numero_comensales,
+      name: texts.preferencias_numero_comensales,
       routerLink: RoutesPath.comensals,
     },
   ];
   
   return (
-    <PreferencesView title={textos.perfil_preferencias} items={items} />
+    <PreferencesView title={texts.perfil_preferencias} items={items} />
   );
 };
 

@@ -10,7 +10,7 @@ import useForm from "hooks/useForm";
 
 const SignUp: React.FC = () => {
   const { signUp } = useAuth()!;
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   useShowTabs(false);
 
@@ -22,15 +22,15 @@ const SignUp: React.FC = () => {
   const defaultValues = { name: "", email: "", password: "" };
 
   const rules = {
-    rulesName: rulesName(textos),
-    rulesEmail: rulesEmail(textos),
-    rulesPassword: rulesPassword(textos),
+    rulesName: rulesName(texts),
+    rulesEmail: rulesEmail(texts),
+    rulesPassword: rulesPassword(texts),
   };
 
   return (
     <SignUpView
       rules={rules}
-      textos={textos}
+      texts={texts}
       errores={errores}
       loading={loading}
       defaultValues={defaultValues}

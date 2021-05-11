@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import Spanish from "lang/es/textos";
-import English from "lang/en/textos";
+import Spanish from "lang/es/texts";
+import English from "lang/en/texts";
 
 type Theme = "dark" | "light";
 
@@ -9,7 +9,7 @@ type Language = "es" | "en";
 type DataSettings = {
   language: Language;
   theme: Theme;
-  textos: typeof English | typeof Spanish;
+  texts: typeof English | typeof Spanish;
   setLanguage: (language: Language) => void;
   setTheme: (theme: Theme) => void;
 };
@@ -17,7 +17,7 @@ type DataSettings = {
 const settingDefaultValues: DataSettings = {
   language: "es",
   theme: "light",
-  textos: Spanish,
+  texts: Spanish,
   setLanguage: () => {},
   setTheme: () => {},
 };
@@ -34,18 +34,18 @@ export const SettingsProvider = ({ children }: Props): JSX.Element => {
   const [language, setLanguageState] = useState<Language>(
     settingDefaultValues.language
   );
-  const [textos, setTextos] = useState<typeof English | typeof Spanish>(
-    settingDefaultValues.textos
+  const [texts, settexts] = useState<typeof English | typeof Spanish>(
+    settingDefaultValues.texts
   );
   const [theme, setThemeState] = useState<Theme>(settingDefaultValues.theme);
 
   const setLanguage = (language: Language) => {
     switch (language) {
       case "en":
-        setTextos(English);
+        settexts(English);
         break;
       case "es":
-        setTextos(Spanish);
+        settexts(Spanish);
         break;
     }
     setLanguageState(language);
@@ -75,7 +75,7 @@ export const SettingsProvider = ({ children }: Props): JSX.Element => {
     else setLanguage("es"); //aca es donde se verificaria el lenguaje predeterminado
   }, []);
 
-  const data = { language, theme, textos, setLanguage, setTheme };
+  const data = { language, theme, texts, setLanguage, setTheme };
 
   return (
     <SettingsContext.Provider value={data}>{children}</SettingsContext.Provider>

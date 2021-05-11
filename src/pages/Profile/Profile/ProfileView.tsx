@@ -16,7 +16,7 @@ import Text from "components/Text/Text";
 import RoutesPath from "utils/routesPath";
 
 type Props = {
-  textos: any;
+  texts: any;
   loading: boolean;
   avatarImageUrl: string;
   auth: any;
@@ -31,7 +31,7 @@ const ProfileView: FunctionComponent<Props> = (props) => (
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
       {props.errores != "" && <Error>{props.errores}</Error>}
-      <Title color="medium">{props.textos.page_perfil}</Title>
+      <Title color="medium">{props.texts.page_perfil}</Title>
       {props.auth.loggedIn ? (
         <Item className="my-4 px-4">
           <Avatar src={props.avatarImageUrl} size={16} />
@@ -39,7 +39,7 @@ const ProfileView: FunctionComponent<Props> = (props) => (
             <Text className="mb-2">{props.user.name}</Text>
             <Text className="mb-2">{props.user.email}</Text>
             <ButtonLink routerLink={RoutesPath.editProfile}>
-              {props.textos.perfil_editar}
+              {props.texts.perfil_editar}
             </ButtonLink>
           </Label>
         </Item>
@@ -47,17 +47,17 @@ const ProfileView: FunctionComponent<Props> = (props) => (
         <Item color="light" className="py-4 rounded-md">
           <Center direction="col" className="mt-2" justify="center">
             <SubTitle className="mb-4">
-              {props.textos.perfil_inicie_sesion}
+              {props.texts.perfil_inicie_sesion}
             </SubTitle>
             <Link to={RoutesPath.signIn} className="w-full pr-2">
-              <Button>{props.textos.signin_iniciar_sesion}</Button>
+              <Button>{props.texts.signin_iniciar_sesion}</Button>
             </Link>
             <Center className="mb-2">
               <Text className="mr-1">
-                {props.textos.signin_no_tiene_cuenta}
+                {props.texts.signin_no_tiene_cuenta}
               </Text>
               <ButtonLink routerLink={RoutesPath.signUp}>
-                {props.textos.signup_registrate}
+                {props.texts.signup_registrate}
               </ButtonLink>
             </Center>
           </Center>

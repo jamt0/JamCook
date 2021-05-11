@@ -10,7 +10,7 @@ import useShowTabs from "hooks/useShowTabs";
 
 const ForgetPasswordValidate: React.FC = () => {
   const history = useHistory();
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
   const [errores, setErrores] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -44,13 +44,13 @@ const ForgetPasswordValidate: React.FC = () => {
   };
 
   const rules = {
-    rulesVerificationCode: rulesVerificationCode(textos),
+    rulesVerificationCode: rulesVerificationCode(texts),
   };
 
   return (
     <ForgetPasswordValidateView
       rules={rules}
-      textos={textos}
+      texts={texts}
       errores={errores}
       loading={loading}
       defaultValues={defaultValues}

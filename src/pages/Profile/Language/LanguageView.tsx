@@ -6,7 +6,7 @@ import SubTitle from "components/Text/SubTitle";
 import { TRadio } from "utils/types";
 
 type Props = {
-  textos: any;
+  texts: any;
   defaultValues: string;
   formHook: any;
   options: any;
@@ -15,12 +15,12 @@ type Props = {
 
 const LanguageView: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos.idioma}>
+    <Scaffold.Header title={props.texts.idioma}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <SubTitle className="mb-8 mt-2" color="medium">
-        {props.textos.idioma_escoge}
+        {props.texts.idioma_escoge}
       </SubTitle>
       <RadioGroup
         control={props.formHook.control}
@@ -32,7 +32,7 @@ const LanguageView: FunctionComponent<Props> = (props) => (
       <Button
         onClick={props.formHook.handleSubmit(props.handlerSaveEditButton)}
       >
-        {props.textos.guardar}
+        {props.texts.guardar}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

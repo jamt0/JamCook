@@ -7,14 +7,14 @@ import { IonFab, IonFabButton, IonIcon } from "@ionic/react";
 import { TIngredient } from "utils/types";
 
 type Props = {
-  textos: any;
+  texts: any;
   ingredients: TIngredient[];
   handlerAddIngredient: (e: any) => void;
 };
 
 const FoodBasketAddView: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos.agregar_ingredientes}>
+    <Scaffold.Header title={props.texts.agregar_ingredientes}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content
@@ -26,7 +26,7 @@ const FoodBasketAddView: FunctionComponent<Props> = (props) => (
         </IonFab>
       }
     >
-      <Searcher placeHolder={props.textos.ingredientes_buscas} />
+      <Searcher placeHolder={props.texts.ingredientes_buscas} />
       <div className="pb-14">
         {props.ingredients.map((ingredient) => {
           return (

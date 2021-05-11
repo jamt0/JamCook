@@ -4,12 +4,12 @@ import { useSettingsUser } from "context/settingsUser";
 import useShowTabs from "hooks/useShowTabs";
 
 const PrivacyPolicy: React.FC = () => {
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   useShowTabs(false);
 
   return (
-    <PrivacyPolicyView textos={textos} />
+    <PrivacyPolicyView texts={texts} />
   );
 };
 

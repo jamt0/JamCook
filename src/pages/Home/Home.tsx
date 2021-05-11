@@ -4,12 +4,12 @@ import { useSettingsUser } from "context/settingsUser";
 import { useUI } from "context/UI";
 
 const Home: React.FC = () => {
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
   const { showTabs } = useUI();
 
   const tabBarStyle = showTabs ? undefined : { display: "none" };
 
-  return <HomeView textos={textos} tabBarStyle={tabBarStyle}/>;
+  return <HomeView texts={texts} tabBarStyle={tabBarStyle}/>;
 };
 
 export default Home;

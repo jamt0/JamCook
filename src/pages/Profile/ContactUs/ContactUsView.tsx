@@ -10,7 +10,7 @@ import Error from "components/Error/Error";
 import { TMessage } from "utils/types";
 
 type Props = {
-  textos: any;
+  texts: any;
   loading: boolean;
   errores: any;
   formHook: any;
@@ -22,20 +22,20 @@ type Props = {
 
 const ContactUsView: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos.contacto}>
+    <Scaffold.Header title={props.texts.contacto}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
       {props.errores != "" && <Error>{props.errores}</Error>}
-      <SubTitle>{props.textos.contacto_header}</SubTitle>
+      <SubTitle>{props.texts.contacto_header}</SubTitle>
       <Input
         control={props.formHook.control}
         errors={props.formHook.errors}
         defaultValue={props.defaultValues.email}
         name="email"
         type="email"
-        label={props.textos.campo_correo}
+        label={props.texts.campo_correo}
         rules={props.rules.rulesEmail}
       />
       <Select
@@ -44,7 +44,7 @@ const ContactUsView: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.subjectId}
         options={props.optionsSubjects}
         name="subjectId"
-        label={props.textos.campo_asunto}
+        label={props.texts.campo_asunto}
         rules={props.rules.rulesSubject}
       />
       <TextArea
@@ -52,8 +52,8 @@ const ContactUsView: FunctionComponent<Props> = (props) => (
         errors={props.formHook.errors}
         defaultValue={props.defaultValues.message}
         name="message"
-        placeHolder={props.textos.contacto_placeholder}
-        label={props.textos.campo_mensaje}
+        placeHolder={props.texts.contacto_placeholder}
+        label={props.texts.campo_mensaje}
         rules={props.rules.rulesMessage}
       />
     </Scaffold.Content>
@@ -62,7 +62,7 @@ const ContactUsView: FunctionComponent<Props> = (props) => (
         onClick={props.formHook.handleSubmit(props.handlerSendButton)}
         disabled={!props.formHook.isValid || props.formHook.isSubmitting}
       >
-        {props.textos.contacto_enviar}
+        {props.texts.contacto_enviar}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

@@ -6,7 +6,7 @@ import SliderRecipes from "layouts/SliderRecipes/SliderRecipes";
 import { TRecipe } from "utils/types";
 
 type Props = {
-  textos: any;
+  texts: any;
   slidesPerView: number;
   listRecipes: {
     id: string;
@@ -19,11 +19,11 @@ const Search: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Content>
       <Title align="center" color="medium">
-        {props.textos.slogan_2_1}
+        {props.texts.slogan_2_1}
         <br />
-        {props.textos.slogan_2_2}
+        {props.texts.slogan_2_2}
       </Title>
-      <Searcher placeHolder={props.textos.search_buscar_recetas} />
+      <Searcher placeHolder={props.texts.search_buscar_recetas} />
       {props.listRecipes.map((recipes) => (
         <SliderRecipes
           listRecipes={recipes}

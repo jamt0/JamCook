@@ -4,11 +4,11 @@ import { useSettingsUser } from "context/settingsUser";
 import useShowTabs from "hooks/useShowTabs";
 
 const CookiesPolicy: React.FC = () => {
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   useShowTabs(false);
   
-  return <CookiesPolicyView textos={textos} />;
+  return <CookiesPolicyView texts={texts} />;
 };
 
 export default CookiesPolicy;

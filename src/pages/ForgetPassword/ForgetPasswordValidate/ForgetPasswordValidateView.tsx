@@ -10,7 +10,7 @@ import Input from "components/Input/Input";
 import Text from "components/Text/Text";
 
 type Props = {
-  textos: any;
+  texts: any;
   loading: boolean;
   errores: string;
   formHook: any;
@@ -22,15 +22,15 @@ type Props = {
 
 const ForgetPasswordValidateView: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.textos.contrasena_restablecer}>
+    <Scaffold.Header title={props.texts.contrasena_restablecer}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
       {props.errores != "" && <Error>{props.errores}</Error>}
-      <SubTitle className="mt-6">{props.textos.consulta_correo}</SubTitle>
+      <SubTitle className="mt-6">{props.texts.consulta_correo}</SubTitle>
       <Text align="center" color="medium" className="mb-4 mt-2">
-        {props.textos.introduce_codigo}
+        {props.texts.introduce_codigo}
       </Text>
       <Input
         control={props.formHook.control}
@@ -38,12 +38,12 @@ const ForgetPasswordValidateView: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.VerificationCode}
         name="VerificationCode"
         type="number"
-        label={props.textos.campo_nombre}
+        label={props.texts.campo_nombre}
         rules={props.rules.rulesVerificationCode}
       />
       <Center justify="end">
         <ButtonLink onClick={props.handlerResendMailButton}>
-          {props.textos.no_recibio_contrasena}
+          {props.texts.no_recibio_contrasena}
         </ButtonLink>
       </Center>
     </Scaffold.Content>
@@ -54,7 +54,7 @@ const ForgetPasswordValidateView: FunctionComponent<Props> = (props) => (
         )}
         disabled={!props.formHook.isValid || props.formHook.isSubmitting}
       >
-        {props.textos.contrasena_restablecer}
+        {props.texts.contrasena_restablecer}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

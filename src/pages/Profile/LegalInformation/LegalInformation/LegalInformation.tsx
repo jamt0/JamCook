@@ -5,26 +5,26 @@ import { useSettingsUser } from "context/settingsUser";
 import useShowTabs from "hooks/useShowTabs";
 
 const LegalInformation: React.FC = () => {
-  const { textos } = useSettingsUser()!;
+  const { texts } = useSettingsUser()!;
 
   useShowTabs(false);
 
   const items = [
     {
-      name: textos.terminos_condiciones,
+      name: texts.terminos_condiciones,
       routerLink: RoutesPath.termsAndConditions,
     },
     {
-      name: textos.politica_privacidad,
+      name: texts.politica_privacidad,
       routerLink: RoutesPath.privacyPolicy,
     },
     {
-      name: textos.politica_cookies,
+      name: texts.politica_cookies,
       routerLink: RoutesPath.cookiesPolicy,
     },
   ];
 
-  return <LegalInformationView textos={textos} items={items} />;
+  return <LegalInformationView texts={texts} items={items} />;
 };
 
 export default LegalInformation;
