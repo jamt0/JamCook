@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import Home from "pages/HomeView/Home";
-import { IonApp, IonLoading } from "@ionic/react";
+import { Home } from "containers";
+import { IonApp } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { useAuth } from "context/auth";
+import { Loading } from "JamUI";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -34,7 +35,7 @@ const App: React.FC = () => {
   if (!auth || !auth.initialized) {
     return (
       <IonApp>
-        <IonLoading isOpen={true} mode="ios" translucent spinner="circles" />
+        <Loading isOpen={true} />
       </IonApp>
     );
   } else {

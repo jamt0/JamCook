@@ -31,7 +31,7 @@ const EditProfileView: FunctionComponent<Props> = (props) => (
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
-      {props.errores != "" && <ErrorBox>{props.errores}</ErrorBox>}
+      {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
       <Center direction="col" className="mt-8">
         <Avatar src={props.avatarImageUrl} size={20} sizeResponsive={60} />
         <div className="mt-4">

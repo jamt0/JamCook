@@ -14,7 +14,6 @@ import Response from "components/Response";
 import ResponseBox from "components/ResponseBox";
 import SliderRecipes from "components/SliderRecipes";
 import SliderRecipesSimple from "components/SliderRecipes/SliderRecipesSimple";
-import Slogan from "components/Slogan";
 import TitleRecipe from "components/TitleRecipe";
 
 export {
@@ -34,6 +33,5 @@ export {
   ResponseBox,
   SliderRecipes,
   SliderRecipesSimple,
-  Slogan,
   TitleRecipe,
 }

@@ -18,7 +18,7 @@ const useForm = <T>(props: { dataFech: (req: T) => any; route: string }) => {
   const handler = async (req: T) => {
     setLoading(true);
     const data = await props.dataFech(req);
-    if (data != null) {
+    if (data !== null) {
       setErrores(data);
       setLoading(false);
     } else {

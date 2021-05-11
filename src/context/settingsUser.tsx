@@ -67,11 +67,11 @@ export const SettingsProvider = ({ children }: Props): JSX.Element => {
 
   useEffect(() => {
     const theme = localStorage.getItem("theme");
-    if (theme == "dark" || theme == "light") setTheme(theme);
+    if (theme === "dark" || theme === "light") setTheme(theme);
     else setTheme("light"); //aca es donde se verificaria el tema predeterminado
 
     const language = localStorage.getItem("language");
-    if (language == "en" || language == "es") setLanguage(language);
+    if (language === "en" || language === "es") setLanguage(language);
     else setLanguage("es"); //aca es donde se verificaria el lenguaje predeterminado
   }, []);
 

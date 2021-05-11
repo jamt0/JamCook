@@ -1,8 +1,5 @@
 import React, { FunctionComponent } from "react";
-import Button from "JamUI/Button/Button";
-import RadioGroup from "JamUI/RadioGroup/RadioGroup";
-import Scaffold from "JamUI/Scaffold/Scaffold";
-import SubTitle from "JamUI/Text/SubTitle";
+import { Button, RadioGroup, Scaffold, SubTitle } from "JamUI";
 import { TRadio } from "utils/types";
 
 type Props = {

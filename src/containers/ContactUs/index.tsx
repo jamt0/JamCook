@@ -33,7 +33,7 @@ const ContactUs: React.FC = () => {
   const handlerSendButton = async (message: TMessage) => {
     setLoading(true);
     const errorMessage = await Server.sendMessage(message);
-    if (errorMessage.data.error != null) {
+    if (errorMessage.data.error !== null) {
       setErrores(errorMessage.data.error);
       setLoading(false);
     } else {

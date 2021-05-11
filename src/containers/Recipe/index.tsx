@@ -288,7 +288,7 @@ const Recipe: React.FC = () => {
   const handlerValoration = (e: any, index: number) => {
     e.preventDefault();
     var newEstrellas = [...stars];
-    newEstrellas.map((estrella, i) => {
+    newEstrellas.forEach((estrella, i) => {
       if (i <= index) {
         newEstrellas[i] = true;
       } else {

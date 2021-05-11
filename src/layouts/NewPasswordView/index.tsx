@@ -24,7 +24,7 @@ const NewPasswordView: FunctionComponent<Props> = (props) => (
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
-      {props.errores != "" && <ErrorBox>{props.errores}</ErrorBox>}
+      {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
       <Input
         control={props.formHook.control}
         errors={props.formHook.errors}

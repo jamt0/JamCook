@@ -32,10 +32,10 @@ const ItemIngredientView: FunctionComponent<Props> = (props) => (
         />
         <Label className="ion-text-wrap ml-2 my-4">
           <Text color="dark">
-            <p>{props.ingredient.name}</p>
+            {props.ingredient.name}
           </Text>
           <Text color="medium">
-            <p>{props.ingredient.amount + " Unidades"}</p>
+            {props.ingredient.amount + " Unidades"}
           </Text>
         </Label>
       </Item>

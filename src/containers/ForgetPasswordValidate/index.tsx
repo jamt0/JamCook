@@ -30,7 +30,7 @@ const ForgetPasswordValidate: React.FC = () => {
     const errorValidateVerificationCode = await Server.validateVerificationCode(
       verificationCode
     );
-    if (errorValidateVerificationCode.data.error != null) {
+    if (errorValidateVerificationCode.data.error !== null) {
       setErrores(errorValidateVerificationCode.data.error);
       setLoading(false);
     } else {

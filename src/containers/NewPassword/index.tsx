@@ -30,7 +30,7 @@ const NewPassword: React.FC = () => {
     setLoading(true);
     //HAY QUE VER LA FORMA PARA RESTABLECER COMO CAMBIAR
     const errorChangePassword = await Server.changePassword(password);
-    if (errorChangePassword.data.error != null) {
+    if (errorChangePassword.data.error !== null) {
       setErrores(errorChangePassword.data.error);
       setLoading(false);
     } else {

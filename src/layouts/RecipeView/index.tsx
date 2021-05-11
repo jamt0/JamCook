@@ -105,7 +105,7 @@ const Recipe: FunctionComponent<Props> = (props) => (
               className="text-lg mr-1"
             />
             <Text color="medium" align="center" className="mr-2">
-              {"8" + " " + props.texts.ingredientes}
+              {props.recipe.ingredients.length} {props.texts.ingredientes}
             </Text>
           </Center>
           <Center direction="row" justify="center">

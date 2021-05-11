@@ -18,7 +18,7 @@ const AllergiesView: FunctionComponent<Props> = (props) => (
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
-      {props.errores != "" && <ErrorBox>{props.errores}</ErrorBox>}
+      {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
       <Title>{props.texts.alergias_intolerancias_header}</Title>
       <SubTitle className="mb-8 mt-2" color="medium">
         {props.texts.alergias_intolerancias_sub_header}

@@ -29,7 +29,7 @@ const ForgetPassword: React.FC = () => {
   const handlerForgetPasswordButton = async (email: any) => {
     setLoading(true);
     const errorMailForgetPassword = await Server.sendMailForgetPassword(email);
-    if (errorMailForgetPassword.data.error != null) {
+    if (errorMailForgetPassword.data.error !== null) {
       setErrores(errorMailForgetPassword.data.error);
       setLoading(false);
     } else {

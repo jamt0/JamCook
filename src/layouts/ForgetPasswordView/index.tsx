@@ -26,7 +26,7 @@ const ForgetPasswordView: FunctionComponent<Props> = (props) => (
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
-      {props.errores != "" && <ErrorBox>{props.errores}</ErrorBox>}
+      {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
       <SubTitle className="mt-6">
         {props.texts.signin_olvido_contraseña}
       </SubTitle>

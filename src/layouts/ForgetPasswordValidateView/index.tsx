@@ -29,7 +29,7 @@ const ForgetPasswordValidateView: FunctionComponent<Props> = (props) => (
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
-      {props.errores != "" && <ErrorBox>{props.errores}</ErrorBox>}
+      {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
       <SubTitle className="mt-6">{props.texts.consulta_correo}</SubTitle>
       <Text align="center" color="medium" className="mb-4 mt-2">
         {props.texts.introduce_codigo}

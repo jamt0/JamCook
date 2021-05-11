@@ -40,7 +40,7 @@ const EditProfile: React.FC = () => {
     if (auth.user?.id) {
       setLoading(true);
       const errorUpdate = await Server.putUser(auth.user.id, user);
-      if (errorUpdate.data.error != null) {
+      if (errorUpdate.data.error !== null) {
         setErrores(errorUpdate.data.error);
         setLoading(false);
       } else {

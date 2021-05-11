@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import Lottie from "react-lottie";
 import { Scaffold, SubTitle, Button } from "JamUI";
 import RoutesPath from "routes";
-import { Brand, Slogan } from "components";
+import { Brand } from "components";
 
 type Props = {
   texts: any;
@@ -15,7 +15,7 @@ const NoFoundView: FunctionComponent<Props> = (props) => (
       <div className="flex flex-col justify-between h-full">
         <div>
           <Brand texts={props.texts} />
-          <Slogan color="medium">{props.texts.slogan}</Slogan>
+          <SubTitle color="medium">{props.texts.slogan}</SubTitle>
         </div>
         <div className="flex flex-col justify-center h-full">
           <Lottie options={props.animationOptions} height={220} width={335} />

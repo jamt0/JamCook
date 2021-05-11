@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
-import { Scaffold, Button } from "JamUI";
-import { Brand, Slogan } from "components";
+import { Scaffold, Button, SubTitle } from "JamUI";
+import { Brand } from "components";
 import Lottie from "react-lottie";
 import RoutesPath from "routes";
 
@@ -15,7 +15,7 @@ const WelcomeView: FunctionComponent<Props> = (props) => (
       <div className="flex flex-col justify-between h-full">
         <div>
           <Brand texts={props.texts} />
-          <Slogan color="medium">{props.texts.slogan}</Slogan>
+          <SubTitle color="medium">{props.texts.slogan}</SubTitle>
         </div>
         <Lottie options={props.animationOptions} height={350} width={350} />
         <div className="pt-2 grid md:grid-cols-2 gap-4">

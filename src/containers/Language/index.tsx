@@ -12,7 +12,7 @@ const Lenguage: React.FC = () => {
 
   useShowTabs(false);
 
-  const defaultValues = language == "en" ? "2" : "1";
+  const defaultValues = language === "en" ? "2" : "1";
 
   const { control, handleSubmit } = useForm({
     mode: "onSubmit",
@@ -30,7 +30,7 @@ const Lenguage: React.FC = () => {
   ];
 
   const handlerSaveEditButton = (radio: TRadio) => {
-    if (radio.radio == "2") setLanguage("en");
+    if (radio.radio === "2") setLanguage("en");
     else setLanguage("es");
     history.goBack();
   };

@@ -17,7 +17,7 @@ const ImageCover: FunctionComponent<Props> = ({
   const opacityCover = props.fullCover ? "25" : "50";
   return (
     <div className="relative flex">
-      {props.children != null && (
+      {props.children !== null && (
         <Fragment>
           <Container
             color="dark"

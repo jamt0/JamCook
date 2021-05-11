@@ -12,7 +12,7 @@ const Theme: React.FC = () => {
 
   useShowTabs(false);
 
-  const defaultValues = theme == "dark" ? "2" : "1";
+  const defaultValues = theme === "dark" ? "2" : "1";
 
   const { control, handleSubmit } = useForm({ mode: "onSubmit" });
 
@@ -28,7 +28,7 @@ const Theme: React.FC = () => {
   ];
 
   const handlerSaveEditButton = (radio: TRadio) => {
-    if (radio.radio == "2") setTheme("dark");
+    if (radio.radio === "2") setTheme("dark");
     else setTheme("light");
     history.goBack();
   };

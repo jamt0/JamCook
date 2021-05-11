@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ProfileView } from "layouts";
 import { useAuth } from "context/auth";
 import Server from "server";
@@ -22,7 +22,6 @@ import useFetch from "hooks/useFetch";
 const Profile: React.FC = () => {
   const { auth, logOut } = useAuth()!;
   const { texts } = useSettingsUser()!;
-  const [user, setUser] = useState({ name: "", email: "" });
   const [avatarImageUrl, setAvatarImageUrl] = useState<any>(`${config.baseURL}/images/avatars/default.png`);
 
   useShowTabs(true);

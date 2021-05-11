@@ -26,7 +26,7 @@ const DietView: FunctionComponent<Props> = (props) => (
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
-      {props.errores != "" && <ErrorBox>{props.errores}</ErrorBox>}
+      {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
       <Loading isOpen={props.loading} />
       <Title>{props.texts.dieta_header}</Title>
       <SubTitle className="mb-8 mt-2" color="medium">

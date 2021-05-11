@@ -31,7 +31,7 @@ const CommensalsView: FunctionComponent<Props> = (props) => (
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
-      {props.errores != "" && <ErrorBox>{props.errores}</ErrorBox>}
+      {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
       <Title>{props.texts.comensales_header}</Title>
       <SubTitle className="mb-8 mt-2" color="medium">
         {props.texts.comensales_sub_header}
@@ -41,7 +41,7 @@ const CommensalsView: FunctionComponent<Props> = (props) => (
         options={props.options}
         defaultOption={props.defaultValues}
       />
-      {props.watchRadio == "2" && (
+      {props.watchRadio === "2" && (
         <Counter
           portions={props.amountUser}
           setPortions={props.setAmountUser}

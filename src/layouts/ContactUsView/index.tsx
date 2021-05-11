@@ -29,7 +29,7 @@ const ContactUsView: FunctionComponent<Props> = (props) => (
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
-      {props.errores != "" && <ErrorBox>{props.errores}</ErrorBox>}
+      {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
       <SubTitle>{props.texts.contacto_header}</SubTitle>
       <Input
         control={props.formHook.control}

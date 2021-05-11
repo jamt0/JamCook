@@ -18,7 +18,7 @@ const DislikeIngredientView: FunctionComponent<Props> = (props) => (
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
-      {props.errores != "" && <ErrorBox>{props.errores}</ErrorBox>}
+      {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
       <Title>{props.texts.ingredientes_no_gustan_header}</Title>
       <SubTitle className="mb-8 mt-2" color="medium">
         {props.texts.ingredientes_no_gustan_sub_header}

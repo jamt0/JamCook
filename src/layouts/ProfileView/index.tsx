@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { Fragment, FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import { ItemIcon } from "components";
 import RoutesPath from "routes";
@@ -32,7 +32,7 @@ const ProfileView: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
-      {props.errores != "" && <ErrorBox>{props.errores}</ErrorBox>}
+      {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
       <Title color="medium">{props.texts.page_perfil}</Title>
       {props.auth.loggedIn ? (
         <Item className="my-4 px-4">
@@ -89,6 +89,9 @@ const ProfileView: FunctionComponent<Props> = (props) => (
               </ItemIcon>
             );
           }
+          return (
+            <Fragment key={index}/>
+          )
         })}
       </div>
     </Scaffold.Content>

@@ -1,6 +1,6 @@
 import React from "react";
-import ScaffoldContent from "JamUI/Scaffold/ScaffoldContent";
-import ScaffoldFooter from "JamUI/Scaffold/ScaffoldFooter";
+import ScaffoldContent from "JamUI/Scaffold/ScaffoldContent/ScaffoldContent";
+import ScaffoldFooter from "JamUI/Scaffold/ScaffoldFooter/ScaffoldFooter";
 import ScaffoldHeader from "JamUI/Scaffold/ScaffoldHeader/ScaffoldHeader";
 import { IonPage } from "@ionic/react";
 
