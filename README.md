@@ -1,7 +1,8 @@
 # JamCook
-Una app de recetas multiplataforma (android, ios, web, electron) 
+Una app de recetas multiplataforma (Android, IOS, Web, Electron) 
 
 Tecnologias usadas:
 -React
 -Ionic
--Tailwinds
+-Tailwind
+-React Hook Form

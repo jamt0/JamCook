@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Home from "pages/Home/Home";
+import Home from "pages/HomeView/Home";
 import { IonApp, IonLoading } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { useAuth } from "context/auth";
