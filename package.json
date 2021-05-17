@@ -31,6 +31,7 @@
     "cordova-plugin-camera": "^5.0.1",
     "cordova-plugin-file-transfer": "^1.7.1",
     "ionicons": "^5.5.0",
+    "plop": "^2.7.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.0.0",

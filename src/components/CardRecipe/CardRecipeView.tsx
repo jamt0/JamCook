@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
-import { IonButton, IonButtons, IonIcon } from "@ionic/react";
-import { Avatar, ImageCover, Card, Text } from "JamUI";
+import { IonIcon } from "@ionic/react";
+import { Avatar, ImageCover, Card, Text, ButtonIcon } from "JamUI";
 import { Rating } from "components";
 import { TRecipeCard } from "utils/types";
 import RoutesPath from "routes";
@@ -47,39 +47,30 @@ const CardRecipeView: FunctionComponent<Props> = (props) => (
     </Card.Content>
     <Card.Header color="light">
       <Card.Header.Compact>
-        <IonButtons>
-          <IonButton onClick={props.handlerShareButton}>
-            <IonIcon
-              icon={arrowRedoOutline}
-              color="medium"
-              className="text-4xl -mx-2"
-            />
-          </IonButton>
-        </IonButtons>
-        <IonButtons>
-          <IonButton onClick={props.handlerLikeButton}>
-            <IonIcon
-              icon={props.like ? heart : heartOutline}
-              color="medium"
-              className="text-4xl my-auto -mx-2"
-            />
-          </IonButton>
-        </IonButtons>
+        <ButtonIcon
+          onClick={props.handlerShareButton}
+          icon={arrowRedoOutline}
+          color="medium"
+          size="4xl"
+        />
+        <ButtonIcon
+          onClick={props.handlerLikeButton}
+          icon={props.like ? heart : heartOutline}
+          color="medium"
+          size="4xl"
+        />
         <Text color="medium" align="left" className="text-xl my-px pt-1">
           {props.recipe.likes}
         </Text>
       </Card.Header.Compact>
       <Card.Header.Expanded />
       <Card.Header.Compact>
-        <IonButtons>
-          <IonButton onClick={props.handlerMarkButton}>
-            <IonIcon
-              icon={props.mark ? bookmark : bookmarkOutline}
-              color="medium"
-              className="text-4xl -mx-2"
-            />
-          </IonButton>
-        </IonButtons>
+        <ButtonIcon
+          onClick={props.handlerMarkButton}
+          icon={props.mark ? bookmark : bookmarkOutline}
+          color="medium"
+          size="4xl"
+        />
       </Card.Header.Compact>
     </Card.Header>
   </Card>

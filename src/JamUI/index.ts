@@ -24,6 +24,8 @@ import Text from 'JamUI/Text';
 import SubTitle from 'JamUI/Text/SubTitle';
 import Title from 'JamUI/Text/Title';
 import TextArea from 'JamUI/TextArea';
+import Modal from 'JamUI/Modal';
+import ButtonIcon from 'JamUI/ButtonIcon';
 
 export {
   Avatar,
@@ -52,4 +54,6 @@ export {
   SubTitle,
   Title,
   TextArea,
+  Modal,
+  ButtonIcon,
 }

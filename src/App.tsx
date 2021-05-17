@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Home } from "containers";
+import { Home } from "pages/containers";
 import { IonApp } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { useAuth } from "context/auth";
