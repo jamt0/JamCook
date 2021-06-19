@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent } from "react";
+import { Fragment, FunctionComponent } from "react";
 import { TResponse } from "utils/types";
 import { Response } from "components";
 

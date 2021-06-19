@@ -1,6 +1,6 @@
 import { IonItemDivider } from "@ionic/react";
-import React, { FunctionComponent } from "react";
-import { Center, Text, Button } from "JamUI";
+import { FunctionComponent } from "react";
+import { Center, Text, Button } from "UI";
 
 type Props = {
   portions: number;
@@ -9,7 +9,7 @@ type Props = {
   handlerSubtract: (e: any) => void;
 };
 
-const CounterView: FunctionComponent<Props> = ({
+const View: FunctionComponent<Props> = ({
   portions,
   disabled,
   handlerPlus,
@@ -57,4 +57,4 @@ const CounterView: FunctionComponent<Props> = ({
   );
 };
 
-export default CounterView;
+export default View;

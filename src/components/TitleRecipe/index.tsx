@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from "react";
-import { SubTitle } from "JamUI";
+import { FunctionComponent } from "react";
+import { SubTitle } from "UI";
 
 type Props = {};
 

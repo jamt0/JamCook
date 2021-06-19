@@ -1,6 +1,6 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 import { IonCheckbox } from "@ionic/react";
-import { Item, Image, Label, Text } from "JamUI";
+import { Item, Image, Label, Text } from "UI";
 import { Counter } from "components";
 import { TIngredient } from "utils/types";
 
@@ -16,7 +16,7 @@ type Props = {
   setPortions: (e: any) => void;
 };
 
-const ItemIngredientView: FunctionComponent<Props> = (props) => (
+const View: FunctionComponent<Props> = (props) => (
   <div className="flex flex-col my-2">
     <div className="relative flex flex-row">
       <Item
@@ -58,4 +58,4 @@ const ItemIngredientView: FunctionComponent<Props> = (props) => (
     )}
   </div>
 );
-export default ItemIngredientView;
+export default View;

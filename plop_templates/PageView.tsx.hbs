@@ -1,18 +1,13 @@
-import React, { FunctionComponent } from "react";
-import Scaffold from "JamUI/Scaffold/Scaffold";
+import { FunctionComponent } from "react";
 
 type Props = {
-  texts: any;
+  styles: any;
 };
 
-const {{pascalCase name}}View: FunctionComponent<Props> = (props) => (
-  <Scaffold>
-    <Scaffold.Header title={""}>
-      <Scaffold.Header.BackAction />
-    </Scaffold.Header>
-    <Scaffold.Content></Scaffold.Content>
-    <Scaffold.Footer></Scaffold.Footer>
-  </Scaffold>
+const View: FunctionComponent<Props> = (props) => (
+  <div>
+    {{pascalCase name}}
+  </div>
 );
 
-export default {{pascalCase name}}View;
+export default View;

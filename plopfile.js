@@ -28,13 +28,23 @@ module.exports = plop => {
         actions: [
           {
             type: 'add',
-            path: 'src/containers/{{pascalCase name}}/index.tsx',
+            path: 'src/pages/{{pascalCase name}}/index.tsx',
             templateFile: 'plop_templates/Page.tsx.hbs',
           },
           {
             type: 'add',
-            path: 'src/layouts/{{pascalCase name}}View/index.tsx',
+            path: 'src/pages/{{pascalCase name}}/view.tsx',
             templateFile: 'plop_templates/PageView.tsx.hbs',
+          },
+          {
+            type: 'add',
+            path: 'src/pages/{{pascalCase name}}/hooks/index.ts',
+            templateFile: 'plop_templates/PageHooks.ts.hbs',
+          },
+          {
+            type: 'add',
+            path: 'src/pages/{{pascalCase name}}/useStyles.ts',
+            templateFile: 'plop_templates/PageStyles.ts.hbs',
           },
         ],
       });

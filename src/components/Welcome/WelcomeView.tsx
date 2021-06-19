@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 import {
   Center,
   Button,
@@ -9,7 +9,7 @@ import {
   Image,
   SubTitle,
   ButtonLink,
-} from "JamUI";
+} from "UI";
 import { closeCircleOutline } from "ionicons/icons";
 import Brand from "components/Brand";
 
@@ -23,7 +23,7 @@ type Props = {
   }[];
 };
 
-const WelcomeView: FunctionComponent<Props> = (props) => (
+const View: FunctionComponent<Props> = (props) => (
   <Modal isOpen={props.showModal}>
     <div>
       <Center justify="end" className="mt-4 mr-4">
@@ -52,4 +52,4 @@ const WelcomeView: FunctionComponent<Props> = (props) => (
   </Modal>
 );
 
-export default WelcomeView;
+export default View;

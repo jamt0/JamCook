@@ -1,12 +1,12 @@
-import React, { FunctionComponent } from "react";
-import { Avatar, Item, Label, Text } from "JamUI";
+import { FunctionComponent } from "react";
+import { Avatar, Item, Label, Text } from "UI";
 import { TResponse } from "utils/types";
 
 type Props = {
   response: TResponse;
 };
 
-const ResponseView: FunctionComponent<Props> = ({ response }) => {
+const View: FunctionComponent<Props> = ({ response }) => {
   return (
     <Item className="ion-no-padding">
       <div>
@@ -25,4 +25,4 @@ const ResponseView: FunctionComponent<Props> = ({ response }) => {
   );
 };
 
-export default ResponseView;
+export default View;

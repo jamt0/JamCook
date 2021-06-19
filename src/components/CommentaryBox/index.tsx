@@ -1,6 +1,6 @@
-import React, { Fragment, FunctionComponent } from "react";
+import { Fragment, FunctionComponent } from "react";
 import { Commentary } from "components";
-import { ButtonLink } from "JamUI";
+import { ButtonLink } from "UI";
 import { TCommentary } from "utils/types";
 import { useSettingsUser } from "context/settingsUser";
 

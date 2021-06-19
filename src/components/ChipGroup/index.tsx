@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from "react";
-import { Label, Chip } from "JamUI";
+import { FunctionComponent } from "react";
+import { Label, Chip } from "UI";
 
 interface Props {
   ingredientes: {

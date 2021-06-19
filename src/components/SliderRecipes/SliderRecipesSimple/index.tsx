@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import { Text, Slides, Slide, ImageCover } from "JamUI";
+import { Text, Slides, Slide, ImageCover } from "UI";
 import { Rating } from "components";
 import { TRecipeStars } from "utils/types";
 import RoutesPath from "routes";

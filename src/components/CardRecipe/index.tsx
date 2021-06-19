@@ -1,5 +1,5 @@
-import React, { FunctionComponent, useState } from "react";
-import CardRecipeView from "components/CardRecipe/CardRecipeView";
+import { FunctionComponent, useState } from "react";
+import View from "./view";
 import { TRecipeCard } from "utils/types";
 
 type Props = {
@@ -22,7 +22,7 @@ const CardRecipe: FunctionComponent<Props> = ({ recipe }) => {
     setMark(!mark);
   };
   return (
-    <CardRecipeView
+    <View
       recipe={recipe}
       like={like}
       mark={mark}

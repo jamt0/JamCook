@@ -1,5 +1,5 @@
-import React, { FunctionComponent, useState } from "react";
-import CommentaryView from "components/Commentary/CommentaryView";
+import { FunctionComponent, useState } from "react";
+import View from "./view";
 import { TCommentary } from "utils/types";
 
 type Props = {
@@ -21,7 +21,7 @@ const Commentary: FunctionComponent<Props> = ({ commentary }) => {
   };
 
   return (
-    <CommentaryView
+    <View
       commentary={commentary}
       like={like}
       showResponses={showResponses}

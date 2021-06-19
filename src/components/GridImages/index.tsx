@@ -2,7 +2,7 @@ import { IonIcon } from "@ionic/react";
 import { FunctionComponent } from "react";
 import { fastFoodOutline } from "ionicons/icons";
 import { Link } from "react-router-dom";
-import { ImageCover, Text } from "JamUI";
+import { ImageCover, Text } from "UI";
 import { TCategory } from "utils/types";
 import RoutesPath from "routes";
 

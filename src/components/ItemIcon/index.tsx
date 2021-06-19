@@ -1,6 +1,6 @@
 import { IonIcon } from "@ionic/react";
-import { Item } from "JamUI";
-import { SubTitle } from "JamUI";
+import { Item } from "UI";
+import { SubTitle } from "UI";
 import { FunctionComponent } from "react";
 
 type Props = {

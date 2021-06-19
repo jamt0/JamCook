@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import ItemIngredientView from "components/ItemIngredient/ItemIngredientView";
 import { TIngredient } from "utils/types";
 

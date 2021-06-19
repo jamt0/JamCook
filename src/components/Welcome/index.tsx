@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import WelcomeView from "components/Welcome/WelcomeView";
 import { useSettingsUser } from "context/settingsUser";
 

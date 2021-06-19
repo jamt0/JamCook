@@ -1,10 +1,9 @@
-import React from "react";
-import {{pascalCase name}}View from "layouts/{{pascalCase name}}View";
-import { useSettingsUser } from "context/settingsUser";
+import View from './view';
+import useStyles from './useStyles';
 
 const {{pascalCase name}}: React.FC = () => {
-  const { texts } = useSettingsUser()!;
-  return <{{pascalCase name}}View texts={texts}/>;
+  const styles = useStyles();
+  return <View styles={styles}/>;
 };
 
 export default {{pascalCase name}};

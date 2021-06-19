@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from "react";
-import { Item, Text } from "JamUI";
+import { FunctionComponent } from "react";
+import { Item, Text } from "UI";
 
 interface Props {}
 

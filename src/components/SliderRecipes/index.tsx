@@ -1,6 +1,6 @@
-import React, { Fragment, FunctionComponent } from "react";
+import { Fragment, FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import { Text, Slides, Slide, SubTitle, Center, ImageCover } from "JamUI";
+import { Text, Slides, Slide, SubTitle, Center, ImageCover } from "UI";
 import { useSettingsUser } from "context/settingsUser";
 import { TRecipe } from "utils/types";
 import RoutesPath from "routes";
