@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useAuth } from "context/auth";
 import { useForm } from "react-hook-form";
-import { useSettingsUser } from "context/settingsUser";
+import { useTranslation } from 'react-i18next';
 import Server from "server";
-import config from "config/general";
+import config from "config";
 import {
   rulesEmail,
   rulesPassword,
@@ -12,13 +12,13 @@ import {
   rulesAge,
 } from "utils/rulesValidation";
 import View from "./view";
-import { TUserEdit } from "utils/types";
+import { TUserEdit } from "models";
 import useShowTabs from "hooks/useShowTabs";
 
 const EditProfile: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
   const [errores, setErrores] = useState<string>("");
   const [avatarImageUrl, setAvatarImageUrl] = useState<any>(`${config.baseURL}/images/avatars/default.png`);
   const [loading, setLoading] = useState<boolean>(false);
@@ -123,10 +123,10 @@ const EditProfile: React.FC = () => {
   const defaultValues = { name: "", ageId: "", genderId: "", email: "" };
 
   const rules = {
-    rulesEmail: rulesEmail(texts),
-    rulesPassword: rulesPassword(texts),
-    rulesAge: rulesAge(texts),
-    rulesGender: rulesGender(texts),
+    rulesEmail: rulesEmail(t),
+    rulesPassword: rulesPassword(t),
+    rulesAge: rulesAge(t),
+    rulesGender: rulesGender(t),
   };
 
   return (
@@ -135,7 +135,7 @@ const EditProfile: React.FC = () => {
       rules={rules}
       handlerSaveEditButton={handlerSaveEditButton}
       fileChangedHandler={fileChangedHandler}
-      texts={texts}
+      texts={t}
       errores={errores}
       loading={loading}
       optionsAges={optionsAges}

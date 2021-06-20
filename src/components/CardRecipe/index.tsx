@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import View from "./view";
-import { TRecipeCard } from "utils/types";
+import { TRecipeCard } from "models";
 
 type Props = {
   recipe: TRecipeCard;

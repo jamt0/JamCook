@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { TRadio } from "utils/types";
+import { TRadio } from "models";
 import {
   Scaffold,
   SubTitle,
@@ -22,15 +22,15 @@ type Props = {
 
 const View: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.texts.preferencias_dieta}>
+    <Scaffold.Header title={props.texts('preferencias_dieta')}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
       <Loading isOpen={props.loading} />
-      <Title>{props.texts.dieta_header}</Title>
+      <Title>{props.texts('dieta_header')}</Title>
       <SubTitle className="mb-8 mt-2" color="medium">
-        {props.texts.dieta_sub_header}
+        {props.texts('dieta_sub_header')}
       </SubTitle>
       <RadioGroup
         control={props.formHook.control}
@@ -42,7 +42,7 @@ const View: FunctionComponent<Props> = (props) => (
       <Button
         onClick={props.formHook.handleSubmit(props.handlerSaveEditButton)}
       >
-        {props.texts.guardar}
+        {props.texts('guardar')}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

@@ -3,8 +3,8 @@ import { FunctionComponent } from "react";
 import { fastFoodOutline } from "ionicons/icons";
 import { Link } from "react-router-dom";
 import { ImageCover, Text } from "UI";
-import { TCategory } from "utils/types";
-import RoutesPath from "routes";
+import { TCategory } from "models";
+import namesRoutes from "routes/names";
 
 type Props = {
   categories: TCategory[];
@@ -16,7 +16,7 @@ const GridImages: FunctionComponent<Props> = (props) => {
       {props.categories.map((category) => {
         return (
           <Link
-            to={RoutesPath.listRecipes + category.id}
+            to={namesRoutes.listRecipes + category.id}
             className="w-full"
             key={category.id}
           >

@@ -1,14 +1,16 @@
 import React from "react";
 import View from "./view";
 import { useHistory } from "react-router";
-import { useSettingsUser } from "context/settingsUser";
+import { useTranslation } from 'react-i18next';
 import { useForm } from "react-hook-form";
-import { TRadio } from "utils/types";
+import { TRadio } from "models";
 import useShowTabs from "hooks/useShowTabs";
+import { useSettingsUser } from "context/settingsUser";
 
 const Theme: React.FC = () => {
   const history = useHistory();
-  const { texts, setTheme, theme } = useSettingsUser()!;
+  const { setTheme, theme } = useSettingsUser()!;
+  const { t } = useTranslation();
 
   useShowTabs(false);
 
@@ -18,11 +20,11 @@ const Theme: React.FC = () => {
 
   const options = [
     {
-      description: texts.tema_claro,
+      description: t('tema_claro'),
       value: "1",
     },
     {
-      description: texts.tema_oscuro,
+      description: t('tema_oscuro'),
       value: "2",
     },
   ];
@@ -35,7 +37,7 @@ const Theme: React.FC = () => {
 
   return (
     <View
-      texts={texts}
+      texts={t}
       formHook={{ control, handleSubmit }}
       defaultValues={defaultValues}
       options={options}

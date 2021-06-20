@@ -1,30 +1,30 @@
 import React from "react";
-import RoutesPath from "routes";
+import namesRoutes from "routes/names";
 import View from "./view";
-import { useSettingsUser } from "context/settingsUser";
+import { useTranslation } from 'react-i18next';
 import useShowTabs from "hooks/useShowTabs";
 
 const LegalInformation: React.FC = () => {
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
 
   useShowTabs(false);
 
   const items = [
     {
-      name: texts.terminos_condiciones,
-      routerLink: RoutesPath.termsAndConditions,
+      name: t('terminos_condiciones'),
+      routerLink: namesRoutes.termsAndConditions,
     },
     {
-      name: texts.politica_privacidad,
-      routerLink: RoutesPath.privacyPolicy,
+      name: t('politica_privacidad'),
+      routerLink: namesRoutes.privacyPolicy,
     },
     {
-      name: texts.politica_cookies,
-      routerLink: RoutesPath.cookiesPolicy,
+      name: t('politica_cookies'),
+      routerLink: namesRoutes.cookiesPolicy,
     },
   ];
 
-  return <View texts={texts} items={items} />;
+  return <View texts={t} items={items} />;
 };
 
 export default LegalInformation;

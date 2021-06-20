@@ -1,5 +1,5 @@
 import { Fragment, FunctionComponent } from "react";
-import { TResponse } from "utils/types";
+import { TResponse } from "models";
 import { Response } from "components";
 
 type Props = {

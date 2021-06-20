@@ -2,8 +2,8 @@ import { FunctionComponent } from "react";
 import { IonIcon } from "@ionic/react";
 import { Avatar, ImageCover, Card, Text, ButtonIcon } from "UI";
 import { Rating } from "components";
-import { TRecipeCard } from "utils/types";
-import RoutesPath from "routes";
+import { TRecipeCard } from "models";
+import namesRoutes from "routes/names";
 import {
   timerOutline,
   nutritionOutline,
@@ -37,7 +37,7 @@ const View: FunctionComponent<Props> = (props) => (
         <span className="ml-1">{props.recipe.time}</span>
       </Card.Header.Compact>
     </Card.Header>
-    <Card.Content routerLink={RoutesPath.recipe + props.recipe.id}>
+    <Card.Content routerLink={namesRoutes.recipe + props.recipe.id}>
       <ImageCover src={props.recipe.pathRecipeImage} height={60}>
         <Rating stars={props.recipe.valoration} size={6} color="light" />
         <Text color="light" align="left" className="font-extrabold">

@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { Scaffold, Button, SubTitle } from "UI";
 import { Brand } from "components";
 import Lottie from "react-lottie";
-import RoutesPath from "routes";
+import namesRoutes from "routes/names";
 import Welcome from "components/Welcome";
 
 type Props = {

@@ -1,8 +1,8 @@
 import React from "react";
 import View from "./view";
 import { useHistory } from "react-router-dom";
-import { useSettingsUser } from "context/settingsUser";
-import RoutesPath from "routes";
+import { useTranslation } from 'react-i18next';
+import namesRoutes from "routes/names";
 import useShowTabs from "hooks/useShowTabs";
 
 const ingredients = [
@@ -130,18 +130,18 @@ const ingredients = [
 
 const FoodBasket: React.FC = () => {
   const history = useHistory();
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
 
   useShowTabs(true);
 
   const handlerAddIngredient = (e: any) => {
     e.preventDefault();
-    history.push(RoutesPath.foodBasketAdd);
+    history.push(namesRoutes.foodBasketAdd);
   };
 
   return (
     <View
-      texts={texts}
+      texts={t}
       ingredients={ingredients}
       handlerAddIngredient={handlerAddIngredient}
     />

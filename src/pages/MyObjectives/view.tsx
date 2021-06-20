@@ -8,7 +8,7 @@ import {
   RadioGroup,
   ErrorBox,
 } from "UI";
-import { TRadio } from "utils/types";
+import { TRadio } from "models";
 
 type Props = {
   texts: any;
@@ -22,15 +22,15 @@ type Props = {
 
 const View: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.texts.preferencias_mis_objetivos}>
+    <Scaffold.Header title={props.texts('preferencias_mis_objetivos')}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
       {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
-      <Title>{props.texts.objetivos_header}</Title>
+      <Title>{props.texts('objetivos_header')}</Title>
       <SubTitle className="mb-8 mt-2" color="medium">
-        {props.texts.objetivos_sub_header}
+        {props.texts('objetivos_sub_header')}
       </SubTitle>
       <RadioGroup
         control={props.formHook.control}
@@ -42,7 +42,7 @@ const View: FunctionComponent<Props> = (props) => (
       <Button
         onClick={props.formHook.handleSubmit(props.handlerSaveEditButton)}
       >
-        {props.texts.guardar}
+        {props.texts('guardar')}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { TMessage } from "utils/types";
+import { TMessage } from "models";
 import {
   Scaffold,
   SubTitle,
@@ -24,20 +24,20 @@ type Props = {
 
 const View: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.texts.contacto}>
+    <Scaffold.Header title={props.texts('contacto')}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
       {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
-      <SubTitle>{props.texts.contacto_header}</SubTitle>
+      <SubTitle>{props.texts('contacto_header')}</SubTitle>
       <Input
         control={props.formHook.control}
         errors={props.formHook.errors}
         defaultValue={props.defaultValues.email}
         name="email"
         type="email"
-        label={props.texts.campo_correo}
+        label={props.texts('campo_correo')}
         rules={props.rules.rulesEmail}
       />
       <Select
@@ -46,7 +46,7 @@ const View: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.subjectId}
         options={props.optionsSubjects}
         name="subjectId"
-        label={props.texts.campo_asunto}
+        label={props.texts('campo_asunto')}
         rules={props.rules.rulesSubject}
       />
       <TextArea
@@ -54,8 +54,8 @@ const View: FunctionComponent<Props> = (props) => (
         errors={props.formHook.errors}
         defaultValue={props.defaultValues.message}
         name="message"
-        placeHolder={props.texts.contacto_placeholder}
-        label={props.texts.campo_mensaje}
+        placeHolder={props.texts('contacto_placeholder')}
+        label={props.texts('campo_mensaje')}
         rules={props.rules.rulesMessage}
       />
     </Scaffold.Content>
@@ -64,7 +64,7 @@ const View: FunctionComponent<Props> = (props) => (
         onClick={props.formHook.handleSubmit(props.handlerSendButton)}
         disabled={!props.formHook.isValid || props.formHook.isSubmitting}
       >
-        {props.texts.contacto_enviar}
+        {props.texts('contacto_enviar')}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

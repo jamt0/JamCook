@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { SliderRecipes } from "components";
-import { TRecipe } from "utils/types";
+import { TRecipe } from "models";
 import { Scaffold, Searcher, Title } from "UI";
 
 type Props = {
@@ -17,11 +17,11 @@ const Search: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Content>
       <Title align="center" color="medium">
-        {props.texts.slogan_2_1}
+        {props.texts('slogan_2_1')}
         <br />
-        {props.texts.slogan_2_2}
+        {props.texts('slogan_2_2')}
       </Title>
-      <Searcher placeHolder={props.texts.search_buscar_recetas} />
+      <Searcher placeHolder={props.texts('search_buscar_recetas')} />
       {props.listRecipes.map((recipes) => (
         <SliderRecipes
           listRecipes={recipes}

@@ -1,11 +1,11 @@
 import React from "react";
 import View from "./view";
 import animationData from "assets/26901-cooking.json";
-import { useSettingsUser } from "context/settingsUser";
+import { useTranslation } from 'react-i18next';
 import useShowTabs from "hooks/useShowTabs";
 
 const Welcome: React.FC = () => {
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
 
   useShowTabs(false);
 
@@ -18,7 +18,7 @@ const Welcome: React.FC = () => {
     },
   };
 
-  return <View texts={texts} animationOptions={animationOptions} />;
+  return <View texts={t} animationOptions={animationOptions} />;
 };
 
 export default Welcome;

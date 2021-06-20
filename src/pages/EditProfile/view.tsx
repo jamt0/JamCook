@@ -26,7 +26,7 @@ type Props = {
 
 const View: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.texts.perfil_editar}>
+    <Scaffold.Header title={props.texts('perfil_editar')}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
@@ -36,7 +36,7 @@ const View: FunctionComponent<Props> = (props) => (
         <Avatar src={props.avatarImageUrl} size={20} sizeResponsive={60} />
         <div className="mt-4">
           <label className="" htmlFor="inputAvatar">
-            {props.texts.perfil_edit_cambiar_avatar}
+            {props.texts('perfil_edit_cambiar_avatar')}
           </label>
         </div>
       </Center>
@@ -53,7 +53,7 @@ const View: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.name}
         name="name"
         type="name"
-        label={props.texts.campo_nombre}
+        label={props.texts('campo_nombre')}
         rules={props.rules.rulesName}
       />
       <Input
@@ -62,7 +62,7 @@ const View: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.email}
         name="email"
         type="email"
-        label={props.texts.campo_correo}
+        label={props.texts('campo_correo')}
         rules={props.rules.rulesEmail}
       />
       <Select
@@ -71,7 +71,7 @@ const View: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.ageId}
         options={props.optionsAges}
         name="ageId"
-        label={props.texts.campo_edad}
+        label={props.texts('campo_edad')}
         rules={props.rules.rulesAge}
       />
       <Select
@@ -80,7 +80,7 @@ const View: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.genderId}
         options={props.optionsGenders}
         name="genderId"
-        label={props.texts.campo_genero}
+        label={props.texts('campo_genero')}
         rules={props.rules.rulesGender}
       />
     </Scaffold.Content>
@@ -89,7 +89,7 @@ const View: FunctionComponent<Props> = (props) => (
         onClick={props.formHook.handleSubmit(props.handlerSaveEditButton)}
         disabled={!props.formHook.isValid || props.formHook.isSubmitting}
       >
-        {props.texts.guardar}
+        {props.texts('guardar')}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

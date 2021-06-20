@@ -21,17 +21,17 @@ type Props = {
 
 const View: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.texts.contrasena_restablecer}>
+    <Scaffold.Header title={props.texts('contrasena_restablecer')}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
       {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
       <SubTitle className="mt-6">
-        {props.texts.signin_olvido_contraseña}
+        {props.texts('signin_olvido_contraseña')}
       </SubTitle>
       <Text align="center" color="medium" className="mb-4 mt-2">
-        {props.texts.introduce_contrasena}
+        {props.texts('introduce_contrasena')}
       </Text>
       <Input
         control={props.formHook.control}
@@ -39,7 +39,7 @@ const View: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.email}
         name="email"
         type="email"
-        label={props.texts.campo_correo}
+        label={props.texts('campo_correo')}
         rules={props.rules.rulesEmail}
       />
     </Scaffold.Content>
@@ -48,7 +48,7 @@ const View: FunctionComponent<Props> = (props) => (
         onClick={props.formHook.handleSubmit(props.handlerForgetPasswordButton)}
         disabled={!props.formHook.isValid || props.formHook.isSubmitting}
       >
-        {props.texts.contrasena_restablecer}
+        {props.texts('contrasena_restablecer')}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

@@ -1,16 +1,16 @@
 import { useState } from "react";
 import View from "./view";
 import { useHistory } from "react-router";
-import { useSettingsUser } from "context/settingsUser";
+import { useTranslation } from 'react-i18next';
 import { rulesNewPassword, rulesConfirmPassword } from "utils/rulesValidation";
 import { useForm } from "react-hook-form";
 import Server from "server";
-import RoutesPath from "routes";
+import namesRoutes from "routes/names";
 import useShowTabs from "hooks/useShowTabs";
 
 const NewPassword: React.FC = () => {
   const history = useHistory();
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
   const [errores, setErrores] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -34,20 +34,20 @@ const NewPassword: React.FC = () => {
       setErrores(errorChangePassword.data.error);
       setLoading(false);
     } else {
-      history.replace(RoutesPath.home);
+      history.replace(namesRoutes.home);
       setLoading(false);
     }
   };
 
   const rules = {
-    rulesNewPassword: rulesNewPassword(texts),
-    rulesConfirmPassword: rulesConfirmPassword(texts),
+    rulesNewPassword: rulesNewPassword(t),
+    rulesConfirmPassword: rulesConfirmPassword(t),
   };
 
   return (
     <View
       rules={rules}
-      texts={texts}
+      texts={t}
       errores={errores}
       loading={loading}
       defaultValues={defaultValues}

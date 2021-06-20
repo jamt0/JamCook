@@ -26,8 +26,8 @@ type Props = {
 const View: FunctionComponent<Props> = (props) => (
 	<IonTabs>
 		<IonRouterOutlet>
-			{routes.map((route) => (
-				<Route path={route.path} exact component={route.component} />
+			{routes.map((route, index) => (
+				<Route path={route.path} exact component={route.component} key={index}/>
 			))}
 			<Route>
 				<NoFound />
@@ -36,19 +36,19 @@ const View: FunctionComponent<Props> = (props) => (
 		<IonTabBar slot='bottom' className='py-1' style={props.tabBarStyle}>
 			<IonTabButton tab='search' href={namesRoutes.search}>
 				<IonIcon icon={searchOutline} />
-				<IonLabel>{props.texts.page_buscar}</IonLabel>
+				<IonLabel>{props.texts('page_buscar')}</IonLabel>
 			</IonTabButton>
 			<IonTabButton tab='explore' href={namesRoutes.explore}>
 				<IonIcon icon={navigateOutline} />
-				<IonLabel>{props.texts.page_explorar}</IonLabel>
+				<IonLabel>{props.texts('page_explorar')}</IonLabel>
 			</IonTabButton>
 			<IonTabButton tab='foodBasket' href={namesRoutes.foodBasket}>
 				<IonIcon icon={basketOutline} />
-				<IonLabel>{props.texts.page_almacen}</IonLabel>
+				<IonLabel>{props.texts('page_almacen')}</IonLabel>
 			</IonTabButton>
 			<IonTabButton tab='profile' href={namesRoutes.profile}>
 				<IonIcon icon={personOutline} />
-				<IonLabel>{props.texts.page_perfil}</IonLabel>
+				<IonLabel>{props.texts('page_perfil')}</IonLabel>
 			</IonTabButton>
 		</IonTabBar>
 	</IonTabs>

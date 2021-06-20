@@ -1,6 +1,6 @@
 import React from "react";
 import View from "./view";
-import { useSettingsUser } from "context/settingsUser";
+import { useTranslation } from 'react-i18next';
 import useShowTabs from "hooks/useShowTabs";
 
 const categories = [
@@ -115,13 +115,13 @@ const categories = [
 ];
 
 const Explore: React.FC = () => {
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
 
   useShowTabs(true);
 
   return (
     <View
-      texts={texts}
+      texts={t}
       categories={categories}
     />
   );

@@ -1,9 +1,9 @@
 import { Fragment, FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import { Text, Slides, Slide, SubTitle, Center, ImageCover } from "UI";
-import { useSettingsUser } from "context/settingsUser";
-import { TRecipe } from "utils/types";
-import RoutesPath from "routes";
+import { useTranslation } from 'react-i18next';
+import { TRecipe } from "models";
+import namesRoutes from "routes/names";
 
 type Props = {
   slidesPerView: number;
@@ -15,7 +15,7 @@ type Props = {
 };
 
 const SliderRecipes: FunctionComponent<Props> = (props) => {
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
 
   const slideOpts = {
     slidesPerView: props.slidesPerView,
@@ -34,8 +34,8 @@ const SliderRecipes: FunctionComponent<Props> = (props) => {
         </SubTitle>
         <Center direction="row" justify="end">
           <Text color="primary" align="right">
-            <Link to={RoutesPath.listRecipes + props.listRecipes.id}>
-              {texts.ver_mas}
+            <Link to={namesRoutes.listRecipes + props.listRecipes.id}>
+              {t('ver_mas')}
             </Link>
           </Text>
         </Center>
@@ -44,7 +44,7 @@ const SliderRecipes: FunctionComponent<Props> = (props) => {
         {props.listRecipes.recipes.map((recipe, index) => {
           return (
             <Slide key={index}>
-              <Link to={RoutesPath.recipe + recipe.id} className="w-full">
+              <Link to={namesRoutes.recipe + recipe.id} className="w-full">
                 <div className="flex flex-col">
                   <ImageCover
                     src={recipe.pathRecipeImage}

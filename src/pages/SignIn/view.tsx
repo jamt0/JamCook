@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
-import RoutesPath from "routes";
-import { TUserSignIn } from "utils/types";
+import namesRoutes from "routes/names";
+import { TUserSignIn } from "models";
 import {
   Scaffold,
   Input,
@@ -24,7 +24,7 @@ type Props = {
 
 const SignIn: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.texts.signin_iniciar_sesion}>
+    <Scaffold.Header title={props.texts('signin_iniciar_sesion')}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
@@ -36,7 +36,7 @@ const SignIn: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.email}
         name="email"
         type="email"
-        label={props.texts.campo_correo}
+        label={props.texts('campo_correo')}
         rules={props.rules.rulesEmail}
       />
       <Input
@@ -45,12 +45,12 @@ const SignIn: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.password}
         name="password"
         type="password"
-        label={props.texts.campo_contrasena}
+        label={props.texts('campo_contrasena')}
         rules={props.rules.rulesPassword}
       />
       <Center justify="end" className="mt-6">
-        <ButtonLink routerLink={RoutesPath.forgetPassword}>
-          {props.texts.signin_olvido_contraseña}
+        <ButtonLink routerLink={namesRoutes.forgetPassword}>
+          {props.texts('signin_olvido_contraseña')}
         </ButtonLink>
       </Center>
     </Scaffold.Content>
@@ -59,12 +59,12 @@ const SignIn: FunctionComponent<Props> = (props) => (
         onClick={props.formHook.handleSubmit(props.handlerSignInButton)}
         disabled={!props.formHook.isValid || props.formHook.isSubmitting}
       >
-        {props.texts.signin_iniciar_sesion}
+        {props.texts('signin_iniciar_sesion')}
       </Button>
       <Center className="py-2">
-        <Text className="mr-1">{props.texts.signin_no_tiene_cuenta}</Text>
-        <ButtonLink routerLink={RoutesPath.signUp}>
-          {props.texts.signup_registrate}
+        <Text className="mr-1">{props.texts('signin_no_tiene_cuenta')}</Text>
+        <ButtonLink routerLink={namesRoutes.signUp}>
+          {props.texts('signup_registrate')}
         </ButtonLink>
       </Center>
     </Scaffold.Footer>

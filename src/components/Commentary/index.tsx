@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import View from "./view";
-import { TCommentary } from "utils/types";
+import { TCommentary } from "models";
 
 type Props = {
   commentary: TCommentary;

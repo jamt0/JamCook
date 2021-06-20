@@ -1,36 +1,36 @@
 import React from "react";
 import View from "./view";
 import { useAuth } from "context/auth";
-import { useSettingsUser } from "context/settingsUser";
+import { useTranslation } from 'react-i18next';
 import { rulesEmail, rulesPassword, rulesName } from "utils/rulesValidation";
-import { TUserSignUp } from "utils/types";
-import RoutesPath from "routes";
+import { TUserSignUp } from "models";
+import namesRoutes from "routes/names";
 import useShowTabs from "hooks/useShowTabs";
 import useForm from "hooks/useForm";
 
 const SignUp: React.FC = () => {
   const { signUp } = useAuth()!;
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
 
   useShowTabs(false);
 
   const { formHook, errores, loading, handler } = useForm<TUserSignUp>({
     dataFech: signUp,
-    route: RoutesPath.home,
+    route: namesRoutes.home,
   });
 
   const defaultValues = { name: "", email: "", password: "" };
 
   const rules = {
-    rulesName: rulesName(texts),
-    rulesEmail: rulesEmail(texts),
-    rulesPassword: rulesPassword(texts),
+    rulesName: rulesName(t),
+    rulesEmail: rulesEmail(t),
+    rulesPassword: rulesPassword(t),
   };
 
   return (
     <View
       rules={rules}
-      texts={texts}
+      texts={t}
       errores={errores}
       loading={loading}
       defaultValues={defaultValues}

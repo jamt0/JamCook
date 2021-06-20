@@ -3,17 +3,17 @@ import View from "./view";
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
 import { useAuth } from "context/auth";
-import { useSettingsUser } from "context/settingsUser";
+import { useTranslation } from 'react-i18next';
 import Server from "server";
 import { rulesEmail, rulesSubject, rulesMessage } from "utils/rulesValidation";
-import { TMessage } from "utils/types";
+import { TMessage } from "models";
 import useShowTabs from "hooks/useShowTabs";
 
 const ContactUs: React.FC = () => {
   const history = useHistory();
   //SE DEJA ESTE AUTH YA QUE SE VA A UTILIZAR CUANDO QUERAMOS OBTENER EL CORREO
   const { auth } = useAuth()!;
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
   const [errores, setErrores] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [optionsSubjects, setoptionsSubjects] = useState();
@@ -55,16 +55,16 @@ const ContactUs: React.FC = () => {
   }, []);
 
   const rules = {
-    rulesSubject: rulesSubject(texts),
-    rulesMessage: rulesMessage(texts),
-    rulesEmail: rulesEmail(texts),
+    rulesSubject: rulesSubject(t),
+    rulesMessage: rulesMessage(t),
+    rulesEmail: rulesEmail(t),
   };
 
   return (
     <View
       rules={rules}
       handlerSendButton={handlerSendButton}
-      texts={texts}
+      texts={t}
       errores={errores}
       loading={loading}
       formHook={{ control, errors, isValid, isSubmitting, handleSubmit }}

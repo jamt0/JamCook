@@ -13,21 +13,21 @@ type Props = {
 
 const View: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.texts.preferencias_alergias_intolerancias}>
+    <Scaffold.Header title={props.texts('preferencias_alergias_intolerancias')}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
       {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
-      <Title>{props.texts.alergias_intolerancias_header}</Title>
+      <Title>{props.texts('alergias_intolerancias_header')}</Title>
       <SubTitle className="mb-8 mt-2" color="medium">
-        {props.texts.alergias_intolerancias_sub_header}
+        {props.texts('alergias_intolerancias_sub_header')}
       </SubTitle>
       <ChipGroup ingredientes={props.ingredients} />
     </Scaffold.Content>
     <Scaffold.Footer>
       <Button onClick={props.handlerSaveEditButton}>
-        {props.texts.guardar}
+        {props.texts('guardar')}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

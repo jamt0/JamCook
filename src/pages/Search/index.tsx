@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import View from "./view";
-import { useSettingsUser } from "context/settingsUser";
+import { useTranslation } from 'react-i18next';
 import useShowTabs from "hooks/useShowTabs";
 
 const ListRecipes = [
@@ -214,7 +214,7 @@ const ListRecipes = [
 const Search: React.FC = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const [slidesPerView, setslidesPerView] = useState(1.5);
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
 
   useShowTabs(true);
 
@@ -234,7 +234,7 @@ const Search: React.FC = () => {
     <View
       slidesPerView={slidesPerView}
       listRecipes={ListRecipes}
-      texts={texts}
+      texts={t}
     />
   );
 };

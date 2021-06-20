@@ -1,6 +1,6 @@
 import { useState } from "react";
 import View from "./view";
-import { useSettingsUser } from "context/settingsUser";
+import { useTranslation } from 'react-i18next';
 import useShowTabs from "hooks/useShowTabs";
 
 const recipe = {
@@ -273,7 +273,7 @@ const recipe = {
 const Recipe: React.FC = () => {
   const [portions, setPortions] = useState(1);
   const [stars, setStars] = useState([ false, false, false, false, false ]);
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
 
   useShowTabs(false);
   
@@ -301,7 +301,7 @@ const Recipe: React.FC = () => {
   
   return (
     <View
-      texts={texts}
+      texts={t}
       handlerShare={handlerShare}
       handlerLike={handlerLike}
       handlerMark={handlerMark}

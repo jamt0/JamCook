@@ -1,43 +1,43 @@
 import React from "react";
 import View from "./view";
-import RoutesPath from "routes";
-import { useSettingsUser } from "context/settingsUser";
+import namesRoutes from "routes/names";
+import { useTranslation } from 'react-i18next';
 import useShowTabs from "hooks/useShowTabs";
 
 const Preferences: React.FC = () => {
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
 
   useShowTabs(false);
 
   const items = [
     {
-      name: texts.preferencias_mis_objetivos,
-      routerLink: RoutesPath.myObjectives,
+      name: t('preferencias_mis_objetivos'),
+      routerLink: namesRoutes.myObjectives,
     },
     {
-      name: texts.preferencias_mi_nivel_cocina,
-      routerLink: RoutesPath.cookingLevel,
+      name: t('preferencias_mi_nivel_cocina'),
+      routerLink: namesRoutes.cookingLevel,
     },
     {
-      name: texts.preferencias_dieta,
-      routerLink: RoutesPath.diet,
+      name: t('preferencias_dieta'),
+      routerLink: namesRoutes.diet,
     },
     {
-      name: texts.preferencias_alergias_intolerancias,
-      routerLink: RoutesPath.allergies,
+      name: t('preferencias_alergias_intolerancias'),
+      routerLink: namesRoutes.allergies,
     },
     {
-      name: texts.preferencias_ingredientes_no_gustan,
-      routerLink: RoutesPath.dislikeIngredient,
+      name: t('preferencias_ingredientes_no_gustan'),
+      routerLink: namesRoutes.dislikeIngredient,
     },
     {
-      name: texts.preferencias_numero_comensales,
-      routerLink: RoutesPath.comensals,
+      name: t('preferencias_numero_comensales'),
+      routerLink: namesRoutes.comensals,
     },
   ];
   
   return (
-    <View title={texts.perfil_preferencias} items={items} />
+    <View title={t('perfil_preferencias')} items={items} />
   );
 };
 

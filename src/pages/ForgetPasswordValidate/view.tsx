@@ -24,15 +24,15 @@ type Props = {
 
 const View: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.texts.contrasena_restablecer}>
+    <Scaffold.Header title={props.texts('contrasena_restablecer')}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
       <Loading isOpen={props.loading} />
       {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
-      <SubTitle className="mt-6">{props.texts.consulta_correo}</SubTitle>
+      <SubTitle className="mt-6">{props.texts('consulta_correo')}</SubTitle>
       <Text align="center" color="medium" className="mb-4 mt-2">
-        {props.texts.introduce_codigo}
+        {props.texts('introduce_codigo')}
       </Text>
       <Input
         control={props.formHook.control}
@@ -40,12 +40,12 @@ const View: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.VerificationCode}
         name="VerificationCode"
         type="number"
-        label={props.texts.campo_nombre}
+        label={props.texts('campo_nombre')}
         rules={props.rules.rulesVerificationCode}
       />
       <Center justify="end">
         <ButtonLink onClick={props.handlerResendMailButton}>
-          {props.texts.no_recibio_contrasena}
+          {props.texts('no_recibio_contrasena')}
         </ButtonLink>
       </Center>
     </Scaffold.Content>
@@ -56,7 +56,7 @@ const View: FunctionComponent<Props> = (props) => (
         )}
         disabled={!props.formHook.isValid || props.formHook.isSubmitting}
       >
-        {props.texts.contrasena_restablecer}
+        {props.texts('contrasena_restablecer')}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { CardRecipe } from "components";
 import { Scaffold } from "UI";
-import { TRecipeCard } from "utils/types";
+import { TRecipeCard } from "models";
 
 type Props = {
   listRecipes: {

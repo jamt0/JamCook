@@ -9,7 +9,7 @@ type Props = {
 
 const View: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.texts.informacion_legal}>
+    <Scaffold.Header title={props.texts('informacion_legal')}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>

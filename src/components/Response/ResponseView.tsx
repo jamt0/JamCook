@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { Avatar, Item, Label, Text } from "UI";
-import { TResponse } from "utils/types";
+import { TResponse } from "models";
 
 type Props = {
   response: TResponse;

@@ -19,7 +19,7 @@ type Props = {
 
 const View: FunctionComponent<Props> = (props) => (
   <Scaffold>
-    <Scaffold.Header title={props.texts.contrasena_restablecer}>
+    <Scaffold.Header title={props.texts('contrasena_restablecer')}>
       <Scaffold.Header.BackAction />
     </Scaffold.Header>
     <Scaffold.Content>
@@ -31,7 +31,7 @@ const View: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.newPassword}
         name="newPassword"
         type="password"
-        label={props.texts.campo_nueva_contrasena}
+        label={props.texts('campo_nueva_contrasena')}
         rules={props.rules.rulesNewPassword}
       />
       <Input
@@ -40,7 +40,7 @@ const View: FunctionComponent<Props> = (props) => (
         defaultValue={props.defaultValues.ConfirmPassword}
         name="confirmPassword"
         type="password"
-        label={props.texts.campo_confirme_contrasena}
+        label={props.texts('campo_confirme_contrasena')}
         rules={props.rules.rulesConfirmPassword}
       />
     </Scaffold.Content>
@@ -49,7 +49,7 @@ const View: FunctionComponent<Props> = (props) => (
         onClick={props.formHook.handleSubmit(props.handlerNewPasswordButton)}
         disabled={!props.formHook.isValid || props.formHook.isSubmitting}
       >
-        {props.texts.contrasena_restablecer}
+        {props.texts('contrasena_restablecer')}
       </Button>
     </Scaffold.Footer>
   </Scaffold>

@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import View from "./view";
 import { useHistory } from "react-router";
 import { useAuth } from "context/auth";
-import { useSettingsUser } from "context/settingsUser";
+import { useTranslation } from 'react-i18next';
 import { useForm } from "react-hook-form";
-import { TRadio } from "utils/types";
+import { TRadio } from "models";
 import Server from "server";
 import useShowTabs from "hooks/useShowTabs";
 
 const Commensals: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
   const [amountUser, setAmountUser] = useState<number>(2);
   const [loading, setLoading] = useState<boolean>(false);
   const [errores, setErrores] = useState<string>("");
@@ -64,7 +64,7 @@ const Commensals: React.FC = () => {
 
   return (
     <View
-      texts={texts}
+      texts={t}
       formHook={{ control, handleSubmit }}
       defaultValues={defaultValues}
       options={options}

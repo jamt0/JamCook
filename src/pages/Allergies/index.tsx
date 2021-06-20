@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import View from "./view";
 import { useHistory } from "react-router";
 import { useAuth } from "context/auth";
-import { useSettingsUser } from "context/settingsUser";
+import { useTranslation } from 'react-i18next';
 import Server from "server";
-import RoutesPath from "routes";
+import namesRoutes from "routes/names";
 import useShowTabs from "hooks/useShowTabs";
 
 const ingredientes = [
@@ -38,7 +38,7 @@ const ingredientes = [
 const Allergies: React.FC = () => {
   const history = useHistory();
   const { auth } = useAuth()!;
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
   const [ingredients, setIngredients] = useState(ingredientes);
   const [ingredientsUser, setIngredientsUser] = useState();
   const [loading, setLoading] = useState<boolean>(false);
@@ -48,7 +48,7 @@ const Allergies: React.FC = () => {
 
   const handlerSaveEditButton = (e: any) => {
     e.preventDefault();
-    history.push(RoutesPath.profile);
+    history.push(namesRoutes.profile);
   };
 
   useEffect(() => {
@@ -87,7 +87,7 @@ const Allergies: React.FC = () => {
 
   return (
     <View
-      texts={texts}
+      texts={t}
       formHook={{}}
       ingredients={ingredients}
       handlerSaveEditButton={handlerSaveEditButton}

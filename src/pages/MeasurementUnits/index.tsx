@@ -1,14 +1,14 @@
 import React from "react";
 import View from "./view";
 import { useHistory } from "react-router";
-import { useSettingsUser } from "context/settingsUser";
+import { useTranslation } from 'react-i18next';
 import { useForm } from "react-hook-form";
-import { TRadio } from "utils/types";
+import { TRadio } from "models";
 import useShowTabs from "hooks/useShowTabs";
 
 const MeasurementUnits: React.FC = () => {
   const history = useHistory();
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
 
   useShowTabs(false);
   
@@ -22,18 +22,18 @@ const MeasurementUnits: React.FC = () => {
 
   const options = [
     {
-      description: texts.unidades_medida_gramos,
+      description: t('unidades_medida_gramos'),
       value: "1",
     },
     {
-      description: texts.unidades_medida_onzas,
+      description: t('unidades_medida_onzas'),
       value: "2",
     },
   ];
 
   return (
     <View
-      texts={texts}
+      texts={t}
       formHook={{ control, handleSubmit }}
       defaultValues={defaultValues}
       options={options}

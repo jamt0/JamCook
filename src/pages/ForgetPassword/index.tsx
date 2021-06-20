@@ -1,16 +1,16 @@
 import { useState } from "react";
 import View from "./view";
 import { useHistory } from "react-router";
-import { useSettingsUser } from "context/settingsUser";
+import { useTranslation } from 'react-i18next';
 import { useForm } from "react-hook-form";
 import { rulesEmail } from "utils/rulesValidation";
 import Server from "server";
-import RoutesPath from "routes";
+import namesRoutes from "routes/names";
 import useShowTabs from "hooks/useShowTabs";
 
 const ForgetPassword: React.FC = () => {
   const history = useHistory();
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
   const [errores, setErrores] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -33,19 +33,19 @@ const ForgetPassword: React.FC = () => {
       setErrores(errorMailForgetPassword.data.error);
       setLoading(false);
     } else {
-      history.replace(RoutesPath.forgetPasswordValidate);
+      history.replace(namesRoutes.forgetPasswordValidate);
       setLoading(false);
     }
   };
 
   const rules = {
-    rulesEmail: rulesEmail(texts),
+    rulesEmail: rulesEmail(t),
   };
 
   return (
     <View
       rules={rules}
-      texts={texts}
+      texts={t}
       errores={errores}
       loading={loading}
       defaultValues={defaultValues}

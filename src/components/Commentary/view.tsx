@@ -3,8 +3,8 @@ import { Avatar, Center, Item, Label, ButtonLink, Text } from "UI";
 import { ResponseBox, Rating } from "components";
 import { IonButton, IonButtons, IonIcon } from "@ionic/react";
 import { chatbubbleOutline, heart, heartOutline } from "ionicons/icons";
-import { TCommentary } from "utils/types";
-import { useSettingsUser } from "context/settingsUser";
+import { TCommentary } from "models";
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   commentary: TCommentary;
@@ -21,7 +21,7 @@ const View: FunctionComponent<Props> = ({
   handlerShowAnswerButton,
   handlerLikeButton,
 }) => {
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
 
   return (
     <Item className="ion-no-padding" lines="full">
@@ -57,14 +57,14 @@ const View: FunctionComponent<Props> = ({
             </IonButton>
           </IonButtons>
           <ButtonLink onClick={handlerShowAnswerButton}>
-            {texts.responder}{" "}
+            {t('responder')}{" "}
           </ButtonLink>
         </Center>
         {commentary.responses.length > 0 && (
           <div className="ml-14">
             <div className="mb-4">
               <ButtonLink onClick={handlerShowAnswerButton}>
-                {commentary.responses.length} {texts.respuesta}
+                {commentary.responses.length} {t('respuesta')}
                 {commentary.responses.length > 1 ? "s" : ""}
               </ButtonLink>
             </div>

@@ -2,8 +2,8 @@ import { useState } from "react";
 import View from "./view";
 import { useAuth } from "context/auth";
 import Server from "server";
-import config from "config/general";
-import { useSettingsUser } from "context/settingsUser";
+import config from "config";
+import { useTranslation } from 'react-i18next';
 import {
   personOutline,
   globeOutline,
@@ -15,13 +15,13 @@ import {
   chatbubbleEllipsesOutline,
   logOutOutline,
 } from "ionicons/icons";
-import RoutesPath from "routes";
+import namesRoutes from "routes/names";
 import useShowTabs from "hooks/useShowTabs";
 import useFetch from "hooks/useFetch";
 
 const Profile: React.FC = () => {
   const { auth, logOut } = useAuth()!;
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
   const [avatarImageUrl, setAvatarImageUrl] = useState<any>(`${config.baseURL}/images/avatars/default.png`);
 
   useShowTabs(true);
@@ -35,61 +35,61 @@ const Profile: React.FC = () => {
 
   const items = [
     {
-      name: texts.perfil_preferencias_alimentarias,
+      name: t('perfil_preferencias_alimentarias'),
       auth: true,
-      routerLink: RoutesPath.preferences,
+      routerLink: namesRoutes.preferences,
       lines: "none",
       icon: personOutline,
     },
     {
-      name: texts.idioma,
+      name: t('idioma'),
       auth: false,
-      routerLink: RoutesPath.language,
+      routerLink: namesRoutes.language,
       lines: "none",
       icon: globeOutline,
     },
     {
-      name: texts.configuraciones,
+      name: t('configuraciones'),
       auth: false,
-      routerLink: RoutesPath.settings,
+      routerLink: namesRoutes.settings,
       lines: "full",
       icon: buildOutline,
     },
     {
-      name: texts.valora + " " + texts.name_app,
+      name: t('valora') + " " + t('name_app'),
       auth: false,
       lines: "none",
       icon: starOutline,
     },
     {
-      name: texts.comparte + " " + texts.name_app,
+      name: t('comparte') + " " + t('name_app'),
       auth: false,
       lines: "full",
       icon: arrowRedoOutline,
     },
     {
-      name: texts.acerca + " " + texts.name_app,
+      name: t('acerca') + " " + t('name_app'),
       auth: false,
-      routerLink: RoutesPath.aboutUs,
+      routerLink: namesRoutes.aboutUs,
       lines: "none",
       icon: businessOutline,
     },
     {
-      name: texts.informacion_legal,
+      name: t('informacion_legal'),
       auth: false,
-      routerLink: RoutesPath.legalInformation,
+      routerLink: namesRoutes.legalInformation,
       lines: "none",
       icon: briefcaseOutline,
     },
     {
-      name: texts.contacto,
+      name: t('contacto'),
       auth: false,
-      routerLink: RoutesPath.contactUs,
+      routerLink: namesRoutes.contactUs,
       lines: auth.loggedIn ? "full" : "none",
       icon: chatbubbleEllipsesOutline,
     },
     {
-      name: texts.logout,
+      name: t('logout'),
       auth: true,
       lines: "none",
       icon: logOutOutline,
@@ -98,7 +98,7 @@ const Profile: React.FC = () => {
 
   return (
     <View
-      texts={texts}
+      texts={t}
       loading={loading || false}
       items={items}
       auth={auth}

@@ -2,15 +2,15 @@ import { useState } from "react";
 import View from "./view";
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
-import { useSettingsUser } from "context/settingsUser";
+import { useTranslation } from 'react-i18next';
 import { rulesVerificationCode } from "utils/rulesValidation";
 import Server from "server";
-import RoutesPath from "routes";
+import namesRoutes from "routes/names";
 import useShowTabs from "hooks/useShowTabs";
 
 const ForgetPasswordValidate: React.FC = () => {
   const history = useHistory();
-  const { texts } = useSettingsUser()!;
+  const { t } = useTranslation();
   const [errores, setErrores] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -34,7 +34,7 @@ const ForgetPasswordValidate: React.FC = () => {
       setErrores(errorValidateVerificationCode.data.error);
       setLoading(false);
     } else {
-      history.replace(RoutesPath.newPassword);
+      history.replace(namesRoutes.newPassword);
       setLoading(false);
     }
   };
@@ -44,13 +44,13 @@ const ForgetPasswordValidate: React.FC = () => {
   };
 
   const rules = {
-    rulesVerificationCode: rulesVerificationCode(texts),
+    rulesVerificationCode: rulesVerificationCode(t),
   };
 
   return (
     <View
       rules={rules}
-      texts={texts}
+      texts={t}
       errores={errores}
       loading={loading}
       defaultValues={defaultValues}

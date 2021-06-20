@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { IonCheckbox } from "@ionic/react";
 import { Item, Image, Label, Text } from "UI";
 import { Counter } from "components";
-import { TIngredient } from "utils/types";
+import { TIngredient } from "models";
 
 type Props = {
   ingredient: TIngredient;

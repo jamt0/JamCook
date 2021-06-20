@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { TResponse } from "utils/types";
+import { TResponse } from "models";
 import ResponseView from "components/Response/ResponseView";
 
 type Props = {

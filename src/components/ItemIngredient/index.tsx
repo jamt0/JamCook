@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import ItemIngredientView from "components/ItemIngredient/ItemIngredientView";
-import { TIngredient } from "utils/types";
+import { TIngredient } from "models";
 
 type Props = {
   ingredient: TIngredient;

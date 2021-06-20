@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { IonFab, IonFabButton, IonIcon } from "@ionic/react";
 import { addOutline } from "ionicons/icons";
 import { ItemIngredient } from "components";
-import { TIngredient } from "utils/types";
+import { TIngredient } from "models";
 import { Scaffold, Searcher, Title } from "UI";
 
 type Props = {
@@ -22,8 +22,8 @@ const View: FunctionComponent<Props> = (props) => (
         </IonFab>
       }
     >
-      <Title color="medium">{props.texts.page_almacen}</Title>
-      <Searcher placeHolder={props.texts.ingredientes_buscas} />
+      <Title color="medium">{props.texts('page_almacen')}</Title>
+      <Searcher placeHolder={props.texts('ingredientes_buscas')} />
       <div className="pb-14">
         {props.ingredients.map((ingredient) => {
           return <ItemIngredient ingredient={ingredient} key={ingredient.id} />;
