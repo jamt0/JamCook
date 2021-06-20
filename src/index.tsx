@@ -4,6 +4,7 @@ import App from 'App';
 import {store} from 'global/store';
 import {Provider} from 'react-redux';
 import 'assets/main.css';
+import 'lang';
 
 ReactDOM.render(
 	<React.StrictMode>
