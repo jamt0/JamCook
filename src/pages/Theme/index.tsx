@@ -5,16 +5,15 @@ import { useTranslation } from 'react-i18next';
 import { useForm } from "react-hook-form";
 import { TRadio } from "models";
 import useShowTabs from "hooks/useShowTabs";
-import { useSettingsUser } from "context/settingsUser";
 
 const Theme: React.FC = () => {
   const history = useHistory();
-  const { setTheme, theme } = useSettingsUser()!;
   const { t } = useTranslation();
 
   useShowTabs(false);
 
-  const defaultValues = theme === "dark" ? "2" : "1";
+  // const defaultValues = theme === "dark" ? "2" : "1";
+  const defaultValues = "1";
 
   const { control, handleSubmit } = useForm({ mode: "onSubmit" });
 
@@ -30,9 +29,9 @@ const Theme: React.FC = () => {
   ];
 
   const handlerSaveEditButton = (radio: TRadio) => {
-    if (radio.radio === "2") setTheme("dark");
-    else setTheme("light");
-    history.goBack();
+    // if (radio.radio === "2") setTheme("dark");
+    // else setTheme("light");
+    // history.goBack();
   };
 
   return (

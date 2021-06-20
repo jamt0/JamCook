@@ -21,7 +21,6 @@ type Props = {
   texts: any;
   loading: boolean;
   avatarImageUrl: string;
-  auth: any;
   errores: any;
   user: any;
   items: any[];
@@ -31,7 +30,8 @@ type Props = {
 const View: FunctionComponent<Props> = (props) => (
   <Scaffold>
     <Scaffold.Content>
-      <Loading isOpen={props.loading} />
+      perfil
+      {/* <Loading isOpen={props.loading} />
       {props.errores !== "" && <ErrorBox>{props.errores}</ErrorBox>}
       <Title color="medium">{props.texts('page_perfil')}</Title>
       {props.auth.loggedIn ? (
@@ -93,7 +93,7 @@ const View: FunctionComponent<Props> = (props) => (
             <Fragment key={index}/>
           )
         })}
-      </div>
+      </div> */}
     </Scaffold.Content>
   </Scaffold>
 );

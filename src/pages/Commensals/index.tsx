@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import View from "./view";
 import { useHistory } from "react-router";
-import { useAuth } from "context/auth";
 import { useTranslation } from 'react-i18next';
 import { useForm } from "react-hook-form";
 import { TRadio } from "models";
@@ -10,7 +9,6 @@ import useShowTabs from "hooks/useShowTabs";
 
 const Commensals: React.FC = () => {
   const history = useHistory();
-  const { auth } = useAuth()!;
   const { t } = useTranslation();
   const [amountUser, setAmountUser] = useState<number>(2);
   const [loading, setLoading] = useState<boolean>(false);
@@ -42,25 +40,25 @@ const Commensals: React.FC = () => {
     history.goBack();
   };
 
-  useEffect(() => {
-    if (auth.user?.id) {
-      setLoading(true);
-      Server.getComensalsUser(auth.user.id)
-        .then((response) => {
-          if (!response.data.error) {
-            setAmountUser(response.data.amount);
-            setLoading(false);
-          } else {
-            setErrores(response.data.error);
-            setLoading(false);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          setLoading(false);
-        });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (auth.user?.id) {
+  //     setLoading(true);
+  //     Server.getComensalsUser(auth.user.id)
+  //       .then((response) => {
+  //         if (!response.data.error) {
+  //           setAmountUser(response.data.amount);
+  //           setLoading(false);
+  //         } else {
+  //           setErrores(response.data.error);
+  //           setLoading(false);
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //         setLoading(false);
+  //       });
+  //   }
+  // }, []);
 
   return (
     <View

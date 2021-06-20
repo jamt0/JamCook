@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-import { Home } from 'pages';
+import Routes from 'routes/Routes';
 import { IonApp } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
 import { Loading } from 'UI';
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/normalize.css';
@@ -32,9 +31,7 @@ const App: React.FC = () => {
 	// } else {
 	return (
 		<IonApp>
-			<IonReactRouter>
-				<Home />
-			</IonReactRouter>
+			<Routes/>
 		</IonApp>
 	);
 	// }

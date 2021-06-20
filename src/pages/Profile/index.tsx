@@ -1,6 +1,5 @@
 import { useState } from "react";
 import View from "./view";
-import { useAuth } from "context/auth";
 import Server from "server";
 import config from "config";
 import { useTranslation } from 'react-i18next';
@@ -20,15 +19,14 @@ import useShowTabs from "hooks/useShowTabs";
 import useFetch from "hooks/useFetch";
 
 const Profile: React.FC = () => {
-  const { auth, logOut } = useAuth()!;
   const { t } = useTranslation();
   const [avatarImageUrl, setAvatarImageUrl] = useState<any>(`${config.baseURL}/images/avatars/default.png`);
 
   useShowTabs(true);
 
   const handlerLogOutButton = async (e: any) => {
-    e.preventDefault();
-    await logOut();
+    // e.preventDefault();
+    // await logOut();
   };
 
   var { error, loading, data } = useFetch({ fetch: Server.getUser, req: 24});
@@ -85,7 +83,8 @@ const Profile: React.FC = () => {
       name: t('contacto'),
       auth: false,
       routerLink: namesRoutes.contactUs,
-      lines: auth.loggedIn ? "full" : "none",
+      // lines: auth.loggedIn ? "full" : "none",
+      lines: "none",
       icon: chatbubbleEllipsesOutline,
     },
     {
@@ -101,7 +100,6 @@ const Profile: React.FC = () => {
       texts={t}
       loading={loading || false}
       items={items}
-      auth={auth}
       handlerLogOutButton={handlerLogOutButton}
       errores={error || ""}
       avatarImageUrl={avatarImageUrl}

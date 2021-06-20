@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import View from "./view";
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
-import { useAuth } from "context/auth";
 import { useTranslation } from 'react-i18next';
 import Server from "server";
 import { rulesEmail, rulesSubject, rulesMessage } from "utils/rulesValidation";
@@ -11,8 +10,6 @@ import useShowTabs from "hooks/useShowTabs";
 
 const ContactUs: React.FC = () => {
   const history = useHistory();
-  //SE DEJA ESTE AUTH YA QUE SE VA A UTILIZAR CUANDO QUERAMOS OBTENER EL CORREO
-  const { auth } = useAuth()!;
   const { t } = useTranslation();
   const [errores, setErrores] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);

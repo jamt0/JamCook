@@ -1,134 +1,134 @@
 import names from './names';
-import * as pages from 'pages';
+import * as Pages from 'pages';
 
 const routes = [
 	{
 		path: names.aboutUs,
-		component: pages.AboutUs,
+		component: Pages.AboutUs,
 	},
 	{
 		path: names.allergies,
-		component: pages.Allergies,
+		component: Pages.Allergies,
 	},
 	{
 		path: names.comensals,
-		component: pages.Commensals,
+		component: Pages.Commensals,
 	},
 	{
 		path: names.contactUs,
-		component: pages.ContactUs,
+		component: Pages.ContactUs,
 	},
 	{
 		path: names.cookiesPolicy,
-		component: pages.CookiesPolicy,
+		component: Pages.CookiesPolicy,
 	},
 	{
 		path: names.cookingLevel,
-		component: pages.CookingLevel,
+		component: Pages.CookingLevel,
 	},
 	{
 		path: names.diet,
-		component: pages.Diet,
+		component: Pages.Diet,
 	},
 	{
 		path: names.dislikeIngredient,
-		component: pages.DislikeIngredient,
+		component: Pages.DislikeIngredient,
 	},
 	{
 		path: names.editProfile,
-		component: pages.EditProfile,
+		component: Pages.EditProfile,
 	},
 	{
 		path: names.explore,
-		component: pages.Explore,
+		component: Pages.Explore,
 	},
 	{
 		path: names.foodBasket,
-		component: pages.FoodBasket,
+		component: Pages.FoodBasket,
 	},
 	{
 		path: names.foodBasketAdd,
-		component: pages.FoodBasketAdd,
+		component: Pages.FoodBasketAdd,
 	},
 	{
 		path: names.forgetPassword,
-		component: pages.ForgetPassword,
+		component: Pages.ForgetPassword,
 	},
 	{
 		path: names.forgetPasswordValidate,
-		component: pages.ForgetPasswordValidate,
+		component: Pages.ForgetPasswordValidate,
 	},
 	{
 		path: names.home,
-		component: pages.Search,
+		component: Pages.Search,
 	},
 	{
 		path: names.language,
-		component: pages.Language,
+		component: Pages.Language,
 	},
 	{
 		path: names.legalInformation,
-		component: pages.LegalInformation,
+		component: Pages.LegalInformation,
 	},
 	{
 		path: names.listRecipes + ':id',
-		component: pages.ListRecipes,
+		component: Pages.ListRecipes,
 	},
 	{
 		path: names.measurementUnits,
-		component: pages.MeasurementUnits,
+		component: Pages.MeasurementUnits,
 	},
 	{
 		path: names.myObjectives,
-		component: pages.MyObjectives,
+		component: Pages.MyObjectives,
 	},
 	{
 		path: names.newPassword,
-		component: pages.NewPassword,
+		component: Pages.NewPassword,
 	},
 	{
 		path: names.preferences,
-		component: pages.Preferences,
+		component: Pages.Preferences,
 	},
 	{
 		path: names.privacyPolicy,
-		component: pages.PrivacyPolicy,
+		component: Pages.PrivacyPolicy,
 	},
 	{
 		path: names.profile,
-		component: pages.Profile,
+		component: Pages.Profile,
 	},
 	{
 		path: names.recipe + ':id',
-		component: pages.Recipe,
+		component: Pages.Recipe,
 	},
 	{
 		path: names.search,
-		component: pages.Search,
+		component: Pages.Search,
 	},
 	{
 		path: names.settings,
-		component: pages.Settings,
+		component: Pages.Settings,
 	},
 	{
 		path: names.signIn,
-		component: pages.SignIn,
+		component: Pages.SignIn,
 	},
 	{
 		path: names.signUp,
-		component: pages.SignUp,
+		component: Pages.SignUp,
 	},
 	{
 		path: names.termsAndConditions,
-		component: pages.TermsAndConditions,
+		component: Pages.TermsAndConditions,
 	},
 	{
 		path: names.theme,
-		component: pages.Theme,
+		component: Pages.Theme,
 	},
 	{
 		path: names.welcome,
-		component: pages.Welcome,
+		component: Pages.Welcome,
 	},
 ];
 

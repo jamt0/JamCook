@@ -12,7 +12,6 @@ import FoodBasket from "pages/FoodBasket";
 import FoodBasketAdd from "pages/FoodBasketAdd";
 import ForgetPassword from "pages/ForgetPassword";
 import ForgetPasswordValidate from "pages/ForgetPasswordValidate";
-import Home from "pages/Home";
 import Language from "pages/Language";
 import LegalInformation from "pages/LegalInformation";
 import ListRecipes from "pages/ListRecipes";
@@ -47,7 +46,6 @@ export {
   FoodBasketAdd,
   ForgetPassword,
   ForgetPasswordValidate,
-  Home,
   Language,
   LegalInformation,
   ListRecipes,

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import View from "./view";
 import { useHistory } from "react-router";
-import { useAuth } from "context/auth";
 import { useTranslation } from 'react-i18next';
 import Server from "server";
 import namesRoutes from "routes/names";
@@ -37,7 +36,6 @@ const ingredientes = [
 
 const Allergies: React.FC = () => {
   const history = useHistory();
-  const { auth } = useAuth()!;
   const { t } = useTranslation();
   const [ingredients, setIngredients] = useState(ingredientes);
   const [ingredientsUser, setIngredientsUser] = useState();
@@ -51,39 +49,39 @@ const Allergies: React.FC = () => {
     history.push(namesRoutes.profile);
   };
 
-  useEffect(() => {
-    setLoading(true);
-    Server.getAllergies()
-      .then((response) => {
-        if (!response.data.error) {
-          setIngredients(response.data.ingredients);
-          setLoading(false);
-        } else {
-          setErrors(response.data.error);
-          setLoading(false);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
-    if (auth.user?.id) {
-      Server.getAllergiesUser(auth.user.id)
-        .then((response) => {
-          if (!response.data.error) {
-            setIngredientsUser(response.data.ingredients);
-            setLoading(false);
-          } else {
-            setErrors(response.data.error);
-            setLoading(false);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          setLoading(false);
-        });
-    }
-  }, []);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   Server.getAllergies()
+  //     .then((response) => {
+  //       if (!response.data.error) {
+  //         setIngredients(response.data.ingredients);
+  //         setLoading(false);
+  //       } else {
+  //         setErrors(response.data.error);
+  //         setLoading(false);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       setLoading(false);
+  //     });
+  //   if (auth.user?.id) {
+  //     Server.getAllergiesUser(auth.user.id)
+  //       .then((response) => {
+  //         if (!response.data.error) {
+  //           setIngredientsUser(response.data.ingredients);
+  //           setLoading(false);
+  //         } else {
+  //           setErrors(response.data.error);
+  //           setLoading(false);
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //         setLoading(false);
+  //       });
+  //   }
+  // }, []);
 
   return (
     <View
