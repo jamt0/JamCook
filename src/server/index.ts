@@ -1,166 +1,198 @@
-import axios from "axios";
-import config from "config/general";
+import axios from 'axios';
+import config from 'config';
+import { TUserSignIn, TUserSignUp } from 'models';
 
-interface IUser {
-  name?: string;
-  email: string;
-  password?: string;
-  age?: string;
-  gender?: string;
-}
-export default class Server {
+const signIn = (user: TUserSignIn) => {
+	return axios.post(`${config.baseURL}/api/auth/signin`, user);
+};
 
-  //Auth
-  public static signIn(user: IUser) {
-    return axios.post(`${config.baseURL}/api/auth/signin`, user);
-  }
+const signUp = (user: TUserSignUp) => {
+	return axios.post(`${config.baseURL}/api/auth/signup`, user);
+};
 
-  public static signUp(user: IUser) {
-    return axios.post(`${config.baseURL}/api/auth/signup`, user);
-  }
+const authentication = () => {
+	return axios.get(`${config.baseURL}/api/auth/authentication`, {
+		headers: config.headers,
+	});
+};
 
-  public static authentication() {
-    return axios.get(`${config.baseURL}/api/auth/authentication`, {
-      headers: config.headers
-    });
-  }
+const getUser = (id: string) => {
+	return axios.get(`${config.baseURL}/api/users/${id}`, {
+		headers: config.headers,
+	});
+};
 
-  //User
-  public static getUser(id: string) {
-    return axios.get(`${config.baseURL}/api/users/${id}`, {
-      headers: config.headers
-    });
-  }
+const putUser = (id: string, user: any): Promise<any> => {
+	return axios.put(`${config.baseURL}/api/users/${id}`, user, {
+		headers: config.headers,
+	});
+};
 
-  public static putUser(id: string, user: IUser): Promise<any> {
-    return axios.put(`${config.baseURL}/api/users/${id}`, user, {
-      headers: config.headers
-    });
-  }
+const putImageAvatar = (id: string, imageAvatar: any) => {
+	let headers = {
+		'content-type': 'multipart/form-data',
+		accessToken: config.headers.accessToken,
+	};
+	return axios.put(
+		`${config.baseURL}/api/users/ImagesAvatars/${id}`,
+		imageAvatar,
+		{
+			headers: headers,
+		}
+	);
+};
 
-  //User Image Avatar
-  public static putImageAvatar(id: string, imageAvatar: any) {
-    let headers = {
-      'content-type': 'multipart/form-data',
-      'accessToken': config.headers.accessToken
-    };
-    return axios.put(`${config.baseURL}/api/users/ImagesAvatars/${id}`, imageAvatar, {
-      headers: headers
-    });
-  }
+const getImageAvatar = (id: string) => {
+	return axios.get(`${config.baseURL}/api/users/ImagesAvatars/${id}`, {
+		headers: config.headers,
+	});
+};
 
-  public static getImageAvatar(id: string) {
-    return axios.get(`${config.baseURL}/api/users/ImagesAvatars/${id}`, {
-      headers: config.headers
-    });
-  }
+const getGenders = () => {
+	return axios.get(`${config.baseURL}/api/users/genders`, {
+		headers: config.headers,
+	});
+};
 
-  //User Gender
-  public static getGenders() {
-    return axios.get(`${config.baseURL}/api/users/genders`, {
-      headers: config.headers
-    });
-  }
+const getAges = () => {
+	return axios.get(`${config.baseURL}/api/users/ages`, {
+		headers: config.headers,
+	});
+};
 
-  //User Age
-  public static getAges() {
-    return axios.get(`${config.baseURL}/api/users/ages`, {
-      headers: config.headers
-    });
-  }
+const getAllergies = () => {
+	return axios.get(`${config.baseURL}/api/users/preferences/allergies`, {
+		headers: config.headers,
+	});
+};
 
-  //User Preferences Allergies
-  public static getAllergies() {
-    return axios.get(`${config.baseURL}/api/users/preferences/allergies`, {
-      headers: config.headers
-    });
-  }
+const getAllergiesUser = (userId: string) => {
+	return axios.get(
+		`${config.baseURL}/api/users/preferences/allergies/${userId}`,
+		{
+			headers: config.headers,
+		}
+	);
+};
 
-  public static getAllergiesUser(userId: string) {
-    return axios.get(`${config.baseURL}/api/users/preferences/allergies/${userId}`, {
-      headers: config.headers
-    });
-  }
+const getComensalsUser = (userId: string) => {
+	return axios.get(
+		`${config.baseURL}/api/users/preferences/comensals/${userId}`,
+		{
+			headers: config.headers,
+		}
+	);
+};
 
-  //User Preferences Comensals
-  public static getComensalsUser(userId: string) {
-    return axios.get(`${config.baseURL}/api/users/preferences/comensals/${userId}`, {
-      headers: config.headers
-    });
-  }
+const getDiets = () => {
+	return axios.get(`${config.baseURL}/api/users/preferences/diets`, {
+		headers: config.headers,
+	});
+};
 
-  //User Preferences Diets
-  public static getDiets() {
-    return axios.get(`${config.baseURL}/api/users/preferences/diets`, {
-      headers: config.headers
-    });
-  }
+const getDietsUser = (userId: string) => {
+	return axios.get(`${config.baseURL}/api/users/preferences/diets/${userId}`, {
+		headers: config.headers,
+	});
+};
 
-  public static getDietsUser(userId: string) {
-    return axios.get(`${config.baseURL}/api/users/preferences/diets/${userId}`, {
-      headers: config.headers
-    });
-  }
+const getDislikeIngredients = () => {
+	return axios.get(
+		`${config.baseURL}/api/users/preferences/dislikeIngredients`,
+		{
+			headers: config.headers,
+		}
+	);
+};
 
-  //User Preferences DislikeIngredients
-  public static getDislikeIngredients() {
-    return axios.get(`${config.baseURL}/api/users/preferences/dislikeIngredients`, {
-      headers: config.headers
-    });
-  }
+const getDislikeIngredientsUser = (userId: string) => {
+	return axios.get(
+		`${config.baseURL}/api/users/preferences/dislikeIngredients/${userId}`,
+		{
+			headers: config.headers,
+		}
+	);
+};
 
-  public static getDislikeIngredientsUser(userId: string) {
-    return axios.get(`${config.baseURL}/api/users/preferences/dislikeIngredients/${userId}`, {
-      headers: config.headers
-    });
-  }
+const getkitchenLevels = () => {
+	return axios.get(`${config.baseURL}/api/users/preferences/kitchenLevels`, {
+		headers: config.headers,
+	});
+};
 
-  //User Preferences KitchenLevelsUser
-  public static getkitchenLevels() {
-    return axios.get(`${config.baseURL}/api/users/preferences/kitchenLevels`, {
-      headers: config.headers
-    });
-  }
+const getkitchenLevelsUser = (userId: string) => {
+	return axios.get(
+		`${config.baseURL}/api/users/preferences/kitchenLevels/${userId}`,
+		{
+			headers: config.headers,
+		}
+	);
+};
 
-  public static getkitchenLevelsUser(userId: string) {
-    return axios.get(`${config.baseURL}/api/users/preferences/kitchenLevels/${userId}`, {
-      headers: config.headers
-    });
-  }
+const getObjectives = () => {
+	return axios.get(`${config.baseURL}/api/users/preferences/objectives`, {
+		headers: config.headers,
+	});
+};
 
-  //User Preferences Objectives
-  public static getObjectives() {
-    return axios.get(`${config.baseURL}/api/users/preferences/objectives`, {
-      headers: config.headers
-    });
-  }
+const getObjectivesUser = (userId: string) => {
+	return axios.get(
+		`${config.baseURL}/api/users/preferences/objectives/${userId}`,
+		{
+			headers: config.headers,
+		}
+	);
+};
 
-  public static getObjectivesUser(userId: string) {
-    return axios.get(`${config.baseURL}/api/users/preferences/objectives/${userId}`, {
-      headers: config.headers
-    });
-  }
+const validateVerificationCode = (verificationCode: string) => {
+	return axios.post(
+		`${config.baseURL}/api/auth/validateVerificationCode`,
+		verificationCode
+	);
+};
 
-  //User ForgetPassword
-  public static validateVerificationCode(verificationCode: string) {
-    return axios.post(`${config.baseURL}/api/auth/validateVerificationCode`, verificationCode);
-  }
+const sendMailForgetPassword = (email: string) => {
+	return axios.post(`${config.baseURL}/api/auth/sendMailForgetPassword`, email);
+};
 
-  public static sendMailForgetPassword(email: string) {
-    return axios.post(`${config.baseURL}/api/auth/sendMailForgetPassword`, email);
-  }
+const changePassword = (password: string) => {
+	return axios.post(`${config.baseURL}/api/auth/changePassword`, password);
+};
 
-  public static changePassword(password: string) {
-    return axios.post(`${config.baseURL}/api/auth/changePassword`, password);
-  }
+const sendMessage = (message: any) => {
+	return axios.post(`${config.baseURL}/api/auth/sendMessage`, message);
+};
 
-  //Contact Us
-  public static sendMessage(message: any) {
-    return axios.post(`${config.baseURL}/api/auth/sendMessage`, message);
-  }
+const getSubjects = () => {
+	return axios.get(`${config.baseURL}/api/auth/getSubjects`);
+};
 
-  public static getSubjects() {
-    return axios.get(`${config.baseURL}/api/auth/getSubjects`);
-  }
+const server = {
+	signIn,
+	signUp,
+	authentication,
+	getUser,
+	putUser,
+	putImageAvatar,
+	getImageAvatar,
+	getGenders,
+	getAges,
+	getAllergies,
+	getAllergiesUser,
+	getComensalsUser,
+	getDiets,
+	getDietsUser,
+	getDislikeIngredients,
+	getDislikeIngredientsUser,
+	getkitchenLevels,
+	getkitchenLevelsUser,
+	getObjectives,
+	getObjectivesUser,
+	validateVerificationCode,
+	sendMailForgetPassword,
+	changePassword,
+	sendMessage,
+	getSubjects,
+};
 
-}
+export default server;
