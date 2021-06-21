@@ -18,7 +18,6 @@ import {
 	IonToolbar,
 	IonTitle,
 	IonContent,
-	IonFooter,
 } from '@ionic/react';
 import './styles.css';
 import { Link } from 'react-router-dom';
@@ -27,6 +26,7 @@ import namesRoutes from 'routes/names';
 type Props = {
 	showModal: boolean;
 	setShowModal: (showModal: boolean) => void;
+	onClickButton: (nameRoute: string) => void;
 	texts: any;
 	data: {
 		image: string;
@@ -71,21 +71,15 @@ const View: FunctionComponent<Props> = (props) => (
 			</Center>
 		</IonContent>
 		<Scaffold.Footer>
-			<IonToolbar>
-				<Center direction='col' className='mt-2' justify='center'>
-					<Link to={namesRoutes.signIn} className='w-full'>
-						<Button>{props.texts('signin_iniciar_sesion')}</Button>
-					</Link>
-					<Center className='mb-2'>
-						<Text className='mr-1'>
-							{props.texts('signin_no_tiene_cuenta')}
-						</Text>
-						<ButtonLink routerLink={namesRoutes.signUp}>
-							{props.texts('signup_registrate')}
-						</ButtonLink>
-					</Center>
-				</Center>
-			</IonToolbar>
+			<Button onClick={() => props.onClickButton(namesRoutes.signIn)}>
+				{props.texts('signin_iniciar_sesion')}
+			</Button>
+			<Center className='mb-2'>
+				<Text className='mr-1'>{props.texts('signin_no_tiene_cuenta')}</Text>
+				<ButtonLink onClick={() => props.onClickButton(namesRoutes.signUp)}>
+					{props.texts('signup_registrate')}
+				</ButtonLink>
+			</Center>
 		</Scaffold.Footer>
 	</IonModal>
 );
