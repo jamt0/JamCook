@@ -7,6 +7,8 @@ import {
 	IonTabs,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import { selectTabs } from 'global/features/tabsSlice';
+import { useAppSelector } from 'global/hooks';
 import {
 	searchOutline,
 	navigateOutline,
@@ -21,7 +23,7 @@ import namesRoutes from 'routes/names';
 
 const Routes = () => {
 	const { t } = useTranslation();
-	const tabBarStyle = { display: 'none' };
+	const { showTabs } = useAppSelector(selectTabs);
 	return (
 		<IonReactRouter>
 			<IonTabs>
@@ -35,7 +37,11 @@ const Routes = () => {
 						<NoFound />
 					</Route>
 				</IonRouterOutlet>
-				<IonTabBar slot='bottom' className='py-1' style={tabBarStyle}>
+				<IonTabBar
+					slot='bottom'
+					className='py-1'
+					style={showTabs ? {} : { display: 'none' }}
+				>
 					<IonTabButton tab='search' href={namesRoutes.search}>
 						<IonIcon icon={searchOutline} />
 						<IonLabel>{t('page_buscar')}</IonLabel>
