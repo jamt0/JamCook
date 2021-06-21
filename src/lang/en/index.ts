@@ -1,4 +1,11 @@
 const en = {
+	welcome: {
+		welcome: 'Welcome',
+		look_recipes: 'Look up recipes from multiple countries and cultures',
+		share_recipes: 'Share your creations with the community',
+		customize_preferences: 'Customize your food preferences',
+		discover_recipes: 'Discover recipes with the ingredients that you have in your refrigerator',
+	},
 	//Name App
 	name_app: 'JamCook',
 	jam: 'Jam',

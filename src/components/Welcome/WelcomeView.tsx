@@ -1,55 +1,93 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent } from 'react';
 import {
-  Center,
-  Button,
-  Modal,
-  ButtonIcon,
-  Slides,
-  Slide,
-  Image,
-  SubTitle,
-  ButtonLink,
-} from "UI";
-import { closeCircleOutline } from "ionicons/icons";
-import Brand from "components/Brand";
+	Text,
+	Center,
+	Button,
+	ButtonIcon,
+	Slides,
+	Slide,
+	SubTitle,
+	ButtonLink,
+	Scaffold,
+} from 'UI';
+import { closeOutline } from 'ionicons/icons';
+import Brand from 'components/Brand';
+import {
+	IonModal,
+	IonHeader,
+	IonToolbar,
+	IonTitle,
+	IonContent,
+	IonFooter,
+} from '@ionic/react';
+import './styles.css';
+import { Link } from 'react-router-dom';
+import namesRoutes from 'routes/names';
 
 type Props = {
-  showModal: boolean;
-  setShowModal: (showModal: boolean) => void;
-  texts: any;
-  data: {
-    image: string;
-    subTitle: string;
-  }[];
+	showModal: boolean;
+	setShowModal: (showModal: boolean) => void;
+	texts: any;
+	data: {
+		image: string;
+		subTitle: string;
+	}[];
 };
 
 const View: FunctionComponent<Props> = (props) => (
-  <Modal isOpen={props.showModal}>
-    <div>
-      <Center justify="end" className="mt-4 mr-4">
-        <ButtonIcon
-          onClick={() => props.setShowModal(false)}
-          icon={closeCircleOutline}
-          color="primary"
-          size="4xl"
-        />
-      </Center>
-      <Slides options={{ slidesPerView: 1}}>
-        {props.data.map((element, index) => (
-          <Slide key={index}>
-            <div className="w-full">
-              <Image src={element.image} height={96} />
-              <Brand texts={props.texts}></Brand>
-              <SubTitle color="medium">{element.subTitle}</SubTitle>
-              
-            </div>
-          </Slide>
-        ))}
-      </Slides>
-      <Button>Siguiente</Button>
-              <ButtonLink>Ya tengo una cuenta</ButtonLink>
-    </div>
-  </Modal>
+	<IonModal isOpen={props.showModal} cssClass='fullscreen'>
+		<IonHeader>
+			<IonToolbar>
+				<IonTitle>{props.texts('welcome.welcome')}</IonTitle>
+				<ButtonIcon
+					onClick={() => props.setShowModal(false)}
+					icon={closeOutline}
+					color='primary'
+					size='4xl'
+					slot='end'
+				/>
+			</IonToolbar>
+		</IonHeader>
+		<IonContent className='ion-padding' scrollY={false}>
+			<Brand texts={props.texts} />
+			<Center className='h-full'>
+				<Slides options={{ slidesPerView: 1 }} pager={true}>
+					{props.data.map((element, index) => (
+						<Slide key={index} className='mb-12'>
+							<div className='w-full flex flex-col justify-center'>
+								{/* <Image src={element.image} height={96} /> */}
+								<Center className='mx-auto w-10/12 h-10/12'>
+									<img
+										src={element.image}
+										alt=''
+										className='w-full h-full mx-auto'
+									/>
+								</Center>
+								<SubTitle color='medium'>{element.subTitle}</SubTitle>
+							</div>
+						</Slide>
+					))}
+				</Slides>
+			</Center>
+		</IonContent>
+		<Scaffold.Footer>
+			<IonToolbar>
+				<Center direction='col' className='mt-2' justify='center'>
+					<Link to={namesRoutes.signIn} className='w-full'>
+						<Button>{props.texts('signin_iniciar_sesion')}</Button>
+					</Link>
+					<Center className='mb-2'>
+						<Text className='mr-1'>
+							{props.texts('signin_no_tiene_cuenta')}
+						</Text>
+						<ButtonLink routerLink={namesRoutes.signUp}>
+							{props.texts('signup_registrate')}
+						</ButtonLink>
+					</Center>
+				</Center>
+			</IonToolbar>
+		</Scaffold.Footer>
+	</IonModal>
 );
 
 export default View;

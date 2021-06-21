@@ -7,6 +7,7 @@ import {
 	IonTabs,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import Welcome from 'components/Welcome';
 import {
 	searchOutline,
 	navigateOutline,
@@ -24,6 +25,7 @@ const Routes = () => {
 	const tabBarStyle = { display: 'none' };
 	return (
 		<IonReactRouter>
+			<Welcome/>
 			<IonTabs>
 				<IonRouterOutlet>
 					{routes.map((route) => (

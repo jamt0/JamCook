@@ -1,34 +1,34 @@
 import { FunctionComponent, useState } from 'react';
 import WelcomeView from 'components/Welcome/WelcomeView';
 import { useTranslation } from 'react-i18next';
+import welcomeOne from 'assets/WelcomeImages/1.jpg';
+import welcomeTwo from 'assets/WelcomeImages/2.jpg';
+import welcomeThree from 'assets/WelcomeImages/3.jpg';
+import welcomeFour from 'assets/WelcomeImages/4.jpg';
 
 type Props = {};
-const data = [
-	{
-		image:
-			'https://www.cookforyourlife.org/wp-content/uploads/2018/08/Shrimp-Tacos.jpg',
-		subTitle: 'ASDADFASDFASDFASDF',
-	},
-	{
-		image:
-			'https://www.cookforyourlife.org/wp-content/uploads/2018/08/Shrimp-Tacos.jpg',
-		subTitle: 'asdasd',
-	},
-	{
-		image:
-			'https://www.cookforyourlife.org/wp-content/uploads/2018/08/Shrimp-Tacos.jpg',
-		subTitle: 'jkhnl-k',
-	},
-	{
-		image:
-			'https://www.cookforyourlife.org/wp-content/uploads/2018/08/Shrimp-Tacos.jpg',
-		subTitle: 'ewwrtbv',
-	},
-];
 
 const Welcome: FunctionComponent<Props> = () => {
 	const [showModal, setShowModal] = useState(true);
 	const { t } = useTranslation();
+	const data = [
+		{
+			image: welcomeOne,
+			subTitle: t('welcome.look_recipes'),
+		},
+		{
+			image: welcomeTwo,
+			subTitle: t('welcome.share_recipes'),
+		},
+		{
+			image: welcomeThree,
+			subTitle: t('welcome.customize_preferences'),
+		},
+		{
+			image: welcomeFour,
+			subTitle: t('welcome.discover_recipes'),
+		},
+	];
 	return (
 		<WelcomeView
 			setShowModal={setShowModal}

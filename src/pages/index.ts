@@ -29,7 +29,6 @@ import SignIn from "pages/SignIn";
 import SignUp from "pages/SignUp";
 import TermsAndConditions from "pages/TermsAndConditions";
 import Theme from "pages/Theme";
-import Welcome from "pages/Welcome";
 
 export {
   AboutUs,
@@ -63,5 +62,4 @@ export {
   SignUp,
   TermsAndConditions,
   Theme,
-  Welcome,
 }

@@ -1,20 +1,20 @@
-import { FunctionComponent } from "react";
-import { IonSlides } from "@ionic/react";
+import { FunctionComponent } from 'react';
+import { IonSlides } from '@ionic/react';
 
 type Props = {
-  options: {
-    slidesPerView: number;
-    spaceBetween?: number;
-    pagination?: any;
-  };
+	options: {
+		slidesPerView: number;
+		spaceBetween?: number;
+	};
+	pager?: boolean;
 };
 
-const Slides: FunctionComponent<Props> = (props) => {
-  return (
-    <IonSlides pager={true} options={props.options} className="z-0 my-4">
-      {props.children}
-    </IonSlides>
-  );
+const Slides: FunctionComponent<Props> = ({ pager = false, ...props }) => {
+	return (
+		<IonSlides pager={pager} options={props.options}>
+			{props.children}
+		</IonSlides>
+	);
 };
 
 export default Slides;

@@ -125,11 +125,7 @@ const routes = [
 	{
 		path: names.theme,
 		component: Pages.Theme,
-	},
-	{
-		path: names.welcome,
-		component: Pages.Welcome,
-	},
+	}
 ];
 
 export default routes;

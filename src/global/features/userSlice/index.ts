@@ -2,15 +2,23 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'global/store';
 
 type TUser = {
-    name: string
+    id: string,
+    name: string,
+    email: string,
+    pathAvatarImage: string,
 }
 
 type TUserSlice = {
-    notes: TUser[],
+    user: TUser,
 }
 
 const initialState: TUserSlice = {
-    notes: [],
+    user: {
+        id: '',
+        name: '',
+        email: '',
+        pathAvatarImage: '',
+    },
 };
 
 export const UserSlice = createSlice({
