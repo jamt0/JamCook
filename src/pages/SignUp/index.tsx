@@ -1,20 +1,30 @@
 import View from './view';
 import { useTranslation } from 'react-i18next';
 import { rulesEmail, rulesPassword, rulesName } from 'utils/rulesValidation';
-import { TUserSignUp } from 'models';
-import namesRoutes from 'routes/names';
-import useShowTabs from 'hooks/useShowTabs';
-import useForm from 'hooks/useForm';
+import { useShowTabs, useResetAuthError } from 'hooks';
+import { useSignUp } from './hooks';
+import { useForm } from 'react-hook-form';
+import { useAppSelector } from 'global/hooks';
+import { selectUser } from 'global/features/userSlice';
+import { useEffect } from 'react';
+import { useHistory } from 'react-router';
 
 const SignUp: React.FC = () => {
-	const { t } = useTranslation();
+	useResetAuthError();
 
 	useShowTabs(false);
 
-	const { formHook, errores, loading, handler } = useForm<TUserSignUp>({
-		dataFech: () => {},
-		route: namesRoutes.home,
-	});
+	const { t } = useTranslation();
+
+	const signUp = useSignUp();
+
+	const {
+		control,
+		handleSubmit,
+		formState: { errors, isSubmitting, isValid },
+	} = useForm({ mode: 'onChange' });
+
+	const { status, error, isLogin } = useAppSelector(selectUser);
 
 	const defaultValues = { name: '', email: '', password: '' };
 
@@ -24,15 +34,20 @@ const SignUp: React.FC = () => {
 		rulesPassword: rulesPassword(t),
 	};
 
+	const history = useHistory();
+
+	useEffect(() => {
+		if (isLogin) history.push('/');
+	}, [isLogin, history]);
+
 	return (
 		<View
-			rules={rules}
 			texts={t}
-			errores={errores}
-			loading={loading}
+			error={error}
+			loading={status === 'loading'}
 			defaultValues={defaultValues}
-			handlerSignUpButton={handler}
-			formHook={formHook}
+			signUp={signUp}
+			form={{ control, handleSubmit, errors, isSubmitting, isValid, rules }}
 		/>
 	);
 };

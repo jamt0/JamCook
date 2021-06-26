@@ -2,12 +2,14 @@ import axios from 'axios';
 import config from 'config';
 import { TUserSignIn, TUserSignUp } from 'models';
 
-const signIn = (user: TUserSignIn) => {
-	return axios.post(`${config.baseURL}/api/auth/signin`, user);
+const signIn: (user: TUserSignIn) => Promise<any> = async (user) => {
+	const response = await axios.post(`${config.baseURL}/api/auth/signin`, user);
+	return response;
 };
 
-const signUp = (user: TUserSignUp) => {
-	return axios.post(`${config.baseURL}/api/auth/signup`, user);
+const signUp: (user: TUserSignUp) => Promise<any> = async (user) => {
+	const response = await axios.post(`${config.baseURL}/api/auth/signup`, user);
+	return response;
 };
 
 const authentication = () => {

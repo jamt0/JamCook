@@ -15,11 +15,17 @@ import namesRoutes from 'routes/names';
 type Props = {
 	texts: any;
 	loading: boolean;
-	errores: string;
-	formHook: any;
-	rules: any;
+	error: string;
+	form: {
+		control: any;
+		handleSubmit: any;
+		errors: any;
+		rules: any;
+		isValid: boolean;
+		isSubmitting: boolean;
+	};
 	defaultValues: TUserSignUp;
-	handlerSignUpButton: (user: TUserSignUp) => void;
+	signUp: (user: TUserSignUp) => void;
 };
 
 const View: FunctionComponent<Props> = (props) => (
@@ -29,33 +35,33 @@ const View: FunctionComponent<Props> = (props) => (
 		</Scaffold.Header>
 		<Scaffold.Content margin='md'>
 			<Loading isOpen={props.loading} />
-			{props.errores !== '' && <ErrorBox>{props.errores}</ErrorBox>}
+			{props.error !== '' && <ErrorBox>{props.error}</ErrorBox>}
 			<Input
-				control={props.formHook.control}
-				errors={props.formHook.errors}
+				control={props.form.control}
+				errors={props.form.errors}
 				defaultValue={props.defaultValues.name}
 				name='name'
 				type='name'
 				label={props.texts('campo_nombre')}
-				rules={props.rules.rulesName}
+				rules={props.form.rules.rulesName}
 			/>
 			<Input
-				control={props.formHook.control}
-				errors={props.formHook.errors}
+				control={props.form.control}
+				errors={props.form.errors}
 				defaultValue={props.defaultValues.email}
 				name='email'
 				type='email'
 				label={props.texts('campo_correo')}
-				rules={props.rules.rulesEmail}
+				rules={props.form.rules.rulesEmail}
 			/>
 			<Input
-				control={props.formHook.control}
-				errors={props.formHook.errors}
+				control={props.form.control}
+				errors={props.form.errors}
 				defaultValue={props.defaultValues.password}
 				name='password'
 				type='password'
 				label={props.texts('campo_contrasena')}
-				rules={props.rules.rulesPassword}
+				rules={props.form.rules.rulesPassword}
 			/>
 			<Center direction='col' className='mt-8'>
 				<Text>{props.texts('signup_acepta_nuestros')}</Text>
@@ -70,8 +76,8 @@ const View: FunctionComponent<Props> = (props) => (
 		</Scaffold.Content>
 		<Scaffold.Footer>
 			<Button
-				onClick={props.formHook.handleSubmit(props.handlerSignUpButton)}
-				disabled={!props.formHook.isValid || props.formHook.isSubmitting}
+				onClick={props.form.handleSubmit(props.signUp)}
+				disabled={!props.form.isValid || props.form.isSubmitting}
 			>
 				{props.texts('signup_crear_cuenta')}
 			</Button>
