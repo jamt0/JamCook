@@ -24,6 +24,7 @@ type Props = {
 		isValid: boolean;
 		isSubmitting: boolean;
 	};
+	history: any;
 	defaultValues: TUserSignUp;
 	signUp: (user: TUserSignUp) => void;
 };
@@ -83,7 +84,7 @@ const View: FunctionComponent<Props> = (props) => (
 			</Button>
 			<Center className='py-2'>
 				<Text className='mr-1'>{props.texts('signup_tiene_cuenta')}</Text>
-				<ButtonLink routerLink={namesRoutes.signIn}>
+				<ButtonLink onClick={() => props.history.replace(namesRoutes.signIn)}>
 					{props.texts('signin_iniciar_sesion')}
 				</ButtonLink>
 			</Center>

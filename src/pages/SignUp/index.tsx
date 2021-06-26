@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { useAppSelector } from 'global/hooks';
 import { selectUser } from 'global/features/userSlice';
 import { useEffect } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 const SignUp: React.FC = () => {
 	useResetAuthError();
@@ -24,7 +24,7 @@ const SignUp: React.FC = () => {
 		formState: { errors, isSubmitting, isValid },
 	} = useForm({ mode: 'onChange' });
 
-	const { status, error, isLogin } = useAppSelector(selectUser);
+	const { status, error, isLoggedIn } = useAppSelector(selectUser);
 
 	const defaultValues = { name: '', email: '', password: '' };
 
@@ -37,8 +37,8 @@ const SignUp: React.FC = () => {
 	const history = useHistory();
 
 	useEffect(() => {
-		if (isLogin) history.push('/');
-	}, [isLogin, history]);
+		if (isLoggedIn) history.push('/');
+	}, [isLoggedIn, history]);
 
 	return (
 		<View
@@ -47,6 +47,7 @@ const SignUp: React.FC = () => {
 			loading={status === 'loading'}
 			defaultValues={defaultValues}
 			signUp={signUp}
+			history={history}
 			form={{ control, handleSubmit, errors, isSubmitting, isValid, rules }}
 		/>
 	);

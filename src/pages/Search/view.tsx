@@ -7,7 +7,7 @@ import Welcome from 'components/Welcome';
 type Props = {
 	texts: any;
 	slidesPerView: number;
-	isLogin: boolean;
+	isLoggedIn: boolean;
 	listRecipes: {
 		id: string;
 		nameListRecipes: string;
@@ -18,7 +18,7 @@ type Props = {
 const Search: FunctionComponent<Props> = (props) => (
 	<Scaffold>
 		<Scaffold.Content>
-			{!props.isLogin && <Welcome />}
+			{!props.isLoggedIn && <Welcome />}
 			<Title align='center' color='medium'>
 				{props.texts('slogan_2_1')}
 				<br />

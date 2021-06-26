@@ -232,14 +232,14 @@ const Search: React.FC = () => {
 		return () => window.removeEventListener('resize', handleResize);
 	}, [width]);
 
-	const { isLogin } = useAppSelector(selectUser);
+	const { isLoggedIn } = useAppSelector(selectUser);
 
 	return (
 		<View
 			slidesPerView={slidesPerView}
 			listRecipes={ListRecipes}
 			texts={t}
-			isLogin={isLogin}
+			isLoggedIn={isLoggedIn}
 		/>
 	);
 };

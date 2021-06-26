@@ -1,26 +1,19 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'global/store';
-import { TUserSignIn, TUserSignUp } from 'models';
+import { TUser, TUserSignIn, TUserSignUp } from 'models';
 import Server from 'server';
-
-type TUser = {
-	id: string;
-	name: string;
-	email: string;
-	pathAvatarImage: string;
-};
 
 type TUserSlice = {
 	status: 'loaded' | 'loading' | 'error' | 'idle';
 	error: string;
-	isLogin: boolean;
+	isLoggedIn: boolean;
 	user: TUser;
 };
 
 const initialState: TUserSlice = {
 	status: 'idle',
 	error: '',
-	isLogin: false,
+	isLoggedIn: false,
 	user: {
 		id: '',
 		name: '',
@@ -82,6 +75,10 @@ export const UserSlice = createSlice({
 		resetError: (state) => {
 			state.error = '';
 		},
+		logOut: (state) => {
+			localStorage.removeItem('accessToken');
+			state.isLoggedIn = false;
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(signUpUserAsync.pending, (state) => {
@@ -89,7 +86,7 @@ export const UserSlice = createSlice({
 		});
 		builder.addCase(signUpUserAsync.fulfilled, (state, action) => {
 			state.status = 'loaded';
-			state.isLogin = true;
+			state.isLoggedIn = true;
 			state.user = action.payload.user;
 		});
 		builder.addCase(signUpUserAsync.rejected, (state, action) => {
@@ -101,7 +98,7 @@ export const UserSlice = createSlice({
 		});
 		builder.addCase(signInUserAsync.fulfilled, (state, action) => {
 			state.status = 'loaded';
-			state.isLogin = true;
+			state.isLoggedIn = true;
 			state.user = action.payload.user;
 		});
 		builder.addCase(signInUserAsync.rejected, (state, action) => {
@@ -112,5 +109,5 @@ export const UserSlice = createSlice({
 });
 
 export const selectUser = (state: RootState) => state.user;
-export const { resetError } = UserSlice.actions;
+export const { resetError, logOut } = UserSlice.actions;
 export default UserSlice.reducer;
