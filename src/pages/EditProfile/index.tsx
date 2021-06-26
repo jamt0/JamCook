@@ -12,7 +12,7 @@ import {
 } from 'utils/rulesValidation';
 import View from './view';
 import { TUserEdit } from 'models';
-import useShowTabs from 'hooks/useShowTabs';
+import { useShowTabs } from 'hooks';
 
 const EditProfile: React.FC = () => {
 	const history = useHistory();

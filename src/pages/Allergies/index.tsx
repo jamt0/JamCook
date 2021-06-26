@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Server from 'server';
 import namesRoutes from 'routes/names';
-import useShowTabs from 'hooks/useShowTabs';
+import { useShowTabs } from 'hooks';
 
 const ingredientes = [
 	{

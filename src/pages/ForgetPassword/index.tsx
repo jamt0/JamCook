@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { rulesEmail } from 'utils/rulesValidation';
 import Server from 'server';
 import namesRoutes from 'routes/names';
-import useShowTabs from 'hooks/useShowTabs';
+import { useShowTabs } from 'hooks';
 
 const ForgetPassword: React.FC = () => {
 	const history = useHistory();

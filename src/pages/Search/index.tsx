@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import View from './view';
 import { useTranslation } from 'react-i18next';
-import useShowTabs from 'hooks/useShowTabs';
+import { useShowTabs } from 'hooks';
 import { useAppSelector } from 'global/hooks';
 import { selectUser } from 'global/features/userSlice';
 

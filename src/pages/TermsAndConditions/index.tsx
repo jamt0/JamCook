@@ -1,16 +1,14 @@
-import React from "react";
-import View from "./view";
+import React from 'react';
+import View from './view';
 import { useTranslation } from 'react-i18next';
-import useShowTabs from "hooks/useShowTabs";
+import { useShowTabs } from 'hooks';
 
 const TermsAndConditions: React.FC = () => {
-  const { t } = useTranslation();
+	const { t } = useTranslation();
 
-  useShowTabs(false);
+	useShowTabs(false);
 
-  return (
-    <View texts={t}/>
-  );
+	return <View texts={t} />;
 };
 
 export default TermsAndConditions;

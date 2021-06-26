@@ -12,7 +12,7 @@ import {
 	logOutOutline,
 } from 'ionicons/icons';
 import namesRoutes from 'routes/names';
-import useShowTabs from 'hooks/useShowTabs';
+import { useShowTabs } from 'hooks';
 import { useAppSelector } from 'global/hooks';
 import { useLogOut } from './hooks';
 import { selectUser } from 'global/features/userSlice';

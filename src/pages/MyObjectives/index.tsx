@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { TRadio } from 'models';
 import Server from 'server';
-import useShowTabs from 'hooks/useShowTabs';
+import { useShowTabs } from 'hooks';
 
 const MyObjectives: React.FC = () => {
 	const history = useHistory();

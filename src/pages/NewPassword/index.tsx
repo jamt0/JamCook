@@ -6,7 +6,7 @@ import { rulesNewPassword, rulesConfirmPassword } from 'utils/rulesValidation';
 import { useForm } from 'react-hook-form';
 import Server from 'server';
 import namesRoutes from 'routes/names';
-import useShowTabs from 'hooks/useShowTabs';
+import { useShowTabs } from 'hooks';
 
 const NewPassword: React.FC = () => {
 	const history = useHistory();

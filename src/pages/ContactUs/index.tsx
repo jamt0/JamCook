@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import Server from 'server';
 import { rulesEmail, rulesSubject, rulesMessage } from 'utils/rulesValidation';
 import { TMessage } from 'models';
-import useShowTabs from 'hooks/useShowTabs';
+import { useShowTabs } from 'hooks';
 
 const ContactUs: React.FC = () => {
 	const history = useHistory();
