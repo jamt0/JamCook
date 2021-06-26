@@ -1,10 +1,12 @@
-var api_url = process.env.API_URL || "http://localhost:3000";
-console.log('API Host ENV : ' + process.env.API_URL)
-console.log('API Host : ' + api_url)
+var api_url = process.env.API_URL || 'http://localhost:5000';
+console.log('API Host ENV : ' + process.env.API_URL);
+console.log('API Host : ' + api_url);
 
-export default {
-    baseURL: api_url,
-    headers: {
-        accessToken: localStorage.getItem('accessToken')
-    },
-}
+const config = {
+	baseURL: api_url,
+	headers: {
+		accessToken: localStorage.getItem('accessToken'),
+	},
+};
+
+export default config;
