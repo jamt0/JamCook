@@ -5,7 +5,7 @@ import welcomeOne from 'assets/WelcomeImages/1.jpg';
 import welcomeTwo from 'assets/WelcomeImages/2.jpg';
 import welcomeThree from 'assets/WelcomeImages/3.jpg';
 import welcomeFour from 'assets/WelcomeImages/4.jpg';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 type Props = {};
 
