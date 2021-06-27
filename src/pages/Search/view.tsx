@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { SliderRecipes } from 'components';
-import { TListRecipesSearch } from 'models';
+import { TFetch, TListRecipesSearch } from 'models';
 import { Scaffold, Searcher, Title } from 'UI';
 import Welcome from 'components/Welcome';
 
@@ -8,11 +8,7 @@ type Props = {
 	texts: any;
 	slidesPerView: number;
 	isLoggedIn: boolean;
-	fetch: {
-		data: TListRecipesSearch[];
-		loading: boolean;
-		error: string;
-	};
+	fetch: TFetch<TListRecipesSearch[]>;
 };
 
 const Search: FunctionComponent<Props> = (props) => (

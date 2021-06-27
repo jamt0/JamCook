@@ -127,3 +127,9 @@ export type TMessage = {
 	subjectId: string;
 	message: string;
 };
+
+export type TFetch<T> = {
+	data: T;
+	loading: boolean;
+	error: string;
+};

@@ -1,6 +1,12 @@
 import axios, { AxiosResponse } from 'axios';
 import config from 'config';
-import { TListRecipesSearch, TUser, TUserSignIn, TUserSignUp } from 'models';
+import {
+	TCategory,
+	TListRecipesSearch,
+	TUser,
+	TUserSignIn,
+	TUserSignUp,
+} from 'models';
 
 namespace Server {
 	export const signIn: (
@@ -27,8 +33,14 @@ namespace Server {
 		return response.data;
 	};
 
-	export const getRecipes: () => Promise<TListRecipesSearch[]> = async () => {
-		const response = await axios.get(`${config.baseURL}/api/recipes`);
+	export const getRecipesSearch: () => Promise<TListRecipesSearch[]> =
+		async () => {
+			const response = await axios.get(`${config.baseURL}/api/recipes/search`);
+			return response.data;
+		};
+
+	export const getRecipesExplore: () => Promise<TCategory[]> = async () => {
+		const response = await axios.get(`${config.baseURL}/api/recipes/explore`);
 		return response.data;
 	};
 

@@ -20,7 +20,7 @@ const Search: React.FC = () => {
 	const { isLoggedIn } = useAppSelector(selectUser);
 
 	const { data, loading, error } = useFetch<TListRecipesSearch[]>(
-		Server.getRecipes,
+		Server.getRecipesSearch,
 		[]
 	);
 
