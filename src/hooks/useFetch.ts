@@ -1,26 +1,39 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
-const useFetch = (props: {fetch: (req: any) => any, req: any}) => {
-  const [error, setError] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState({user: { name: "", email: "" }});
+type TResponseError = {
+	error: string;
+};
 
-  useEffect(() => {
-    const fetchData = async() => {
-      try {
-        const response = await props.fetch(props.req);
-        if(response.data.error) setError(response.data.error);
-        else setData(response.data);
-      } catch (error) {
-        console.log(error);
-        setError("Error de conexión")
-      }
-    }
-    setLoading(true);
-    fetchData();
-    setLoading(false);
-  }, []);
+const useFetch = <T>(
+	fetchFunction: () => Promise<T | TResponseError>,
+	initialState: T
+) => {
+	const [error, setError] = useState<string>('');
+	const [loading, setLoading] = useState<boolean>(false);
+	const [data, setData] = useState<T>(initialState);
 
-  return { error, loading, data };
+	const isResponseError = useCallback(
+		(response: T | TResponseError): response is TResponseError =>
+			'error' in response,
+		[]
+	);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await fetchFunction();
+				if (isResponseError(response)) setError(response.error);
+				else setData(response);
+			} catch (error) {
+				console.log(error);
+				setError('Error de conexión');
+			}
+		};
+		setLoading(true);
+		fetchData();
+		setLoading(false);
+	}, [fetchFunction, isResponseError]);
+
+	return { error, loading, data };
 };
 export default useFetch;
