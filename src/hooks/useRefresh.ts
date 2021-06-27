@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { RefresherEventDetail } from '@ionic/core';
 
-const useFetch = (fetchData: () => Promise<void>) => {
+const useRefresh = (fetchData: () => Promise<void>) => {
 	const doRefresh = useCallback(
 		async (event: CustomEvent<RefresherEventDetail>) => {
 			await fetchData();
@@ -11,4 +11,4 @@ const useFetch = (fetchData: () => Promise<void>) => {
 	);
 	return doRefresh;
 };
-export default useFetch;
+export default useRefresh;
