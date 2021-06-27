@@ -49,6 +49,12 @@ export type TCategory = {
 	icon: string;
 };
 
+export type TListRecipesSearch = {
+	id: string;
+	nameListRecipes: string;
+	recipes: TRecipe[];
+};
+
 export type TRecipe = {
 	id: string;
 	pathRecipeImage: string;

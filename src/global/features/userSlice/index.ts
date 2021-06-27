@@ -31,12 +31,19 @@ export const signUpUserAsync = createAsyncThunk(
 			console.log('response', response);
 			if (response.status === 200) {
 				console.log('accessToken', data.accessToken);
-				localStorage.setItem('accessToken', data.accessToken);
-				return data;
+				console.log('accessToken', data.accessToken);
+				const accessToken: string | undefined = data.accessToken;
+				if (accessToken) {
+					localStorage.setItem('accessToken', accessToken);
+					return data;
+				}
+				return thunkAPI.rejectWithValue('Hubo un error');
 			}
 			console.log('Error diferente 200', data.error);
-			const error: string = data.error;
-			return thunkAPI.rejectWithValue(error);
+			const error: string | undefined = data.error;
+			if (error) {
+				return thunkAPI.rejectWithValue(error);
+			}
 		} catch (e) {
 			console.log('Catch', e.response.data.error);
 			const error: string = e.response.data.error;
@@ -54,12 +61,18 @@ export const signInUserAsync = createAsyncThunk(
 			console.log('response', response);
 			if (response.status === 200) {
 				console.log('accessToken', data.accessToken);
-				localStorage.setItem('accessToken', data.accessToken);
-				return data;
+				const accessToken: string | undefined = data.accessToken;
+				if (accessToken) {
+					localStorage.setItem('accessToken', accessToken);
+					return data;
+				}
+				return thunkAPI.rejectWithValue('Hubo un error');
 			}
 			console.log('Error diferente 200', data.error);
-			const error: string = data.error;
-			return thunkAPI.rejectWithValue(error);
+			const error: string | undefined = data.error;
+			if (error) {
+				return thunkAPI.rejectWithValue(error);
+			}
 		} catch (e) {
 			console.log('Catch', e.response.data.error);
 			const error: string = e.response.data.error;
@@ -87,7 +100,8 @@ export const UserSlice = createSlice({
 		builder.addCase(signUpUserAsync.fulfilled, (state, action) => {
 			state.status = 'loaded';
 			state.isLoggedIn = true;
-			state.user = action.payload.user;
+			const user = action.payload?.user;
+			if (user) state.user = user;
 		});
 		builder.addCase(signUpUserAsync.rejected, (state, action) => {
 			state.status = 'error';
@@ -99,7 +113,8 @@ export const UserSlice = createSlice({
 		builder.addCase(signInUserAsync.fulfilled, (state, action) => {
 			state.status = 'loaded';
 			state.isLoggedIn = true;
-			state.user = action.payload.user;
+			const user = action.payload?.user;
+			if (user) state.user = user;
 		});
 		builder.addCase(signInUserAsync.rejected, (state, action) => {
 			state.status = 'error';

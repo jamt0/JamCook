@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { SliderRecipes } from 'components';
-import { TRecipe } from 'models';
+import { TListRecipesSearch } from 'models';
 import { Scaffold, Searcher, Title } from 'UI';
 import Welcome from 'components/Welcome';
 
@@ -8,11 +8,11 @@ type Props = {
 	texts: any;
 	slidesPerView: number;
 	isLoggedIn: boolean;
-	listRecipes: {
-		id: string;
-		nameListRecipes: string;
-		recipes: TRecipe[];
-	}[];
+	fetch: {
+		data: TListRecipesSearch[];
+		loading: boolean;
+		error: string;
+	};
 };
 
 const Search: FunctionComponent<Props> = (props) => (
@@ -25,7 +25,7 @@ const Search: FunctionComponent<Props> = (props) => (
 				{props.texts('slogan_2_2')}
 			</Title>
 			<Searcher placeHolder={props.texts('search_buscar_recetas')} />
-			{props.listRecipes.map((recipes) => (
+			{props.fetch.data.map((recipes) => (
 				<SliderRecipes
 					listRecipes={recipes}
 					slidesPerView={props.slidesPerView}

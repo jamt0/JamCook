@@ -1,15 +1,28 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import config from 'config';
-import { TUserSignIn, TUserSignUp } from 'models';
+import { TListRecipesSearch, TUser, TUserSignIn, TUserSignUp } from 'models';
 
-const signIn: (user: TUserSignIn) => Promise<any> = async (user) => {
+const signIn: (
+	user: TUserSignIn
+) => Promise<
+	AxiosResponse<{ user?: TUser; error?: string; accessToken?: string }>
+> = async (user) => {
 	const response = await axios.post(`${config.baseURL}/api/auth/signin`, user);
 	return response;
 };
 
-const signUp: (user: TUserSignUp) => Promise<any> = async (user) => {
+const signUp: (
+	user: TUserSignUp
+) => Promise<
+	AxiosResponse<{ user?: TUser; error?: string; accessToken?: string }>
+> = async (user) => {
 	const response = await axios.post(`${config.baseURL}/api/auth/signup`, user);
-	return response;
+	return response.data;
+};
+
+const getRecipes: () => Promise<TListRecipesSearch[]> = async () => {
+	const response = await axios.get(`${config.baseURL}/api/recipes`);
+	return response.data;
 };
 
 const authentication = () => {
@@ -172,6 +185,7 @@ const getSubjects = () => {
 const server = {
 	signIn,
 	signUp,
+	getRecipes,
 	authentication,
 	getUser,
 	putUser,
