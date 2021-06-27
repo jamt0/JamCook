@@ -21,6 +21,7 @@ const useFetch = <T>(
 	const fetchData = useCallback(async () => {
 		try {
 			setLoading(true);
+			setError('');
 			const response = await fetchFunction();
 			if (isResponseError(response)) setError(response.error);
 			else setData(response);
