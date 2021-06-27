@@ -1,6 +1,6 @@
 import { useIonViewWillEnter } from '@ionic/react';
 import { useAppDispatch } from 'global/hooks';
-import { setShowTabs } from 'global/features/tabsSlice';
+import { setShowTabs } from 'global/features/UISlice';
 
 const useShowTabs = (showTabs: boolean) => {
 	const dispatch = useAppDispatch();

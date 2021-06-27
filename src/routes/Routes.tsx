@@ -7,7 +7,7 @@ import {
 	IonTabs,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { selectTabs } from 'global/features/tabsSlice';
+import { selectUI } from 'global/features/UISlice';
 import { useAppSelector } from 'global/hooks';
 import {
 	searchOutline,
@@ -20,10 +20,12 @@ import { useTranslation } from 'react-i18next';
 import { Route } from 'react-router-dom';
 import routes from 'routes';
 import namesRoutes from 'routes/names';
+import { useSetTheme } from 'hooks';
 
 const Routes = () => {
 	const { t } = useTranslation();
-	const { showTabs } = useAppSelector(selectTabs);
+	const { showTabs } = useAppSelector(selectUI);
+	useSetTheme();
 	return (
 		<IonReactRouter>
 			<IonTabs>

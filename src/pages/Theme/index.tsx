@@ -5,15 +5,21 @@ import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { TRadio } from 'models';
 import { useShowTabs } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'global/hooks';
+import { selectUI, setTheme } from 'global/features/UISlice';
 
 const Theme: React.FC = () => {
 	const history = useHistory();
+
 	const { t } = useTranslation();
 
 	useShowTabs(false);
 
-	// const defaultValues = theme === "dark" ? "2" : "1";
-	const defaultValues = '1';
+	const { theme } = useAppSelector(selectUI);
+
+	const dispatch = useAppDispatch();
+
+	const defaultValues = theme === 'dark' ? '2' : '1';
 
 	const { control, handleSubmit } = useForm({ mode: 'onSubmit' });
 
@@ -29,9 +35,9 @@ const Theme: React.FC = () => {
 	];
 
 	const handlerSaveEditButton = (radio: TRadio) => {
-		// if (radio.radio === "2") setTheme("dark");
-		// else setTheme("light");
-		// history.goBack();
+		if (radio.radio === '2') dispatch(setTheme('dark'));
+		else dispatch(setTheme('light'));
+		history.goBack();
 	};
 
 	return (

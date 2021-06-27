@@ -138,3 +138,5 @@ export type TFetch<T> = {
 	loading: boolean;
 	error: string;
 };
+
+export type TTheme = 'dark' | 'light';
