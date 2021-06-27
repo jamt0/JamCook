@@ -15,29 +15,20 @@ type Props = {
 const Skeleton = () => (
 	<Fragment>
 		{[1, 2, 3, 4].map((x) => (
-			<Fragment key={x}>
-				<div className='grid gap-4 grid-cols-3 md:grid-cols-4'>
-					<IonSkeletonText
-						animated
-						className='w-2/3 col-span-2 md:col-span-3'
-					/>
+			<div key={x} className='mb-3 mt-6'>
+				<div className='grid gap-4 grid-cols-5'>
+					<IonSkeletonText animated className='w-2/3 col-span-4' />
 					<IonSkeletonText animated className='w-full' />
 				</div>
-				<div className='grid gap-4 grid-cols-3 md:grid-cols-4'>
-					<IonSkeletonText
-						animated
-						className='w-full h-32 col-span-2 md:col-span-3'
-					/>
-					<IonSkeletonText animated className='w-full h-32' />
+				<div className='grid gap-4 grid-cols-5'>
+					<IonSkeletonText animated className='w-full h-44 col-span-4' />
+					<IonSkeletonText animated className='w-full h-44' />
 				</div>
-				<div className='grid gap-4 grid-cols-3 md:grid-cols-4 mb-6'>
-					<IonSkeletonText
-						animated
-						className='w-full col-span-2 md:col-span-3'
-					/>
+				<div className='grid gap-4 grid-cols-5 mt-2'>
+					<IonSkeletonText animated className='w-full col-span-4' />
 					<IonSkeletonText animated className='w-full' />
 				</div>
-			</Fragment>
+			</div>
 		))}
 	</Fragment>
 );
