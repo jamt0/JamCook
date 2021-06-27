@@ -5,7 +5,7 @@ type TResponseError = {
 };
 
 const useFetch = <T>(
-	fetchFunction: () => Promise<T | TResponseError>,
+	fetchFunction: <B>(data?: B) => Promise<T | TResponseError>,
 	initialState: T
 ) => {
 	const [error, setError] = useState<string>('');
