@@ -55,6 +55,11 @@ export type TListRecipesSearch = {
 	recipes: TRecipe[];
 };
 
+export type TRecipeList = {
+	titleListRecipes: string;
+	recipes: TRecipeCard[];
+};
+
 export type TRecipe = {
 	id: string;
 	pathRecipeImage: string;

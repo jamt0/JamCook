@@ -1,25 +1,22 @@
-import { FunctionComponent } from "react";
-import { CardRecipe } from "components";
-import { Scaffold } from "UI";
-import { TRecipeCard } from "models";
+import { FunctionComponent } from 'react';
+import { CardRecipe } from 'components';
+import { Scaffold } from 'UI';
+import { TFetch, TRecipeList } from 'models';
 
 type Props = {
-  listRecipes: {
-    titleListRecipes: string;
-    recipes: TRecipeCard[];
-  };
+	fetch: TFetch<TRecipeList>;
 };
 
 const View: FunctionComponent<Props> = (props) => (
-  <Scaffold>
-    <Scaffold.Header title={props.listRecipes.titleListRecipes}>
-      <Scaffold.Header.BackAction />
-    </Scaffold.Header>
-    <Scaffold.Content>
-      {props.listRecipes.recipes.map((recipe) => {
-        return <CardRecipe key={recipe.id} recipe={recipe} />;
-      })}
-    </Scaffold.Content>
-  </Scaffold>
+	<Scaffold>
+		<Scaffold.Header title={props.fetch.data.titleListRecipes}>
+			<Scaffold.Header.BackAction />
+		</Scaffold.Header>
+		<Scaffold.Content>
+			{props.fetch.data.recipes.map((recipe) => {
+				return <CardRecipe key={recipe.id} recipe={recipe} />;
+			})}
+		</Scaffold.Content>
+	</Scaffold>
 );
 export default View;

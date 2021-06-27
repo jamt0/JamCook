@@ -125,7 +125,7 @@ const routes = [
 	{
 		path: names.theme,
 		component: Pages.Theme,
-	}
+	},
 ];
 
 export default routes;

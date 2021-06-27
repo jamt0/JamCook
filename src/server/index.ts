@@ -4,17 +4,18 @@ import {
 	TCategory,
 	TIngredient,
 	TListRecipesSearch,
+	TRecipeList,
 	TUser,
 	TUserSignIn,
 	TUserSignUp,
 } from 'models';
 
 namespace Server {
-	export const signIn: (
+	export const signIn = async (
 		user: TUserSignIn
-	) => Promise<
+	): Promise<
 		AxiosResponse<{ user?: TUser; error?: string; accessToken?: string }>
-	> = async (user) => {
+	> => {
 		const response = await axios.post(
 			`${config.baseURL}/api/auth/signin`,
 			user
@@ -22,11 +23,11 @@ namespace Server {
 		return response;
 	};
 
-	export const signUp: (
+	export const signUp = async (
 		user: TUserSignUp
-	) => Promise<
+	): Promise<
 		AxiosResponse<{ user?: TUser; error?: string; accessToken?: string }>
-	> = async (user) => {
+	> => {
 		const response = await axios.post(
 			`${config.baseURL}/api/auth/signup`,
 			user
@@ -34,19 +35,25 @@ namespace Server {
 		return response.data;
 	};
 
-	export const getRecipesSearch: () => Promise<TListRecipesSearch[]> =
-		async () => {
-			const response = await axios.get(`${config.baseURL}/api/recipes/search`);
-			return response.data;
-		};
+	export const getRecipesSearch = async (): Promise<TListRecipesSearch[]> => {
+		const response = await axios.get(`${config.baseURL}/api/recipes/search`);
+		return response.data;
+	};
 
-	export const getRecipesExplore: () => Promise<TCategory[]> = async () => {
+	export const getRecipesExplore = async (): Promise<TCategory[]> => {
 		const response = await axios.get(`${config.baseURL}/api/recipes/explore`);
 		return response.data;
 	};
 
-	export const getIngredients: () => Promise<TIngredient[]> = async () => {
+	export const getIngredients = async (): Promise<TIngredient[]> => {
 		const response = await axios.get(`${config.baseURL}/api/ingredients`);
+		return response.data;
+	};
+
+	export const getRecipesList = async (id: string): Promise<TRecipeList> => {
+		const response = await axios.get(
+			`${config.baseURL}/api/recipes/list/${id}`
+		);
 		return response.data;
 	};
 
