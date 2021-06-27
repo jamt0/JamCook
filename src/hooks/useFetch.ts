@@ -18,23 +18,23 @@ const useFetch = <T>(
 		[]
 	);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				setLoading(true);
-				const response = await fetchFunction();
-				if (isResponseError(response)) setError(response.error);
-				else setData(response);
-				setLoading(false);
-			} catch (error) {
-				console.log(error);
-				setError('Error de conexión');
-				setLoading(false);
-			}
-		};
-		fetchData();
+	const fetchData = useCallback(async () => {
+		try {
+			setLoading(true);
+			const response = await fetchFunction();
+			if (isResponseError(response)) setError(response.error);
+			else setData(response);
+			setLoading(false);
+		} catch (error) {
+			setError('Error de conexión');
+			setLoading(false);
+		}
 	}, [fetchFunction, isResponseError]);
 
-	return { error, loading, data };
+	useEffect(() => {
+		fetchData();
+	}, [fetchData]);
+
+	return { error, loading, data, fetchData };
 };
 export default useFetch;

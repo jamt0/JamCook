@@ -137,6 +137,7 @@ export type TFetch<T> = {
 	data: T;
 	loading: boolean;
 	error: string;
+	fetchData?: () => Promise<void>;
 };
 
 export type TTheme = 'dark' | 'light';
