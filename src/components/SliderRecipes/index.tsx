@@ -51,6 +51,7 @@ const SliderRecipes: FunctionComponent<Props> = (props) => {
 									<ImageCover
 										src={recipe.pathRecipeImage}
 										height={44}
+										fullCover={true}
 										rounded
 									/>
 									<Text color='dark' align='left' className='mt-2 text-base'>
