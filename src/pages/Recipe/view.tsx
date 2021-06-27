@@ -20,6 +20,8 @@ import {
 	Avatar,
 	Center,
 	Text,
+	ErrorBox,
+	Loading,
 } from 'UI';
 import {
 	timerOutline,
@@ -70,6 +72,8 @@ const Recipe: FunctionComponent<Props> = (props) => (
 				)
 			}
 		>
+			<Loading isOpen={props.fetch.loading} />
+			{props.fetch.error !== '' && <ErrorBox>{props.fetch.error}</ErrorBox>}
 			{props.fetch.data !== null && (
 				<Fragment>
 					{/* Encabezado recipe*/}
