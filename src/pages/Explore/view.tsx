@@ -1,12 +1,13 @@
 import { Fragment, FunctionComponent } from 'react';
 import { GridImages } from 'components';
-import { TCategory, TFetch } from 'models';
-import { ErrorBox, Loading, Scaffold, Searcher, Title } from 'UI';
-import { IonItem, IonThumbnail, IonSkeletonText, IonLabel } from '@ionic/react';
+import { TCategory, TFetch, TRefresh } from 'models';
+import { ErrorBox, Scaffold, Searcher, Title } from 'UI';
+import { IonSkeletonText } from '@ionic/react';
 
 type Props = {
 	texts: any;
 	fetch: TFetch<TCategory[]>;
+	doRefresh: TRefresh;
 };
 
 const Skeleton = () => (
@@ -22,7 +23,7 @@ const Skeleton = () => (
 
 const View: FunctionComponent<Props> = (props) => (
 	<Scaffold>
-		<Scaffold.Content>
+		<Scaffold.Content refresher={props.doRefresh}>
 			<Title color='medium'>{props.texts('page_explorar')}</Title>
 			<Searcher placeHolder={props.texts('plato_gustaria')} />
 			{props.fetch.error !== '' && <ErrorBox>{props.fetch.error}</ErrorBox>}

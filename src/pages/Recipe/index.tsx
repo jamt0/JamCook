@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import View from './view';
 import { useTranslation } from 'react-i18next';
-import { useFetch, useShowTabs } from 'hooks';
+import { useFetch, useRefresh, useShowTabs } from 'hooks';
 import { useParams } from 'react-router-dom';
 import Server from 'server';
 import { TRecipeComplete } from 'models';
@@ -37,12 +37,14 @@ const Recipe: React.FC = () => {
 
 	const { id } = useParams<{ id: string }>();
 
-	const fetchData = useCallback(() => Server.getRecipe(id), [id]);
+	const fetchFunction = useCallback(() => Server.getRecipe(id), [id]);
 
-	const { data, loading, error } = useFetch<TRecipeComplete | null>(
-		fetchData,
+	const { data, loading, error, fetchData } = useFetch<TRecipeComplete | null>(
+		fetchFunction,
 		null
 	);
+
+	const doRefresh = useRefresh(fetchData);
 
 	return (
 		<View
@@ -56,6 +58,7 @@ const Recipe: React.FC = () => {
 			portions={portions}
 			stars={stars}
 			setPortions={setPortions}
+			doRefresh={doRefresh}
 		/>
 	);
 };

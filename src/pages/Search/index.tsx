@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import View from './view';
 import { useTranslation } from 'react-i18next';
-import { useShowTabs, useFetch } from 'hooks';
+import { useShowTabs, useFetch, useRefresh } from 'hooks';
 import { useAppSelector } from 'global/hooks';
 import { selectUser } from 'global/features/userSlice';
 import { useChangeWidth } from './hooks';
@@ -19,10 +19,12 @@ const Search: React.FC = () => {
 
 	const { isLoggedIn } = useAppSelector(selectUser);
 
-	const { data, loading, error } = useFetch<TListRecipesSearch[]>(
+	const { data, loading, error, fetchData } = useFetch<TListRecipesSearch[]>(
 		Server.getRecipesSearch,
 		[]
 	);
+
+	const doRefresh = useRefresh(fetchData);
 
 	return (
 		<View
@@ -30,6 +32,7 @@ const Search: React.FC = () => {
 			fetch={{ data, loading, error }}
 			texts={t}
 			isLoggedIn={isLoggedIn}
+			doRefresh={doRefresh}
 		/>
 	);
 };

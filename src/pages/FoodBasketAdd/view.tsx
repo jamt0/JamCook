@@ -11,12 +11,13 @@ import {
 	IonSkeletonText,
 	IonThumbnail,
 } from '@ionic/react';
-import { TFetch, TIngredient } from 'models';
+import { TFetch, TIngredient, TRefresh } from 'models';
 
 type Props = {
 	texts: any;
 	fetch: TFetch<TIngredient[]>;
 	handlerAddIngredient: (e: any) => void;
+	doRefresh: TRefresh;
 };
 
 const Skeleton = () => (
@@ -42,6 +43,7 @@ const View: FunctionComponent<Props> = (props) => (
 			<Scaffold.Header.BackAction />
 		</Scaffold.Header>
 		<Scaffold.Content
+			refresher={props.doRefresh}
 			fabButton={
 				<IonFab vertical='bottom' horizontal='end' slot='fixed'>
 					<IonFabButton onClick={props.handlerAddIngredient}>

@@ -1,6 +1,6 @@
 import { Fragment, FunctionComponent } from 'react';
 import { IonButton, IonIcon } from '@ionic/react';
-import { TFetch, TRecipeComplete, TValoration } from 'models';
+import { TFetch, TRecipeComplete, TRefresh, TValoration } from 'models';
 import {
 	TitleRecipe,
 	ContainerSection,
@@ -43,6 +43,7 @@ type Props = {
 	handlerMark: (e: any) => void;
 	handlerRecipeMade: (e: any) => void;
 	handlerValoration: (e: any, index: number) => void;
+	doRefresh: TRefresh;
 };
 
 const Recipe: FunctionComponent<Props> = (props) => (
@@ -62,6 +63,7 @@ const Recipe: FunctionComponent<Props> = (props) => (
 			</Scaffold.Header.Actions>
 		</Scaffold.Header>
 		<Scaffold.Content
+			refresher={props.doRefresh}
 			banner={
 				props.fetch.data !== null && (
 					<ImageCover src={props.fetch.data.pathRecipeImage} height={72}>

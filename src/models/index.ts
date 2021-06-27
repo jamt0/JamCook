@@ -1,3 +1,5 @@
+import { RefresherEventDetail } from '@ionic/core';
+
 export type TResponse = {
 	id: string;
 	pathAvatarImage: string;
@@ -141,3 +143,7 @@ export type TFetch<T> = {
 };
 
 export type TTheme = 'dark' | 'light';
+
+export type TRefresh = (
+	event: CustomEvent<RefresherEventDetail>
+) => Promise<void>;

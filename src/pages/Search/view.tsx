@@ -1,6 +1,6 @@
 import { Fragment, FunctionComponent } from 'react';
 import { SliderRecipes } from 'components';
-import { TFetch, TListRecipesSearch } from 'models';
+import { TFetch, TListRecipesSearch, TRefresh } from 'models';
 import { ErrorBox, Scaffold, Searcher, Title } from 'UI';
 import Welcome from 'components/Welcome';
 import { IonSkeletonText } from '@ionic/react';
@@ -10,6 +10,7 @@ type Props = {
 	slidesPerView: number;
 	isLoggedIn: boolean;
 	fetch: TFetch<TListRecipesSearch[]>;
+	doRefresh: TRefresh;
 };
 
 const Skeleton = () => (
@@ -35,7 +36,7 @@ const Skeleton = () => (
 
 const Search: FunctionComponent<Props> = (props) => (
 	<Scaffold>
-		<Scaffold.Content>
+		<Scaffold.Content refresher={props.doRefresh}>
 			{!props.isLoggedIn && <Welcome />}
 			<Title align='center' color='medium'>
 				{props.texts('slogan_2_1')}

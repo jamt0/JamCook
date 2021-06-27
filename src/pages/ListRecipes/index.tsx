@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import View from './view';
-import { useFetch, useShowTabs } from 'hooks';
+import { useFetch, useRefresh, useShowTabs } from 'hooks';
 import { TRecipeList } from 'models';
 import Server from 'server';
 import { useParams } from 'react-router-dom';
@@ -10,14 +10,19 @@ const ListRecipes: React.FC = () => {
 
 	const { id } = useParams<{ id: string }>();
 
-	const fetchData = useCallback(() => Server.getRecipesList(id), [id]);
+	const fetchFunction = useCallback(() => Server.getRecipesList(id), [id]);
 
-	const { data, loading, error } = useFetch<TRecipeList>(fetchData, {
-		titleListRecipes: '',
-		recipes: [],
-	});
+	const { data, loading, error, fetchData } = useFetch<TRecipeList>(
+		fetchFunction,
+		{
+			titleListRecipes: '',
+			recipes: [],
+		}
+	);
 
-	return <View fetch={{ data, loading, error }} />;
+	const doRefresh = useRefresh(fetchData);
+
+	return <View fetch={{ data, loading, error }} doRefresh={doRefresh} />;
 };
 
 export default ListRecipes;

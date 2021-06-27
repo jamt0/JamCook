@@ -10,13 +10,14 @@ import {
 } from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
 import { ItemIngredient } from 'components';
-import { TFetch, TIngredient } from 'models';
+import { TFetch, TIngredient, TRefresh } from 'models';
 import { ErrorBox, Scaffold, Searcher, Title } from 'UI';
 
 type Props = {
 	texts: any;
 	fetch: TFetch<TIngredient[]>;
 	handlerAddIngredient: (e: any) => void;
+	doRefresh: TRefresh;
 };
 
 const Skeleton = () => (
@@ -39,6 +40,7 @@ const Skeleton = () => (
 const View: FunctionComponent<Props> = (props) => (
 	<Scaffold>
 		<Scaffold.Content
+			refresher={props.doRefresh}
 			fabButton={
 				<IonFab vertical='bottom' horizontal='end' slot='fixed'>
 					<IonFabButton onClick={props.handlerAddIngredient}>

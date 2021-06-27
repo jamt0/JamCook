@@ -1,7 +1,7 @@
 import React from 'react';
 import View from './view';
 import { useTranslation } from 'react-i18next';
-import { useFetch, useShowTabs } from 'hooks';
+import { useFetch, useRefresh, useShowTabs } from 'hooks';
 import Server from 'server';
 import { TCategory } from 'models';
 
@@ -10,12 +10,16 @@ const Explore: React.FC = () => {
 
 	useShowTabs(true);
 
-	const { data, loading, error } = useFetch<TCategory[]>(
+	const { data, loading, error, fetchData } = useFetch<TCategory[]>(
 		Server.getRecipesExplore,
 		[]
 	);
 
-	return <View texts={t} fetch={{ data, loading, error }} />;
+	const doRefresh = useRefresh(fetchData);
+
+	return (
+		<View texts={t} fetch={{ data, loading, error }} doRefresh={doRefresh} />
+	);
 };
 
 export default Explore;
