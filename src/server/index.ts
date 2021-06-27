@@ -4,6 +4,7 @@ import {
 	TCategory,
 	TIngredient,
 	TListRecipesSearch,
+	TRecipeComplete,
 	TRecipeList,
 	TUser,
 	TUserSignIn,
@@ -54,6 +55,11 @@ namespace Server {
 		const response = await axios.get(
 			`${config.baseURL}/api/recipes/list/${id}`
 		);
+		return response.data;
+	};
+
+	export const getRecipe = async (id: string): Promise<TRecipeComplete> => {
+		const response = await axios.get(`${config.baseURL}/api/recipes/${id}`);
 		return response.data;
 	};
 
