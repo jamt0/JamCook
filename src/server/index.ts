@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import config from 'config';
 import {
 	TCategory,
+	TIngredient,
 	TListRecipesSearch,
 	TUser,
 	TUserSignIn,
@@ -41,6 +42,11 @@ namespace Server {
 
 	export const getRecipesExplore: () => Promise<TCategory[]> = async () => {
 		const response = await axios.get(`${config.baseURL}/api/recipes/explore`);
+		return response.data;
+	};
+
+	export const getIngredients: () => Promise<TIngredient[]> = async () => {
+		const response = await axios.get(`${config.baseURL}/api/ingredients`);
 		return response.data;
 	};
 
