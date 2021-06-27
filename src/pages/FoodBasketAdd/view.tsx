@@ -27,15 +27,9 @@ const Skeleton = () => (
 					<IonSkeletonText animated />
 				</IonThumbnail>
 				<IonLabel>
-					<h3>
-						<IonSkeletonText animated style={{ width: '50%' }} />
-					</h3>
-					<p>
-						<IonSkeletonText animated style={{ width: '80%' }} />
-					</p>
-					<p>
-						<IonSkeletonText animated style={{ width: '60%' }} />
-					</p>
+					<IonSkeletonText animated style={{ width: '50%' }} />
+					<IonSkeletonText animated style={{ width: '80%' }} />
+					<IonSkeletonText animated style={{ width: '60%' }} />
 				</IonLabel>
 			</IonItem>
 		))}
