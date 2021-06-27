@@ -22,7 +22,7 @@ type Props = {
 const Skeleton = () => (
 	<Fragment>
 		{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((x) => (
-			<IonItem lines='none'>
+			<IonItem lines='none' key={x}>
 				<IonThumbnail slot='start'>
 					<IonSkeletonText animated />
 				</IonThumbnail>
