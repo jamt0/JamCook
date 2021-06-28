@@ -1,14 +1,21 @@
 import { Fragment, FunctionComponent } from 'react';
-import { IonContent, IonRefresher, IonRefresherContent } from '@ionic/react';
+import {
+	IonContent,
+	IonInfiniteScroll,
+	IonInfiniteScrollContent,
+	IonRefresher,
+	IonRefresherContent,
+} from '@ionic/react';
 import { chevronDownCircleOutline } from 'ionicons/icons';
-import { RefresherEventDetail } from '@ionic/core';
+import { TInfiniteScroll, TRefresh } from 'models';
 
 type Props = {
 	fabButton?: React.ReactNode;
 	height?: 'auto' | 'full' | undefined;
 	margin?: 'md' | 'lg' | undefined;
 	banner?: React.ReactNode;
-	refresher?: (event: CustomEvent<RefresherEventDetail>) => void;
+	refresher?: TRefresh;
+	infinite?: TInfiniteScroll;
 };
 
 const ScaffoldContent: FunctionComponent<Props> = ({
@@ -31,6 +38,13 @@ const ScaffoldContent: FunctionComponent<Props> = ({
 			{props.children}
 		</div>
 		{props.fabButton ?? <Fragment />}
+		{props.infinite ? (
+			<IonInfiniteScroll threshold='100px' onIonInfinite={props.infinite}>
+				<IonInfiniteScrollContent></IonInfiniteScrollContent>
+			</IonInfiniteScroll>
+		) : (
+			<Fragment />
+		)}
 	</IonContent>
 );
 export default ScaffoldContent;

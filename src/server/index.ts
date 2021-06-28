@@ -4,8 +4,8 @@ import {
 	TCategory,
 	TIngredient,
 	TListRecipesSearch,
+	TRecipeCard,
 	TRecipeComplete,
-	TRecipeList,
 	TUser,
 	TUserSignIn,
 	TUserSignUp,
@@ -51,7 +51,7 @@ namespace Server {
 		return response.data;
 	};
 
-	export const getRecipesList = async (id: string): Promise<TRecipeList> => {
+	export const getRecipesList = async (id: string): Promise<TRecipeCard[]> => {
 		const response = await axios.get(
 			`${config.baseURL}/api/recipes/list/${id}`
 		);

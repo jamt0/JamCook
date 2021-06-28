@@ -147,3 +147,5 @@ export type TTheme = 'dark' | 'light';
 export type TRefresh = (
 	event: CustomEvent<RefresherEventDetail>
 ) => Promise<void>;
+
+export type TInfiniteScroll = (event: CustomEvent<void>) => Promise<void>;
