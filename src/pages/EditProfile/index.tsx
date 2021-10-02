@@ -11,19 +11,20 @@ import {
 	rulesAge,
 } from 'utils/rulesValidation';
 import View from './view';
-import { TUserEdit } from 'models';
-import { useShowTabs } from 'hooks';
+import { TOptionsAges, TOptionsGender, TUserEdit } from 'models';
+import { useFetchMultiple, useShowTabs } from 'hooks';
+import {
+	useGetAges,
+	useGetGenders,
+	useGetUserData,
+	useSetInitialData,
+} from './hooks';
 
 const EditProfile: React.FC = () => {
 	const history = useHistory();
 	const { t } = useTranslation();
-	const [errores, setErrores] = useState<string>('');
-	const [avatarImageUrl, setAvatarImageUrl] = useState<any>(
-		`${config.baseURL}/images/avatars/default.png`
-	);
-	const [loading, setLoading] = useState<boolean>(false);
-	const [optionsAges, setOptionsAges] = useState();
-	const [optionsGenders, setOptionsGenders] = useState();
+	const [optionsAges, setOptionsAges] = useState<TOptionsAges>([]);
+	const [optionsGenders, setOptionsGenders] = useState<TOptionsGender>([]);
 
 	useShowTabs(false);
 
@@ -71,54 +72,15 @@ const EditProfile: React.FC = () => {
 		// }
 	};
 
-	// useEffect(() => {
-	//   //ACA TOCA MIRAR COMO HACER PARA SINCRONIZAR EL LOADING
-	//   //ADEMAS LO IDEAL ES QUE ESTEN LAS OPCIONES PARA PODER PONER LA DEL USER
-	//   Server.getGenders()
-	//     .then((response) => {
-	//       if (!response.data.error) setOptionsGenders(response.data.options);
-	//       else setErrores(response.data.error);
-	//     })
-	//     .catch((error) => console.log(error));
+	const getGenders = useGetGenders(setOptionsAges);
+	const getAges = useGetAges(setOptionsGenders);
+	const getUserData = useGetUserData(reset, '4');
 
-	//   Server.getAges()
-	//     .then((response) => {
-	//       if (!response.data.error) setOptionsAges(response.data.options);
-	//       else setErrores(response.data.error);
-	//     })
-	//     .catch((error) => console.log(error));
-
-	//   if (auth.user?.id) {
-	//     setLoading(true);
-	//     Server.getUser(auth.user.id)
-	//       .then((response) => {
-	//         if (!response.data.error) {
-	//           reset({
-	//             name: String(response.data.user.name),
-	//             email: String(response.data.user.email),
-	//             ageId: String(response.data.user.ageId),
-	//             genderId: String(response.data.user.genderId),
-	//           });
-	//           setLoading(false);
-	//         } else {
-	//           setErrores(response.data.error);
-	//           setLoading(false);
-	//         }
-	//       })
-	//       .catch((error) => {
-	//         console.log(error);
-	//         setLoading(false);
-	//       });
-
-	//     Server.getImageAvatar(auth.user.id)
-	//       .then((response) => {
-	//         if (!response.data.error)
-	//           setAvatarImageUrl(`${config.baseURL}/${response.data.path}`);
-	//         else setErrores(response.data.error);
-	//       })
-	//       .catch((error) => console.log(error));
-	//   }
-	// }, []);
+	const { error, loading } = useSetInitialData(
+		getGenders,
+		getAges,
+		getUserData
+	);
 
 	const defaultValues = { name: '', ageId: '', genderId: '', email: '' };
 
@@ -131,16 +93,15 @@ const EditProfile: React.FC = () => {
 
 	return (
 		<View
-			avatarImageUrl={avatarImageUrl}
 			rules={rules}
 			handlerSaveEditButton={handlerSaveEditButton}
 			fileChangedHandler={fileChangedHandler}
 			texts={t}
-			errores={errores}
+			error={error}
 			loading={loading}
 			optionsAges={optionsAges}
 			optionsGenders={optionsGenders}
-			formHook={{ control, errors, isValid, isSubmitting, handleSubmit }}
+			form={{ control, errors, isValid, isSubmitting, handleSubmit }}
 			defaultValues={defaultValues}
 		/>
 	);

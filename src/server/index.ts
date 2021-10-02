@@ -4,9 +4,12 @@ import {
 	TCategory,
 	TIngredient,
 	TListRecipesSearch,
+	TOptionsAges,
+	TOptionsGender,
 	TRecipeCard,
 	TRecipeComplete,
 	TUser,
+	TUserEdit,
 	TUserSignIn,
 	TUserSignUp,
 } from 'models';
@@ -33,7 +36,7 @@ namespace Server {
 			`${config.baseURL}/api/auth/signup`,
 			user
 		);
-		return response.data;
+		return response;
 	};
 
 	export const getRecipesSearch = async (): Promise<TListRecipesSearch[]> => {
@@ -63,16 +66,33 @@ namespace Server {
 		return response.data;
 	};
 
-	export const authentication = () => {
-		return axios.get(`${config.baseURL}/api/auth/authentication`, {
-			headers: config.headers,
-		});
+	export const getGenders = async (): Promise<TOptionsGender> => {
+		const response = await axios.get(`${config.baseURL}/api/users/genders`);
+		return response.data;
 	};
 
-	export const getUser = (id: string) => {
-		return axios.get(`${config.baseURL}/api/users/${id}`, {
+	export const getAges = async (): Promise<TOptionsAges> => {
+		const response = await axios.get(`${config.baseURL}/api/users/ages`);
+		return response.data;
+	};
+
+	export const getUser = async (id: string): Promise<TUserEdit> => {
+		const response = await axios.get(`${config.baseURL}/api/users/${id}`, {
 			headers: config.headers,
 		});
+		return response.data;
+	};
+
+	export const authentication = async (): Promise<
+		AxiosResponse<{ user?: TUser; error?: string; accessToken?: string }>
+	> => {
+		const response = await axios.get(
+			`${config.baseURL}/api/auth/authentication`,
+			{
+				headers: config.headers,
+			}
+		);
+		return response;
 	};
 
 	export const putUser = (id: string, user: any): Promise<any> => {
@@ -97,18 +117,6 @@ namespace Server {
 
 	export const getImageAvatar = (id: string) => {
 		return axios.get(`${config.baseURL}/api/users/ImagesAvatars/${id}`, {
-			headers: config.headers,
-		});
-	};
-
-	export const getGenders = () => {
-		return axios.get(`${config.baseURL}/api/users/genders`, {
-			headers: config.headers,
-		});
-	};
-
-	export const getAges = () => {
-		return axios.get(`${config.baseURL}/api/users/ages`, {
 			headers: config.headers,
 		});
 	};

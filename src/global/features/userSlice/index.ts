@@ -6,14 +6,14 @@ import Server from 'server';
 type TUserSlice = {
 	status: 'loaded' | 'loading' | 'error' | 'idle';
 	error: string;
-	isLoggedIn: boolean;
+	isLoggedIn: boolean | null;
 	user: TUser;
 };
 
 const initialState: TUserSlice = {
 	status: 'idle',
 	error: '',
-	isLoggedIn: false,
+	isLoggedIn: null,
 	user: {
 		id: '',
 		name: '',
@@ -81,6 +81,35 @@ export const signInUserAsync = createAsyncThunk(
 	}
 );
 
+export const initializeUserAsync = createAsyncThunk(
+	'user/initializeUserAsync',
+	async (_, thunkAPI) => {
+		try {
+			const response = await Server.authentication();
+			const { data } = response;
+			console.log('response', response);
+			if (response.status === 200) {
+				console.log('accessToken', data.accessToken);
+				const accessToken: string | undefined = data.accessToken;
+				if (accessToken) {
+					localStorage.setItem('accessToken', accessToken);
+					return data;
+				}
+				return thunkAPI.rejectWithValue('Hubo un error');
+			}
+			console.log('Error diferente 200', data.error);
+			const error: string | undefined = data.error;
+			if (error) {
+				return thunkAPI.rejectWithValue(error);
+			}
+		} catch (e) {
+			console.log('Catch', e.response.data.error);
+			const error: string = e.response.data.error;
+			return thunkAPI.rejectWithValue(error);
+		}
+	}
+);
+
 export const UserSlice = createSlice({
 	name: 'user',
 	initialState,
@@ -117,6 +146,19 @@ export const UserSlice = createSlice({
 			if (user) state.user = user;
 		});
 		builder.addCase(signInUserAsync.rejected, (state, action) => {
+			state.status = 'error';
+			state.error = String(action.payload);
+		});
+		builder.addCase(initializeUserAsync.pending, (state) => {
+			state.status = 'loading';
+		});
+		builder.addCase(initializeUserAsync.fulfilled, (state, action) => {
+			state.status = 'loaded';
+			state.isLoggedIn = true;
+			const user = action.payload?.user;
+			if (user) state.user = user;
+		});
+		builder.addCase(initializeUserAsync.rejected, (state, action) => {
 			state.status = 'error';
 			state.error = String(action.payload);
 		});

@@ -8,7 +8,7 @@ import { IonSkeletonText } from '@ionic/react';
 type Props = {
 	texts: any;
 	slidesPerView: number;
-	isLoggedIn: boolean;
+	isLoggedIn: boolean | null;
 	fetch: TFetch<TListRecipesSearch[]>;
 	doRefresh: TRefresh;
 };
@@ -37,7 +37,7 @@ const Skeleton = () => (
 const Search: FunctionComponent<Props> = (props) => (
 	<Scaffold>
 		<Scaffold.Content refresher={props.doRefresh}>
-			{!props.isLoggedIn && <Welcome />}
+			{!props.isLoggedIn && props.isLoggedIn !== null && <Welcome />}
 			<Title align='center' color='medium'>
 				{props.texts('slogan_2_1')}
 				<br />

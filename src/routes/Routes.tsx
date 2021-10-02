@@ -20,12 +20,13 @@ import { useTranslation } from 'react-i18next';
 import { Route } from 'react-router-dom';
 import routes from 'routes';
 import namesRoutes from 'routes/names';
-import { useSetTheme } from 'hooks';
+import { useSetTheme, useInitializeUser } from 'hooks';
 
 const Routes = () => {
 	const { t } = useTranslation();
 	const { showTabs } = useAppSelector(selectUI);
 	useSetTheme();
+	useInitializeUser();
 	return (
 		<IonReactRouter>
 			<IonTabs>

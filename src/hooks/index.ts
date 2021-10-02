@@ -5,6 +5,9 @@ import useFetch from './useFetch';
 import useFetchInfinite from './useFetchInfinite';
 import useRefresh from './useRefresh';
 import useInfinite from './useInfinite';
+import useFetchMultiple from './useFetchMultiple';
+import useIsResponseError from './useIsResponseError';
+import useInitializeUser from './useInitializeUser';
 
 export {
 	useShowTabs,
@@ -14,4 +17,7 @@ export {
 	useSetTheme,
 	useRefresh,
 	useInfinite,
+	useFetchMultiple,
+	useIsResponseError,
+	useInitializeUser,
 };

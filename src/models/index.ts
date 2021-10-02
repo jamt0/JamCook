@@ -149,3 +149,13 @@ export type TRefresh = (
 ) => Promise<void>;
 
 export type TInfiniteScroll = (event: CustomEvent<void>) => Promise<void>;
+
+export type TOption = { value: string; label: string };
+
+export type TOptionsGender = TOption[];
+
+export type TOptionsAges = TOption[];
+
+export type TResponseError = {
+	error: string;
+};

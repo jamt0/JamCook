@@ -20,7 +20,7 @@ type Props = {
 	texts: any;
 	user: TUser;
 	items: any[];
-	isLoggedIn: boolean;
+	isLoggedIn: boolean | null;
 };
 const View: FunctionComponent<Props> = (props) => (
 	<Scaffold>
